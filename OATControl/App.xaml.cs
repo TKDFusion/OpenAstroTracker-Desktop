@@ -47,7 +47,9 @@ namespace OATControl
 				Log.EnableLogging();
 			}
 
-			ThemeManager.Instance.ApplyTheme("DarkAstronomy");
+			AppSettings.Instance.Load();
+				var savedTheme = AppSettings.Instance.ThemeName;
+				ThemeManager.Instance.ApplyTheme(savedTheme);
 
 			base.OnStartup(e);
 

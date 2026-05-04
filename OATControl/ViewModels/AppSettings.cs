@@ -559,5 +559,12 @@ namespace OATControl.ViewModels
 			get { return Convert.ToSingle(this["PolarAlignmentMinimumTotalError"] ?? "20"); }
 			set { this["PolarAlignmentMinimumTotalError"] = value.ToString(); }
 		}
+
+		[DefaultValueAttribute("DarkAstronomy")]
+		public string ThemeName
+		{
+			get { return this["ThemeName"]; }
+			set { this["ThemeName"] = value; }
+		}
 	}
 }
