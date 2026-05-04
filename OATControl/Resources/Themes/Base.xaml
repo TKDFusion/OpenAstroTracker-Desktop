@@ -134,19 +134,4 @@
         <Setter Property="Background" Value="{DynamicResource AccentColorBrush4}" />
     </Style>
 
-    <!-- ThemedWindow default style -->
-    <Style TargetType="{x:Type local:ThemedWindow}" xmlns:local="clr-namespace:OATControl.Controls;assembly=OATControl">
-        <Setter Property="WindowStyle" Value="None" />
-        <Setter Property="Background" Value="{DynamicResource WindowBackgroundBrush}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:ThemedWindow}" xmlns:local="clr-namespace:OATControl.Controls;assembly=OATControl">
-                    <AdornerDecorator>
-                        <ContentPresenter />
-                    </AdornerDecorator>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
 </ResourceDictionary>

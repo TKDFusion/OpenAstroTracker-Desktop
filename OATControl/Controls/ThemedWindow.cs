@@ -5,14 +5,9 @@ namespace OATControl.Controls
 {
     public class ThemedWindow : Window
     {
-        static ThemedWindow()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ThemedWindow),
-                new FrameworkPropertyMetadata(typeof(ThemedWindow)));
-        }
-
         public ThemedWindow()
         {
+            WindowStyle = WindowStyle.None;
             var chrome = new WindowChrome
             {
                 CaptionHeight = 30,
