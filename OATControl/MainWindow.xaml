@@ -494,7 +494,6 @@
 					HorizontalAlignment="Left" 
 					VerticalAlignment="Bottom" 
 				    IsChecked="{Binding IsCoarseSlewing}"
-					Style="{StaticResource AccentedDialogSquareButton}" 
 					Content="{Binding IsCoarseSlewing, Converter={StaticResource SlewModeConverter}}" />
 
 			<StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsEnabled="{Binding MountConnected}">
