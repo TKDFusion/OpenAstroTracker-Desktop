@@ -81,6 +81,7 @@
     <Style TargetType="Button" BasedOn="{StaticResource AccentedSquareButtonStyle}" />
 
     <Style x:Key="AccentedDialogSquareButton" TargetType="Button" BasedOn="{StaticResource AccentedSquareButtonStyle}" />
+    <Style x:Key="AccentedDialogSquareButton" TargetType="ToggleButton" BasedOn="{StaticResource AccentedToggleSquareButtonStyle}" />
 
     <!-- ToggleButton styles -->
     <Style x:Key="AccentedToggleSquareButtonStyle" TargetType="ToggleButton">
