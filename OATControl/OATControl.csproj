@@ -90,6 +90,7 @@
     <Compile Include="Controls\ScopeCircles.cs" />
     <Compile Include="Controls\Arrow.cs" />
     <Compile Include="Controls\ScopePointer.cs" />
+    <Compile Include="Controls\ThemedWindow.cs" />
     <Compile Include="Converters\AbsConverter.cs" />
     <Compile Include="Converters\BoolToBrushConverter.cs" />
     <Compile Include="Converters\BoolToFontWeightConverter.cs" />
