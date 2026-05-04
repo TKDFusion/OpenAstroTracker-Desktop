@@ -296,20 +296,11 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
-		<controls:ToggleSwitch 
-			x:Name="ShowReachable" 
-			Grid.Row="0" 
-			Header="" 
-			OnLabel="Hiding Unreachable Targets" 
-			OffLabel="Showing Unreachable Targets" 
-			Margin="0,0" 
-			Padding="0" 
-			FontSize="12"
-			Foreground="#F00"
-			controls:ControlsHelper.HeaderFontSize="2" 
-			HorizontalAlignment="Center" 
-			ContentPadding="51,0,0,0" 
-			controls:ControlsHelper.HeaderMargin="0,0,0,3"
+		<controls:ToggleSwitch
+			x:Name="ShowReachable"
+			Grid.Row="0"
+			Margin="0,0"
+			HorizontalAlignment="Center"
 			ThumbIndicatorBrush="#D00"
 			/>
 		<ListView Grid.Row="1" ItemsSource="{Binding AvailablePointsOfInterest}" HorizontalAlignment="Center" >

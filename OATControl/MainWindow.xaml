@@ -815,7 +815,7 @@
 			<Button Grid.Row="2" Grid.Column="0" Content="Set Low" Height="22" Margin="6,2,0,2" HorizontalAlignment="Left" Padding="15,0" Style="{StaticResource AccentedSquareButtonStyle}" Command="{Binding SetDecLowerLimitCommand}" Visibility="{Binding ElementName=ShowLimits, Path=IsChecked,Converter={StaticResource TrueBoolToVisible}}"/>
 
 			<TextBlock Grid.Column="0" Grid.Row="3" Text="Show Limits" Margin="0,5,0,1"  Style="{StaticResource TextBlockLabelSmall}" />
-			<controls:ToggleSwitch Grid.Row="3" Grid.Column="1" Margin="0,2" IsEnabled="{Binding MountConnected}" Name="ShowLimits" IsChecked="{Binding ShowDECLimits}"/>
+			<controls:ToggleSwitch Grid.Row="3" Grid.Column="1" Margin="0,2" IsEnabled="{Binding MountConnected}" x:Name="ShowLimits" IsChecked="{Binding ShowDECLimits}"/>
 
 
 
