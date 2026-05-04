@@ -14,6 +14,7 @@
 		<converters:BoolToVisibilityConverter x:Key="TrueBoolToHidden" Collapse="False" IsReversed="True"/>
 		<converters:BoolToVisibilityConverter x:Key="TrueBoolToVisible" Collapse="False" />
 		<converters:BoolToVisibilityConverter x:Key="CollapseIfFalse" Collapse="True" IsReversed="False" />
+		<converters:BoolToVisibilityConverter x:Key="bool2VisibilityConverter" Collapse="True" />
 		<converters:IntToBoolConverter x:Key="IntToBoolConverter" Operator="==" />
 		<converters:StringToVisibilityConverter x:Key="ShowOnStringEqual" EqualState="Visible" />
 		<converters:BoolToFontWeightConverter x:Key="BoolToFontWeightConverter" />
