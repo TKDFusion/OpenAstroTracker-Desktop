@@ -1,4 +1,3 @@
-﻿<Window  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" 
 	x:Class="OATControl.DlgMessageBox"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

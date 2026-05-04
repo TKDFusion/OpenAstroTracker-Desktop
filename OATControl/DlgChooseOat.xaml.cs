@@ -1,4 +1,4 @@
-﻿using MahApps.Metro.Controls;
+﻿using OATControl.Controls;
 using OATCommunications.WPF;
 using OATCommunications;
 using OATCommunications.Model;
@@ -32,7 +32,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for DlgChooseOat.xaml
 	/// </summary>
-	public partial class DlgChooseOat : MetroWindow, INotifyPropertyChanged
+	public partial class DlgChooseOat : ThemedWindow, INotifyPropertyChanged
 	{
 		public enum Steps
 		{

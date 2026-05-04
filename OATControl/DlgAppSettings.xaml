@@ -1,10 +1,8 @@
-﻿<mah:MetroWindow x:Class="OATControl.DlgAppSettings"
+﻿<controls:ThemedWindow x:Class="OATControl.DlgAppSettings"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
 		xmlns:controls="clr-namespace:OATControl.Controls" 
         xmlns:local="clr-namespace:OATControl" 
         xmlns:localVM="clr-namespace:OATControl.ViewModels" 
@@ -359,7 +357,7 @@
 									<ColumnDefinition Width="*" />
 									<ColumnDefinition Width="42" />
 								</Grid.ColumnDefinitions>
-								<Controls:ToggleSwitchButton  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding RaStartEast}"/>
+								<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding RaStartEast}"/>
 								<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="West" FontSize="10" Margin="22,-5,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 								<TextBlock Grid.Row="1"  Grid.Column="2" Text="East" FontSize="10" Margin="-5,-5,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 							</Grid>
@@ -389,7 +387,7 @@
 									<ColumnDefinition Width="*" />
 									<ColumnDefinition Width="Auto" />
 								</Grid.ColumnDefinitions>
-								<Controls:ToggleSwitchButton  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding DecStartSouth}"/>
+								<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding DecStartSouth}"/>
 								<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3" Text="North" FontSize="10" Margin="20,-5,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}" HorizontalAlignment="Left"/>
 								<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3" Text="South" FontSize="10" Margin="0,-5,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}" HorizontalAlignment="Right"/>
 							</Grid>
@@ -477,7 +475,7 @@
 							<ColumnDefinition Width="*" />
 							<ColumnDefinition Width="40" />
 						</Grid.ColumnDefinitions>
-						<Controls:ToggleSwitchButton  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding MonitorNinaForPA}"/>
+						<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding MonitorNinaForPA}"/>
 						<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="No" FontSize="10" Margin="6,-5,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 						<TextBlock Grid.Row="1"  Grid.Column="2" Text="Yes" FontSize="10" Margin="5,-5,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 					</Grid>
@@ -508,7 +506,7 @@
 							<ColumnDefinition Width="*" />
 							<ColumnDefinition Width="40" />
 						</Grid.ColumnDefinitions>
-						<Controls:ToggleSwitchButton  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding MonitorSharpCapForPA}"/>
+						<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding MonitorSharpCapForPA}"/>
 						<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="No" FontSize="10" Margin="6,-5,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 						<TextBlock Grid.Row="1"  Grid.Column="2" Text="Yes" FontSize="10" Margin="5,-5,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 					</Grid>
@@ -553,7 +551,7 @@
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="40" />
 							</Grid.ColumnDefinitions>
-							<Controls:ToggleSwitchButton  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding InvertAZCorrections}"/>
+							<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding InvertAZCorrections}"/>
 							<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="No" FontSize="10" Margin="6,-5,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 							<TextBlock Grid.Row="1"  Grid.Column="2" Text="Yes" FontSize="10" Margin="5,-5,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 						</Grid>
@@ -567,7 +565,7 @@
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="40" />
 							</Grid.ColumnDefinitions>
-							<Controls:ToggleSwitchButton  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding InvertALTCorrections}"/>
+							<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding InvertALTCorrections}"/>
 							<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="No" FontSize="10" Margin="6,-5,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 							<TextBlock Grid.Row="1"  Grid.Column="2" Text="Yes" FontSize="10" Margin="5,-5,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 						</Grid>
@@ -622,6 +620,6 @@
 			</TabItem>
 		</TabControl>
 	</DockPanel>
-</mah:MetroWindow>
+</controls:ThemedWindow>
 	
 	

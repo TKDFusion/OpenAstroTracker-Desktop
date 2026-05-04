@@ -1,4 +1,4 @@
-﻿using MahApps.Metro.Controls;
+﻿using OATControl.Controls;
 using OATCommunications.WPF;
 using OATControl.ViewModels;
 using System;
@@ -17,7 +17,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for DlgAppSettings.xaml
 	/// </summary>
-	public partial class DlgAppSettings : MetroWindow, INotifyPropertyChanged
+	public partial class DlgAppSettings : ThemedWindow, INotifyPropertyChanged
 	{
 		private List<String> _baudRates = new List<string>() {
 					"230400",

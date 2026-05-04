@@ -1,4 +1,4 @@
-﻿using MahApps.Metro.Controls;
+﻿using OATControl.Controls;
 using OATControl.Properties;
 using OATControl.ViewModels;
 using System;
@@ -21,7 +21,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for TargetChooser.xaml
 	/// </summary>
-	public partial class TargetChooser : MetroWindow
+	public partial class TargetChooser : ThemedWindow
 	{
 		public TargetChooser(MountVM mount)
 		{

@@ -1,4 +1,4 @@
-﻿using MahApps.Metro.Controls;
+﻿using OATControl.Controls;
 using OATControl.ViewModels;
 using System.ComponentModel;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace OATControl
 {
-	public partial class DlgChecklistEditor : MetroWindow, INotifyPropertyChanged
+	public partial class DlgChecklistEditor : ThemedWindow, INotifyPropertyChanged
 	{
 		private string _checklistText;
 		string _filePath;

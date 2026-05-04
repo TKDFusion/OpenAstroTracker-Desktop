@@ -1,4 +1,4 @@
-﻿using MahApps.Metro.Controls;
+﻿using OATControl.Controls;
 using OATCommunications.CommunicationHandlers;
 using OATCommunications.Model;
 using OATCommunications.WPF;
@@ -37,7 +37,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for DlgNinaPoolarAlignment.xaml
 	/// </summary>
-	public partial class DlgNinaPolarAlignment : MetroWindow, INotifyPropertyChanged, IPolarAlignDialog
+	public partial class DlgNinaPolarAlignment : ThemedWindow, INotifyPropertyChanged, IPolarAlignDialog
 	{
 		public class ChecklistItem : INotifyPropertyChanged
 		{
