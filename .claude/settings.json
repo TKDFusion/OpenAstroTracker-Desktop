@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -ExecutionPolicy Bypass -File \"c:\\\\Users\\\\Lutz.KRETZSCHMAR\\\\Source\\\\OpenAstroTracker-Desktop\\\\fix_novas.ps1\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"c:\\\\Users\\\\Lutz.KRETZSCHMAR\\\\Source\\\\OpenAstroTracker-Desktop\\\\fix_connect2.ps1\")"
+    ]
+  }
+}

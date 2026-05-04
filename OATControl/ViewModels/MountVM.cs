@@ -16,8 +16,6 @@ using OATCommunications.Model;
 using OATCommunications.WPF.CommunicationHandlers;
 using OATCommunications.Utilities;
 using CommandResponse = OATCommunications.CommunicationHandlers.CommandResponse;
-using MahApps.Metro.Controls.Dialogs;
-using MahApps.Metro.Controls;
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
 
@@ -2290,14 +2288,18 @@ namespace OATControl.ViewModels
 				if (lowerLimitExceeded || upperLimitExceeded)
 				{
 					float overBy = lowerLimitExceeded ? DECStepperLowerLimit - targetDegree : targetDegree - DECStepperUpperLimit;
-					var win = Application.Current.Windows.OfType<MetroWindow>().FirstOrDefault();
-					var a = new MetroDialogSettings();
-					a.AffirmativeButtonText = "Yes, slew anyway";
-					a.NegativeButtonText = "No, don't slew";
+					var win = Application.Current.Windows.OfType<Window>().FirstOrDefault();
+					// Standard MessageBox buttons
+					// Standard button text for MessageBoxButton
+					// Standard button text for MessageBoxButton
 					string violatedConstraint = lowerLimitExceeded ? "below the lower" : "above the upper";
-					var result = await DialogManager.ShowMessageAsync(win, "DEC Limits Exceeded", $"This target is {violatedConstraint} currently set DEC limit by {overBy:0.0} degrees.\n\nSlew anyway?", MessageDialogStyle.AffirmativeAndNegative, a);
+					var result = MessageBox.Show(
+							$"This target is {violatedConstraint} currently set DEC limit by {overBy:0.0} degrees.\n\nSlew anyway?",
+							"DEC Limits Exceeded",
+							MessageBoxButton.YesNo,
+							MessageBoxImage.Question);
 
-					if (result != MessageDialogResult.Affirmative)
+					if (result != MessageBoxResult.Yes)
 					{
 						return;
 					}
