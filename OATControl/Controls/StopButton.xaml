@@ -12,26 +12,26 @@
 		<Grid.Resources>
 			<Style x:Key="arrowStyle" TargetType="{x:Type local:StopSign}" x:Name="arrowStyle">
 				<Setter Property="Foreground" Value="{Binding Foreground}" />
-				<Setter Property="Background" Value="{StaticResource AccentColorBrush3}" />
+				<Setter Property="Background" Value="{DynamicResource AccentColorBrush3}" />
 				<Setter Property="TextColor" Value="#FFCC4400" />
 				<Style.Triggers>
 					<DataTrigger Binding="{Binding IsMouseOver, ElementName=MainGrid}" Value="True">
-						<Setter Property="Foreground" Value="{StaticResource HighlightBrush}" />
-						<Setter Property="Background" Value="{StaticResource AccentBaseColorBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource HighlightBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AccentBaseColorBrush}" />
 						<Setter Property="TextColor" Value="#FFFF4400" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsPressed, ElementName=ThisStopButton}" Value="True">
-						<Setter Property="Foreground" Value="{StaticResource HighlightBrush}" />
-						<Setter Property="Background" Value="{StaticResource AccentBaseColorBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource HighlightBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AccentBaseColorBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsEnabled, ElementName=ThisStopButton}" Value="False">
-						<Setter Property="Foreground" Value="{StaticResource AccentBaseColorBrush}" />
-						<Setter Property="Background" Value="{StaticResource AccentColorBrush2}" />
-						<Setter Property="TextColor" Value="{StaticResource AccentBaseColorBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AccentBaseColorBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
+						<Setter Property="TextColor" Value="{DynamicResource AccentBaseColorBrush}" />
 					</DataTrigger>
 				</Style.Triggers>
 			</Style>
 		</Grid.Resources>
-		<local:StopSign Style="{StaticResource arrowStyle}" IsHitTestVisible="False" FrameWidth="{Binding FrameWidth, ElementName=ThisStopButton}" Margin="0,3"/>
+		<local:StopSign Style="{DynamicResource arrowStyle}" IsHitTestVisible="False" FrameWidth="{Binding FrameWidth, ElementName=ThisStopButton}" Margin="0,3"/>
 	</Grid>
 </UserControl>

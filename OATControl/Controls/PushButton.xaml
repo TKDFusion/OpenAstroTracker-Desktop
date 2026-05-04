@@ -11,24 +11,24 @@
 	<Grid x:Name="MainGrid" Background="Transparent"  IsHitTestVisible="True" MouseDown="MainGrid_OnMouseButtonDown" MouseUp="MainGrid_OnMouseButtonUp" >
 		<Grid.Resources>
 			<Style x:Key="arrowStyle" TargetType="{x:Type local:Arrow}" x:Name="arrowStyle">
-				<Setter Property="Foreground" Value="{StaticResource HighlightBrush}" />
-				<Setter Property="Background" Value="{StaticResource AccentColorBrush4}" />
+				<Setter Property="Foreground" Value="{DynamicResource HighlightBrush}" />
+				<Setter Property="Background" Value="{DynamicResource AccentColorBrush4}" />
 				<Style.Triggers>
 					<DataTrigger Binding="{Binding IsMouseOver, ElementName=MainGrid}" Value="True">
-						<Setter Property="Foreground" Value="{StaticResource HighlightBrush}" />
-						<Setter Property="Background" Value="{StaticResource AccentColorBrush2}" />
+						<Setter Property="Foreground" Value="{DynamicResource HighlightBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsPressed, ElementName=ThisPushButton}" Value="True">
-						<Setter Property="Foreground" Value="{StaticResource HighlightBrush}" />
-						<Setter Property="Background" Value="{StaticResource AccentBaseColorBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource HighlightBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AccentBaseColorBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsEnabled, ElementName=ThisPushButton}" Value="False">
-						<Setter Property="Foreground" Value="{StaticResource AccentBaseColorBrush}" />
-						<Setter Property="Background" Value="{StaticResource AccentBaseColorBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AccentBaseColorBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AccentBaseColorBrush}" />
 					</DataTrigger>
 				</Style.Triggers>
 			</Style>
 		</Grid.Resources>
-		<local:Arrow Angle="{Binding RotAngle, ElementName=ThisPushButton}" Style="{StaticResource arrowStyle}" IsHitTestVisible="False" />
+		<local:Arrow Angle="{Binding RotAngle, ElementName=ThisPushButton}" Style="{DynamicResource arrowStyle}" IsHitTestVisible="False" />
 		</Grid>
 </UserControl>
