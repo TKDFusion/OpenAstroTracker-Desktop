@@ -1,14 +1,13 @@
-<Controls:MetroWindow x:Class="OATControl.MainWindow"
+<controls:ThemedWindow x:Class="OATControl.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:OATControl" 
-		xmlns:controls="clr-namespace:OATControl.Controls" 
-		xmlns:converters="clr-namespace:OATControl.Converters"
-		mc:Ignorable="d"
-		Title="{Binding Version, StringFormat={} OpenAstroTracker Control V{0}}" MinHeight="767" MinWidth="720" Height="767" Width="720">
+        xmlns:local="clr-namespace:OATControl"
+        xmlns:controls="clr-namespace:OATControl.Controls"
+        xmlns:converters="clr-namespace:OATControl.Converters"
+        mc:Ignorable="d"
+        Title="{Binding Version, StringFormat={} OpenAstroTracker Control V{0}}" MinHeight="767" MinWidth="720" Height="767" Width="720">
 	<Window.Resources>
 		<converters:AbsConverter x:Key="AbsConverter" />
 		<converters:BoolToStringConverter x:Key="SlewModeConverter" TrueString="pulsed" FalseString="continuous" />
@@ -42,7 +41,7 @@
 			<Setter Property="MinWidth" Value="50" />
 			<Setter Property="Foreground" Value="#B00" />
 		</Style>
-		<Style x:Key="NumericBorder" TargetType="Controls:NumericUpDown" >
+		<Style x:Key="NumericBorder" TargetType="TextBox" >
 			<Setter Property="FontSize" Value="14" />
 			<Setter Property="MinWidth" Value="50" />
 		</Style>
@@ -783,7 +782,7 @@
 				<TextBlock Text="Tracking" Margin="0,5,0,0"  Style="{StaticResource TextBlockHeading}" />
 				<TextBlock Text="{Binding SelectedTrackingMode}" Margin="5,0,0,0"  Style="{StaticResource TextBlockLabelTiny}" HorizontalAlignment="Left" />
 			</StackPanel>
-			<Controls:ToggleSwitchButton  Grid.Column="1" Grid.Row="1"  Margin="0,6,0,0" VerticalAlignment="Center" IsEnabled="{Binding MountConnected}" IsChecked="{Binding IsTracking}" ThumbIndicatorBrush="#E00" />
+			<controls:ToggleSwitch  Grid.Column="1" Grid.Row="1"  Margin="0,6,0,0" VerticalAlignment="Center" IsEnabled="{Binding MountConnected}" IsChecked="{Binding IsTracking}" />
 			<Grid Grid.Row="1" Grid.Column="2" Visibility="{Binding MountConnected, Converter={StaticResource bool2VisibilityConverter}}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*" />
@@ -816,7 +815,7 @@
 			<Button Grid.Row="2" Grid.Column="0" Content="Set Low" Height="22" Margin="6,2,0,2" HorizontalAlignment="Left" Padding="15,0" Style="{StaticResource AccentedSquareButtonStyle}" Command="{Binding SetDecLowerLimitCommand}" Visibility="{Binding ElementName=ShowLimits, Path=IsChecked,Converter={StaticResource TrueBoolToVisible}}"/>
 
 			<TextBlock Grid.Column="0" Grid.Row="3" Text="Show Limits" Margin="0,5,0,1"  Style="{StaticResource TextBlockLabelSmall}" />
-			<Controls:ToggleSwitchButton Grid.Row="3" Grid.Column="1" Margin="0,2" IsEnabled="{Binding MountConnected}" Name="ShowLimits" ThumbIndicatorBrush="#E00" IsChecked="{Binding ShowDECLimits}"/>
+			<controls:ToggleSwitch Grid.Row="3" Grid.Column="1" Margin="0,2" IsEnabled="{Binding MountConnected}" Name="ShowLimits" IsChecked="{Binding ShowDECLimits}"/>
 
 
 
@@ -874,4 +873,4 @@
 			</Grid>
 		</Grid>
 	</Grid>
-</Controls:MetroWindow>
+</controls:ThemedWindow>
