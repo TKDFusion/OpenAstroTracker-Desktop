@@ -1,0 +1,180 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ===== Semantic Theme Keys (light palette) ===== -->
+    <Color x:Key="AppPrimaryColor">#FF0050C8</Color>
+    <SolidColorBrush x:Key="AppPrimaryBrush" Color="{StaticResource AppPrimaryColor}" />
+
+    <Color x:Key="AppForegroundColor">#FF1A1A1A</Color>
+    <Color x:Key="AppForegroundStrongColor">#FF000000</Color>
+    <Color x:Key="AppForegroundSubtleColor">#FF666666</Color>
+    <SolidColorBrush x:Key="AppForegroundBrush" Color="{StaticResource AppForegroundColor}" />
+    <SolidColorBrush x:Key="AppForegroundStrongBrush" Color="{StaticResource AppForegroundStrongColor}" />
+    <SolidColorBrush x:Key="AppForegroundSubtleBrush" Color="{StaticResource AppForegroundSubtleColor}" />
+
+    <Color x:Key="AppBackgroundColor">#FFFFFFFF</Color>
+    <Color x:Key="AppBackgroundAltColor">#FFF0F0F0</Color>
+    <Color x:Key="AppWindowBackgroundColor">#FFF5F5F5</Color>
+    <SolidColorBrush x:Key="AppBackgroundBrush" Color="{StaticResource AppBackgroundColor}" />
+    <SolidColorBrush x:Key="AppBackgroundAltBrush" Color="{StaticResource AppBackgroundAltColor}" />
+    <SolidColorBrush x:Key="AppWindowBackgroundBrush" Color="{StaticResource AppWindowBackgroundColor}" />
+
+    <Color x:Key="AppBorderColor">#FFCCCCCC</Color>
+    <Color x:Key="AppBorderSubtleColor">#FFE0E0E0</Color>
+    <SolidColorBrush x:Key="AppBorderBrush" Color="{StaticResource AppBorderColor}" />
+    <SolidColorBrush x:Key="AppBorderSubtleBrush" Color="{StaticResource AppBorderSubtleColor}" />
+
+    <Color x:Key="AppButtonBackgroundColor">#FFD0D0D0</Color>
+    <Color x:Key="AppButtonHoverColor">#FFC0C0C0</Color>
+    <Color x:Key="AppButtonPressedColor">#FFB0B0B0</Color>
+    <SolidColorBrush x:Key="AppButtonBackgroundBrush" Color="{StaticResource AppButtonBackgroundColor}" />
+    <SolidColorBrush x:Key="AppButtonHoverBrush" Color="{StaticResource AppButtonHoverColor}" />
+    <SolidColorBrush x:Key="AppButtonPressedBrush" Color="{StaticResource AppButtonPressedColor}" />
+
+    <Color x:Key="AppSelectedColor">#CC0050C8</Color>
+    <Color x:Key="AppSelectedHoverColor">#990050C8</Color>
+    <SolidColorBrush x:Key="AppSelectedBrush" Color="{StaticResource AppSelectedColor}" />
+    <SolidColorBrush x:Key="AppSelectedHoverBrush" Color="{StaticResource AppSelectedHoverColor}" />
+
+    <SolidColorBrush x:Key="AppTooltipBackgroundBrush" Color="#FF333333" />
+    <SolidColorBrush x:Key="AppTooltipForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="AppWarningBrush" Color="#FFFF8000" />
+    <SolidColorBrush x:Key="AppSuccessBrush" Color="#FF228B22" />
+    <SolidColorBrush x:Key="AppDangerBrush" Color="#FFFF4444" />
+    <SolidColorBrush x:Key="AppDisabledBrush" Color="#FFCCCCCC" />
+    <SolidColorBrush x:Key="AppDisabledForegroundBrush" Color="#FF999999" />
+
+    <SolidColorBrush x:Key="AppTitleBarBackgroundBrush" Color="#FFEEEEEE" />
+    <SolidColorBrush x:Key="AppTitleBarForegroundBrush" Color="#FF333333" />
+    <SolidColorBrush x:Key="AppTitleBarButtonHoverBrush" Color="#FFD0D0D0" />
+    <SolidColorBrush x:Key="AppTitleBarButtonPressedBrush" Color="#FFB0B0B0" />
+
+    <SolidColorBrush x:Key="AppToggleOnBrush" Color="{StaticResource AppPrimaryColor}" />
+    <SolidColorBrush x:Key="AppToggleOffBrush" Color="#FFCCCCCC" />
+    <SolidColorBrush x:Key="AppToggleThumbBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="AppToggleOffBorderBrush" Color="#FFCCCCCC" />
+    <SolidColorBrush x:Key="AppToggleDisabledBrush" Color="#FFE0E0E0" />
+
+    <Color x:Key="AppIdealForegroundColor">White</Color>
+    <SolidColorBrush x:Key="AppIdealForegroundBrush" Color="White" />
+
+    <!-- ===== Legacy MahApps Keys (light palette) ===== -->
+    <Color x:Key="BlackColor">#FF1A1A1A</Color>
+    <Color x:Key="WhiteColor">#FFF5F5F5</Color>
+    <Color x:Key="HighlightColor">#FF0050C8</Color>
+    <Color x:Key="AccentBaseColor">#FF0050C8</Color>
+    <Color x:Key="AccentColor">#CC0050C8</Color>
+    <Color x:Key="AccentColor2">#990050C8</Color>
+    <Color x:Key="AccentColor3">#660050C8</Color>
+    <Color x:Key="AccentColor4">#330050C8</Color>
+    <Color x:Key="IdealForegroundColor">White</Color>
+
+    <SolidColorBrush x:Key="HighlightBrush" Color="{StaticResource HighlightColor}" />
+    <SolidColorBrush x:Key="AccentBaseColorBrush" Color="{StaticResource AccentBaseColor}" />
+    <SolidColorBrush x:Key="AccentColorBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="AccentColorBrush2" Color="{StaticResource AccentColor2}" />
+    <SolidColorBrush x:Key="AccentColorBrush3" Color="{StaticResource AccentColor3}" />
+    <SolidColorBrush x:Key="AccentColorBrush4" Color="{StaticResource AccentColor4}" />
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource BlackColor}" />
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="WindowTitleColorBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="CheckmarkFill" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="RightArrowFill" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="IdealForegroundColorBrush" Color="{StaticResource IdealForegroundColor}" />
+    <SolidColorBrush x:Key="IdealForegroundDisabledBrush" Opacity="0.4" Color="{StaticResource IdealForegroundColor}" />
+    <SolidColorBrush x:Key="AccentSelectedColorBrush" Color="{StaticResource IdealForegroundColor}" />
+    <LinearGradientBrush x:Key="ProgressBrush" StartPoint="1.002,0.5" EndPoint="0.001,0.5">
+        <GradientStop Offset="0" Color="{StaticResource HighlightColor}" />
+        <GradientStop Offset="1" Color="{StaticResource AccentColor3}" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TextBrush" Color="{StaticResource BlackColor}" />
+    <SolidColorBrush x:Key="LabelTextBrush" Color="{StaticResource BlackColor}" />
+    <SolidColorBrush x:Key="BlackColorBrush" Color="{StaticResource BlackColor}" />
+    <SolidColorBrush x:Key="ControlBackgroundBrush" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="WhiteColorBrush" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="DisabledWhiteBrush" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{StaticResource BlackColor}" />
+    <Color x:Key="Gray1">#FFD0D0D0</Color>
+    <Color x:Key="Gray2">#FFE0E0E0</Color>
+    <Color x:Key="Gray7">#FFB0B0B0</Color>
+    <Color x:Key="Gray8">#FFD0D0D0</Color>
+    <Color x:Key="Gray10">#FFF0F0F0</Color>
+    <Color x:Key="GrayNormal">#FFE0E0E0</Color>
+    <Color x:Key="GrayHover">#FFD0D0D0</Color>
+    <SolidColorBrush x:Key="GrayBrush1" Color="{StaticResource Gray1}" />
+    <SolidColorBrush x:Key="GrayBrush2" Color="{StaticResource Gray2}" />
+    <SolidColorBrush x:Key="GrayBrush7" Color="{StaticResource Gray7}" />
+    <SolidColorBrush x:Key="GrayBrush8" Color="{StaticResource Gray8}" />
+    <SolidColorBrush x:Key="GrayBrush10" Color="{StaticResource Gray10}" />
+    <SolidColorBrush x:Key="GrayNormalBrush" Color="{StaticResource GrayNormal}" />
+    <SolidColorBrush x:Key="GrayHoverBrush" Color="{StaticResource GrayHover}" />
+    <SolidColorBrush x:Key="SliderValueDisabled" Color="#FFCCCCCC" />
+    <SolidColorBrush x:Key="SliderTrackDisabled" Color="#FFE0E0E0" />
+    <SolidColorBrush x:Key="SliderThumbDisabled" Color="#FFD0D0D0" />
+    <SolidColorBrush x:Key="SliderTrackHover" Color="#FFC0C0C0" />
+    <SolidColorBrush x:Key="SliderTrackNormal" Color="#FFD0D0D0" />
+    <SolidColorBrush x:Key="TextBoxMouseOverInnerBorderBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="TextBoxFocusBorderBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ButtonMouseOverBorderBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ButtonMouseOverInnerBorderBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ComboBoxMouseOverBorderBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ComboBoxMouseOverInnerBorderBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="FlyoutBackgroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="FlyoutForegroundBrush" Color="{StaticResource BlackColor}" />
+    <SolidColorBrush x:Key="FlatButtonPressedBackgroundBrush" Color="#FFD0D0D0" />
+    <SolidColorBrush x:Key="MenuBackgroundBrush" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="ContextMenuBackgroundBrush" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="SubMenuBackgroundBrush" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="MenuItemBackgroundBrush" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="ContextMenuBorderBrush" Color="#FFCCCCCC" />
+    <SolidColorBrush x:Key="SubMenuBorderBrush" Color="#FFCCCCCC" />
+    <SolidColorBrush x:Key="MenuItemSelectionFill" Color="#FFE0E0E0" />
+    <SolidColorBrush x:Key="MenuItemSelectionStroke" Color="#FFD0D0D0" />
+    <SolidColorBrush x:Key="TopMenuItemPressedFill" Color="#FFD0D0D0" />
+    <SolidColorBrush x:Key="TopMenuItemPressedStroke" Color="#FFC0C0C0" />
+    <SolidColorBrush x:Key="TopMenuItemSelectionStroke" Color="#FFD0D0D0" />
+    <SolidColorBrush x:Key="DisabledMenuItemForeground" Color="#FF999999" />
+    <SolidColorBrush x:Key="DisabledMenuItemGlyphPanel" Color="#FFCCCCCC" />
+    <SolidColorBrush x:Key="{x:Static SystemColors.MenuTextBrushKey}" Color="{StaticResource BlackColor}" />
+    <Color x:Key="MenuShadowColor">#FF000000</Color>
+    <SolidColorBrush x:Key="MetroDataGrid.DisabledHighlightBrush" Color="{StaticResource Gray7}" />
+    <SolidColorBrush x:Key="MetroDataGrid.HighlightBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="MetroDataGrid.HighlightTextBrush" Color="{StaticResource IdealForegroundColor}" />
+    <SolidColorBrush x:Key="MetroDataGrid.MouseOverHighlightBrush" Color="{StaticResource AccentColor3}" />
+    <SolidColorBrush x:Key="MetroDataGrid.FocusBorderBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="MetroDataGrid.InactiveSelectionHighlightBrush" Color="{StaticResource AccentColor2}" />
+    <SolidColorBrush x:Key="MetroDataGrid.InactiveSelectionHighlightTextBrush" Color="{StaticResource IdealForegroundColor}" />
+    <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchBrush.Win10" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchMouseOverBrush.Win10" Color="{StaticResource AccentColor2}" />
+    <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorCheckedBrush.Win10" Color="{StaticResource IdealForegroundColor}" />
+    <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.PressedBrush.Win10" Color="#FF999999" />
+    <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.OffBorderBrush.Win10" Color="#FFCCCCCC" />
+    <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.OffMouseOverBorderBrush.Win10" Color="#FF999999" />
+    <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.OffDisabledBorderBrush.Win10" Color="#FFE0E0E0" />
+    <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchDisabledBrush.Win10" Color="#FFE0E0E0" />
+    <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorBrush.Win10" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorMouseOverBrush.Win10" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorPressedBrush.Win10" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorDisabledBrush.Win10" Color="#FFE0E0E0" />
+    <SolidColorBrush x:Key="MahApps.Metro.Brushes.Badged.DisabledBackgroundBrush" Color="#FFE0E0E0" />
+
+    <Color x:Key="USBGTop">#FFE8E8E8</Color>
+    <Color x:Key="USBGBottom">#FFD0D0D0</Color>
+    <Color x:Key="SBGTop">#FFD0D0D0</Color>
+    <Color x:Key="SBGBottom">#FFE0E0E0</Color>
+    <Color x:Key="SBGActTop">#FFC0C0C0</Color>
+    <Color x:Key="SBGActBottom">#FFD0D0D0</Color>
+    <Color x:Key="ButtonBGTop">#FFC0C0C0</Color>
+    <Color x:Key="ButtonBGBottom">#FFD0D0D0</Color>
+    <Color x:Key="ButtonBGActTop">#FFB0B0B0</Color>
+    <Color x:Key="ButtonBGActBottom">#FFC0C0C0</Color>
+    <Color x:Key="TextColor">#FF333333</Color>
+    <Color x:Key="SliderBorderColor">#FFCCCCCC</Color>
+    <Color x:Key="SliderPosColor">#FF0050C8</Color>
+    <Color x:Key="PromptColor">#FF0050C8</Color>
+    <Color x:Key="PromptActColor">#FF003090</Color>
+
+</ResourceDictionary>
