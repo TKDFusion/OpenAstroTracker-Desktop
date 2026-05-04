@@ -1,6 +1,7 @@
 ﻿using OATControl.Controls;
 using OATCommunications.WPF;
 using OATControl.ViewModels;
+using OATControl.Theming;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -90,6 +91,9 @@ namespace OATControl
 
 			ContentTabs.SelectedIndex = 0;
 			CategorySelector.SelectedIndex = 0;
+
+			ThemeComboBox.ItemsSource = ThemeManager.Instance.AvailableThemes;
+			ThemeComboBox.SelectedItem = ThemeManager.Instance.CurrentTheme;
 		}
 
 
@@ -488,6 +492,16 @@ namespace OATControl
 		private void OnWindowLoaded(object sender, RoutedEventArgs e)
 		{
 			SetInitialSortIndicator(this.sortField);
+		}
+
+		private void ThemeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (ThemeComboBox.SelectedItem is string themeName)
+			{
+				ThemeManager.Instance.ApplyTheme(themeName);
+				AppSettings.Instance.ThemeName = themeName;
+				AppSettings.Instance.Save();
+			}
 		}
 	}
 

@@ -320,7 +320,19 @@
 								Margin="0,2,0,0"
 								Command="{Binding ConfigureChecklistCommand}" Padding="0"  Style="{StaticResource ImageSquareButtonStyle}" ToolTip="Configure the items on the checklist to display." />
 					</StackPanel>
-					
+
+					<StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Top">
+						<TextBlock Text="Theme" Style="{StaticResource TextBlockLabel}" VerticalAlignment="Top"/>
+						<TextBlock Text="Select the color theme for the application." Style="{StaticResource TextBlockOptionHelp}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+					</StackPanel>
+					<ComboBox Grid.Row="2" Grid.Column="1"
+						  x:Name="ThemeComboBox"
+						  Width="120"
+						  Height="24"
+						  Margin="10,4,0,0"
+						  SelectionChanged="ThemeComboBox_SelectionChanged"
+						  Style="{StaticResource ComboBoxStyle}" />
+
 				</Grid>
 			</TabItem>
 			<TabItem Header="Autohoming">
