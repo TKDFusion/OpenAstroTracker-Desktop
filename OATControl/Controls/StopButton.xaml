@@ -16,18 +16,18 @@
 				<Setter Property="TextColor" Value="#FFCC4400" />
 				<Style.Triggers>
 					<DataTrigger Binding="{Binding IsMouseOver, ElementName=MainGrid}" Value="True">
-						<Setter Property="Foreground" Value="{DynamicResource HighlightBrush}" />
-						<Setter Property="Background" Value="{DynamicResource AccentBaseColorBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppPrimaryBrush}" />
 						<Setter Property="TextColor" Value="#FFFF4400" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsPressed, ElementName=ThisStopButton}" Value="True">
-						<Setter Property="Foreground" Value="{DynamicResource HighlightBrush}" />
-						<Setter Property="Background" Value="{DynamicResource AccentBaseColorBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppPrimaryBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsEnabled, ElementName=ThisStopButton}" Value="False">
-						<Setter Property="Foreground" Value="{DynamicResource AccentBaseColorBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
 						<Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
-						<Setter Property="TextColor" Value="{DynamicResource AccentBaseColorBrush}" />
+						<Setter Property="TextColor" Value="{DynamicResource AppPrimaryBrush}" />
 					</DataTrigger>
 				</Style.Triggers>
 			</Style>

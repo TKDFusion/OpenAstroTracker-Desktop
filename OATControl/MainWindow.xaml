@@ -19,10 +19,10 @@
 		<converters:StringToVisibilityConverter x:Key="ShowOnStringEqual" EqualState="Visible" />
 		<converters:BoolToFontWeightConverter x:Key="BoolToFontWeightConverter" />
 
-		<Path x:Key="IconArrowUp" x:Shared="false" Data="M16,0L32,19.745 0,19.745z" Stretch="Uniform" RenderTransformOrigin="0.5,0.5" Fill="{DynamicResource AccentBaseColorBrush}" />
-		<Path x:Key="IconArrowLeft" x:Shared="false" Data="M25.3,0L25.3,32 0,16z" Stretch="Uniform" RenderTransformOrigin="0.5,0.5" Fill="{DynamicResource AccentBaseColorBrush}" />
-		<Path x:Key="IconArrowDown" x:Shared="false" Data="M0,0L32,0 16,19.745z" Stretch="Uniform" RenderTransformOrigin="0.5,0.5" Fill="{DynamicResource AccentBaseColorBrush}"/>
-		<Path x:Key="IconArrowRight" x:Shared="false" Data="M0,0L25,16 0,32z" Stretch="Uniform" RenderTransformOrigin="0.5,0.5" Fill="{DynamicResource AccentBaseColorBrush}" />
+		<Path x:Key="IconArrowUp" x:Shared="false" Data="M16,0L32,19.745 0,19.745z" Stretch="Uniform" RenderTransformOrigin="0.5,0.5" Fill="{DynamicResource AppPrimaryBrush}" />
+		<Path x:Key="IconArrowLeft" x:Shared="false" Data="M25.3,0L25.3,32 0,16z" Stretch="Uniform" RenderTransformOrigin="0.5,0.5" Fill="{DynamicResource AppPrimaryBrush}" />
+		<Path x:Key="IconArrowDown" x:Shared="false" Data="M0,0L32,0 16,19.745z" Stretch="Uniform" RenderTransformOrigin="0.5,0.5" Fill="{DynamicResource AppPrimaryBrush}"/>
+		<Path x:Key="IconArrowRight" x:Shared="false" Data="M0,0L25,16 0,32z" Stretch="Uniform" RenderTransformOrigin="0.5,0.5" Fill="{DynamicResource AppPrimaryBrush}" />
 		<Style x:Key="OatToolTip" TargetType="ToolTip" BasedOn="{StaticResource MetroToolTip}">
 			<Setter Property="Background" Value="#611" />
 			<Setter Property="Foreground" Value="#F00" />
@@ -81,7 +81,7 @@
 			</Style.Triggers>
 		</Style>
 		<Style x:Key="ToggleButtonState" TargetType="ToggleButton" >
-			<Setter Property="BorderBrush" Value="{DynamicResource AccentBaseColorBrush}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource AppPrimaryBrush}" />
 			<Setter Property="BorderThickness" Value="1" />
 			<Setter Property="Background" Value="{DynamicResource AccentColorBrush3}" />
 			<Setter Property="Foreground" Value="#FF000000" />
@@ -92,7 +92,7 @@
 					<ControlTemplate TargetType="ToggleButton">
 						<Border Name="border" 
                             BorderThickness="1"
-                            BorderBrush="{DynamicResource AccentBaseColorBrush}" 
+                            BorderBrush="{DynamicResource AppPrimaryBrush}" 
                             CornerRadius="0" 
                             Background="{TemplateBinding Background}">
 							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -101,17 +101,17 @@
 							<Trigger Property="IsMouseOver" Value="True">
 								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush2}" />
 								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush4}" />
-								<Setter Property="Foreground" Value="{DynamicResource AccentSelectedColorBrush}" />
+								<Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}" />
 							</Trigger>
 							<Trigger Property="IsChecked" Value="True">
-								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentSelectedColorBrush}" />
+								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppIdealForegroundBrush}" />
 								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush2}" />
-								<Setter Property="Foreground" Value="{DynamicResource AccentSelectedColorBrush}" />
+								<Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}" />
 							</Trigger>
 							<Trigger Property="IsEnabled" Value="False">
 								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
 								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush3}" />
-								<Setter Property="Foreground" Value="{DynamicResource AccentBaseColorBrush}" />
+								<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
 							</Trigger>
 						</ControlTemplate.Triggers>
 					</ControlTemplate>

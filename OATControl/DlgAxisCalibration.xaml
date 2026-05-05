@@ -10,7 +10,7 @@
         Title=" Stepper Motor Calibration" MinHeight="400" Width="520" MinWidth="520" Height="400" WindowStyle="ToolWindow">
 	<Window.Resources>
 		<Style x:Key="ToggleButtonState" TargetType="ToggleButton" >
-			<Setter Property="BorderBrush" Value="{DynamicResource AccentBaseColorBrush}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource AppPrimaryBrush}" />
 			<Setter Property="BorderThickness" Value="1" />
 			<Setter Property="Background" Value="{DynamicResource AccentColorBrush3}" />
 			<Setter Property="Foreground" Value="#FF000000" />
@@ -23,7 +23,7 @@
 					<ControlTemplate TargetType="ToggleButton">
 						<Border Name="border" 
                             BorderThickness="1"
-                            BorderBrush="{DynamicResource AccentBaseColorBrush}" 
+                            BorderBrush="{DynamicResource AppPrimaryBrush}" 
                             CornerRadius="0" 
                             Background="{TemplateBinding Background}">
 							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -32,17 +32,17 @@
 							<Trigger Property="IsMouseOver" Value="True">
 								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush2}" />
 								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush4}" />
-								<Setter Property="Foreground" Value="{DynamicResource AccentSelectedColorBrush}" />
+								<Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}" />
 							</Trigger>
 							<Trigger Property="IsChecked" Value="True">
-								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentSelectedColorBrush}" />
+								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppIdealForegroundBrush}" />
 								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush2}" />
-								<Setter Property="Foreground" Value="{DynamicResource AccentSelectedColorBrush}" />
+								<Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}" />
 							</Trigger>
 							<Trigger Property="IsEnabled" Value="False">
 								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
 								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush3}" />
-								<Setter Property="Foreground" Value="{DynamicResource AccentBaseColorBrush}" />
+								<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
 							</Trigger>
 						</ControlTemplate.Triggers>
 					</ControlTemplate>

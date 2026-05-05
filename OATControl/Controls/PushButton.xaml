@@ -11,20 +11,20 @@
 	<Grid x:Name="MainGrid" Background="Transparent"  IsHitTestVisible="True" MouseDown="MainGrid_OnMouseButtonDown" MouseUp="MainGrid_OnMouseButtonUp" >
 		<Grid.Resources>
 			<Style x:Key="arrowStyle" TargetType="{x:Type local:Arrow}" x:Name="arrowStyle">
-				<Setter Property="Foreground" Value="{DynamicResource HighlightBrush}" />
+				<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
 				<Setter Property="Background" Value="{DynamicResource AccentColorBrush4}" />
 				<Style.Triggers>
 					<DataTrigger Binding="{Binding IsMouseOver, ElementName=MainGrid}" Value="True">
-						<Setter Property="Foreground" Value="{DynamicResource HighlightBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
 						<Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsPressed, ElementName=ThisPushButton}" Value="True">
-						<Setter Property="Foreground" Value="{DynamicResource HighlightBrush}" />
-						<Setter Property="Background" Value="{DynamicResource AccentBaseColorBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppPrimaryBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsEnabled, ElementName=ThisPushButton}" Value="False">
-						<Setter Property="Foreground" Value="{DynamicResource AccentBaseColorBrush}" />
-						<Setter Property="Background" Value="{DynamicResource AccentBaseColorBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppPrimaryBrush}" />
 					</DataTrigger>
 				</Style.Triggers>
 			</Style>
