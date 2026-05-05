@@ -186,4 +186,12 @@
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
     </Style>
 
+    <!-- ListBoxItem / ListViewItem (MahApps MetroListBoxItem replacement) -->
+    <Style x:Key="MetroListBoxItem" TargetType="ListBoxItem">
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
+        <Setter Property="Padding" Value="4,2" />
+    </Style>
+
 </ResourceDictionary>
