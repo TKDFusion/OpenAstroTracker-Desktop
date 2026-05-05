@@ -20,7 +20,7 @@
 			<Setter Property="Margin" Value="10,10" />
 			<Setter Property="Padding" Value="10,10" />
 			<Setter Property="Width" Value="100" />
-			<Setter Property="Foreground" Value="{StaticResource AccentSelectedColorBrush}"  />
+			<Setter Property="Foreground" Value="{DynamicResource AccentSelectedColorBrush}"  />
 			<Setter Property="VerticalAlignment" Value="Center"  />
 			<Setter Property="HorizontalAlignment" Value="Left" />
 		</Style>

@@ -36,7 +36,7 @@
 			<Setter Property="Margin" Value="0,4" />
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
 			<Setter Property="TextAlignment" Value="Center" />
-			<Setter Property="Background" Value="{StaticResource AccentColorBrush2}" />
+			<Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
 			<Setter Property="Foreground" Value="#F00" />
 		</Style>
 		<Style x:Key="TextBlockLabelTiny" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabelSmall}">
@@ -50,8 +50,8 @@
 			<Setter Property="Width" Value="38" />
 			<Setter Property="Height" Value="8" />
 			<Setter Property="Margin" Value="1,1,1,1" />
-			<Setter Property="Background" Value="{StaticResource AccentColorBrush4}" />
-			<Setter Property="Foreground" Value="{StaticResource AccentColorBrush3}" />
+			<Setter Property="Background" Value="{DynamicResource AccentColorBrush4}" />
+			<Setter Property="Foreground" Value="{DynamicResource AccentColorBrush3}" />
 			<Setter Property="ActiveBackground" Value="#C00" />
 			<Setter Property="ActiveForeground" Value="#E00" />
 		</Style>
@@ -59,9 +59,9 @@
 			<Setter Property="Width" Value="16" />
 			<Setter Property="Height" Value="15" />
 			<Setter Property="Margin" Value="2,0.5,0,0.5" />
-			<Setter Property="BorderBrush" Value="{StaticResource AccentBaseColorBrush}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource AccentBaseColorBrush}" />
 			<Setter Property="BorderThickness" Value="1" />
-			<Setter Property="Background" Value="{StaticResource AccentColorBrush3}" />
+			<Setter Property="Background" Value="{DynamicResource AccentColorBrush3}" />
 			<Setter Property="Foreground" Value="#FF201010" />
 			<Setter Property="FontWeight" Value="Bold" />
 		<Setter Property="FontSize" Value="10" />
@@ -70,26 +70,26 @@
 					<ControlTemplate TargetType="ToggleButton">
 						<Border Name="border" 
                             BorderThickness="1"
-                            BorderBrush="{StaticResource AccentBaseColorBrush}" 
+                            BorderBrush="{DynamicResource AccentBaseColorBrush}" 
                             CornerRadius="0" 
                             Background="{TemplateBinding Background}">
 							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
 						</Border>
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
-								<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource AccentColorBrush2}" />
-								<Setter TargetName="border" Property="Background" Value="{StaticResource AccentColorBrush4}" />
-								<Setter Property="Foreground" Value="{StaticResource AccentSelectedColorBrush}" />
+								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush2}" />
+								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush4}" />
+								<Setter Property="Foreground" Value="{DynamicResource AccentSelectedColorBrush}" />
 							</Trigger>
 							<Trigger Property="IsChecked" Value="True">
-								<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource AccentSelectedColorBrush}" />
-								<Setter TargetName="border" Property="Background" Value="{StaticResource AccentColorBrush2}" />
-								<Setter Property="Foreground" Value="{StaticResource AccentSelectedColorBrush}" />
+								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentSelectedColorBrush}" />
+								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush2}" />
+								<Setter Property="Foreground" Value="{DynamicResource AccentSelectedColorBrush}" />
 							</Trigger>
 							<Trigger Property="IsEnabled" Value="False">
-								<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource AccentColorBrush}" />
-								<Setter TargetName="border" Property="Background" Value="{StaticResource AccentColorBrush3}" />
-								<Setter Property="Foreground" Value="{StaticResource AccentBaseColorBrush}" />
+								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
+								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush3}" />
+								<Setter Property="Foreground" Value="{DynamicResource AccentBaseColorBrush}" />
 							</Trigger>
 						</ControlTemplate.Triggers>
 					</ControlTemplate>

@@ -178,4 +178,12 @@
         <Setter Property="Background" Value="{DynamicResource AccentColorBrush4}" />
     </Style>
 
+    <!-- MenuItem (MahApps MetroMenuItem replacement) -->
+    <Style x:Key="MetroMenuItem" TargetType="MenuItem">
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
+    </Style>
+
 </ResourceDictionary>

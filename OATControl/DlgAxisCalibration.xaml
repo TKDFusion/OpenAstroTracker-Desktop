@@ -10,9 +10,9 @@
         Title=" Stepper Motor Calibration" MinHeight="400" Width="520" MinWidth="520" Height="400" WindowStyle="ToolWindow">
 	<Window.Resources>
 		<Style x:Key="ToggleButtonState" TargetType="ToggleButton" >
-			<Setter Property="BorderBrush" Value="{StaticResource AccentBaseColorBrush}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource AccentBaseColorBrush}" />
 			<Setter Property="BorderThickness" Value="1" />
-			<Setter Property="Background" Value="{StaticResource AccentColorBrush3}" />
+			<Setter Property="Background" Value="{DynamicResource AccentColorBrush3}" />
 			<Setter Property="Foreground" Value="#FF000000" />
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="Width" Value="40" />
@@ -23,26 +23,26 @@
 					<ControlTemplate TargetType="ToggleButton">
 						<Border Name="border" 
                             BorderThickness="1"
-                            BorderBrush="{StaticResource AccentBaseColorBrush}" 
+                            BorderBrush="{DynamicResource AccentBaseColorBrush}" 
                             CornerRadius="0" 
                             Background="{TemplateBinding Background}">
 							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
 						</Border>
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
-								<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource AccentColorBrush2}" />
-								<Setter TargetName="border" Property="Background" Value="{StaticResource AccentColorBrush4}" />
-								<Setter Property="Foreground" Value="{StaticResource AccentSelectedColorBrush}" />
+								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush2}" />
+								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush4}" />
+								<Setter Property="Foreground" Value="{DynamicResource AccentSelectedColorBrush}" />
 							</Trigger>
 							<Trigger Property="IsChecked" Value="True">
-								<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource AccentSelectedColorBrush}" />
-								<Setter TargetName="border" Property="Background" Value="{StaticResource AccentColorBrush2}" />
-								<Setter Property="Foreground" Value="{StaticResource AccentSelectedColorBrush}" />
+								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentSelectedColorBrush}" />
+								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush2}" />
+								<Setter Property="Foreground" Value="{DynamicResource AccentSelectedColorBrush}" />
 							</Trigger>
 							<Trigger Property="IsEnabled" Value="False">
-								<Setter TargetName="border" Property="BorderBrush" Value="{StaticResource AccentColorBrush}" />
-								<Setter TargetName="border" Property="Background" Value="{StaticResource AccentColorBrush3}" />
-								<Setter Property="Foreground" Value="{StaticResource AccentBaseColorBrush}" />
+								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
+								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush3}" />
+								<Setter Property="Foreground" Value="{DynamicResource AccentBaseColorBrush}" />
 							</Trigger>
 						</ControlTemplate.Triggers>
 					</ControlTemplate>
@@ -97,13 +97,13 @@
 			<Setter Property="Margin" Value="0,4" />
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
 			<Setter Property="TextAlignment" Value="Center" />
-			<Setter Property="Background" Value="{StaticResource AccentColorBrush2}" />
+			<Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
 			<Setter Property="Foreground" Value="#F00" />
 			<Setter Property="MaxWidth"  Value="250" />
 		</Style>
 		<Style x:Key="TextBorder" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
-			<Setter Property="BorderBrush" Value="{StaticResource AccentColorBrush}" />
-			<Setter Property="Background" Value="{StaticResource AccentColorBrush4}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AccentColorBrush4}" />
 			<Setter Property="HorizontalContentAlignment" Value="Center" />
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="FontSize" Value="20" />
@@ -111,8 +111,8 @@
 			<Setter Property="Foreground" Value="#B00" />
 		</Style>
 		<Style x:Key="TextBorderSmall" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
-			<Setter Property="BorderBrush" Value="{StaticResource AccentColorBrush}" />
-			<Setter Property="Background" Value="{StaticResource AccentColorBrush4}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AccentColorBrush4}" />
 			<Setter Property="HorizontalContentAlignment" Value="Center" />
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="FontSize" Value="14" />
