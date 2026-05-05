@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:OATControl" xmlns:controls="clr-namespace:OATControl.Controls"
 		xmlns:converters="clr-namespace:OATControl.Converters"
 		mc:Ignorable="d"
-		Background="#600"
+		Background="{DynamicResource AppButtonHoverBrush}"
         Title="Mini OAT Control" Height="85" MinHeight="85" MaxHeight="85" Width="Auto" MaxWidth="660" MinWidth="250" WindowStyle="None" SizeToContent="Width">
 	<Window.Resources>
 		<Style x:Key="OatToolTip" TargetType="ToolTip" BasedOn="{StaticResource MetroToolTip}">
-			<Setter Property="Background" Value="#611" />
-			<Setter Property="Foreground" Value="#F00" />
+			<Setter Property="Background" Value="{DynamicResource AppTooltipBackgroundBrush}" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="Padding" Value="5,2,5,7" />	
 		</Style>
 		<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
@@ -37,14 +37,14 @@
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
 			<Setter Property="TextAlignment" Value="Center" />
 			<Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
-			<Setter Property="Foreground" Value="#F00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 		</Style>
 		<Style x:Key="TextBlockLabelTiny" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabelSmall}">
 			<Setter Property="FontSize" Value="10" />
-			<Setter Property="Foreground" Value="#E00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
 		</Style>
 		<Style x:Key="TextBlockLabelTinyLabel" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabelTiny}">
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 		<Style x:Key="MotorIndicatorStyle" TargetType="controls:MotorIndicator" >
 			<Setter Property="Width" Value="38" />
@@ -52,8 +52,8 @@
 			<Setter Property="Margin" Value="1,1,1,1" />
 			<Setter Property="Background" Value="{DynamicResource AccentColorBrush4}" />
 			<Setter Property="Foreground" Value="{DynamicResource AccentColorBrush3}" />
-			<Setter Property="ActiveBackground" Value="#C00" />
-			<Setter Property="ActiveForeground" Value="#E00" />
+			<Setter Property="ActiveBackground" Value="{DynamicResource AppBorderBrush}" />
+			<Setter Property="ActiveForeground" Value="{DynamicResource AppPrimaryBrush}" />
 		</Style>
 		<Style x:Key="ToggleButtonState" TargetType="ToggleButton" >
 			<Setter Property="Width" Value="16" />
@@ -119,7 +119,7 @@
 			<ColumnDefinition Width="40"/>
 			<ColumnDefinition Width="65"/>
 		</Grid.ColumnDefinitions>
-		<TextBlock Grid.Row="0" Grid.Column="0" Text="RA:" Style="{StaticResource TextBlockLabelSmall}" Foreground="#A20" MouseLeftButtonDown="TextBlock_MouseDown" Cursor="SizeAll" />
+		<TextBlock Grid.Row="0" Grid.Column="0" Text="RA:" Style="{StaticResource TextBlockLabelSmall}" Foreground="{DynamicResource AppForegroundBrush}" MouseLeftButtonDown="TextBlock_MouseDown" Cursor="SizeAll" />
 		<TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentRAString}" Style="{StaticResource TextBlockLabelValue}" />
 
 		<controls:PushButton Grid.RowSpan="2" Grid.Column="2" Width="36" Height="32" Direction="W" IsEnabled="{Binding MountConnected}" Command="{Binding ChangeSlewingStateCommand}" CommandParameter="W" />
@@ -130,7 +130,7 @@
 	
 		<TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="2" IsHitTestVisible="False" Text="RA/DEC" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,0,0,3" Style="{StaticResource TextBlockLabelTinyLabel}"/>
 
-		<TextBlock Grid.Row="1" Grid.Column="0" Text="DEC:" Style="{StaticResource TextBlockLabelSmall}" Foreground="#A20" MouseLeftButtonDown="TextBlock_MouseDown" Cursor="SizeAll" />
+		<TextBlock Grid.Row="1" Grid.Column="0" Text="DEC:" Style="{StaticResource TextBlockLabelSmall}" Foreground="{DynamicResource AppForegroundBrush}" MouseLeftButtonDown="TextBlock_MouseDown" Cursor="SizeAll" />
 		<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentDECString}" Style="{StaticResource TextBlockLabelValue}" />
 
 		<StackPanel Grid.RowSpan="2" Grid.Column="5" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding MountConnected}">
@@ -150,7 +150,7 @@
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
-							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Slowest" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Slowest" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="{DynamicResource AppButtonBackgroundBrush}" Padding="0,1,0,4"/>
 							<TextBlock Grid.Row="1" Grid.Column="0" Text="RA/DEC Speed" FontWeight="Normal" FontSize="10"/>
 							<TextBlock Grid.Row="1" Grid.Column="1" Text="5%" FontWeight="Bold" FontSize="10" Padding="5,0"/>
 							<TextBlock Grid.Row="2" Grid.Column="0" Text="AZ/ALT Distance" FontWeight="Normal"  FontSize="10"/>
@@ -175,7 +175,7 @@
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
-							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Slow" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Slow" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="{DynamicResource AppButtonBackgroundBrush}" Padding="0,1,0,4"/>
 							<TextBlock Grid.Row="1" Grid.Column="0" Text="RA/DEC Speed" FontWeight="Normal" FontSize="10"/>
 							<TextBlock Grid.Row="1" Grid.Column="1" Text="5%" FontWeight="Bold" FontSize="10" Padding="5,0"/>
 							<TextBlock Grid.Row="2" Grid.Column="0" Text="AZ/ALT Distance" FontWeight="Normal"  FontSize="10"/>
@@ -200,7 +200,7 @@
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
-							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Medium" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Medium" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="{DynamicResource AppButtonBackgroundBrush}" Padding="0,1,0,4"/>
 							<TextBlock Grid.Row="1" Grid.Column="0" Text="RA/DEC Speed" FontWeight="Normal" FontSize="10"/>
 							<TextBlock Grid.Row="1" Grid.Column="1" Text="15%" FontWeight="Bold" FontSize="10" Padding="5,0"/>
 							<TextBlock Grid.Row="2" Grid.Column="0" Text="AZ/ALT Distance" FontWeight="Normal"  FontSize="10"/>
@@ -225,7 +225,7 @@
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
-							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Fast" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Fast" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="{DynamicResource AppButtonBackgroundBrush}" Padding="0,1,0,4"/>
 							<TextBlock Grid.Row="1" Grid.Column="0" Text="RA/DEC Speed" FontWeight="Normal" FontSize="10"/>
 							<TextBlock Grid.Row="1" Grid.Column="1" Text="50%" FontWeight="Bold" FontSize="10" Padding="5,0"/>
 							<TextBlock Grid.Row="2" Grid.Column="0" Text="AZ/ALT Distance" FontWeight="Normal"  FontSize="10"/>
@@ -250,7 +250,7 @@
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
-							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Fastest" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Fastest" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="{DynamicResource AppButtonBackgroundBrush}" Padding="0,1,0,4"/>
 							<TextBlock Grid.Row="1" Grid.Column="0" Text="RA/DEC Speed" FontWeight="Normal" FontSize="10"/>
 							<TextBlock Grid.Row="1" Grid.Column="1" Text="100%" FontWeight="Bold" FontSize="10" Padding="5,0"/>
 							<TextBlock Grid.Row="2" Grid.Column="0" Text="AZ/ALT Distance" FontWeight="Normal"  FontSize="10"/>
@@ -325,7 +325,7 @@
 		<controls:StopButton Grid.Row="0" Grid.Column="12" Grid.RowSpan="2" 
 							 IsEnabled="{Binding MountConnected}"
 							 Command="{Binding StopSlewingCommand}"
-							 Foreground="#A20"
+							 Foreground="{DynamicResource AppForegroundBrush}"
 							 FrameWidth="3"
 							 Margin="2"
 							 />

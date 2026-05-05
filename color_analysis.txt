@@ -1,0 +1,9 @@
+OATControl XAML Color Audit Report
+===================================
+
+Total color occurrences: 1557
+Total unique colors: 71
+
+Color Analysis by Hex Value:
+============================
+

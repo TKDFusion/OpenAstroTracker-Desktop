@@ -25,7 +25,7 @@
 			<Setter Property="FontSize" Value="10" />
 			<Setter Property="Margin" Value="0,0" />
 			<Setter Property="Padding" Value="0,0" />
-			<Setter Property="Foreground" Value="#D00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 		</Style>
 		<ItemsPanelTemplate x:Key="ListBoxItemsPanel">
 			<StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Stretch" Background="{DynamicResource AppWindowBackgroundBrush}"/>
@@ -93,7 +93,7 @@
 
 		<!--<TextBlock Grid.Row="2" Grid.Column="0"  Text="Baud rate" Foreground="{DynamicResource AppIdealForegroundBrush}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,16,5" Visibility="{Binding ShowBaudRate,Converter={StaticResource CollapseOnFalse}}"/>
 		<ComboBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Margin="8,19,0,1" ItemsSource="{Binding AvailableBaudRates}" SelectedValue="{Binding SelectedBaudRate}"
-					  Width="120" FontSize="16" HorizontalAlignment="Left" Foreground="Red" FontWeight="Bold" BorderBrush="#FF880000" Visibility="{Binding ShowBaudRate,Converter={StaticResource CollapseOnFalse}}"/>-->
+					  Width="120" FontSize="16" HorizontalAlignment="Left" Foreground="Red" FontWeight="Bold" BorderBrush="{DynamicResource AppButtonHoverBrush}" Visibility="{Binding ShowBaudRate,Converter={StaticResource CollapseOnFalse}}"/>-->
 
 		<TextBlock Grid.Row="3" Grid.Column="0" Text="Pitch Level:" HorizontalAlignment="Right" Margin="0,19,8,12" Foreground="{DynamicResource AppIdealForegroundBrush}" Visibility="{Binding ShowLevelDisplay, Converter={StaticResource CollapseOnFalse}}" />
 		<local:LevelDisplay Grid.Row="3" Grid.Column="1" Value="{Binding PitchOffset}" Range="3" Labels="-3|-2|-1|0|1|2|3" Margin="10,23,20,7" Visibility="{Binding ShowLevelDisplay, Converter={StaticResource CollapseOnFalse}}" />
@@ -126,12 +126,12 @@
 			</Grid.RowDefinitions>
 
 			<TextBlock Grid.Row="0" Grid.Column="0" Text="No" HorizontalAlignment="Right" Margin="0,0" Style="{StaticResource ToggleLabel}" Visibility="{Binding ShowRAHoming, Converter={StaticResource CollapseOnFalse}}" />
-			<controls:ToggleSwitch Grid.Row="0" Grid.Column="1" Content="" Margin="-4,0,0,0" IsChecked="{Binding RunRAAutoHoming}" ThumbIndicatorBrush="#E00" Visibility="{Binding ShowRAHoming, Converter={StaticResource CollapseOnFalse}}" />
+			<controls:ToggleSwitch Grid.Row="0" Grid.Column="1" Content="" Margin="-4,0,0,0" IsChecked="{Binding RunRAAutoHoming}" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" Visibility="{Binding ShowRAHoming, Converter={StaticResource CollapseOnFalse}}" />
 			<TextBlock Grid.Row="0" Grid.Column="2" Text="Yes" HorizontalAlignment="Left" Margin="-4,0,0,0" Style="{StaticResource ToggleLabel}" Visibility="{Binding ShowRAHoming, Converter={StaticResource CollapseOnFalse}}" />
 			<TextBlock Grid.Row="0" Grid.Column="2" Text="Run RA Auto-Home" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="32,0" Foreground="{DynamicResource AppIdealForegroundBrush}" Visibility="{Binding ShowRAHoming, Converter={StaticResource CollapseOnFalse}}" />
 
 			<TextBlock Grid.Row="1" Grid.Column="0" Text="No" HorizontalAlignment="Right" Margin="0,0" Style="{StaticResource ToggleLabel}" Visibility="{Binding ShowDECHoming, Converter={StaticResource CollapseOnFalse}}" />
-			<controls:ToggleSwitch Grid.Row="1" Grid.Column="1" Content="" Margin="-4,0,0,0" IsChecked="{Binding RunDECOffsetHoming}" ThumbIndicatorBrush="#E00" Visibility="{Binding ShowDECHoming, Converter={StaticResource CollapseOnFalse}}" />
+			<controls:ToggleSwitch Grid.Row="1" Grid.Column="1" Content="" Margin="-4,0,0,0" IsChecked="{Binding RunDECOffsetHoming}" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" Visibility="{Binding ShowDECHoming, Converter={StaticResource CollapseOnFalse}}" />
 			<TextBlock Grid.Row="1" Grid.Column="2" Text="Yes" HorizontalAlignment="Left" Margin="-4,0,0,0" Style="{StaticResource ToggleLabel}" Visibility="{Binding ShowDECHoming, Converter={StaticResource CollapseOnFalse}}" />
 			<TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding DECHomingMethod}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="32,0" Foreground="{DynamicResource AppIdealForegroundBrush}" Visibility="{Binding ShowDECHoming, Converter={StaticResource CollapseOnFalse}}" />
 		</Grid>

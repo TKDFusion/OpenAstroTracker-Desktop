@@ -9,7 +9,7 @@
 	<controls:ThemedWindow.Resources>
 		<Style x:Key="StateText" TargetType="TextBlock">
 			<Setter Property="Margin" Value="10,0" />
-			<Setter Property="Foreground" Value="#FFFF1010"  />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}"  />
 			<Setter Property="TextWrapping" Value="Wrap"  />
 			<Setter Property="VerticalAlignment" Value="Center"  />
 			<Setter Property="HorizontalAlignment" Value="Left" />

@@ -24,13 +24,13 @@
 			<Setter Property="FontSize" Value="13" />
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="HorizontalAlignment" Value="Left" />
-			<Setter Property="Foreground" Value="#F00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="Padding" Value="10,4" />
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
 			<Setter Property="Background" Value="#900" />
 			<Style.Triggers>
 				<Trigger Property="IsMouseOver" Value="true">
-					<Setter Property="Background" Value="#A00" />
+					<Setter Property="Background" Value="{DynamicResource AppForegroundBrush}" />
 				</Trigger>
 			</Style.Triggers>
 		</Style>
@@ -125,13 +125,13 @@
 					</Grid.ColumnDefinitions>
 
 					<Border Grid.Column="0"  >
-						<Rectangle Fill="#800"/>
+						<Rectangle Fill="{DynamicResource AppButtonBackgroundBrush}"/>
 					</Border>
 					<Border Grid.Column="1"  >
-						<Rectangle Fill="#600"/>
+						<Rectangle Fill="{DynamicResource AppButtonHoverBrush}"/>
 					</Border>
 				</Grid>
-				<TextBlock Foreground="#000" Padding="10,0" HorizontalAlignment="Stretch" >
+				<TextBlock Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Stretch" >
 					<TextBlock.Text>
 						<Binding Path="RADistance" Converter="{StaticResource RAConverter}"/>
 					</TextBlock.Text>
@@ -156,13 +156,13 @@
 					</Grid.ColumnDefinitions>
 
 					<Border Grid.Column="0"  >
-						<Rectangle Fill="#800"/>
+						<Rectangle Fill="{DynamicResource AppButtonBackgroundBrush}"/>
 					</Border>
 					<Border Grid.Column="1"  >
-						<Rectangle Fill="#600"/>
+						<Rectangle Fill="{DynamicResource AppButtonHoverBrush}"/>
 					</Border>
 				</Grid>
-				<TextBlock Foreground="#000" Padding="10,0" HorizontalAlignment="Stretch" >
+				<TextBlock Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Stretch" >
 					<TextBlock.Text>
 						<Binding Path="DECDistance" Converter="{StaticResource DECNoSignConverter}"/>
 					</TextBlock.Text>
@@ -172,7 +172,7 @@
 
 		<DataTemplate x:Key="DecPosCellTemplate">
 			<Grid>
-				<TextBlock Foreground="#000" Padding="10,0" HorizontalAlignment="Stretch" >
+				<TextBlock Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Stretch" >
 					<TextBlock.Text>
 						<Binding Path="DECPosition" />
 					</TextBlock.Text>
@@ -182,7 +182,7 @@
 
 		<DataTemplate x:Key="RaPosCellTemplate">
 			<Grid>
-				<TextBlock Foreground="#000" Padding="10,0" HorizontalAlignment="Stretch" >
+				<TextBlock Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Stretch" >
 					<TextBlock.Text>
 						<Binding Path="RAPosition" />
 					</TextBlock.Text>
@@ -199,13 +199,13 @@
 					</Grid.ColumnDefinitions>
 
 					<Border Grid.Column="0"  >
-						<Rectangle Fill="#D00"/>
+						<Rectangle Fill="{DynamicResource AppPrimaryBrush}"/>
 					</Border>
 					<Border Grid.Column="1"  >
-						<Rectangle Fill="#A00"/>
+						<Rectangle Fill="{DynamicResource AppBorderBrush}"/>
 					</Border>
 				</Grid>
-				<TextBlock Foreground="#000" Padding="10,0" HorizontalAlignment="Center" FontWeight="Bold">
+				<TextBlock Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Center" FontWeight="Bold">
 					<TextBlock.Text>
 						<Binding Path="DistanceNormalized" StringFormat="{}{0:0}"/>
 					</TextBlock.Text>
@@ -244,19 +244,19 @@
 			</Setter>
 			<Style.Triggers>
 				<Trigger Property="IsSelected" Value="true">
-					<Setter Property="Background" Value="#600" />
+					<Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
 					<Setter Property="BorderBrush" Value="#800" />
 					<Setter Property="BorderThickness" Value="1" />
 				</Trigger>
 				<Trigger Property="IsMouseOver" Value="true">
 					<Setter Property="Background" Value="#800" />
-					<Setter Property="BorderBrush" Value="#A00" />
+					<Setter Property="BorderBrush" Value="{DynamicResource AppForegroundBrush}" />
 					<Setter Property="BorderThickness" Value="1" />
 				</Trigger>
 				<DataTrigger Binding="{Binding IsReachable}" Value="false">
 					<Setter Property="Background" Value="#400" />
 					<Setter Property="BorderBrush" Value="#500000" />
-					<Setter Property="Foreground" Value="#A00"/>
+					<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"/>
 				</DataTrigger>
 				<MultiDataTrigger >
 					<MultiDataTrigger.Conditions>
@@ -272,16 +272,16 @@
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
-						<Border BorderThickness="0,0,0,1" BorderBrush="#C00" Background="Transparent">
+						<Border BorderThickness="0,0,0,1" BorderBrush="{DynamicResource AppBorderBrush}" Background="Transparent">
 							<TextBlock x:Name="ContentHeader" Text="{TemplateBinding Content}" Padding="5,5,5,0" Width="{TemplateBinding Width}" TextAlignment="Center" />
 						</Border>
 					</ControlTemplate>
 				</Setter.Value>
 			</Setter>
-			<Setter Property="BorderBrush" Value="#C00"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}"/>
 			<Setter Property="Background" Value="#900"/>
 			<Setter Property="OverridesDefaultStyle" Value="True" />
-			<Setter Property="Foreground" Value="#F00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="FontFamily" Value="Segoe UI" />
 			<Setter Property="FontSize" Value="14" />
 			<Setter Property="FontWeight" Value="Bold" />
@@ -301,7 +301,7 @@
 			Grid.Row="0"
 			Margin="0,0"
 			HorizontalAlignment="Center"
-			ThumbIndicatorBrush="#D00"
+			ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}"
 			/>
 		<ListView Grid.Row="1" ItemsSource="{Binding AvailablePointsOfInterest}" HorizontalAlignment="Center" >
 			<ListView.View>
@@ -318,7 +318,7 @@
 				</GridView>
 			</ListView.View>
 		</ListView>
-		<TextBlock Grid.Row="2" Text="This list can be edited in the application Settings dialog" HorizontalAlignment="Center" Margin="0,6" Foreground="#A00" />
+		<TextBlock Grid.Row="2" Text="This list can be edited in the application Settings dialog" HorizontalAlignment="Center" Margin="0,6" Foreground="{DynamicResource AppForegroundBrush}" />
 	</Grid>
 	<!--
 	<Grid Grid.IsSharedSizeScope="true">
@@ -378,13 +378,13 @@
 								</Grid.ColumnDefinitions>
 
 								<Border Grid.Column="0"  >
-									<Rectangle Fill="#D00"/>
+									<Rectangle Fill="{DynamicResource AppPrimaryBrush}"/>
 								</Border>
 								<Border Grid.Column="1"  >
-									<Rectangle Fill="#A00"/>
+									<Rectangle Fill="{DynamicResource AppBorderBrush}"/>
 								</Border>
 							</Grid>
-							<TextBlock Grid.Column="2" Text="{Binding RADistance, Converter={StaticResource DECConverter}}" Foreground="#000" Padding="10,0" HorizontalAlignment="Stretch" />
+							<TextBlock Grid.Column="2" Text="{Binding RADistance, Converter={StaticResource DECConverter}}" Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Stretch" />
 							<TextBlock Grid.Column="3" Text="{Binding DEC, Converter={StaticResource DECConverter}}" Padding="10,0" />
 							<Grid Grid.Column="4" >
 								<Grid.ColumnDefinitions>
@@ -393,13 +393,13 @@
 								</Grid.ColumnDefinitions>
 
 								<Border Grid.Column="0"  >
-									<Rectangle Fill="#D00"/>
+									<Rectangle Fill="{DynamicResource AppPrimaryBrush}"/>
 								</Border>
 								<Border Grid.Column="1"  >
-									<Rectangle Fill="#A00"/>
+									<Rectangle Fill="{DynamicResource AppBorderBrush}"/>
 								</Border>
 							</Grid>
-							<TextBlock Grid.Column="4" Text="{Binding DECDistance, Converter={StaticResource DECConverter}}" Foreground="#000" Padding="10,0" HorizontalAlignment="Stretch" />
+							<TextBlock Grid.Column="4" Text="{Binding DECDistance, Converter={StaticResource DECConverter}}" Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Stretch" />
 							<Grid Grid.Column="5" >
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="{Binding DECDistance, Converter={StaticResource DECDiffConverter}}" />
@@ -407,13 +407,13 @@
 								</Grid.ColumnDefinitions>
 
 								<Border Grid.Column="0"  >
-									<Rectangle Fill="#D00"/>
+									<Rectangle Fill="{DynamicResource AppPrimaryBrush}"/>
 								</Border>
 								<Border Grid.Column="1"  >
-									<Rectangle Fill="#A00"/>
+									<Rectangle Fill="{DynamicResource AppBorderBrush}"/>
 								</Border>
 							</Grid>
-							<TextBlock Grid.Column="5" Text="{Binding DECDistance, Converter={StaticResource DECConverter}}" Foreground="#000" Padding="10,0" HorizontalAlignment="Stretch" />
+							<TextBlock Grid.Column="5" Text="{Binding DECDistance, Converter={StaticResource DECConverter}}" Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Stretch" />
 							<TextBlock Grid.Column="6" Text="{Binding IsReachable}" Padding="10,0" />
 					</Grid>
 				</DataTemplate>

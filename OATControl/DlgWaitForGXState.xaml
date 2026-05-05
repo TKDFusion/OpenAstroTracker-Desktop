@@ -16,7 +16,7 @@
 			<Setter Property="Margin" Value="0,0" />
 			<Setter Property="Padding" Value="0,0" />
 			<Setter Property="HorizontalAlignment" Value="Center" />
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 	</Window.Resources>
 

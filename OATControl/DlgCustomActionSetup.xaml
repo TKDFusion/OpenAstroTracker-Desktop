@@ -11,7 +11,7 @@
 		<Style x:Key="TextBoxSmall" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}" >
 			<Setter Property="Margin" Value="10,4" />
 			<Setter Property="Background" Value="#440000" />
-			<Setter Property="Foreground" Value="#F00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 		</Style>
 		<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
 			<Setter Property="VerticalAlignment" Value="Center" />
@@ -20,7 +20,7 @@
 			<Setter Property="Margin" Value="2,0" />
 			<Setter Property="Padding" Value="6,0" />
 			<Setter Property="HorizontalAlignment" Value="Left" />
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 		<Style x:Key="TextBlockLabel" TargetType="TextBlock" BasedOn="{StaticResource TextBlockHeading}">
 			<Setter Property="Padding" Value="2,0" />
@@ -45,7 +45,7 @@
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
 			<Setter Property="TextAlignment" Value="Center" />
 			<Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
-			<Setter Property="Foreground" Value="#F00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="MaxWidth"  Value="250" />
 		</Style>
 	</Window.Resources>

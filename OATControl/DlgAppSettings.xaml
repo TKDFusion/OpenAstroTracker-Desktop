@@ -17,18 +17,18 @@
 		<Style x:Key="CategoryItem" TargetType="ListViewItem" BasedOn="{StaticResource MetroListBoxItem}" >
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="FontSize" Value="14" />
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 			<Style.Triggers>
 				<Trigger Property="IsSelected" Value="True">
-					<Setter Property="Background" Value="#822" />
-					<Setter Property="Foreground" Value="#F44" />
+					<Setter Property="Background" Value="{DynamicResource AppForegroundBrush}" />
+					<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 				</Trigger>
 			</Style.Triggers>
 		</Style>
 		<Style x:Key="ComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
 			<Setter Property="Foreground" Value="Red" />
 			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="BorderBrush" Value="#FF880000" />
+			<Setter Property="BorderBrush" Value="{DynamicResource AppButtonHoverBrush}" />
 			<Setter Property="FontSize" Value="14" />
 			<Setter Property="HorizontalAlignment" Value="Left" />
 			<Setter Property="ItemContainerStyle">
@@ -37,17 +37,17 @@
 						<Setter Property="FontSize" Value="14" />
 						<Setter Property="Foreground" Value="Red" />
 						<Setter Property="FontWeight" Value="Bold" />
-						<Setter Property="Background" Value="#F600" />
-						<Setter Property="BorderBrush" Value="#FF770000" />
+						<Setter Property="Background" Value="{DynamicResource AppSelectedBrush}" />
+						<Setter Property="BorderBrush" Value="{DynamicResource AppButtonBackgroundBrush}" />
 						<Setter Property="BorderThickness" Value="1" />
 						<Setter Property="Padding" Value="4" />
 						<Style.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
-								<Setter Property="Background" Value="#FD00" />
+								<Setter Property="Background" Value="{DynamicResource AppSelectedBrush}" />
 							</Trigger>
 							<Trigger Property="IsSelected" Value="True">
 								<Setter Property="Background" Value="Black" />
-								<Setter Property="Foreground" Value="#FFFF8888" />
+								<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 							</Trigger>
 						</Style.Triggers>
 					</Style>
@@ -57,16 +57,16 @@
 		<Style x:Key="TextBoxSmallLimit" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}" >
 			<Setter Property="Margin" Value="5,2" />
 			<Setter Property="Height" Value="11" />
-			<Setter Property="Background" Value="#770000" />
-			<Setter Property="Foreground" Value="#F00" />
+			<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="Width" Value="50" />
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
 		</Style>
 		<Style x:Key="TextBoxSmall" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}" >
 			<Setter Property="Margin" Value="10,2,10,2" />
 			<Setter Property="Height" Value="11" />
-			<Setter Property="Background" Value="#770000" />
-			<Setter Property="Foreground" Value="#F00" />
+			<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="Width" Value="60" />
 			<Setter Property="HorizontalAlignment" Value="Left"/>
 		</Style>
@@ -77,7 +77,7 @@
 			<Setter Property="Margin" Value="2,0" />
 			<Setter Property="Padding" Value="6,0" />
 			<Setter Property="HorizontalAlignment" Value="Left" />
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 		<Style x:Key="TextBlockLabel" TargetType="TextBlock" BasedOn="{StaticResource TextBlockHeading}">
 			<Setter Property="FontSize" Value="13" />
@@ -98,7 +98,7 @@
 			<Setter Property="TextWrapping" Value="Wrap" />
 			<Setter Property="Width" Value="Auto" />
 			<Setter Property="Margin" Value="2,0,20,0" />
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 
 		<Style x:Key="TextBlockOptionHelpNoWidth" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
@@ -106,7 +106,7 @@
 			<Setter Property="FontWeight" Value="Normal" />
 			<Setter Property="TextWrapping" Value="Wrap" />
 			<Setter Property="Margin" Value="2,0,0,0" />
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 		<Style x:Key="TextBlockDescription" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabel}">
 			<Setter Property="FontSize" Value="10" />
@@ -120,16 +120,16 @@
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
-						<Border BorderBrush="#401111" BorderThickness="2" x:Name="ImageBorder" Padding="1" Background="#800000">
+						<Border BorderBrush="{DynamicResource AppButtonBorderBrush}" BorderThickness="2" x:Name="ImageBorder" Padding="1" Background="{DynamicResource AppButtonBackgroundBrush}">
 							<Viewbox>
 								<Grid>
 									<Grid Name="backgroundGrid" Width="128" Height="128" Visibility="Visible">
-										<Rectangle Fill="#FF800000" Visibility="Visible" x:Name="backgroundRect"/>
+										<Rectangle Fill="{DynamicResource AppButtonBackgroundBrush}" Visibility="Visible" x:Name="backgroundRect"/>
 									</Grid>
 									<Path Data="M16.000015,9.6000061C12.500012,9.6000061 9.5999844,12.5 9.5999844,16 9.5999844,19.5 12.500012,22.399994 16.000015,22.399994 19.500019,22.399994 22.400015,19.5 22.400015,16 22.400015,12.5 19.500019,9.6000061 16.000015,9.6000061z M14.199995,0L17.800005,0C18.199999,0,18.599993,0.29998779,18.599993,0.79998779L18.599993,4.7999878C19.900013,5.1000061,21.000019,5.6000061,22.099997,6.2999878L25.000023,3.3999939C25.099999,3.2999878 25.300011,3.1999817 25.500025,3.1999817 25.700007,3.1999817 25.900019,3.2999878 26.000025,3.3999939L28.600033,6C28.900021,6.2999878,28.900021,6.7999878,28.600033,7.1000061L25.700007,10C26.400019,11.100006,26.900019,12.299988,27.200007,13.5L31.20001,13.5C31.600037,13.5,31.999998,13.799988,31.999998,14.299988L31.999998,17.899994C31.999998,18.299988,31.700012,18.699982,31.20001,18.699982L27.200007,18.699982C26.900019,20,26.400019,21.100006,25.700007,22.199982L28.600033,25.100006C28.700009,25.199982 28.799984,25.399994 28.799984,25.600006 28.799984,25.799988 28.700009,26 28.600033,26.100006L26.000025,28.600006C25.900019,28.699982 25.700007,28.799988 25.500025,28.799988 25.300011,28.799988 25.099999,28.699982 25.000023,28.600006L22.099997,25.699982C21.000019,26.399994,19.800007,26.899994,18.599993,27.199982L18.599993,31.199982C18.599993,31.600006,18.300005,32,17.800005,32L14.199995,32C13.8,32,13.400006,31.699982,13.400006,31.199982L13.400006,27.199982C12.099987,26.899994,11.000011,26.399994,9.9000027,25.699982L7.0000064,28.600006C6.9000003,28.699982 6.6999881,28.799988 6.5000059,28.799988 6.2999937,28.799988 6.099981,28.699982 6.0000054,28.600006L3.3999967,26C3.0999784,25.699982,3.0999784,25.199982,3.3999967,24.899994L6.2999937,22C5.5999805,20.899994,5.0999801,19.699982,4.7999923,18.5L0.79998828,18.5C0.39999409,18.5,-1.933513E-07,18.199982,0,17.699982L0,14.100006C-1.933513E-07,13.699982,0.2999879,13.299988,0.79998828,13.299988L4.7999923,13.299988C5.0999801,12,5.5999805,10.899994,6.2999937,9.7999878L3.3999967,7C3.2999908,6.8999939 3.1999845,6.6999817 3.1999845,6.5 3.1999845,6.2999878 3.2999908,6.1000061 3.3999967,6L6.0000054,3.3999939C6.099981,3.2999878 6.2999937,3.1999817 6.5000059,3.1999817 6.6999881,3.1999817 6.9000003,3.2999878 7.0000064,3.3999939L9.9000027,6.2999878C11.000011,5.6000061,12.199993,5.1000061,13.400006,4.7999878L13.400006,0.79998779C13.400006,0.29998779,13.8,0,14.199995,0z" 
 										  x:Name="colorGear"
 										  Stretch="Uniform" 
-										  Fill="#E00" 
+										  Fill="{DynamicResource AppPrimaryBrush}" 
 										  Width="116" 
 										  Height="116" 
 										  Margin="0,0,0,0" 
@@ -148,9 +148,9 @@
 						</Border>
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
-								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="#200" />
-								<Setter TargetName="backgroundRect" Property="Fill" Value="#600000" />
-								<Setter TargetName="colorGear" Property="Fill" Value="#C00" />
+								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="{DynamicResource AppBorderSubtleBrush}" />
+								<Setter TargetName="backgroundRect" Property="Fill" Value="{DynamicResource AppButtonHoverBrush}" />
+								<Setter TargetName="colorGear" Property="Fill" Value="{DynamicResource AppBorderBrush}" />
 							</Trigger>
 						</ControlTemplate.Triggers>
 					</ControlTemplate>
@@ -158,12 +158,12 @@
 			</Setter>
 			<!--<Style.Triggers>
 				<Trigger Property="IsMouseOver" Value="True">
-					<Setter Property="Background" Value="#700" />
-					<Setter Property="BorderBrush" Value="#600" />
+					<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
+					<Setter Property="BorderBrush" Value="{DynamicResource AppButtonHoverBrush}" />
 				</Trigger>
 				<Trigger Property="IsPressed" Value="True">
 					<Setter Property="Background" Value="#400" />
-					<Setter Property="BorderBrush" Value="#500" />
+					<Setter Property="BorderBrush" Value="{DynamicResource AppButtonHoverBrush}" />
 				</Trigger>
 			</Style.Triggers>-->
 		</Style>
@@ -172,7 +172,7 @@
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
-						<Border BorderThickness="0,0,0,1" BorderBrush="#C00" >
+						<Border BorderThickness="0,0,0,1" BorderBrush="{DynamicResource AppBorderBrush}" >
 							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 								<Border Background="Transparent">
 									<TextBlock x:Name="ContentHeader" 
@@ -189,7 +189,7 @@
 									  Width="6" 
 									  Height="6" 
 									  Stretch="Fill" 
-									  Fill="#E00" 
+									  Fill="{DynamicResource AppPrimaryBrush}" 
 									  Margin="0,6,0,0"
 									  Data="M -3,2 L 3,2 L 0,6 Z" 
 									  Visibility="Hidden" 
@@ -200,24 +200,24 @@
 					</ControlTemplate>
 				</Setter.Value>
 			</Setter>
-			<!--<Setter Property="BorderBrush" Value="#C00"/>
+			<!--<Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}"/>
 			<Setter Property="Background" Value="#900"/>
 			<Setter Property="OverridesDefaultStyle" Value="True" />-->
-			<Setter Property="Foreground" Value="#F00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="FontFamily" Value="Segoe UI" />
 			<Setter Property="FontSize" Value="14" />
 			<Setter Property="FontWeight" Value="Bold" />
 		</Style>
 
 		<DataTemplate x:Key="NameCellTemplate">
-			<TextBlock Padding="5,0" Foreground="#D00" FontWeight="Bold">
+			<TextBlock Padding="5,0" Foreground="{DynamicResource AppForegroundStrongBrush}" FontWeight="Bold">
 				<TextBlock.Text>
 					<Binding Path="Name" />
 				</TextBlock.Text>
 			</TextBlock>
 		</DataTemplate>
 		<DataTemplate x:Key="CatalogNameCellTemplate">
-			<TextBlock Padding="5,0" Foreground="#C00" HorizontalAlignment="Center">
+			<TextBlock Padding="5,0" Foreground="{DynamicResource AppForegroundBrush}" HorizontalAlignment="Center">
 				<TextBlock.Text>
 					<Binding Path="CatalogName" />
 				</TextBlock.Text>
@@ -231,14 +231,14 @@
 			</CheckBox>
 		</DataTemplate>
 		<DataTemplate x:Key="RaCellTemplate">
-			<TextBlock Padding="3,0" Foreground="#C00" HorizontalAlignment="Center">
+			<TextBlock Padding="3,0" Foreground="{DynamicResource AppForegroundBrush}" HorizontalAlignment="Center">
 				<TextBlock.Text>
 					<Binding Path="RA" Converter="{StaticResource RAConverter}"/>
 				</TextBlock.Text>
 			</TextBlock>
 		</DataTemplate>
 		<DataTemplate x:Key="DecCellTemplate">
-			<TextBlock Padding="1,0" Foreground="#C00" >
+			<TextBlock Padding="1,0" Foreground="{DynamicResource AppForegroundBrush}" >
 				<TextBlock.Text>
 					<Binding Path="DEC" Converter="{StaticResource DECConverter}"/>
 				</TextBlock.Text>
@@ -254,9 +254,9 @@
 		</StackPanel>
 
 		<!-- Category Selector ListView -->
-		<Border BorderBrush="#300" BorderThickness="1,1,0,0" Margin="4,4,14,0">
-			<Border BorderBrush="#600" BorderThickness="0,0,1,1" Margin="0">
-				<ListView Name="CategorySelector" DockPanel.Dock="Left" Width="120" SelectionChanged="OnCategorySelected" Background="#400">
+		<Border BorderBrush="{DynamicResource AppBorderSubtleBrush}" BorderThickness="1,1,0,0" Margin="4,4,14,0">
+			<Border BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="0,0,1,1" Margin="0">
+				<ListView Name="CategorySelector" DockPanel.Dock="Left" Width="120" SelectionChanged="OnCategorySelected" Background="{DynamicResource AppSelectedBrush}">
 					<ListViewItem Content="General" Style="{StaticResource CategoryItem}"/>
 					<ListViewItem Content="Autohoming" Style="{StaticResource CategoryItem}"/>
 					<ListViewItem Content="Target List" Style="{StaticResource CategoryItem}"/>
@@ -369,7 +369,7 @@
 									<ColumnDefinition Width="*" />
 									<ColumnDefinition Width="42" />
 								</Grid.ColumnDefinitions>
-								<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding RaStartEast}"/>
+								<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0" VerticalAlignment="Center" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" IsChecked="{Binding RaStartEast}"/>
 								<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="West" FontSize="10" Margin="22,-5,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 								<TextBlock Grid.Row="1"  Grid.Column="2" Text="East" FontSize="10" Margin="-5,-5,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 							</Grid>
@@ -399,7 +399,7 @@
 									<ColumnDefinition Width="*" />
 									<ColumnDefinition Width="Auto" />
 								</Grid.ColumnDefinitions>
-								<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding DecStartSouth}"/>
+								<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0" VerticalAlignment="Center" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" IsChecked="{Binding DecStartSouth}"/>
 								<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3" Text="North" FontSize="10" Margin="20,-5,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}" HorizontalAlignment="Left"/>
 								<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3" Text="South" FontSize="10" Margin="0,-5,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}" HorizontalAlignment="Right"/>
 							</Grid>
@@ -487,7 +487,7 @@
 							<ColumnDefinition Width="*" />
 							<ColumnDefinition Width="40" />
 						</Grid.ColumnDefinitions>
-						<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding MonitorNinaForPA}"/>
+						<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" IsChecked="{Binding MonitorNinaForPA}"/>
 						<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="No" FontSize="10" Margin="6,-5,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 						<TextBlock Grid.Row="1"  Grid.Column="2" Text="Yes" FontSize="10" Margin="5,-5,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 					</Grid>
@@ -518,7 +518,7 @@
 							<ColumnDefinition Width="*" />
 							<ColumnDefinition Width="40" />
 						</Grid.ColumnDefinitions>
-						<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding MonitorSharpCapForPA}"/>
+						<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" IsChecked="{Binding MonitorSharpCapForPA}"/>
 						<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="No" FontSize="10" Margin="6,-5,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 						<TextBlock Grid.Row="1"  Grid.Column="2" Text="Yes" FontSize="10" Margin="5,-5,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 					</Grid>
@@ -563,7 +563,7 @@
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="40" />
 							</Grid.ColumnDefinitions>
-							<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding InvertAZCorrections}"/>
+							<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" IsChecked="{Binding InvertAZCorrections}"/>
 							<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="No" FontSize="10" Margin="6,-5,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 							<TextBlock Grid.Row="1"  Grid.Column="2" Text="Yes" FontSize="10" Margin="5,-5,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 						</Grid>
@@ -577,7 +577,7 @@
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="40" />
 							</Grid.ColumnDefinitions>
-							<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding InvertALTCorrections}"/>
+							<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" IsChecked="{Binding InvertALTCorrections}"/>
 							<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="No" FontSize="10" Margin="6,-5,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 							<TextBlock Grid.Row="1"  Grid.Column="2" Text="Yes" FontSize="10" Margin="5,-5,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 						</Grid>

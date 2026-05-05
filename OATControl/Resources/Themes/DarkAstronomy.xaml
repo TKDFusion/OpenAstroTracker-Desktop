@@ -30,12 +30,16 @@
     <SolidColorBrush x:Key="AppBorderSubtleBrush" Color="{StaticResource AppBorderSubtleColor}" />
 
     <!-- Interactive states -->
-    <Color x:Key="AppButtonBackgroundColor">#FF401010</Color>
-    <Color x:Key="AppButtonHoverColor">#FF501010</Color>
+    <Color x:Key="AppButtonBackgroundColor">#FF800000</Color>
+    <Color x:Key="AppButtonHoverColor">#FF600000</Color>
     <Color x:Key="AppButtonPressedColor">#FF701010</Color>
+    <Color x:Key="AppButtonBorderColor">#FF401111</Color>
+    <Color x:Key="AppItemHoverColor">#FF600000</Color>
     <SolidColorBrush x:Key="AppButtonBackgroundBrush" Color="{StaticResource AppButtonBackgroundColor}" />
     <SolidColorBrush x:Key="AppButtonHoverBrush" Color="{StaticResource AppButtonHoverColor}" />
     <SolidColorBrush x:Key="AppButtonPressedBrush" Color="{StaticResource AppButtonPressedColor}" />
+    <SolidColorBrush x:Key="AppButtonBorderBrush" Color="{StaticResource AppButtonBorderColor}" />
+    <SolidColorBrush x:Key="AppItemHoverBrush" Color="{StaticResource AppItemHoverColor}" />
 
     <!-- Selection -->
     <Color x:Key="AppSelectedColor">#CC951400</Color>

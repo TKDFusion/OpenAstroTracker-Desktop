@@ -1,0 +1,348 @@
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:18:		<SolidColorBrush x:Key="TextColor" Color="#F7F7"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:19:		<SolidColorBrush x:Key="UnsetBackground" Color="#F600"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:20:		<SolidColorBrush x:Key="UnsetBorder" Color="#F400"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:21:		<SolidColorBrush x:Key="SetBackground" Color="#F811"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:22:		<SolidColorBrush x:Key="SetBackgroundActive" Color="#FD11"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:23:		<SolidColorBrush x:Key="SetBorder" Color="#F911"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:24:		<SolidColorBrush x:Key="ValueBorder" Color="#FF21"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:25:		<SolidColorBrush x:Key="ValueFill" Color="#FF21"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:26:		<SolidColorBrush x:Key="MarkerValueBorder" Color="#F000"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:27:		<SolidColorBrush x:Key="MarkerValueFill" Color="#F000"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:28:		<SolidColorBrush x:Key="Gray06" Color="#F111"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:128:					BorderBrush="#C11"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:139:					BorderBrush="#C11"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:240:					BorderBrush="#C11"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/RangeSlider.xaml:251:					BorderBrush="#C11"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/StopButton.xaml:16:				<Setter Property="TextColor" Value="#FFCC4400" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/Controls/StopButton.xaml:21:						<Setter Property="TextColor" Value="#FFFF4400" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:20:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:23:					<Setter Property="Background" Value="#822" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:24:					<Setter Property="Foreground" Value="#F44" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:31:			<Setter Property="BorderBrush" Value="#FF880000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:40:						<Setter Property="Background" Value="#F600" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:41:						<Setter Property="BorderBrush" Value="#FF770000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:46:								<Setter Property="Background" Value="#FD00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:50:								<Setter Property="Foreground" Value="#FFFF8888" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:60:			<Setter Property="Background" Value="#770000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:61:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:68:			<Setter Property="Background" Value="#770000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:69:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:80:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:101:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:109:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:123:						<Border BorderBrush="#401111" BorderThickness="2" x:Name="ImageBorder" Padding="1" Background="#800000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:127:										<Rectangle Fill="#FF800000" Visibility="Visible" x:Name="backgroundRect"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:132:										  Fill="#E00" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:151:								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="#200" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:152:								<Setter TargetName="backgroundRect" Property="Fill" Value="#600000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:153:								<Setter TargetName="colorGear" Property="Fill" Value="#C00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:161:					<Setter Property="Background" Value="#700" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:162:					<Setter Property="BorderBrush" Value="#600" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:165:					<Setter Property="Background" Value="#400" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:166:					<Setter Property="BorderBrush" Value="#500" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:175:						<Border BorderThickness="0,0,0,1" BorderBrush="#C00" >
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:192:									  Fill="#E00" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:203:			<!--<Setter Property="BorderBrush" Value="#C00"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:204:			<Setter Property="Background" Value="#900"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:206:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:213:			<TextBlock Padding="5,0" Foreground="#D00" FontWeight="Bold">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:220:			<TextBlock Padding="5,0" Foreground="#C00" HorizontalAlignment="Center">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:234:			<TextBlock Padding="3,0" Foreground="#C00" HorizontalAlignment="Center">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:241:			<TextBlock Padding="1,0" Foreground="#C00" >
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:257:		<Border BorderBrush="#300" BorderThickness="1,1,0,0" Margin="4,4,14,0">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:258:			<Border BorderBrush="#600" BorderThickness="0,0,1,1" Margin="0">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:259:				<ListView Name="CategorySelector" DockPanel.Dock="Left" Width="120" SelectionChanged="OnCategorySelected" Background="#400">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:372:								<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding RaStartEast}"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:402:								<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding DecStartSouth}"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:490:						<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding MonitorNinaForPA}"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:521:						<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding MonitorSharpCapForPA}"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:566:							<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding InvertAZCorrections}"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAppSettings.xaml:580:							<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="#E00" IsChecked="{Binding InvertALTCorrections}"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAxisCalibration.xaml:16:			<Setter Property="Foreground" Value="#FF000000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAxisCalibration.xaml:54:			<Setter Property="Background" Value="#440000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAxisCalibration.xaml:55:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAxisCalibration.xaml:64:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAxisCalibration.xaml:90:			<Setter Property="Foreground" Value="#F22" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAxisCalibration.xaml:93:			<Setter Property="Background" Value="#811" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAxisCalibration.xaml:101:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAxisCalibration.xaml:111:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAxisCalibration.xaml:121:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAxisCalibration.xaml:131:			<Setter Property="BorderBrush" Value="#FF880000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAxisCalibration.xaml:140:						<Setter Property="Background" Value="#F600" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAxisCalibration.xaml:141:						<Setter Property="BorderBrush" Value="#FF770000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAxisCalibration.xaml:146:								<Setter Property="Background" Value="#FD00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgAxisCalibration.xaml:150:								<Setter Property="Foreground" Value="#FFFF8888" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:32:            <Setter Property="Background" Value="#600" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:33:            <Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:36:            <Setter Property="BorderBrush" Value="#700" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:44:		<converters:BoolToBrushConverter x:Key="HeaderColorConverter" TrueBrush="#842" FalseBrush="#F86" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:45:		<converters:BoolToBrushConverter x:Key="SubitemColorConverter" TrueBrush="#930" FalseBrush="#F40" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:49:			<Setter Property="Background" Value="#770000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:50:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:61:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:75:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:83:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:97:						<Border BorderBrush="#401111" BorderThickness="2" x:Name="ImageBorder" Height="20" Padding="1" Background="#800000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:101:										<Rectangle Fill="#FF800000" Visibility="Visible" x:Name="backgroundRect"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:106:										  Fill="#E00" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:125:								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="#200" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:126:								<Setter TargetName="backgroundRect" Property="Fill" Value="#600000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:127:								<Setter TargetName="colorGear" Property="Fill" Value="#C00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:138:						<Border BorderBrush="#401111" BorderThickness="2" x:Name="ImageBorder" Height="20" Padding="1" Background="#800000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:142:										<Rectangle Fill="#FF800000" Visibility="Visible" x:Name="backgroundRect"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:147:										  Fill="#E00" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:166:								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="#200" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:167:								<Setter TargetName="backgroundRect" Property="Fill" Value="#600000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:168:								<Setter TargetName="colorGear" Property="Fill" Value="#C00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:176:                    <Setter Property="Background" Value="#700" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:177:                    <Setter Property="BorderBrush" Value="#600" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:180:                    <Setter Property="Background" Value="#400" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:181:                    <Setter Property="BorderBrush" Value="#500" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:189:						<Border BorderBrush="#401111" BorderThickness="2" x:Name="ImageBorder" Height="20" Padding="1" Background="#800000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:193:										<Rectangle Fill="#FF800000" Visibility="Visible" x:Name="backgroundRect"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:198:										  Fill="#E00" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:217:								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="#200" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:218:								<Setter TargetName="backgroundRect" Property="Fill" Value="#600000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:219:								<Setter TargetName="colorGear" Property="Fill" Value="#C00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:227:                    <Setter Property="Background" Value="#700" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:228:                    <Setter Property="BorderBrush" Value="#600" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:231:                    <Setter Property="Background" Value="#400" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:232:                    <Setter Property="BorderBrush" Value="#500" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:250:				<TextBlock Grid.Column="0" Text="{Binding ListTitle}" Foreground="#C44" FontSize="16" FontWeight="Bold" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="OnTitleMouseDown" MouseMove="OnTitleMouseMove" MouseUp="OnTitleMouseUp" Cursor="SizeAll"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:262:			<Border Grid.Row="0" BorderThickness="1" BorderBrush="#FF880000" Margin="0,0,0,0" >
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:274:													<Setter Property="Background" Value="#600" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:276:													<Setter Property="BorderBrush" Value="#B55" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:311:																		<Setter TargetName="Border" Property="Background" Value="#822"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:318:																		<Setter TargetName="Border" Property="Background" Value="#B54"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:326:															<Setter Property="Background" Value="#A43" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:327:															<Setter Property="Foreground" Value="#F88" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:353:																<Setter Property="Background" Value="#600" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:355:																<Setter Property="BorderBrush" Value="#B55" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:390:																					<Setter TargetName="Border" Property="Background" Value="#822"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:397:																					<Setter TargetName="Border" Property="Background" Value="#B54"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:405:																		<Setter Property="Background" Value="#A43" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklist.xaml:406:																		<Setter Property="Foreground" Value="#F88" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklistEditor.xaml:11:            <Setter Property="Background" Value="#770000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklistEditor.xaml:12:            <Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklistEditor.xaml:24:            <Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklistEditor.xaml:43:        <Border BorderBrush="#622" BorderThickness="1" Grid.Row="0">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklistEditor.xaml:52:                 Foreground="#F40"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklistEditor.xaml:53:                 Background="#400000"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklistEditor.xaml:55:                 CaretBrush="#FFF"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChecklistEditor.xaml:58:        <TextBlock Grid.Row="1" Text="One checklist item line. Headers start with '*', subitems with '-'." Foreground="#A30"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChooseOat.xaml:28:			<Setter Property="Foreground" Value="#D00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChooseOat.xaml:96:					  Width="120" FontSize="16" HorizontalAlignment="Left" Foreground="Red" FontWeight="Bold" BorderBrush="#FF880000" Visibility="{Binding ShowBaudRate,Converter={StaticResource CollapseOnFalse}}"/>-->
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChooseOat.xaml:129:			<controls:ToggleSwitch Grid.Row="0" Grid.Column="1" Content="" Margin="-4,0,0,0" IsChecked="{Binding RunRAAutoHoming}" ThumbIndicatorBrush="#E00" Visibility="{Binding ShowRAHoming, Converter={StaticResource CollapseOnFalse}}" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgChooseOat.xaml:134:			<controls:ToggleSwitch Grid.Row="1" Grid.Column="1" Content="" Margin="-4,0,0,0" IsChecked="{Binding RunDECOffsetHoming}" ThumbIndicatorBrush="#E00" Visibility="{Binding ShowDECHoming, Converter={StaticResource CollapseOnFalse}}" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgCustomActionSetup.xaml:13:			<Setter Property="Background" Value="#440000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgCustomActionSetup.xaml:14:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgCustomActionSetup.xaml:23:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgCustomActionSetup.xaml:37:			<Setter Property="Foreground" Value="#955" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgCustomActionSetup.xaml:48:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgEditPoint.xaml:14:			<Setter Property="Background" Value="#600" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgEditPoint.xaml:15:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgEditPoint.xaml:17:			<Setter Property="BorderBrush" Value="#800" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgEditPoint.xaml:27:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgEditPoint.xaml:42:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgEditPoint.xaml:50:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgEditPoint.xaml:78:		<CheckBox Grid.Column="1" Grid.Row="1" IsChecked="{Binding Enabled}" Margin="10,0" Background="#600" BorderBrush="#700" BorderThickness="1" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgMessageBox.xaml:18:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgNinaPolarAlignment.xaml:8:		Background="#600"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgNinaPolarAlignment.xaml:13:			<Setter Property="Foreground" Value="#FFFF1010"  />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgNinaPolarAlignment.xaml:30:			<Setter Property="Foreground" Value="#C33"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgNinaPolarAlignment.xaml:34:					<Setter Property="Foreground" Value="#E44"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgNinaPolarAlignment.xaml:76:			<Setter Property="Foreground" Value="#D33"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgNinaPolarAlignment.xaml:83:			<Setter Property="Foreground" Value="#F33"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgNinaPolarAlignment.xaml:91:			<Setter Property="Background" Value="#660000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgNinaPolarAlignment.xaml:92:			<Setter Property="Foreground" Value="#F44" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgNinaPolarAlignment.xaml:156:							<Setter Property="Background" Value="#660000"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgNinaPolarAlignment.xaml:157:							<Setter Property="Foreground" Value="#F44"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgNinaPolarAlignment.xaml:171:								<Border Grid.Column="0" BorderBrush="#400" BorderThickness="1" Margin="2,1" Padding="4,2" Background="#580000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgNinaPolarAlignment.xaml:175:								<Border Grid.Column="1" BorderBrush="#400" BorderThickness="1" Margin="2,1" Padding="4,2" Background="#580000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgNinaPolarAlignment.xaml:179:								<Border Grid.Column="2" BorderBrush="#400" BorderThickness="1" Margin="2,1" Padding="4,2" Background="#580000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgRunPolarAlignment.xaml:12:			<Setter Property="Foreground" Value="#FFFF1010"  />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgRunPolarAlignmentStep1.xaml:14:			<Setter Property="Foreground" Value="#FF301010"  />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgRunPolarAlignmentStep1.xaml:80:			<Slider IsEnabled="False" Minimum="-100" TickFrequency="10" TickPlacement="BottomRight" Background="#FFD43333" Margin="10,10,10,0"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgSharpCapPolarAlignment.xaml:8:		Background="#600"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgSharpCapPolarAlignment.xaml:13:			<Setter Property="Foreground" Value="#FFFF1010"  />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgSharpCapPolarAlignment.xaml:30:			<Setter Property="Foreground" Value="#C33"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgSharpCapPolarAlignment.xaml:34:					<Setter Property="Foreground" Value="#E44"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgSharpCapPolarAlignment.xaml:41:			<Setter Property="Foreground" Value="#D33"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgSharpCapPolarAlignment.xaml:48:			<Setter Property="Foreground" Value="#F33"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgSharpCapPolarAlignment.xaml:56:			<Setter Property="Background" Value="#660000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgSharpCapPolarAlignment.xaml:57:			<Setter Property="Foreground" Value="#F44" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgSharpCapPolarAlignment.xaml:117:							<Setter Property="Background" Value="#660000"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgSharpCapPolarAlignment.xaml:118:							<Setter Property="Foreground" Value="#F44"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgSharpCapPolarAlignment.xaml:132:								<Border Grid.Column="0" BorderBrush="#400" BorderThickness="1" Margin="2,1" Padding="4,2" Background="#580000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgSharpCapPolarAlignment.xaml:136:								<Border Grid.Column="1" BorderBrush="#400" BorderThickness="1" Margin="2,1" Padding="4,2" Background="#580000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgSharpCapPolarAlignment.xaml:140:								<Border Grid.Column="2" BorderBrush="#400" BorderThickness="1" Margin="2,1" Padding="4,2" Background="#580000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgStepCalibration.xaml:12:            <Setter Property="Background" Value="#440000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgStepCalibration.xaml:13:            <Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgStepCalibration.xaml:22:            <Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgStepCalibration.xaml:48:            <Setter Property="Foreground" Value="#F22" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgStepCalibration.xaml:51:            <Setter Property="Background" Value="#811" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgStepCalibration.xaml:59:            <Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgStepCalibration.xaml:69:            <Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgStepCalibration.xaml:79:            <Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/DlgWaitForGXState.xaml:19:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:27:			<Setter Property="Background" Value="#611" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:28:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:43:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:56:					<Setter Property="Background" Value="#FFD02010" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:67:					<Setter Property="Foreground" Value="#FFB0B0B0" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:79:					<Setter Property="Foreground" Value="#FFB0B0B0" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:87:			<Setter Property="Foreground" Value="#FF000000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:125:						<Border BorderBrush="#401111" BorderThickness="2" x:Name="ImageBorder" Background="#800000" Padding="1">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:129:										<Rectangle Fill="#FF800000" Visibility="Visible" x:Name="backgroundRect"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:134:										  Fill="#E00" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:153:								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="#200" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:154:								<Setter TargetName="backgroundRect" Property="Fill" Value="#600000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:155:								<Setter TargetName="colorGear" Property="Fill" Value="#C00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:163:                    <Setter Property="Background" Value="#700" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:164:                    <Setter Property="BorderBrush" Value="#600" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:167:                    <Setter Property="Background" Value="#400" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:168:                    <Setter Property="BorderBrush" Value="#500" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:176:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:185:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:448:						MajorTickColor="#FC11"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:449:						MinorTickColor="#F911"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:450:						TickLabelColor="#FB11"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:469:						MajorTickColor="#FC11"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:470:						MinorTickColor="#F911"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:471:						TickLabelColor="#FB11"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:519:								<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Slowest" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:546:								<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Slow" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:573:								<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Medium" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:600:								<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Fast" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MainWindow.xaml:627:								<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Fastest" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:9:		Background="#600"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:13:			<Setter Property="Background" Value="#611" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:14:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:40:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:44:			<Setter Property="Foreground" Value="#E00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:47:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:55:			<Setter Property="ActiveBackground" Value="#C00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:56:			<Setter Property="ActiveForeground" Value="#E00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:65:			<Setter Property="Foreground" Value="#FF201010" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:122:		<TextBlock Grid.Row="0" Grid.Column="0" Text="RA:" Style="{StaticResource TextBlockLabelSmall}" Foreground="#A20" MouseLeftButtonDown="TextBlock_MouseDown" Cursor="SizeAll" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:133:		<TextBlock Grid.Row="1" Grid.Column="0" Text="DEC:" Style="{StaticResource TextBlockLabelSmall}" Foreground="#A20" MouseLeftButtonDown="TextBlock_MouseDown" Cursor="SizeAll" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:153:							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Slowest" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:178:							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Slow" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:203:							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Medium" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:228:							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Fast" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:253:							<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Fastest" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="#811" Padding="0,1,0,4"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/MiniController.xaml:328:							 Foreground="#A20"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SettingsDialog.xaml:36:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SettingsDialog.xaml:42:			<Setter Property="Foreground" Value="#D00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SettingsDialog.xaml:52:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SettingsDialog.xaml:69:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SettingsDialog.xaml:74:			<Setter Property="Background" Value="#800" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SettingsDialog.xaml:76:			<Setter Property="BorderBrush" Value="#FF880000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SettingsDialog.xaml:87:                        <Setter Property="Background" Value="#F600" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SettingsDialog.xaml:88:                        <Setter Property="BorderBrush" Value="#FF770000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SettingsDialog.xaml:93:                                <Setter Property="Background" Value="#FD00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SettingsDialog.xaml:97:                                <Setter Property="Foreground" Value="#FFFF8888" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SettingsDialog.xaml:307:				<controls:ToggleSwitch  Margin="0,0" VerticalAlignment="Center" IsEnabled="{Binding MountConnected}" IsChecked="{Binding UseCustomParkPosition}" ThumbIndicatorBrush="#E00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:9:        Background="#600"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:24:					<Setter Property="Background" Value="#400" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:27:					<Setter Property="Background" Value="#600"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:32:			<Setter Property="Background" Value="#600" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:33:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:36:			<Setter Property="BorderBrush" Value="#700" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:57:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:74:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:84:			<Setter Property="Foreground" Value="#B00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:89:			<Setter Property="Background" Value="#800" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:91:			<Setter Property="BorderBrush" Value="#A00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:101:			<Setter Property="Background" Value="#800"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:103:			<Setter Property="BorderBrush" Value="#A00"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:107:					<Setter Property="Background" Value="#A22"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:112:					<Setter Property="Background" Value="#C33"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:121:						<Border BorderBrush="#401111" BorderThickness="2" x:Name="ImageBorder" Height="28" Padding="1" Background="#800000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:125:										<Rectangle Fill="#FF800000" Visibility="Visible" x:Name="backgroundRect"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:130:										  Fill="#E00" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:149:								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="#200" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:150:								<Setter TargetName="backgroundRect" Property="Fill" Value="#600000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:151:								<Setter TargetName="colorGear" Property="Fill" Value="#C00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:154:								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="#200" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:155:								<Setter TargetName="backgroundRect" Property="Fill" Value="#451000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:156:								<Setter TargetName="colorGear" Property="Fill" Value="#700" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:167:						<Border BorderBrush="#401111" BorderThickness="2" x:Name="ImageBorder" Height="28" Padding="1" Background="#800000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:171:										<Rectangle Fill="#FF800000" Visibility="Visible" x:Name="backgroundRect"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:176:										  Fill="#E00" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:195:								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="#200" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:196:								<Setter TargetName="backgroundRect" Property="Fill" Value="#600000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:197:								<Setter TargetName="colorGear" Property="Fill" Value="#C00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:200:								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="#200" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:201:								<Setter TargetName="backgroundRect" Property="Fill" Value="#451000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:202:								<Setter TargetName="colorGear" Property="Fill" Value="#700" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:213:						<Border BorderBrush="#401111" BorderThickness="2" x:Name="ImageBorder" Height="28" Padding="1" Background="#800000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:217:										<Rectangle Fill="#FF800000" Visibility="Visible" x:Name="backgroundRect"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:222:										  Fill="#E00" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:241:								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="#200" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:242:								<Setter TargetName="backgroundRect" Property="Fill" Value="#600000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:243:								<Setter TargetName="colorGear" Property="Fill" Value="#C00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:254:						<Border BorderBrush="#401111" BorderThickness="2" x:Name="ImageBorder" Height="28" Padding="2" Background="#800000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:258:										<Rectangle Fill="#FF800000" Visibility="Visible" x:Name="backgroundRect"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:263:										  Fill="#E00" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:282:								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="#200" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:283:								<Setter TargetName="backgroundRect" Property="Fill" Value="#600000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:284:								<Setter TargetName="colorGear" Property="Fill" Value="#C00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:295:						<Border BorderBrush="#401111" BorderThickness="2" x:Name="ImageBorder" Height="24" Padding="1" Background="#800000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:299:										<Rectangle Fill="#FF800000" Visibility="Visible" x:Name="backgroundRect"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:304:										  Fill="#E00" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:323:								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="#200" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:324:								<Setter TargetName="backgroundRect" Property="Fill" Value="#600000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:325:								<Setter TargetName="colorGear" Property="Fill" Value="#C00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:336:						<Border BorderBrush="#401111" BorderThickness="2" x:Name="ImageBorder" Height="24" Padding="1" Background="#800000">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:340:										<Rectangle Fill="#FF800000" Visibility="Visible" x:Name="backgroundRect"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:345:										  Fill="#E00" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:364:								<Setter TargetName="ImageBorder" Property="BorderBrush" Value="#200" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:365:								<Setter TargetName="backgroundRect" Property="Fill" Value="#600000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:366:								<Setter TargetName="colorGear" Property="Fill" Value="#C00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:421:			Background="#300" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:422:			BorderBrush="#900" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:430:					<Border BorderThickness="0,1,0,0" BorderBrush="#200"   Background="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=Background}">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:446:									Foreground="#B00"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:454:									Background="#400" 
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:460:							<TextBlock Text="{Binding RaStepperPosition}" Foreground="#B00" VerticalAlignment="Center" Grid.Column="1" TextAlignment="Center"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/SlewPointsWindow.xaml:461:							<TextBlock Text="{Binding DecStepperPosition}" Foreground="#B00" VerticalAlignment="Center" Grid.Column="2" TextAlignment="Center"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:27:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:30:			<Setter Property="Background" Value="#900" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:33:					<Setter Property="Background" Value="#A00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:128:						<Rectangle Fill="#800"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:131:						<Rectangle Fill="#600"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:134:				<TextBlock Foreground="#000" Padding="10,0" HorizontalAlignment="Stretch" >
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:159:						<Rectangle Fill="#800"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:162:						<Rectangle Fill="#600"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:165:				<TextBlock Foreground="#000" Padding="10,0" HorizontalAlignment="Stretch" >
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:175:				<TextBlock Foreground="#000" Padding="10,0" HorizontalAlignment="Stretch" >
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:185:				<TextBlock Foreground="#000" Padding="10,0" HorizontalAlignment="Stretch" >
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:202:						<Rectangle Fill="#D00"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:205:						<Rectangle Fill="#A00"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:208:				<TextBlock Foreground="#000" Padding="10,0" HorizontalAlignment="Center" FontWeight="Bold">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:217:			<Setter Property="BorderBrush" Value="#CC0"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:218:			<Setter Property="Background" Value="#9C0"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:221:					<Setter Property="Background" Value="#FF0" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:247:					<Setter Property="Background" Value="#600" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:248:					<Setter Property="BorderBrush" Value="#800" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:252:					<Setter Property="Background" Value="#800" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:253:					<Setter Property="BorderBrush" Value="#A00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:257:					<Setter Property="Background" Value="#400" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:258:					<Setter Property="BorderBrush" Value="#500000" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:259:					<Setter Property="Foreground" Value="#A00"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:275:						<Border BorderThickness="0,0,0,1" BorderBrush="#C00" Background="Transparent">
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:281:			<Setter Property="BorderBrush" Value="#C00"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:282:			<Setter Property="Background" Value="#900"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:284:			<Setter Property="Foreground" Value="#F00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:304:			ThumbIndicatorBrush="#D00"
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:321:		<TextBlock Grid.Row="2" Text="This list can be edited in the application Settings dialog" HorizontalAlignment="Center" Margin="0,6" Foreground="#A00" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:381:									<Rectangle Fill="#D00"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:384:									<Rectangle Fill="#A00"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:387:							<TextBlock Grid.Column="2" Text="{Binding RADistance, Converter={StaticResource DECConverter}}" Foreground="#000" Padding="10,0" HorizontalAlignment="Stretch" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:396:									<Rectangle Fill="#D00"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:399:									<Rectangle Fill="#A00"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:402:							<TextBlock Grid.Column="4" Text="{Binding DECDistance, Converter={StaticResource DECConverter}}" Foreground="#000" Padding="10,0" HorizontalAlignment="Stretch" />
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:410:									<Rectangle Fill="#D00"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:413:									<Rectangle Fill="#A00"/>
+/mnt/c/Users/Lutz.KRETZSCHMAR/Source/OpenAstroTracker-Desktop/OATControl/TargetChooser.xaml:416:							<TextBlock Grid.Column="5" Text="{Binding DECDistance, Converter={StaticResource DECConverter}}" Foreground="#000" Padding="10,0" HorizontalAlignment="Stretch" />

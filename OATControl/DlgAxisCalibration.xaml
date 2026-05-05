@@ -52,7 +52,7 @@
 		<Style x:Key="TextBoxSmall" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}" >
 			<Setter Property="Margin" Value="10,4" />
 			<Setter Property="Background" Value="#440000" />
-			<Setter Property="Foreground" Value="#F00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 		</Style>
 		<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
 			<Setter Property="VerticalAlignment" Value="Center" />
@@ -61,7 +61,7 @@
 			<Setter Property="Margin" Value="2,0" />
 			<Setter Property="Padding" Value="6,0" />
 			<Setter Property="HorizontalAlignment" Value="Left" />
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 		<Style x:Key="TextBlockLabel" TargetType="TextBlock" BasedOn="{StaticResource TextBlockHeading}">
 			<Setter Property="Padding" Value="2,0" />
@@ -90,7 +90,7 @@
 			<Setter Property="Foreground" Value="#F22" />
 			<Setter Property="Padding" Value="18,4" />
 			<Setter Property="Margin" Value="2,2" />
-			<Setter Property="Background" Value="#811" />
+			<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
 		</Style>
 		<Style x:Key="TextBlockLabelValue" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabelSmall}">
 			<Setter Property="Padding" Value="12,2" />
@@ -98,7 +98,7 @@
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
 			<Setter Property="TextAlignment" Value="Center" />
 			<Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
-			<Setter Property="Foreground" Value="#F00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="MaxWidth"  Value="250" />
 		</Style>
 		<Style x:Key="TextBorder" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
@@ -108,7 +108,7 @@
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="FontSize" Value="20" />
 			<Setter Property="MinWidth" Value="50" />
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 		<Style x:Key="TextBorderSmall" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
 			<Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
@@ -118,7 +118,7 @@
 			<Setter Property="FontSize" Value="14" />
 			<Setter Property="Height" Value="20" />
 			<Setter Property="Margin" Value="0,5,10,0" />
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 		<converters:IntToVisibilityConverter x:Key="VisibleIfNumberEquals"  Operator="==" />
 		<converters:IntToBoolConverter x:Key="IntToBoolConverter" Operator="==" />
@@ -128,7 +128,7 @@
 		<Style x:Key="ComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
 			<Setter Property="Foreground" Value="Red" />
 			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="BorderBrush" Value="#FF880000" />
+			<Setter Property="BorderBrush" Value="{DynamicResource AppButtonHoverBrush}" />
 			<Setter Property="FontSize" Value="14" />
 			<Setter Property="HorizontalAlignment" Value="Left" />
 			<Setter Property="ItemContainerStyle">
@@ -137,17 +137,17 @@
 						<Setter Property="FontSize" Value="14" />
 						<Setter Property="Foreground" Value="Red" />
 						<Setter Property="FontWeight" Value="Bold" />
-						<Setter Property="Background" Value="#F600" />
-						<Setter Property="BorderBrush" Value="#FF770000" />
+						<Setter Property="Background" Value="{DynamicResource AppSelectedBrush}" />
+						<Setter Property="BorderBrush" Value="{DynamicResource AppButtonBackgroundBrush}" />
 						<Setter Property="BorderThickness" Value="1" />
 						<Setter Property="Padding" Value="4" />
 						<Style.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
-								<Setter Property="Background" Value="#FD00" />
+								<Setter Property="Background" Value="{DynamicResource AppSelectedBrush}" />
 							</Trigger>
 							<Trigger Property="IsSelected" Value="True">
 								<Setter Property="Background" Value="Black" />
-								<Setter Property="Foreground" Value="#FFFF8888" />
+								<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 							</Trigger>
 						</Style.Triggers>
 					</Style>

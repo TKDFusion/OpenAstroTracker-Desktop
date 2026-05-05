@@ -33,13 +33,13 @@
 			<Setter Property="Margin" Value="0,0" />
 			<Setter Property="Padding" Value="0,0" />
 			<Setter Property="HorizontalAlignment" Value="Center" />
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 
 		<Style x:Key="TinyTextBlockLabel" TargetType="TextBlock" BasedOn="{StaticResource SmallTextBlockLabel}">
 			<Setter Property="FontWeight" Value="Normal" />
 			<Setter Property="FontSize" Value="8" />
-			<Setter Property="Foreground" Value="#D00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 		</Style>
 
 		<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
@@ -49,7 +49,7 @@
 			<Setter Property="Margin" Value="2,0" />
 			<Setter Property="Padding" Value="6,0" />
 			<Setter Property="HorizontalAlignment" Value="Left" />
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 		<Style x:Key="TextBlockLabel" TargetType="TextBlock" BasedOn="{StaticResource TextBlockHeading}">
 			<Setter Property="Padding" Value="2,0" />
@@ -66,14 +66,14 @@
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
 			<Setter Property="TextAlignment" Value="Center" />
 			<Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
-			<Setter Property="Foreground" Value="#F00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="MaxWidth"  Value="250" />
 		</Style>
         <Style x:Key="ComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
 			<Setter Property="Foreground" Value="Red" />
 			<Setter Property="Background" Value="#800" />
 			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="BorderBrush" Value="#FF880000" />
+			<Setter Property="BorderBrush" Value="{DynamicResource AppButtonHoverBrush}" />
 			<Setter Property="BorderThickness" Value="2" />
 			<Setter Property="FontSize" Value="12" />
             <Setter Property="HorizontalAlignment" Value="Left" />
@@ -84,17 +84,17 @@
                         <Setter Property="FontSize" Value="12" />
                         <Setter Property="Foreground" Value="Red" />
                         <Setter Property="FontWeight" Value="Bold" />
-                        <Setter Property="Background" Value="#F600" />
-                        <Setter Property="BorderBrush" Value="#FF770000" />
+                        <Setter Property="Background" Value="{DynamicResource AppSelectedBrush}" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource AppButtonBackgroundBrush}" />
                         <Setter Property="BorderThickness" Value="1" />
                         <Setter Property="Padding" Value="4" />
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FD00" />
+                                <Setter Property="Background" Value="{DynamicResource AppSelectedBrush}" />
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="Background" Value="Black" />
-                                <Setter Property="Foreground" Value="#FFFF8888" />
+                                <Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -304,7 +304,7 @@
 			<TextBlock Grid.Row ="0" Grid.Column="0" Margin="0,0" HorizontalAlignment="Left" Text="Use Custom Park Position" ToolTip="The Park position is different from the Home position" TextWrapping="Wrap" Style="{StaticResource SmallTextBlockLabel}" />
 			<StackPanel Grid.Column="1" Grid.Row="0"   Orientation="Horizontal">
 				<TextBlock Margin="0,0" HorizontalAlignment="Left" Text="No" Style="{StaticResource TinyTextBlockLabel}" VerticalAlignment="Center"/>
-				<controls:ToggleSwitch  Margin="0,0" VerticalAlignment="Center" IsEnabled="{Binding MountConnected}" IsChecked="{Binding UseCustomParkPosition}" ThumbIndicatorBrush="#E00" />
+				<controls:ToggleSwitch  Margin="0,0" VerticalAlignment="Center" IsEnabled="{Binding MountConnected}" IsChecked="{Binding UseCustomParkPosition}" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" />
 				<TextBlock Margin="0,0" HorizontalAlignment="Right" Text="Yes" Style="{StaticResource TinyTextBlockLabel}" VerticalAlignment="Center"/>
 			</StackPanel>
 		</Grid>

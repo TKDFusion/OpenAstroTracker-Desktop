@@ -27,9 +27,13 @@
     <Color x:Key="AppButtonBackgroundColor">#FFD0D0D0</Color>
     <Color x:Key="AppButtonHoverColor">#FFC0C0C0</Color>
     <Color x:Key="AppButtonPressedColor">#FFB0B0B0</Color>
+    <Color x:Key="AppButtonBorderColor">#FFCCCCCC</Color>
+    <Color x:Key="AppItemHoverColor">#FFC0C0C0</Color>
     <SolidColorBrush x:Key="AppButtonBackgroundBrush" Color="{StaticResource AppButtonBackgroundColor}" />
     <SolidColorBrush x:Key="AppButtonHoverBrush" Color="{StaticResource AppButtonHoverColor}" />
     <SolidColorBrush x:Key="AppButtonPressedBrush" Color="{StaticResource AppButtonPressedColor}" />
+    <SolidColorBrush x:Key="AppButtonBorderBrush" Color="{StaticResource AppButtonBorderColor}" />
+    <SolidColorBrush x:Key="AppItemHoverBrush" Color="{StaticResource AppItemHoverColor}" />
 
     <Color x:Key="AppSelectedColor">#CC0050C8</Color>
     <Color x:Key="AppSelectedHoverColor">#990050C8</Color>

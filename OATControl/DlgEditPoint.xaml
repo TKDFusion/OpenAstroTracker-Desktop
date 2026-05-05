@@ -11,8 +11,8 @@
 		<Style x:Key="TextBoxSmall" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}" >
 			<Setter Property="Margin" Value="10,2,10,2" />
 			<Setter Property="Height" Value="11" />
-			<Setter Property="Background" Value="#600" />
-			<Setter Property="Foreground" Value="#F00" />
+			<Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="Width" Value="Auto" />
 			<Setter Property="BorderBrush" Value="#800" />
 			<Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -24,7 +24,7 @@
 			<Setter Property="Margin" Value="2,0" />
 			<Setter Property="Padding" Value="6,0" />
 			<Setter Property="HorizontalAlignment" Value="Left" />
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 		<Style x:Key="TextBlockLabel" TargetType="TextBlock" BasedOn="{StaticResource TextBlockHeading}">
 			<Setter Property="FontSize" Value="13" />
@@ -39,7 +39,7 @@
 			<Setter Property="TextWrapping" Value="Wrap" />
 			<Setter Property="Width" Value="190" />
 			<Setter Property="Margin" Value="2,0,0,0" />
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 
 		<Style x:Key="TextBlockOptionHelpNoWidth" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
@@ -47,7 +47,7 @@
 			<Setter Property="FontWeight" Value="Normal" />
 			<Setter Property="TextWrapping" Value="Wrap" />
 			<Setter Property="Margin" Value="2,0,0,0" />
-			<Setter Property="Foreground" Value="#B00" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 		<Style x:Key="TextBlockDescription" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabel}">
 			<Setter Property="FontSize" Value="10" />
@@ -75,7 +75,7 @@
 		<TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Point Of Interest" Style="{StaticResource TextBlockHeading}" HorizontalAlignment="Center" Margin="0,0,0,10"/>
 
 		<TextBlock Grid.Column="0" Grid.Row="1" Text="Enabled" Style="{StaticResource TextBlockLabel}" />
-		<CheckBox Grid.Column="1" Grid.Row="1" IsChecked="{Binding Enabled}" Margin="10,0" Background="#600" BorderBrush="#700" BorderThickness="1" />
+		<CheckBox Grid.Column="1" Grid.Row="1" IsChecked="{Binding Enabled}" Margin="10,0" Background="{DynamicResource AppButtonHoverBrush}" BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1" />
 
 		<TextBlock Grid.Column="0" Grid.Row="2" Text="Name" Style="{StaticResource TextBlockLabel}" />
 		<TextBox Grid.Column="1" Grid.Row="2" Text="{Binding PointName}" Style="{StaticResource TextBoxSmall}" />

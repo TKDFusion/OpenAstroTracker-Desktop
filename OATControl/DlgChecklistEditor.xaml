@@ -8,8 +8,8 @@
         <Style x:Key="TextBoxSmall" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}" >
             <Setter Property="Margin" Value="10,2,10,2" />
             <Setter Property="Height" Value="11" />
-            <Setter Property="Background" Value="#770000" />
-            <Setter Property="Foreground" Value="#F00" />
+            <Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
             <Setter Property="Width" Value="60" />
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
@@ -21,7 +21,7 @@
             <Setter Property="Margin" Value="2,0" />
             <Setter Property="Padding" Value="6,0" />
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Foreground" Value="#B00" />
+            <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
         </Style>
         <Style x:Key="TextBlockLabel" TargetType="TextBlock" BasedOn="{StaticResource TextBlockHeading}">
             <Setter Property="Padding" Value="2,0" />
@@ -49,13 +49,13 @@
                  FontSize="14"
                  TextWrapping="NoWrap"
                  Text="{Binding ChecklistText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                 Foreground="#F40"
-                 Background="#400000"
+                 Foreground="{DynamicResource AppDangerBrush}"
+                 Background="{DynamicResource AppSelectedBrush}"
                  BorderThickness="0"
                  CaretBrush="#FFF"
                  />
         </Border>
-        <TextBlock Grid.Row="1" Text="One checklist item line. Headers start with '*', subitems with '-'." Foreground="#A30"/>
+        <TextBlock Grid.Row="1" Text="One checklist item line. Headers start with '*', subitems with '-'." Foreground="{DynamicResource AppForegroundBrush}"/>
         <!-- Buttons -->
         <Grid Grid.Row="2"
                     HorizontalAlignment="Stretch"

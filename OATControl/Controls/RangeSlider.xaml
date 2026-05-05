@@ -125,7 +125,7 @@
 				<!-- Top Limit indicator handles -->
 				<Border Grid.Row="2"  
 					BorderThickness="0,3,0,0"
-					BorderBrush="#C11"
+					BorderBrush="{DynamicResource AppBorderBrush}"
 					Width="{Binding ElementName=RangeSliderControl, Path=SliderPartWidth}"
 					Margin="5,-2,-1,0"
 					VerticalAlignment="Top"
@@ -136,7 +136,7 @@
 				<!-- Bottom Limit indicator handles -->
 				<Border Grid.Row="2"  
 					BorderThickness="0,3,0,0"
-					BorderBrush="#C11"
+					BorderBrush="{DynamicResource AppBorderBrush}"
 					Width="{Binding ElementName=RangeSliderControl, Path=SliderPartWidth}"
 					Margin="5,0,-1,-1"
 					VerticalAlignment="Bottom"
@@ -237,7 +237,7 @@
 				<!-- Left Limit marker -->
 				<Border Grid.Column="2"  
 					BorderThickness="3,0,0,0"
-					BorderBrush="#C11"
+					BorderBrush="{DynamicResource AppBorderBrush}"
 					Width="{Binding ElementName=RangeSliderControl, Path=SliderPartWidth}"
 					Margin="0,3,-2,-1"
 					HorizontalAlignment="Left"
@@ -248,7 +248,7 @@
 				<!-- Right Limit marker -->
 				<Border Grid.Column="2"  
 					BorderThickness="0,0,3,0"
-					BorderBrush="#C11"
+					BorderBrush="{DynamicResource AppBorderBrush}"
 					Width="{Binding ElementName=RangeSliderControl, Path=SliderPartWidth}"
 					Margin="-1,3,0,-1"
 					HorizontalAlignment="Right"
