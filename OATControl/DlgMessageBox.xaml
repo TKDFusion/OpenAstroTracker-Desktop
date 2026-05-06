@@ -1,4 +1,6 @@
 <Window x:Class="OATControl.DlgMessageBox"
+	      Background="{DynamicResource AppWindowBackgroundBrush}"
+		Foreground="{DynamicResource AppForegroundBrush}"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -29,6 +31,6 @@
 			<RowDefinition Height="40"/>
 		</Grid.RowDefinitions>
 		<TextBlock Grid.Row="0" Text="{Binding Message}" Style="{StaticResource MessageText}" />
-		<Button Grid.Row="1" Content="OK" Style="{StaticResource AccentedSquareButtonStyle}" Margin="20,5,20,5" Width="80" Command="{Binding CloseCommand}"/>
+		<Button Grid.Row="1" Content="OK" Style="{StaticResource MainButtonStyle}" Margin="20,5,20,5" Width="80" Command="{Binding CloseCommand}"/>
 	</Grid>
 </Window>

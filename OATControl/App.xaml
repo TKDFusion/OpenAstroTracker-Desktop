@@ -7,6 +7,7 @@
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="pack://application:,,,/OATControl;component/Resources/Themes/Base.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/OATControl;component/Controls/IconButton.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 			<DrawingImage x:Key="WaitingIcon">
 				<DrawingImage.Drawing>

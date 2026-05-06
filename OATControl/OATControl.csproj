@@ -85,6 +85,9 @@
     <Compile Include="Controls\ToggleSwitch.xaml.cs">
       <DependentUpon>ToggleSwitch.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\IconButton.xaml.cs">
+      <DependentUpon>IconButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Theming\ThemeManager.cs" />
     <Compile Include="Converters\AbsConverter.cs" />
     <Compile Include="Converters\BoolToBrushConverter.cs" />
@@ -246,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ToggleSwitch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\IconButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
