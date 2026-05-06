@@ -8,7 +8,7 @@
 			 Name="ThisJoystick"
              d:DesignHeight="450" d:DesignWidth="800" >
 	<Grid x:Name="MainGrid" Background="Transparent"  IsHitTestVisible="True" MouseDown="MainGrid_OnMouseButtonDown" MouseUp="MainGrid_OnMouseButtonUp" MouseMove="MainGrid_OnMouseMove">
-		<local:ScopeCircles DeltaAngle="45" Foreground="{DynamicResource AccentColorBrush2}" DrawLabels="false" NumCircles="3"/>
+		<local:ScopeCircles DeltaAngle="45" Foreground="{DynamicResource AppAccentHighlightBrush}" DrawLabels="false" NumCircles="3"/>
 		<local:ScopePointer Foreground="{DynamicResource AppPrimaryBrush}" X="{Binding CursorX, ElementName=ThisJoystick}" Y="{Binding CursorY, ElementName=ThisJoystick}" Scale="{Binding Radius, ElementName=ThisJoystick}"/>
 	</Grid>
 </UserControl>

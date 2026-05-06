@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:OATControl" xmlns:controls="clr-namespace:OATControl.Controls"
 		xmlns:converters="clr-namespace:OATControl.Converters"
 		mc:Ignorable="d"
-		Background="{DynamicResource AppButtonHoverBrush}"
+		Background="{DynamicResource AppWindowBackgroundBrush}"
+		Foreground="{DynamicResource AppForegroundBrush}"
         Title="Mini OAT Control" Height="85" MinHeight="85" MaxHeight="85" Width="Auto" MaxWidth="660" MinWidth="250" WindowStyle="None" SizeToContent="Width">
 	<Window.Resources>
 		<Style x:Key="OatToolTip" TargetType="ToolTip" BasedOn="{StaticResource MetroToolTip}">
@@ -36,7 +37,7 @@
 			<Setter Property="Margin" Value="0,4" />
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
 			<Setter Property="TextAlignment" Value="Center" />
-			<Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
+			<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 		</Style>
 		<Style x:Key="TextBlockLabelTiny" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabelSmall}">
@@ -50,8 +51,8 @@
 			<Setter Property="Width" Value="38" />
 			<Setter Property="Height" Value="8" />
 			<Setter Property="Margin" Value="1,1,1,1" />
-			<Setter Property="Background" Value="{DynamicResource AccentColorBrush4}" />
-			<Setter Property="Foreground" Value="{DynamicResource AccentColorBrush3}" />
+			<Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
+			<Setter Property="Foreground" Value="{DynamicResource AppAccentActiveBrush}" />
 			<Setter Property="ActiveBackground" Value="{DynamicResource AppBorderBrush}" />
 			<Setter Property="ActiveForeground" Value="{DynamicResource AppPrimaryBrush}" />
 		</Style>
@@ -61,8 +62,8 @@
 			<Setter Property="Margin" Value="2,0.5,0,0.5" />
 			<Setter Property="BorderBrush" Value="{DynamicResource AppPrimaryBrush}" />
 			<Setter Property="BorderThickness" Value="1" />
-			<Setter Property="Background" Value="{DynamicResource AccentColorBrush3}" />
-			<Setter Property="Foreground" Value="#FF201010" />
+			<Setter Property="Background" Value="{DynamicResource AppAccentActiveBrush}" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 			<Setter Property="FontWeight" Value="Bold" />
 		<Setter Property="FontSize" Value="10" />
 			<Setter Property="Template">
@@ -77,18 +78,18 @@
 						</Border>
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
-								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush2}" />
-								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush4}" />
+								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppAccentHighlightBrush}" />
+								<Setter TargetName="border" Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
 								<Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}" />
 							</Trigger>
 							<Trigger Property="IsChecked" Value="True">
 								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppIdealForegroundBrush}" />
-								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush2}" />
+								<Setter TargetName="border" Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
 								<Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}" />
 							</Trigger>
 							<Trigger Property="IsEnabled" Value="False">
-								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
-								<Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush3}" />
+								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppAccentBorderBrush}" />
+								<Setter TargetName="border" Property="Background" Value="{DynamicResource AppAccentActiveBrush}" />
 								<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
 							</Trigger>
 						</ControlTemplate.Triggers>
@@ -261,8 +262,8 @@
 			</ToggleButton>
 		</StackPanel>
 
-		<Button Grid.Row="0" Grid.Column="6"  Margin="8,4" Padding="10,0" Content="Home" Style="{StaticResource AccentedSquareButtonStyle}" Command="{Binding HomeCommand}"/>
-		<Button Grid.Row="1" Grid.Column="6" Margin="8,4" Padding="10,0" Content="{Binding ParkCommandString}" Style="{StaticResource AccentedSquareButtonStyle}" Command="{Binding ParkCommand}"/>
+		<Button Grid.Row="0" Grid.Column="6"  Margin="8,4" Padding="10,0" Content="Home" Style="{StaticResource MainButtonStyle}" Command="{Binding HomeCommand}"/>
+		<Button Grid.Row="1" Grid.Column="6" Margin="8,4" Padding="10,0" Content="{Binding ParkCommandString}" Style="{StaticResource MainButtonStyle}" Command="{Binding ParkCommand}"/>
 
 		<!--  AZ/ALT Controls -->
 		<controls:PushButton Grid.RowSpan="2" Grid.Column="7" Width="36" Height="32" Direction="W" IsEnabled="{Binding MountConnected}" Command="{Binding ChangeSlewingStateCommand}" CommandParameter="L" Visibility="{Binding ScopeHasAZ, Converter={StaticResource CollapseIfFalse}}"/>

@@ -12,7 +12,6 @@
     <Style x:Key="MetroTextBlock" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
     </Style>
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}" />
@@ -21,20 +20,21 @@
     <Style x:Key="MetroTextBox" TargetType="TextBox">
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource AppInputBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="4,2" />
-        <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource AppForegroundBrush}" />
     </Style>
 
     <Style TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}" />
 
     <!-- ToolTip styles -->
     <Style x:Key="MetroToolTip" TargetType="ToolTip">
-        <Setter Property="Background" Value="{DynamicResource AppTooltipBackgroundBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource AppTooltipForegroundBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}" />
+		<Setter Property="Background" Value="{DynamicResource AppTooltipBackgroundBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource AppTooltipForegroundBrush}" />
         <Setter Property="Padding" Value="5,2,5,7" />
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
     </Style>
@@ -42,12 +42,12 @@
     <Style TargetType="ToolTip" BasedOn="{StaticResource MetroToolTip}" />
 
     <!-- Button styles -->
-    <Style x:Key="AccentedSquareButtonStyle" TargetType="Button">
+    <Style x:Key="MainButtonStyle" TargetType="Button">
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
-        <Setter Property="Foreground" Value="{DynamicResource AccentSelectedColorBrush}" />
-        <Setter Property="Background" Value="{DynamicResource AccentColorBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource AppBorderSubtleBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource AppButtonBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="10,5" />
         <Setter Property="Cursor" Value="Hand" />
@@ -63,13 +63,14 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
+                            <Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource AccentColorBrush3}" />
+                            <Setter Property="Background" Value="{DynamicResource AppButtonPressedBrush}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{DynamicResource AccentColorBrush4}" />
+                            <Setter Property="Background" Value="{DynamicResource AppDisabledBackgroundBrush}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource AppDisabledBorderBrush}" />
                             <Setter Property="Foreground" Value="{DynamicResource AppDisabledForegroundBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -78,16 +79,16 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Button" BasedOn="{StaticResource AccentedSquareButtonStyle}" />
+    <Style TargetType="Button" BasedOn="{StaticResource MainButtonStyle}" />
 
-    <Style x:Key="AccentedDialogSquareButton" TargetType="Button" BasedOn="{StaticResource AccentedSquareButtonStyle}" />
+    <Style x:Key="AccentedDialogSquareButton" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}" />
 
     <!-- ToggleButton styles -->
     <Style x:Key="AccentedToggleSquareButtonStyle" TargetType="ToggleButton">
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
-        <Setter Property="Foreground" Value="{DynamicResource AccentSelectedColorBrush}" />
-        <Setter Property="Background" Value="{DynamicResource AccentColorBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource AppPrimaryBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource AppBorderSubtleBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="10,5" />
@@ -104,16 +105,16 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
+                            <Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource AccentColorBrush3}" />
+                            <Setter Property="Background" Value="{DynamicResource AppAccentActiveBrush}" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource AccentBaseColorBrush}" />
+                            <Setter Property="Background" Value="{DynamicResource AppPrimaryBrush}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{DynamicResource AccentColorBrush4}" />
+                            <Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
                             <Setter Property="Foreground" Value="{DynamicResource AppDisabledForegroundBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -128,7 +129,7 @@
     <Style TargetType="CheckBox">
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
         <Setter Property="Background" Value="Transparent" />
     </Style>
 
@@ -136,59 +137,59 @@
     <Style TargetType="RadioButton">
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
     </Style>
 
     <!-- Label -->
     <Style TargetType="Label">
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
     </Style>
 
     <!-- ComboBox -->
     <Style TargetType="ComboBox">
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource AppInputBackgroundBrush}" />
     </Style>
 
     <!-- TabControl -->
     <Style TargetType="TabControl">
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
-        <Setter Property="Background" Value="{DynamicResource WindowBackgroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource AppWindowBackgroundBrush}" />
     </Style>
 
     <!-- TabItem -->
     <Style TargetType="TabItem">
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
     </Style>
 
     <!-- ScrollBar -->
     <Style TargetType="ScrollBar">
-        <Setter Property="Background" Value="{DynamicResource WindowBackgroundBrush}" />
+        <Setter Property="Background" Value="{DynamicResource AppWindowBackgroundBrush}" />
     </Style>
 
     <!-- ProgressBar -->
     <Style TargetType="ProgressBar">
-        <Setter Property="Foreground" Value="{DynamicResource AccentColorBrush}" />
-        <Setter Property="Background" Value="{DynamicResource AccentColorBrush4}" />
+        <Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
+        <Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
     </Style>
 
-    <!-- MenuItem (MahApps MetroMenuItem replacement) -->
+    <!-- MenuItem -->
     <Style x:Key="MetroMenuItem" TargetType="MenuItem">
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
     </Style>
 
-    <!-- ListBoxItem / ListViewItem (MahApps MetroListBoxItem replacement) -->
+    <!-- ListBoxItem / ListViewItem -->
     <Style x:Key="MetroListBoxItem" TargetType="ListBoxItem">
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="Padding" Value="4,2" />

@@ -1,4 +1,5 @@
 ﻿<controls:ThemedWindow x:Class="OATControl.TargetChooser"
+		Background="{DynamicResource AppWindowBackgroundBrush}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -27,7 +28,7 @@
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="Padding" Value="10,4" />
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
-			<Setter Property="Background" Value="#900" />
+			<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
 			<Style.Triggers>
 				<Trigger Property="IsMouseOver" Value="true">
 					<Setter Property="Background" Value="{DynamicResource AppForegroundBrush}" />
@@ -214,11 +215,11 @@
 		</DataTemplate>
 
 		<!--<Style x:Key="ListHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
-			<Setter Property="BorderBrush" Value="#CC0"/>
-			<Setter Property="Background" Value="#9C0"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource AppWarningBrush}"/>
+			<Setter Property="Background" Value="{DynamicResource AppWarningBrush}"/>
 			<Style.Triggers>
 				<Trigger Property="IsMouseOver" Value="true">
-					<Setter Property="Background" Value="#FF0" />
+					<Setter Property="Background" Value="{DynamicResource AppWarningBrush}" />
 				</Trigger>
 			</Style.Triggers>
 		</Style>-->
@@ -245,17 +246,17 @@
 			<Style.Triggers>
 				<Trigger Property="IsSelected" Value="true">
 					<Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
-					<Setter Property="BorderBrush" Value="#800" />
+					<Setter Property="BorderBrush" Value="{DynamicResource AppAccentActiveBrush}" />
 					<Setter Property="BorderThickness" Value="1" />
 				</Trigger>
 				<Trigger Property="IsMouseOver" Value="true">
-					<Setter Property="Background" Value="#800" />
+					<Setter Property="Background" Value="{DynamicResource AppAccentActiveBrush}" />
 					<Setter Property="BorderBrush" Value="{DynamicResource AppForegroundBrush}" />
 					<Setter Property="BorderThickness" Value="1" />
 				</Trigger>
 				<DataTrigger Binding="{Binding IsReachable}" Value="false">
-					<Setter Property="Background" Value="#400" />
-					<Setter Property="BorderBrush" Value="#500000" />
+					<Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
+					<Setter Property="BorderBrush" Value="{DynamicResource AppBorderSubtleBrush}" />
 					<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"/>
 				</DataTrigger>
 				<MultiDataTrigger >
@@ -279,7 +280,7 @@
 				</Setter.Value>
 			</Setter>
 			<Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}"/>
-			<Setter Property="Background" Value="#900"/>
+			<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}"/>
 			<Setter Property="OverridesDefaultStyle" Value="True" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="FontFamily" Value="Segoe UI" />

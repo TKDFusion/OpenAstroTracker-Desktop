@@ -49,6 +49,9 @@ namespace OATControl
 
 			AppSettings.Instance.Load();
 				var savedTheme = AppSettings.Instance.ThemeName;
+				#if DEBUG
+				ThemeManager.Instance.HotReloadEnabled = true;
+				#endif
 				ThemeManager.Instance.ApplyTheme(savedTheme);
 
 			base.OnStartup(e);

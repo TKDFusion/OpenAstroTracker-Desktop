@@ -8,6 +8,8 @@ namespace OATControl.Controls
         public ThemedWindow()
         {
             WindowStyle = WindowStyle.None;
+            SetResourceReference(BackgroundProperty, "AppWindowBackgroundBrush");
+            SetResourceReference(ForegroundProperty, "AppForegroundBrush");
             var chrome = new WindowChrome
             {
                 CaptionHeight = 30,

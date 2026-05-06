@@ -12,11 +12,11 @@
 		<Grid.Resources>
 			<Style x:Key="arrowStyle" TargetType="{x:Type local:Arrow}" x:Name="arrowStyle">
 				<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
-				<Setter Property="Background" Value="{DynamicResource AccentColorBrush4}" />
+				<Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
 				<Style.Triggers>
 					<DataTrigger Binding="{Binding IsMouseOver, ElementName=MainGrid}" Value="True">
 						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
-						<Setter Property="Background" Value="{DynamicResource AccentColorBrush2}" />
+						<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsPressed, ElementName=ThisPushButton}" Value="True">
 						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
