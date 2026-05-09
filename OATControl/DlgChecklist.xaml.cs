@@ -14,7 +14,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for DlgAppSettings.xaml
 	/// </summary>
-	public partial class DlgChecklist : Window, INotifyPropertyChanged
+	public partial class DlgChecklist : Controls.ThemedWindow, INotifyPropertyChanged
 	{
 		string _listFilePath;
 		string _listTitle;

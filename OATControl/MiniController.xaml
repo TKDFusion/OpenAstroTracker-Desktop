@@ -1,4 +1,4 @@
-﻿<Window x:Class="OATControl.MiniController"
+﻿<controls:ThemedWindow x:Class="OATControl.MiniController"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,10 +6,9 @@
         xmlns:local="clr-namespace:OATControl" xmlns:controls="clr-namespace:OATControl.Controls"
 		xmlns:converters="clr-namespace:OATControl.Converters"
 		mc:Ignorable="d"
-		Background="{DynamicResource AppWindowBackgroundBrush}"
-		Foreground="{DynamicResource AppForegroundBrush}"
-        Title="Mini OAT Control" Height="85" MinHeight="85" MaxHeight="85" Width="Auto" MaxWidth="660" MinWidth="250" WindowStyle="None" SizeToContent="Width">
-	<Window.Resources>
+        Title="Mini OAT Control" Height="85" MinHeight="85" MaxHeight="85" Width="Auto" MaxWidth="660" MinWidth="250" SizeToContent="Width"
+        controls:ThemedWindow.ShowTitleBar="False">
+	<controls:ThemedWindow.Resources>
 		<Style x:Key="OatToolTip" TargetType="ToolTip" BasedOn="{StaticResource MetroToolTip}">
 			<Setter Property="Background" Value="{DynamicResource AppTooltipBackgroundBrush}" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
@@ -99,7 +98,7 @@
 		</Style>
 		<converters:IntToBoolConverter x:Key="IntToBoolConverter" Operator="==" />
 		<converters:BoolToVisibilityConverter x:Key="CollapseIfFalse" Collapse="True" IsReversed="False" />
-	</Window.Resources>
+	</controls:ThemedWindow.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
@@ -327,9 +326,10 @@
 							 IsEnabled="{Binding MountConnected}"
 							 Command="{Binding StopSlewingCommand}"
 							 Foreground="{DynamicResource AppForegroundBrush}"
+
 							 FrameWidth="3"
 							 Margin="2"
 							 />
 
 	</Grid>
-</Window>
+</controls:ThemedWindow>

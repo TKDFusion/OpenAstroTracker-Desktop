@@ -1,4 +1,4 @@
-﻿<Window x:Class="OATControl.DlgChecklist"
+﻿<controls:ThemedWindow x:Class="OATControl.DlgChecklist"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,15 +7,14 @@
 		xmlns:converters="clr-namespace:OATControl.Converters"
 		mc:Ignorable="d"
         MinHeight="310" Width="600" MinWidth="204" Height="500" 
-        WindowStyle="None" 
+
         WindowStartupLocation="Manual"
         Activated="Window_Activated"
         Closing="Window_Closing"
 		Title="{Binding ListTitle}"
-		Background="{DynamicResource AppWindowBackgroundBrush}"
-		Foreground="{DynamicResource AppForegroundBrush}"
-        Loaded="Window_Loaded">	
-	<Window.Resources>
+
+        Loaded="Window_Loaded"        controls:ThemedWindow.ShowTitleBar="False">	
+	<controls:ThemedWindow.Resources>
 
 		<!-- Style for subitems -->
 		<Style x:Key="SubItemStyle" TargetType="TextBlock">
@@ -92,7 +91,7 @@
 			<Setter Property="HorizontalAlignment" Value="Left" />
 			<Setter Property="VerticalAlignment" Value="Top" />
 		</Style>
-	</Window.Resources>
+	</controls:ThemedWindow.Resources>
 	<Grid Margin="0">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
@@ -285,6 +284,6 @@
 			</Border>
 		</Grid>
 	</Grid>
-</Window>
+</controls:ThemedWindow>
 	
 	

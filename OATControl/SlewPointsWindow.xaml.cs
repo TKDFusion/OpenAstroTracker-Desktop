@@ -106,7 +106,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for SlewPointsWindow.xaml
 	/// </summary>
-	public partial class SlewPointsWindow : Window
+	public partial class SlewPointsWindow : Controls.ThemedWindow
 	{
 		MountVM _mount;
 		private Point _startCapturePos;

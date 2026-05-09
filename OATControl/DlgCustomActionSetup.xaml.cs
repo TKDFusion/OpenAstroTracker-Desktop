@@ -20,7 +20,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for DlgCustomActionSetup.xaml
 	/// </summary>
-	public partial class DlgCustomActionSetup : Window, INotifyPropertyChanged
+	public partial class DlgCustomActionSetup : Controls.ThemedWindow, INotifyPropertyChanged
 	{
 		private DelegateCommand _okCommand;
 		private DelegateCommand _closeCommand;

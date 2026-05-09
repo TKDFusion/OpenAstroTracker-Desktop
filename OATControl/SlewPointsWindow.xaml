@@ -1,4 +1,4 @@
-﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<controls:ThemedWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,10 +6,9 @@
         xmlns:converters="clr-namespace:OATControl.Converters"
         x:Class="OATControl.SlewPointsWindow"
         mc:Ignorable="d"
-        Background="{DynamicResource AppWindowBackgroundBrush}"
-		Foreground="{DynamicResource AppForegroundBrush}"
-        Title="Slew Positions" MinHeight="250" MinWidth="405" WindowStyle="None" SizeToContent="Width">
-	<Window.Resources>
+        Title="Slew Positions" MinHeight="250" MinWidth="405" SizeToContent="Width"
+        controls:ThemedWindow.ShowTitleBar="False">
+	<controls:ThemedWindow.Resources>
 		<converters:BoolToVisibilityConverter x:Key="BoolToShow" />
 		<converters:BoolToVisibilityConverter x:Key="BoolToHide" IsReversed="true" />
 		<Style x:Key="CustomListBoxItemStyle" TargetType="ListBoxItem">
@@ -116,7 +115,7 @@
 			</Style.Triggers>
 		</Style>
 
-	</Window.Resources>
+	</controls:ThemedWindow.Resources>
 
 	<Grid Margin="10">
 		<Grid.RowDefinitions>
@@ -183,7 +182,6 @@
 								</Grid.Resources>
 								<TextBlock x:Name="NameTextBlock"
 									Text="{Binding Name}"
-									Foreground="{DynamicResource AppForegroundBrush}"
 									VerticalAlignment="Center"
 									Padding="6,0,6,2"
 									MinWidth="120"
@@ -212,4 +210,4 @@
 			</ListBox.ItemTemplate>
 		</ListBox>
 	</Grid>
-</Window>
+</controls:ThemedWindow>
