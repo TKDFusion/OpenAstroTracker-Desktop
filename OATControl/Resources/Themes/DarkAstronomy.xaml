@@ -12,9 +12,9 @@
     <Color x:Key="AppForegroundSubtleColor">#FF800000</Color>
 
     <!-- Backgrounds -->
-    <Color x:Key="AppBackgroundColor">#600</Color> <!-- ListView backgrounds -->
-    <Color x:Key="AppInputBackgroundColor">#900</Color> <!-- Texbox/Combobox backgrounds -->
-    <Color x:Key="AppWindowBackgroundColor">#500</Color> <!-- All Window and Dialog background: DONE-->
+	<Color x:Key="AppWindowBackgroundColor">#500</Color> <!-- All Window and Dialog background: DONE-->
+	<Color x:Key="AppNestedBackgroundColor">#600</Color> <!-- Nested areas (ListViews, etc) background -->
+	<Color x:Key="AppInputBackgroundColor">#900</Color> <!-- Texbox/Combobox backgrounds -->
 
     <!-- Borders -->
     <Color x:Key="AppBorderColor">#910</Color>
@@ -51,9 +51,8 @@
     <Color x:Key="AppTitleBarButtonPressedColor">#FF701010</Color>
 
     <!-- Toggle switch -->
-    <Color x:Key="AppToggleOnColor">#910</Color>
     <Color x:Key="AppToggleOffColor">#611</Color>
-    <Color x:Key="AppToggleThumbColor">#911</Color>
+    <Color x:Key="AppToggleThumbColor">#C11</Color>
     <Color x:Key="AppToggleOffBorderColor">#D11</Color>
 
     <!-- Accent-tinted interactive states -->
@@ -76,8 +75,9 @@
     <SolidColorBrush x:Key="AppForegroundSubtleBrush" Color="{StaticResource AppForegroundSubtleColor}" />
 
     <!-- Backgrounds -->
-    <SolidColorBrush x:Key="AppBackgroundBrush" Color="{StaticResource AppBackgroundColor}" />
-    <SolidColorBrush x:Key="AppInputBackgroundBrush" Color="{StaticResource AppInputBackgroundColor}" />
+	<SolidColorBrush x:Key="AppBackgroundBrush" Color="{StaticResource AppBackgroundColor}" />
+	<SolidColorBrush x:Key="AppNestedBackgroundBrush" Color="{StaticResource AppNestedBackgroundColor}" />
+	<SolidColorBrush x:Key="AppInputBackgroundBrush" Color="{StaticResource AppInputBackgroundColor}" />
     <SolidColorBrush x:Key="AppWindowBackgroundBrush" Color="{StaticResource AppWindowBackgroundColor}" />
 
     <!-- Borders -->
@@ -115,7 +115,6 @@
     <SolidColorBrush x:Key="AppTitleBarButtonPressedBrush" Color="{StaticResource AppTitleBarButtonPressedColor}" />
 
     <!-- Toggle switch -->
-    <SolidColorBrush x:Key="AppToggleOnBrush" Color="{StaticResource AppToggleOnColor}" />
     <SolidColorBrush x:Key="AppToggleOffBrush" Color="{StaticResource AppToggleOffColor}" />
     <SolidColorBrush x:Key="AppToggleThumbBrush" Color="{StaticResource AppToggleThumbColor}" />
     <SolidColorBrush x:Key="AppToggleOffBorderBrush" Color="{StaticResource AppToggleOffBorderColor}" />

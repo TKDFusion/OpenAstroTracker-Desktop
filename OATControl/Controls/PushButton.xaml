@@ -15,12 +15,12 @@
 				<Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
 				<Style.Triggers>
 					<DataTrigger Binding="{Binding IsMouseOver, ElementName=MainGrid}" Value="True">
-						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
-						<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppButtonBorderBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppPrimaryBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsPressed, ElementName=ThisPushButton}" Value="True">
-						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
-						<Setter Property="Background" Value="{DynamicResource AppPrimaryBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppButtonBorderBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppForegroundSubtleBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsEnabled, ElementName=ThisPushButton}" Value="False">
 						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />

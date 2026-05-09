@@ -4,11 +4,13 @@
 
     <!-- Default Font -->
     <FontFamily x:Key="AppFontFamily">Segoe UI</FontFamily>
-    <sys:Double x:Key="AppFontSize">14</sys:Double>
-    <sys:Double x:Key="AppFontSizeSmall">11</sys:Double>
-    <sys:Double x:Key="AppFontSizeLarge">18</sys:Double>
-
-    <!-- TextBlock styles -->
+	<sys:Double x:Key="AppFontSizeXSmall">8</sys:Double>
+	<sys:Double x:Key="AppFontSizeSmall">10</sys:Double>
+	<sys:Double x:Key="AppFontSize">12</sys:Double>
+	<sys:Double x:Key="AppFontSizeLarge">15</sys:Double>
+	<sys:Double x:Key="AppFontSizeXLarge">18</sys:Double>
+	
+	<!-- TextBlock styles -->
     <Style x:Key="MetroTextBlock" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
@@ -26,6 +28,38 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="4,2" />
         <Setter Property="CaretBrush" Value="{DynamicResource AppForegroundBrush}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource AppForegroundBrush}" />
+        <Setter Property="SelectionOpacity" Value="0.3" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="True">
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Focusable="False"
+                                      HorizontalScrollBarVisibility="Hidden"
+                                      VerticalScrollBarVisibility="Hidden" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppButtonBorderBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+							<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppButtonBorderBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource AppDisabledBackgroundBrush}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppDisabledBorderBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource AppDisabledForegroundBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}" />

@@ -158,7 +158,7 @@
 
 		<ListBox x:Name="slewPointsList" Grid.Row="2"
 			ItemsSource="{Binding SlewPoints}" 
-			Background="{DynamicResource AppBackgroundBrush}" 
+			Background="{DynamicResource AppNestedBackgroundBrush}" 
 			BorderBrush="{DynamicResource AppBorderBrush}" 
 			Foreground="White"
 			Margin="0,0,0,0"

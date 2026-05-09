@@ -206,7 +206,7 @@
 		<!-- Category Selector ListView -->
 		<Border BorderBrush="{DynamicResource AppBorderSubtleBrush}" BorderThickness="1,1,0,0" Margin="4,4,14,0">
 			<Border BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="0,0,1,1" Margin="0">
-				<ListView Name="CategorySelector" DockPanel.Dock="Left" Width="120" SelectionChanged="OnCategorySelected" Background="{DynamicResource AppBackgroundBrush}">
+				<ListView Name="CategorySelector" DockPanel.Dock="Left" Width="120" SelectionChanged="OnCategorySelected" Background="{DynamicResource AppNestedBackgroundBrush}">
 					<ListViewItem Content="General" Style="{StaticResource CategoryItem}"/>
 					<ListViewItem Content="Autohoming" Style="{StaticResource CategoryItem}"/>
 					<ListViewItem Content="Target List" Style="{StaticResource CategoryItem}"/>
@@ -224,7 +224,7 @@
 
 			<TabItem Header="General" >
 				<!--     GENERAL     -->
-				<Grid Background="{DynamicResource AppBackgroundBrush}">
+				<Grid Background="{DynamicResource AppNestedBackgroundBrush}">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto"/>
 						<RowDefinition Height="Auto"/>
@@ -288,7 +288,7 @@
 			</TabItem>
 			<TabItem Header="Autohoming">
 				<!--     AUTOHOMING  -->
-				<StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Background="{DynamicResource AppBackgroundBrush}">
+				<StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Background="{DynamicResource AppNestedBackgroundBrush}">
 					<Grid>
 						<Grid.RowDefinitions>
 							<RowDefinition Height="50"/>
@@ -368,7 +368,7 @@
 			</TabItem>
 			<TabItem Header="Target List" >
 				<!--     TARGET LIST-->
-				<Grid Background="{DynamicResource AppBackgroundBrush}">
+				<Grid Background="{DynamicResource AppNestedBackgroundBrush}">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto"/>
 						<RowDefinition Height="*"/>
@@ -388,6 +388,7 @@
 							  BorderThickness="0" 
 							  SelectedItem="{Binding SelectedPoint}" 
 							  MouseDoubleClick="OnMouseDoubleClick"
+							  Background="{DynamicResource AppNestedBackgroundBrush}"
 							  GridViewColumnHeader.Click="OnHeaderClick">
 						<ListView.View>
 							<GridView  ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}" >
@@ -407,7 +408,7 @@
 			</TabItem>
 			<TabItem Header="Auto PA" >
 				<!--     AUTO  PA  -->
-				<Grid Background="{DynamicResource AppBackgroundBrush}">
+				<Grid Background="{DynamicResource AppNestedBackgroundBrush}">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto"/>
 						<RowDefinition Height="Auto"/>

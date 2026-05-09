@@ -48,13 +48,13 @@
 			<Setter Property="MinWidth" Value="50" />
 		</Style>
 		<Style x:Key="DockBlockStatus" TargetType="DockPanel" >
-			<Setter Property="Background" Value="{DynamicResource AppAccentBorderBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
 			<Setter Property="Margin" Value="2" />
 			<Setter Property="Width" Value="28" />
 			<Setter Property="Height" Value="28" />
 			<Style.Triggers>
 				<DataTrigger Binding="{Binding}" Value="True">
-					<Setter Property="Background" Value="{DynamicResource AppPrimaryBrush}" />
+					<Setter Property="Background" Value="{DynamicResource AppButtonBorderBrush}" />
 				</DataTrigger>
 			</Style.Triggers>
 		</Style>
@@ -77,7 +77,7 @@
 			<Setter Property="HorizontalAlignment" Value="Center" />
 			<Style.Triggers>
 				<DataTrigger Binding="{Binding}" Value="True">
-					<Setter Property="Foreground" Value="{DynamicResource AppDisabledForegroundBrush}" />
+					<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 				</DataTrigger>
 			</Style.Triggers>
 		</Style>
@@ -148,7 +148,7 @@
 		</Style>
 
 		<Style x:Key="TextBlockLabelSmall" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabel}">
-			<Setter Property="FontSize" Value="14" />
+			<Setter Property="FontSize" Value="12" />
 			<Setter Property="Padding" Value="4,0" />
 			<Setter Property="HorizontalAlignment" Value="Right" />
 		</Style>
