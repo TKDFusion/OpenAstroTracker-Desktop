@@ -13,25 +13,26 @@
 			<Style x:Key="arrowStyle" TargetType="{x:Type local:StopSign}" x:Name="arrowStyle">
 				<Setter Property="Foreground" Value="{Binding Foreground}" />
 				<Setter Property="Background" Value="{DynamicResource AppAccentActiveBrush}" />
-				<Setter Property="TextColor" Value="{DynamicResource AppWarningBrush}" />
+				<Setter Property="TextColor" Value="{DynamicResource AppForegroundBrush}" />
 				<Style.Triggers>
 					<DataTrigger Binding="{Binding IsMouseOver, ElementName=MainGrid}" Value="True">
-						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
-						<Setter Property="Background" Value="{DynamicResource AppPrimaryBrush}" />
-						<Setter Property="TextColor" Value="{DynamicResource AppPrimaryBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppButtonForegroundBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
+						<Setter Property="TextColor" Value="{DynamicResource AppForegroundStrongBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsPressed, ElementName=ThisStopButton}" Value="True">
 						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
 						<Setter Property="Background" Value="{DynamicResource AppPrimaryBrush}" />
+						<Setter Property="TextColor" Value="{DynamicResource AppForegroundBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsEnabled, ElementName=ThisStopButton}" Value="False">
-						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
-						<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
-						<Setter Property="TextColor" Value="{DynamicResource AppPrimaryBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppForegroundSubtleBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppWindowBackgroundBrush}" />
+						<Setter Property="TextColor" Value="{DynamicResource AppForegroundSubtleBrush}" />
 					</DataTrigger>
 				</Style.Triggers>
 			</Style>
 		</Grid.Resources>
-		<local:StopSign Style="{DynamicResource arrowStyle}" IsHitTestVisible="False" FrameWidth="{Binding FrameWidth, ElementName=ThisStopButton}" Margin="0,3"/>
+		<local:StopSign Style="{DynamicResource arrowStyle}" IsHitTestVisible="False" FrameWidth="{Binding FrameWidth, ElementName=ThisStopButton}" Margin="0,8"/>
 	</Grid>
 </UserControl>

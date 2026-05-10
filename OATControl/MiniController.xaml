@@ -40,8 +40,8 @@
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 		</Style>
 		<Style x:Key="TextBlockLabelTiny" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabelSmall}">
-			<Setter Property="FontSize" Value="10" />
-			<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
+			<Setter Property="FontSize" Value="11" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 		<Style x:Key="TextBlockLabelTinyLabel" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabelTiny}">
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
@@ -50,10 +50,11 @@
 			<Setter Property="Width" Value="38" />
 			<Setter Property="Height" Value="8" />
 			<Setter Property="Margin" Value="1,1,1,1" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
-			<Setter Property="Foreground" Value="{DynamicResource AppAccentActiveBrush}" />
-			<Setter Property="ActiveBackground" Value="{DynamicResource AppBorderBrush}" />
-			<Setter Property="ActiveForeground" Value="{DynamicResource AppPrimaryBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
+			<Setter Property="ActiveBackground" Value="{DynamicResource AppButtonBorderBrush}" />
+			<Setter Property="ActiveForeground" Value="{DynamicResource AppForegroundStrongBrush}" />
+			<Setter Property="DisabledForeground" Value="{DynamicResource AppDisabledForegroundBrush}" />
 		</Style>
 		<Style x:Key="ToggleButtonState" TargetType="ToggleButton" >
 			<Setter Property="Width" Value="16" />
@@ -64,7 +65,6 @@
 			<Setter Property="Background" Value="{DynamicResource AppAccentActiveBrush}" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 			<Setter Property="FontWeight" Value="Bold" />
-		<Setter Property="FontSize" Value="10" />
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="ToggleButton">
@@ -73,7 +73,7 @@
                             BorderBrush="{DynamicResource AppPrimaryBrush}" 
                             CornerRadius="0" 
                             Background="{TemplateBinding Background}">
-							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-2,0,0"/>
 						</Border>
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
@@ -134,7 +134,7 @@
 		<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentDECString}" Style="{StaticResource TextBlockLabelValue}" />
 
 		<StackPanel Grid.RowSpan="2" Grid.Column="5" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding MountConnected}">
-			<ToggleButton 
+			<ToggleButton
 						Style="{StaticResource ToggleButtonState}" 
 						IsChecked="{Binding SlewRate, Mode=TwoWay,Converter={StaticResource IntToBoolConverter},ConverterParameter=1}"
 						Content="1">
@@ -268,8 +268,6 @@
 		<controls:PushButton Grid.RowSpan="2" Grid.Column="7" Width="36" Height="32" Direction="W" IsEnabled="{Binding MountConnected}" Command="{Binding ChangeSlewingStateCommand}" CommandParameter="L" Visibility="{Binding ScopeHasAZ, Converter={StaticResource CollapseIfFalse}}"/>
 		<TextBlock Grid.Row="0" Grid.RowSpan="2" Grid.Column="7" IsHitTestVisible="False" Text="A" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="6,0,0,1" Style="{StaticResource TextBlockLabelTiny}" Visibility="{Binding ScopeHasAZ, Converter={StaticResource CollapseIfFalse}}"/>
 
-		<TextBlock Grid.Row="0" Grid.Column="8" IsHitTestVisible="False" Text="W" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,3,0,0" Style="{StaticResource TextBlockLabelTiny}" Visibility="{Binding ScopeHasALT, Converter={StaticResource CollapseIfFalse}}"/>
-		<TextBlock Grid.Row="1" Grid.Column="8" IsHitTestVisible="False" Text="S" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,0,0,12" Style="{StaticResource TextBlockLabelTiny}" Visibility="{Binding ScopeHasALT, Converter={StaticResource CollapseIfFalse}}"/>
 
 		<TextBlock Grid.Row="0" Grid.Column="8" Grid.RowSpan="2" IsHitTestVisible="False" Text="AZ/ALT" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,0,0,3" Style="{StaticResource TextBlockLabelTinyLabel}" Visibility="{Binding ScopeHasALT, Converter={StaticResource CollapseIfFalse}}"/>
 
@@ -287,6 +285,9 @@
 							 Command="{Binding ChangeSlewingStateCommand}" 
 							 CommandParameter="Z" 
 							 Visibility="{Binding ScopeHasALT, Converter={StaticResource CollapseIfFalse}}"/>
+
+		<TextBlock Grid.Row="0" Grid.Column="8" IsHitTestVisible="False" Text="W" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,3,0,0" Style="{StaticResource TextBlockLabelTiny}" Visibility="{Binding ScopeHasALT, Converter={StaticResource CollapseIfFalse}}"/>
+		<TextBlock Grid.Row="1" Grid.Column="8" IsHitTestVisible="False" Text="S" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,0,0,12" Style="{StaticResource TextBlockLabelTiny}" Visibility="{Binding ScopeHasALT, Converter={StaticResource CollapseIfFalse}}"/>
 
 		<controls:PushButton Grid.RowSpan="2" Grid.Column="9" Width="36" Height="32" Direction="E" IsEnabled="{Binding MountConnected}" Command="{Binding ChangeSlewingStateCommand}" CommandParameter="R" Visibility="{Binding ScopeHasAZ, Converter={StaticResource CollapseIfFalse}}"/>
 		<TextBlock Grid.Row="0" Grid.RowSpan="2" Grid.Column="9" IsHitTestVisible="False" Text="D" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,0,6,1" Style="{StaticResource TextBlockLabelTiny}" Visibility="{Binding ScopeHasAZ, Converter={StaticResource CollapseIfFalse}}"/>
@@ -313,20 +314,19 @@
 							 Visibility="{Binding ScopeHasFOC, Converter={StaticResource CollapseIfFalse}}"/>
 
 		<StackPanel Grid.Row="0" Grid.Column="11" Grid.RowSpan="2" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
-			<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="Track" IsRunning="{Binding IsTracking}" />
-			<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="Guide" IsRunning="{Binding IsGuiding}" />
-			<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="RA" IsRunning="{Binding IsSlewingRa}" />
-			<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="DEC" IsRunning="{Binding IsSlewingDec}" />
-			<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="AZ" IsRunning="{Binding IsSlewingAz}"  Visibility="{Binding ScopeHasAZ, Converter={StaticResource CollapseIfFalse}}" />
-			<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="ALT" IsRunning="{Binding IsSlewingAlt}" Visibility="{Binding ScopeHasALT, Converter={StaticResource CollapseIfFalse}}" />
-			<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="Focus" IsRunning="{Binding IsSlewingFocus}" Visibility="{Binding ScopeHasFOC, Converter={StaticResource CollapseIfFalse}}" />
+			<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="Track" IsRunning="{Binding IsTracking}" IsEnabled="{Binding MountConnected}"/>
+			<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="Guide" IsRunning="{Binding IsGuiding}" IsEnabled="{Binding MountConnected}"/>
+			<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="RA" IsRunning="{Binding IsSlewingRa}" IsEnabled="{Binding MountConnected}"/>
+			<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="DEC" IsRunning="{Binding IsSlewingDec}" IsEnabled="{Binding MountConnected}"/>
+			<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="AZ" IsRunning="{Binding IsSlewingAz}"  Visibility="{Binding ScopeHasAZ, Converter={StaticResource CollapseIfFalse}}" IsEnabled="{Binding MountConnected}"/>
+			<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="ALT" IsRunning="{Binding IsSlewingAlt}" Visibility="{Binding ScopeHasALT, Converter={StaticResource CollapseIfFalse}}" IsEnabled="{Binding MountConnected}"/>
+			<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="Focus" IsRunning="{Binding IsSlewingFocus}" Visibility="{Binding ScopeHasFOC, Converter={StaticResource CollapseIfFalse}}" IsEnabled="{Binding MountConnected}"/>
 		</StackPanel>
 
 		<controls:StopButton Grid.Row="0" Grid.Column="12" Grid.RowSpan="2" 
 							 IsEnabled="{Binding MountConnected}"
 							 Command="{Binding StopSlewingCommand}"
 							 Foreground="{DynamicResource AppForegroundBrush}"
-
 							 FrameWidth="3"
 							 Margin="2"
 							 />

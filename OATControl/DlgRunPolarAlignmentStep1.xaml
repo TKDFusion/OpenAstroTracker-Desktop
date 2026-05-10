@@ -1,4 +1,4 @@
-﻿<controls:ThemedWindow x:Class="OATControl.DlgRunPolarAlignmentStep1"
+<controls:ThemedWindow x:Class="OATControl.DlgRunPolarAlignmentStep1"
 		Background="{DynamicResource AppWindowBackgroundBrush}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -10,22 +10,7 @@
 		mc:Ignorable="d"
         Title="Polar Alignment" Height="442" Width="678" ResizeMode="NoResize" WindowStyle="ToolWindow" FontSize="16" FontWeight="Bold" >
 	<controls:ThemedWindow.Resources>
-		<Style x:Key="StateText" TargetType="TextBlock">
-			<Setter Property="Margin" Value="10,0" />
-			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"  />
-			<Setter Property="TextWrapping" Value="Wrap"  />
-			<Setter Property="VerticalAlignment" Value="Center"  />
-			<Setter Property="HorizontalAlignment" Value="Left" />
-		</Style>
-		<Style x:Key="StateButton" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}" >
-			<Setter Property="Margin" Value="10,10" />
-			<Setter Property="Padding" Value="10,10" />
-			<Setter Property="Width" Value="100" />
-			<Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}"  />
-			<Setter Property="VerticalAlignment" Value="Center"  />
-			<Setter Property="HorizontalAlignment" Value="Left" />
-		</Style>
-		<converters:IntToVisibilityConverter x:Key="State1Visible" VisibleValue="1" Operator=">="/>
+<converters:IntToVisibilityConverter x:Key="State1Visible" VisibleValue="1" Operator=">="/>
 		<converters:IntToVisibilityConverter x:Key="State2Visible" VisibleValue="2" Operator=">=" />
 		<converters:IntToVisibilityConverter x:Key="State3Visible" VisibleValue="3" Operator=">=" />
 		<converters:IntToBoolConverter x:Key="State1Enabled" TrueValue="1" Operator="=="/>

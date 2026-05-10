@@ -1,4 +1,4 @@
-﻿<controls:ThemedWindow x:Class="OATControl.DlgStepCalibration"
+<controls:ThemedWindow x:Class="OATControl.DlgStepCalibration"
 		Background="{DynamicResource AppWindowBackgroundBrush}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,12 +8,7 @@
         mc:Ignorable="d"
         Title=" Stepper Motor Step Calibration" MinHeight="360" Width="520" MinWidth="520" Height="360" WindowStyle="ToolWindow">
     <Window.Resources>
-        <Style x:Key="TextBoxSmall" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}" >
-            <Setter Property="Margin" Value="10,4" />
-            <Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
-            <Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
-        </Style>
-        <Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
+<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="20" />
@@ -51,16 +46,7 @@
             <Setter Property="Margin" Value="2,2" />
             <Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
         </Style>
-        <Style x:Key="TextBlockLabelValue" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabelSmall}">
-            <Setter Property="Padding" Value="12,2" />
-            <Setter Property="Margin" Value="0,4" />
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="TextAlignment" Value="Center" />
-            <Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
-            <Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
-            <Setter Property="MaxWidth"  Value="250" />
-        </Style>
-        <Style x:Key="TextBorder" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
+<Style x:Key="TextBorder" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
             <Setter Property="BorderBrush" Value="{DynamicResource AppAccentBorderBrush}" />
             <Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />

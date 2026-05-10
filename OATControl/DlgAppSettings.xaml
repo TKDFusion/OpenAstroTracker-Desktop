@@ -200,13 +200,6 @@
 			<Setter Property="Padding" Value="2,0" />
 			<Setter Property="HorizontalAlignment" Value="Left" />
 		</Style>
-		<Style x:Key="TextBlockLabelTiny" TargetType="TextBlock" BasedOn="{StaticResource TextBlockHeading}">
-			<Setter Property="FontSize" Value="10" />
-			<Setter Property="FontWeight" Value="Normal" />
-			<Setter Property="Margin" Value="0,0,0,0" />
-			<Setter Property="Padding" Value="0,0" />
-			<Setter Property="HorizontalAlignment" Value="Left" />
-		</Style>
 		<Style x:Key="TextBlockOptionHelp" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
 			<Setter Property="FontSize" Value="9" />
 			<Setter Property="FontWeight" Value="Normal" />
@@ -223,6 +216,7 @@
 			<Setter Property="Margin" Value="2,0,0,0" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
+
 		<Style x:Key="TextBlockDescription" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabel}">
 			<Setter Property="FontSize" Value="10" />
 			<Setter Property="FontWeight" Value="Normal" />

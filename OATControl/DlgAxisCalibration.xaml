@@ -50,11 +50,6 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
-		<Style x:Key="TextBoxSmall" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}" >
-			<Setter Property="Margin" Value="10,4" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
-			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
-		</Style>
 		<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
 			<Setter Property="VerticalAlignment" Value="Center" />
 			<Setter Property="FontWeight" Value="Bold" />
@@ -111,16 +106,7 @@
 			<Setter Property="MinWidth" Value="50" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
-		<Style x:Key="TextBorderSmall" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
-			<Setter Property="BorderBrush" Value="{DynamicResource AppAccentBorderBrush}" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
-			<Setter Property="HorizontalContentAlignment" Value="Center" />
-			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="FontSize" Value="14" />
-			<Setter Property="Height" Value="20" />
-			<Setter Property="Margin" Value="0,5,10,0" />
-			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
-		</Style>
+
 		<converters:IntToVisibilityConverter x:Key="VisibleIfNumberEquals"  Operator="==" />
 		<converters:IntToBoolConverter x:Key="IntToBoolConverter" Operator="==" />
 		<converters:BoolToVisibilityConverter x:Key="VisibleIfDIsplayOn"   />

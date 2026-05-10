@@ -16,12 +16,6 @@
         Loaded="Window_Loaded"        controls:ThemedWindow.ShowTitleBar="False">	
 	<controls:ThemedWindow.Resources>
 
-		<!-- Style for subitems -->
-		<Style x:Key="SubItemStyle" TargetType="TextBlock">
-			<Setter Property="FontSize" Value="14" />
-			<Setter Property="Margin" Value="20,0,0,0" />
-			<Setter Property="Foreground" Value="Black" />
-		</Style>
 
 		<converters:DebugConverter x:Key="DebugConverter"/>
 		<converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" Collapse="True"/>
@@ -44,45 +38,8 @@
         </Style>
 		<converters:BoolToBrushConverter x:Key="HeaderColorConverter" TrueBrush="#842" FalseBrush="#F86" />
 		<converters:BoolToBrushConverter x:Key="SubitemColorConverter" TrueBrush="#930" FalseBrush="#F40" />
-		<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
-			<Setter Property="VerticalAlignment" Value="Center" />
-			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="FontSize" Value="20" />
-			<Setter Property="Margin" Value="2,0" />
-			<Setter Property="Padding" Value="6,0" />
-			<Setter Property="HorizontalAlignment" Value="Left" />
-			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
-		</Style>
-		<Style x:Key="TextBlockLabel" TargetType="TextBlock" BasedOn="{StaticResource TextBlockHeading}">
-			<Setter Property="FontSize" Value="13" />
-			<Setter Property="Margin" Value="0,8,0,0" />
-			<Setter Property="Padding" Value="2,0" />
-			<Setter Property="HorizontalAlignment" Value="Left" />
-		</Style>
-		<Style x:Key="TextBlockOptionHelp" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
-			<Setter Property="FontSize" Value="8" />
-			<Setter Property="FontWeight" Value="Normal" />
-			<Setter Property="TextWrapping" Value="Wrap" />
-			<Setter Property="Width" Value="190" />
-			<Setter Property="Margin" Value="2,0,0,0" />
-			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
-		</Style>
 
-		<Style x:Key="TextBlockOptionHelpNoWidth" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
-			<Setter Property="FontSize" Value="8" />
-			<Setter Property="FontWeight" Value="Normal" />
-			<Setter Property="TextWrapping" Value="Wrap" />
-			<Setter Property="Margin" Value="2,0,0,0" />
-			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
-		</Style>
-		<Style x:Key="TextBlockDescription" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabel}">
-			<Setter Property="FontSize" Value="10" />
-			<Setter Property="FontWeight" Value="Normal" />
-			<Setter Property="Margin" Value="0,0,0,0" />
-			<Setter Property="Padding" Value="2,0" />
-			<Setter Property="HorizontalAlignment" Value="Left" />
-			<Setter Property="VerticalAlignment" Value="Top" />
-		</Style>
+
 	</controls:ThemedWindow.Resources>
 	<Grid Margin="0">
 		<Grid.RowDefinitions>

@@ -41,14 +41,7 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
-		<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
-			<Setter Property="VerticalAlignment" Value="Center" />
-			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="FontSize" Value="20" />
-			<Setter Property="Margin" Value="2,0" />
-			<Setter Property="Padding" Value="6,0" />
-			<Setter Property="HorizontalAlignment" Value="Left" />
-		</Style>
+
 		<Style x:Key="TextBlockTitle" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
 			<Setter Property="VerticalAlignment" Value="Center" />
 			<Setter Property="FontWeight" Value="Bold" />
@@ -56,23 +49,9 @@
 			<Setter Property="Margin" Value="0" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 		</Style>
-		<Style x:Key="TextBlockLabel" TargetType="TextBlock" BasedOn="{StaticResource TextBlockHeading}">
-			<Setter Property="Padding" Value="2,0" />
-			<Setter Property="HorizontalAlignment" Value="Left" />
-		</Style>
-		<Style x:Key="TextBlockLabelSmall" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabel}">
-			<Setter Property="FontSize" Value="14" />
-			<Setter Property="Padding" Value="4,4" />
-			<Setter Property="HorizontalAlignment" Value="Right" />
-		</Style>
-		<Style x:Key="TextBlockLabelValue" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabelSmall}">
-			<Setter Property="Padding" Value="12,2" />
-			<Setter Property="Margin" Value="0,4" />
-			<Setter Property="HorizontalAlignment" Value="Stretch" />
-			<Setter Property="TextAlignment" Value="Center" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
-			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
-		</Style>
+
+
+
 		<Style x:Key="TextBorder" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
 			<Setter Property="VerticalAlignment" Value="Center" />
 			<Setter Property="Padding" Value="0" />
@@ -83,37 +62,8 @@
 			<Setter Property="MinWidth" Value="120" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
-		<Style x:Key="CustomButtonStyle" TargetType="Button">
-			<Setter Property="Margin" Value="5" />
-			<Setter Property="Padding" Value="10,5" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentActiveBrush}" />
-			<Setter Property="Foreground" Value="White" />
-			<Setter Property="BorderBrush" Value="{DynamicResource AppForegroundBrush}" />
-			<Setter Property="BorderThickness" Value="1" />
-		</Style>
-		<Style x:Key="IconButtonStyle" TargetType="Button" >
-			<Setter Property="Width" Value="24"/>
-			<Setter Property="Height" Value="24"/>
-			<Setter Property="FontSize" Value="17"/>
-			<Setter Property="Padding" Value="0"/>
-			<Setter Property="Margin" Value="1,2"/>
-			<Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
-			<Setter Property="Background" Value="{DynamicResource AppAccentActiveBrush}"/>
-			<Setter Property="Foreground" Value="Red"/>
-			<Setter Property="BorderBrush" Value="{DynamicResource AppForegroundBrush}"/>
-			<Setter Property="BorderThickness" Value="1"/>
-			<Style.Triggers>
-				<Trigger Property="IsMouseOver" Value="True">
-					<Setter Property="Background" Value="{DynamicResource AppAccentActiveBrush}"/>
-					<Setter Property="Foreground" Value="Red"/>
-					<Setter Property="BorderThickness" Value="2"/>
-				</Trigger>
-				<Trigger Property="IsPressed" Value="True">
-					<Setter Property="Background" Value="{DynamicResource AppButtonPressedBrush}"/>
-					<Setter Property="Foreground" Value="Red"/>
-				</Trigger>
-			</Style.Triggers>
-		</Style>
+
+
 
 	</controls:ThemedWindow.Resources>
 

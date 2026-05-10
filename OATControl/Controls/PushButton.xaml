@@ -11,16 +11,16 @@
 	<Grid x:Name="MainGrid" Background="Transparent"  IsHitTestVisible="True" MouseDown="MainGrid_OnMouseButtonDown" MouseUp="MainGrid_OnMouseButtonUp" >
 		<Grid.Resources>
 			<Style x:Key="arrowStyle" TargetType="{x:Type local:Arrow}" x:Name="arrowStyle">
-				<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
-				<Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
+				<Setter Property="Foreground" Value="{DynamicResource AppButtonBorderBrush}" />
+				<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
 				<Style.Triggers>
 					<DataTrigger Binding="{Binding IsMouseOver, ElementName=MainGrid}" Value="True">
 						<Setter Property="Foreground" Value="{DynamicResource AppButtonBorderBrush}" />
-						<Setter Property="Background" Value="{DynamicResource AppPrimaryBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsPressed, ElementName=ThisPushButton}" Value="True">
 						<Setter Property="Foreground" Value="{DynamicResource AppButtonBorderBrush}" />
-						<Setter Property="Background" Value="{DynamicResource AppForegroundSubtleBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppButtonPressedBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsEnabled, ElementName=ThisPushButton}" Value="False">
 						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />

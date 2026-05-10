@@ -14,6 +14,11 @@ namespace OATControl.Controls
 		private Pen _pen;
 		private Pen _activePen;
 
+		static MotorIndicator()
+		{
+			IsEnabledProperty.OverrideMetadata(typeof(MotorIndicator), new FrameworkPropertyMetadata(true, SomePropertyChanged));
+		}
+
 		public static readonly DependencyProperty MotorNameProperty = DependencyProperty.Register(
 			"MotorName",
 			typeof(string),
@@ -50,6 +55,12 @@ namespace OATControl.Controls
 			typeof(MotorIndicator),
 			new PropertyMetadata(Brushes.Black, MotorIndicator.SomePropertyChanged));
 
+		public static readonly DependencyProperty DisabledForegroundProperty = DependencyProperty.Register(
+			"DisabledForeground",
+			typeof(Brush),
+			typeof(MotorIndicator),
+			new PropertyMetadata(Brushes.Gray, MotorIndicator.SomePropertyChanged));
+
 		private static void SomePropertyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
 		{
 			var pointer = obj as MotorIndicator;
@@ -57,7 +68,6 @@ namespace OATControl.Controls
 			pointer._activePen = new Pen(pointer.ActiveForeground, 1.0);
 			pointer.InvalidateVisual();
 		}
-
 
 		public string MotorName
 		{
@@ -131,10 +141,17 @@ namespace OATControl.Controls
 			}
 		}
 
-		//protected override Size MeasureOverride(Size availableSize)
-		//{
-		//	return new Size(10, 10);
-		//}
+		public Brush DisabledForeground
+		{
+			get
+			{
+				return (Brush)this.GetValue(MotorIndicator.DisabledForegroundProperty);
+			}
+			set
+			{
+				this.SetValue(MotorIndicator.DisabledForegroundProperty, value);
+			}
+		}
 
 		protected override void OnRender(DrawingContext dc)
 		{
@@ -157,7 +174,7 @@ namespace OATControl.Controls
 				FlowDirection.LeftToRight,
 				new Typeface("Verdana"),
 				10,
-				IsRunning ? ActiveForeground : Foreground,
+				!IsEnabled ? DisabledForeground : IsRunning ? ActiveForeground : Foreground,
 				1.0);
 
 			dc.DrawText(formatText, new Point(rectSize + 2, -2.5));

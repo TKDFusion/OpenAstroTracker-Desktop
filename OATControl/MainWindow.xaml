@@ -43,10 +43,7 @@
 			<Setter Property="MinWidth" Value="50" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
-		<Style x:Key="NumericBorder" TargetType="TextBox" >
-			<Setter Property="FontSize" Value="14" />
-			<Setter Property="MinWidth" Value="50" />
-		</Style>
+
 		<Style x:Key="DockBlockStatus" TargetType="DockPanel" >
 			<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
 			<Setter Property="Margin" Value="2" />
@@ -166,11 +163,7 @@
 			<Setter Property="Margin" Value="0,4" />
 			<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
 		</Style>
-		<Style x:Key="ComboBorder" TargetType="TextBox" >
-			<Setter Property="BorderBrush" Value="{DynamicResource AppAccentBorderBrush}" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
-			<Setter Property="HorizontalContentAlignment" Value="Left" />
-		</Style>
+
 	</Window.Resources>
 	<Grid Margin="0,0,0,4" HorizontalAlignment="Stretch">
 		<Grid.RowDefinitions>
