@@ -1,6 +1,4 @@
-﻿<Window x:Class="OATControl.SettingsDialog"
-		Background="{DynamicResource AppWindowBackgroundBrush}"
-		Foreground="{DynamicResource AppForegroundBrush}"
+﻿<controls:ThemedWindow x:Class="OATControl.SettingsDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,7 +7,7 @@
         xmlns:local="clr-namespace:OATControl" xmlns:converters="clr-namespace:OATControl.Converters"
 		mc:Ignorable="d"
         Title="Settings" MinHeight="700" Width="856" MinWidth="820" Height="766">
-	<Window.Resources>
+	<controls:ThemedWindow.Resources>
 		<converters:IntToVisibilityConverter x:Key="VisibleIfVersionLater" Operator=">=" VisibleValue="10876" UseCollapse="True"/>
 		<converters:StringToVisibilityConverter x:Key="CollapseOnStringEqual" EqualState="Collapsed" />
         <converters:BoolToVisibilityConverter x:Key="TrueBoolToVisible" Collapse="False" />
@@ -71,39 +69,122 @@
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="MaxWidth"  Value="250" />
 		</Style>
-        <Style x:Key="ComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
-			<Setter Property="Foreground" Value="Red" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentActiveBrush}" />
-			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="BorderBrush" Value="{DynamicResource AppButtonHoverBrush}" />
-			<Setter Property="BorderThickness" Value="2" />
-			<Setter Property="FontSize" Value="12" />
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Foreground" Value="Red" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AppButtonHoverBrush}" />
+            <Setter Property="FontSize" Value="12" />
             <Setter Property="HorizontalAlignment" Value="Left" />
-			<Setter Property="ItemContainerStyle">
-				
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <Border x:Name="MainBorder"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="1"
+                                    CornerRadius="2">
+                                <Grid>
+                                    <ToggleButton x:Name="ToggleButton"
+                                                  Focusable="False"
+                                                  ClickMode="Press"
+                                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                        <ToggleButton.Template>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border Background="Transparent" />
+                                            </ControlTemplate>
+                                        </ToggleButton.Template>
+                                    </ToggleButton>
+                                    <ContentPresenter x:Name="ContentSite"
+                                                      Content="{TemplateBinding SelectionBoxItem}"
+                                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                      Margin="6,2,20,2"
+                                                      HorizontalAlignment="Left"
+                                                      VerticalAlignment="Center" />
+                                    <Path x:Name="Arrow"
+                                          Data="M0,0 L4,4 8,0"
+                                          Stroke="{DynamicResource AppForegroundBrush}"
+                                          StrokeThickness="1.5"
+                                          Width="8" Height="5"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Margin="0,0,6,0"
+                                          Stretch="Uniform" />
+                                </Grid>
+                            </Border>
+                            <Popup x:Name="PART_Popup"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom"
+                                   PopupAnimation="Slide"
+                                   AllowsTransparency="True">
+                                <Border Background="{DynamicResource AppButtonBackgroundBrush}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="1"
+                                        CornerRadius="2"
+                                        MinWidth="{TemplateBinding ActualWidth}"
+                                        MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <ScrollViewer>
+                                        <StackPanel IsItemsHost="True" />
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="MainBorder" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsDropDownOpen" Value="True">
+                                <Setter TargetName="MainBorder" Property="Background" Value="{DynamicResource AppButtonPressedBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="MainBorder" Property="Background" Value="{DynamicResource AppDisabledBackgroundBrush}" />
+                                <Setter TargetName="MainBorder" Property="BorderBrush" Value="{DynamicResource AppDisabledBorderBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemContainerStyle">
                 <Setter.Value>
                     <Style TargetType="ComboBoxItem">
                         <Setter Property="FontSize" Value="12" />
                         <Setter Property="Foreground" Value="Red" />
                         <Setter Property="FontWeight" Value="Bold" />
-                        <Setter Property="Background" Value="{DynamicResource AppSelectedBrush}" />
-                        <Setter Property="BorderBrush" Value="{DynamicResource AppButtonBackgroundBrush}" />
+                        <Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}" />
                         <Setter Property="BorderThickness" Value="1" />
                         <Setter Property="Padding" Value="4" />
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{DynamicResource AppSelectedBrush}" />
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="Black" />
-                                <Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
-                            </Trigger>
-                        </Style.Triggers>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ComboBoxItem">
+                                    <Border x:Name="Bd"
+                                            Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Padding="{TemplateBinding Padding}"
+                                            CornerRadius="1">
+                                        <ContentPresenter />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsHighlighted" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppSelectedBrush}" />
+                                            <Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
                     </Style>
                 </Setter.Value>
             </Setter>
         </Style>
-	</Window.Resources>
+	</controls:ThemedWindow.Resources>
     <Grid Margin="0,0,0,-16">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
@@ -300,15 +381,10 @@
 		<Grid Grid.Row="4" Grid.Column="3" HorizontalAlignment="Stretch" Margin="0,0,0,0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />
-				<ColumnDefinition Width="*" />
-				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 			<TextBlock Grid.Row ="0" Grid.Column="0" Margin="0,0" HorizontalAlignment="Left" Text="Use Custom Park Position" ToolTip="The Park position is different from the Home position" TextWrapping="Wrap" Style="{StaticResource SmallTextBlockLabel}" />
-			<StackPanel Grid.Column="1" Grid.Row="0"   Orientation="Horizontal">
-				<TextBlock Margin="0,0" HorizontalAlignment="Left" Text="No" Style="{StaticResource TinyTextBlockLabel}" VerticalAlignment="Center"/>
-				<controls:ToggleSwitch  Margin="0,0" VerticalAlignment="Center" IsEnabled="{Binding MountConnected}" IsChecked="{Binding UseCustomParkPosition}" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" />
-				<TextBlock Margin="0,0" HorizontalAlignment="Right" Text="Yes" Style="{StaticResource TinyTextBlockLabel}" VerticalAlignment="Center"/>
-			</StackPanel>
+     		<controls:ToggleSwitch Grid.Column="1" Grid.Row="0" Margin="0,0" VerticalAlignment="Center" IsEnabled="{Binding MountConnected}" IsChecked="{Binding UseCustomParkPosition}" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" />
 		</Grid>
 		<Button Grid.Row="4" Grid.Column="4" Margin="8,4" Padding="20,0" Content="Save Park Position" HorizontalAlignment="Right" Style="{StaticResource CommandButtonStyle}" Command="{Binding SaveParkPositionCommand}" Visibility="{Binding UseCustomParkPosition, Converter={StaticResource TrueBoolToVisible}}"/>
 
@@ -428,6 +504,6 @@
             <Button Margin="15,10" Padding="20,0" Content="Close" HorizontalAlignment="Right" Style="{StaticResource MainButtonStyle}" IsCancel="True"/>
 		</StackPanel>
 	</Grid>
-</Window>
+</controls:ThemedWindow>
 
 	

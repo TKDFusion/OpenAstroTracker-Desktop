@@ -166,6 +166,55 @@
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
         <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource AppButtonBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <Grid>
+                        <Border x:Name="checkBoxBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Width="16" Height="16"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                            <Path x:Name="checkMark"
+                                  Data="M3,8 L6.5,11.5 L13,4"
+                                  Stroke="{DynamicResource AppForegroundStrongBrush}"
+                                  StrokeThickness="1.5"
+                                  StrokeStartLineCap="Round"
+                                  StrokeEndLineCap="Round"
+                                  Stretch="Uniform"
+                                  Width="10" Height="10"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Visibility="Collapsed" />
+                        </Border>
+                        <ContentPresenter Margin="20,0,0,0"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Center"
+                                          RecognizesAccessKey="True" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="checkMark" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="checkBoxBorder" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="checkBoxBorder" Property="Background" Value="{DynamicResource AppButtonPressedBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="checkBoxBorder" Property="BorderBrush" Value="{DynamicResource AppDisabledBorderBrush}" />
+                            <Setter TargetName="checkMark" Property="Stroke" Value="{DynamicResource AppDisabledForegroundBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- RadioButton -->
@@ -194,6 +243,7 @@
     <Style TargetType="TabControl">
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="Background" Value="{DynamicResource AppWindowBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource AppNestedBorderBrush}" />
     </Style>
 
     <!-- TabItem -->
@@ -201,11 +251,72 @@
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
         <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource AppNestedBorderBrush}" />
     </Style>
 
     <!-- ScrollBar -->
+    <Style x:Key="ScrollBarThumb" TargetType="Thumb">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Border x:Name="thumbBorder"
+                            Background="{DynamicResource AppButtonBackgroundBrush}"
+                            BorderBrush="{DynamicResource AppBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Margin="1" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="thumbBorder" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="thumbBorder" Property="Background" Value="{DynamicResource AppButtonPressedBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style TargetType="ScrollBar">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Width" Value="12" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollBar">
+                    <Border Background="{DynamicResource AppNestedBackgroundBrush}"
+                            CornerRadius="4"
+                            Margin="1">
+                        <Track x:Name="PART_Track" IsDirectionReversed="True">
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource ScrollBarThumb}" />
+                            </Track.Thumb>
+                        </Track>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Width" Value="Auto" />
+                <Setter Property="Height" Value="12" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ListView -->
+    <Style TargetType="ListView">
         <Setter Property="Background" Value="{DynamicResource AppWindowBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource AppNestedBorderBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
+    </Style>
+
+    <!-- ListViewItem -->
+    <Style TargetType="ListViewItem">
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
     </Style>
 
     <!-- ProgressBar -->
@@ -236,7 +347,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ThemedWindow">
                     <AdornerDecorator>
-                        <Grid Background="{TemplateBinding Background}">
+                        <Border BorderBrush="{DynamicResource AppBorderBrush}"
+                                BorderThickness="1">
+                        <Grid Background="{DynamicResource AppWindowBackgroundBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
@@ -266,7 +379,7 @@
                                                RenderOptions.BitmapScalingMode="HighQuality" />
                                         <TextBlock Text="{TemplateBinding Title}"
                                                    Foreground="{DynamicResource AppTitleBarForegroundBrush}"
-                                                   FontSize="12"
+                                                   FontSize="14"
                                                    VerticalAlignment="Center"
                                                    Margin="6,0,0,0"
                                                    TextTrimming="CharacterEllipsis" />
@@ -371,10 +484,10 @@
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter TargetName="Bd" Property="Background" Value="#E81123" />
+                                                        <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppTitleBarButtonHoverBrush}" />
                                                     </Trigger>
                                                     <Trigger Property="IsPressed" Value="True">
-                                                        <Setter TargetName="Bd" Property="Background" Value="#F1707A" />
+                                                        <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppTitleBarButtonPressedBrush}" />
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -384,10 +497,9 @@
                             </Border>
 
                             <!-- Window Content -->
-                            <ContentPresenter Grid.Row="1"
-                                              Content="{TemplateBinding Content}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            <ContentPresenter Grid.Row="1" />
                         </Grid>
+                        </Border>
                     </AdornerDecorator>
 
                     <ControlTemplate.Triggers>
@@ -408,8 +520,12 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="controls:ThemedWindow">
                             <AdornerDecorator>
-                                <ContentPresenter Content="{TemplateBinding Content}"
-                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                                <Border BorderBrush="{DynamicResource AppBorderBrush}"
+                                        BorderThickness="1">
+                                <Grid Background="{DynamicResource AppWindowBackgroundBrush}">
+                                    <ContentPresenter />
+                                </Grid>
+                                </Border>
                             </AdornerDecorator>
                         </ControlTemplate>
                     </Setter.Value>

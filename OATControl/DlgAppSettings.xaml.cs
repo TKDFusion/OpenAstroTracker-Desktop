@@ -492,6 +492,29 @@ namespace OATControl
 		private void OnWindowLoaded(object sender, RoutedEventArgs e)
 		{
 			SetInitialSortIndicator(this.sortField);
+			Dispatcher.BeginInvoke(new Action(ResizeNameColumn), DispatcherPriority.Loaded);
+		}
+
+		private void OnTargetsListScrollChanged(object sender, ScrollChangedEventArgs e)
+		{
+			ResizeNameColumn();
+		}
+
+		private void ResizeNameColumn()
+		{
+			if (TargetsListView.View is GridView gv && gv.Columns.Count >= 3)
+			{
+				double fixedWidth = 0;
+				for (int i = 0; i < gv.Columns.Count; i++)
+				{
+					if (i != 2)
+						fixedWidth += gv.Columns[i].ActualWidth;
+				}
+				var scrollViewer = FindVisualChildren<System.Windows.Controls.ScrollViewer>(TargetsListView).FirstOrDefault();
+				double available = (scrollViewer?.ViewportWidth ?? TargetsListView.ActualWidth) - fixedWidth;
+				if (available > 40)
+					gv.Columns[2].Width = available;
+			}
 		}
 
 		private void ThemeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

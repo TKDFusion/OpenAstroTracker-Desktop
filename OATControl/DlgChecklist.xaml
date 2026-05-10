@@ -44,14 +44,6 @@
         </Style>
 		<converters:BoolToBrushConverter x:Key="HeaderColorConverter" TrueBrush="#842" FalseBrush="#F86" />
 		<converters:BoolToBrushConverter x:Key="SubitemColorConverter" TrueBrush="#930" FalseBrush="#F40" />
-		<Style x:Key="TextBoxSmall" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}" >
-			<Setter Property="Margin" Value="10,2,10,2" />
-			<Setter Property="Height" Value="11" />
-			<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
-			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
-			<Setter Property="Width" Value="60" />
-			<Setter Property="HorizontalAlignment" Value="Left"/>
-		</Style>
 		<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
 			<Setter Property="VerticalAlignment" Value="Center" />
 			<Setter Property="FontWeight" Value="Bold" />

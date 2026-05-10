@@ -20,7 +20,7 @@ namespace OATControl.Controls
     {
         public static readonly DependencyProperty ShowTitleBarProperty = DependencyProperty.RegisterAttached(
             "ShowTitleBar", typeof(bool), typeof(ThemedWindow),
-            new PropertyMetadata(true));
+            new PropertyMetadata(true, OnShowTitleBarChanged));
 
         public static readonly DependencyProperty TitleBarButtonsProperty = DependencyProperty.RegisterAttached(
             "TitleBarButtons", typeof(TitleBarButtons), typeof(ThemedWindow),
@@ -28,6 +28,7 @@ namespace OATControl.Controls
 
         public ThemedWindow()
         {
+            SetResourceReference(StyleProperty, typeof(ThemedWindow));
             WindowStyle = WindowStyle.None;
             SetResourceReference(BackgroundProperty, "AppWindowBackgroundBrush");
             SetResourceReference(ForegroundProperty, "AppForegroundBrush");
@@ -50,12 +51,25 @@ namespace OATControl.Controls
         public static bool GetShowTitleBar(DependencyObject obj) => (bool)obj.GetValue(ShowTitleBarProperty);
         public static void SetShowTitleBar(DependencyObject obj, bool value) => obj.SetValue(ShowTitleBarProperty, value);
 
+        private static void OnShowTitleBarChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is ThemedWindow window)
+            {
+                var chrome = WindowChrome.GetWindowChrome(window);
+                if (chrome != null)
+                    chrome.CaptionHeight = (bool)e.NewValue ? 30 : 0;
+            }
+        }
+
         public static TitleBarButtons GetTitleBarButtons(DependencyObject obj) => (TitleBarButtons)obj.GetValue(TitleBarButtonsProperty);
         public static void SetTitleBarButtons(DependencyObject obj, TitleBarButtons value) => obj.SetValue(TitleBarButtonsProperty, value);
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+            var chrome = WindowChrome.GetWindowChrome(this);
+            if (chrome != null)
+                chrome.CaptionHeight = GetShowTitleBar(this) ? 30 : 0;
             UpdateTitleBarButtonVisibility();
         }
 

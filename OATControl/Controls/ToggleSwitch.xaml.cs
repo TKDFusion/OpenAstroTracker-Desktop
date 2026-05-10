@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,7 +12,7 @@ namespace OATControl.Controls
     {
         public static readonly DependencyProperty IsCheckedProperty = DependencyProperty.Register(
             "IsChecked", typeof(bool), typeof(ToggleSwitch),
-            new PropertyMetadata(false, OnIsCheckedChanged));
+            new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIsCheckedChanged));
 
         public static readonly DependencyProperty ThumbIndicatorBrushProperty = DependencyProperty.Register(
             "ThumbIndicatorBrush", typeof(Brush), typeof(ToggleSwitch),
