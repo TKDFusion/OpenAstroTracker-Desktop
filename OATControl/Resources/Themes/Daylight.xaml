@@ -4,7 +4,7 @@
     <!-- ===== Colors ===== -->
 
     <!-- Primary accent -->
-    <Color x:Key="AppPrimaryColor">#FF0050C8</Color>
+    <Color x:Key="AppPrimaryColor">#FFb0b0b0</Color>
 
     <!-- Foreground / text -->
     <Color x:Key="AppForegroundColor">#FF1A1A1A</Color>
@@ -12,36 +12,33 @@
     <Color x:Key="AppForegroundSubtleColor">#FF666666</Color>
 
     <!-- Backgrounds -->
+    <Color x:Key="AppWindowBackgroundColor">#FFF0F0F0</Color>
+    <Color x:Key="AppNestedBackgroundColor">#FFE0E0E0</Color>
     <Color x:Key="AppInputBackgroundColor">#FFF0F0F0</Color>
-    <Color x:Key="AppWindowBackgroundColor">#FFF5F5F5</Color>
+
+    <!-- Title bar -->
+    <Color x:Key="AppTitleBarBackgroundColor">#DDD</Color>
+    <Color x:Key="AppTitleBarForegroundColor">#FF333333</Color>
+    <Color x:Key="AppTitleBarButtonHoverColor">#FFD0D0D0</Color>
+    <Color x:Key="AppTitleBarButtonPressedColor">#FFB0B0B0</Color>
 
     <!-- Borders -->
-    <Color x:Key="AppBorderColor">#FFCCCCCC</Color>
-    <Color x:Key="AppBorderSubtleColor">#FFE0E0E0</Color>
+    <Color x:Key="AppBorderColor">#C0C0C0</Color>
+    <Color x:Key="AppNestedBorderColor">#a0a0a0</Color>
+    <Color x:Key="AppBorderSubtleColor">#999</Color>
 
     <!-- Button interactive states -->
     <Color x:Key="AppButtonBackgroundColor">#FFD0D0D0</Color>
-    <Color x:Key="AppButtonHoverColor">#FFC0C0C0</Color>
-    <Color x:Key="AppButtonPressedColor">#FFB0B0B0</Color>
     <Color x:Key="AppButtonBorderColor">#FFCCCCCC</Color>
-
-    <!-- Tooltip -->
-    <Color x:Key="AppTooltipBackgroundColor">#FF333333</Color>
-    <Color x:Key="AppTooltipForegroundColor">#FFFFFFFF</Color>
+    <Color x:Key="AppButtonPressedColor">#FFB0B0B0</Color>
+    <Color x:Key="AppButtonHoverColor">#FFC0C0C0</Color>
 
     <!-- Disabled -->
     <Color x:Key="AppDisabledBackgroundColor">#FFD0D0D0</Color>
     <Color x:Key="AppDisabledBorderColor">#FFE0E0E0</Color>
     <Color x:Key="AppDisabledForegroundColor">#FF999999</Color>
 
-    <!-- Title bar -->
-    <Color x:Key="AppTitleBarBackgroundColor">#FFEEEEEE</Color>
-    <Color x:Key="AppTitleBarForegroundColor">#FF333333</Color>
-    <Color x:Key="AppTitleBarButtonHoverColor">#FFD0D0D0</Color>
-    <Color x:Key="AppTitleBarButtonPressedColor">#FFB0B0B0</Color>
-
     <!-- Toggle switch -->
-    <Color x:Key="AppToggleOnColor">#FF0050C8</Color>
     <Color x:Key="AppToggleOffColor">#FFCCCCCC</Color>
     <Color x:Key="AppToggleThumbColor">#FFFFFFFF</Color>
     <Color x:Key="AppToggleOffBorderColor">#FFCCCCCC</Color>
@@ -57,11 +54,13 @@
     <SolidColorBrush x:Key="AppForegroundSubtleBrush" Color="{StaticResource AppForegroundSubtleColor}" />
 
     <!-- Backgrounds -->
+    <SolidColorBrush x:Key="AppNestedBackgroundBrush" Color="{StaticResource AppNestedBackgroundColor}" />
     <SolidColorBrush x:Key="AppInputBackgroundBrush" Color="{StaticResource AppInputBackgroundColor}" />
     <SolidColorBrush x:Key="AppWindowBackgroundBrush" Color="{StaticResource AppWindowBackgroundColor}" />
 
     <!-- Borders -->
     <SolidColorBrush x:Key="AppBorderBrush" Color="{StaticResource AppBorderColor}" />
+    <SolidColorBrush x:Key="AppNestedBorderBrush" Color="{StaticResource AppNestedBorderColor}" />
     <SolidColorBrush x:Key="AppBorderSubtleBrush" Color="{StaticResource AppBorderSubtleColor}" />
 
     <!-- Button interactive states -->
@@ -70,13 +69,9 @@
     <SolidColorBrush x:Key="AppButtonPressedBrush" Color="{StaticResource AppButtonPressedColor}" />
     <SolidColorBrush x:Key="AppButtonBorderBrush" Color="{StaticResource AppButtonBorderColor}" />
 
-    <!-- Tooltip -->
-    <SolidColorBrush x:Key="AppTooltipBackgroundBrush" Color="{StaticResource AppTooltipBackgroundColor}" />
-    <SolidColorBrush x:Key="AppTooltipForegroundBrush" Color="{StaticResource AppTooltipForegroundColor}" />
-
     <!-- Disabled -->
     <SolidColorBrush x:Key="AppDisabledBackgroundBrush" Color="{StaticResource AppDisabledBackgroundColor}" />
-	<SolidColorBrush x:Key="AppDisabledBorderBrush" Color="{StaticResource AppDisabledBorderColor}" />
+    <SolidColorBrush x:Key="AppDisabledBorderBrush" Color="{StaticResource AppDisabledBorderColor}" />
     <SolidColorBrush x:Key="AppDisabledForegroundBrush" Color="{StaticResource AppDisabledForegroundColor}" />
 
     <!-- Title bar -->
@@ -86,9 +81,13 @@
     <SolidColorBrush x:Key="AppTitleBarButtonPressedBrush" Color="{StaticResource AppTitleBarButtonPressedColor}" />
 
     <!-- Toggle switch -->
-    <SolidColorBrush x:Key="AppToggleOnBrush" Color="{StaticResource AppToggleOnColor}" />
     <SolidColorBrush x:Key="AppToggleOffBrush" Color="{StaticResource AppToggleOffColor}" />
     <SolidColorBrush x:Key="AppToggleThumbBrush" Color="{StaticResource AppToggleThumbColor}" />
     <SolidColorBrush x:Key="AppToggleOffBorderBrush" Color="{StaticResource AppToggleOffBorderColor}" />
+
+    <!-- Override system colors for ListViewItem selection/hover -->
+    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource AppForegroundColor}" />
+    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{StaticResource AppButtonHoverColor}" />
+    <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{StaticResource AppForegroundColor}" />
 
 </ResourceDictionary>

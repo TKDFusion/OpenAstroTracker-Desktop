@@ -73,7 +73,7 @@
 		<converters:BoolToVisibilityConverter x:Key="VisibleIfPrimaryAxis" Collapse="true" />
 		<converters:BoolToVisibilityConverter x:Key="VisibleIfSecondaryAxis" Collapse="true" IsReversed="true"/>
 		<Style x:Key="ComboBoxStyle" TargetType="ComboBox">
-			<Setter Property="Foreground" Value="Red" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
 			<Setter Property="BorderBrush" Value="{DynamicResource AppButtonHoverBrush}" />
@@ -154,7 +154,7 @@
 				<Setter.Value>
 					<Style TargetType="ComboBoxItem">
 						<Setter Property="FontSize" Value="14" />
-						<Setter Property="Foreground" Value="Red" />
+						<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 						<Setter Property="FontWeight" Value="Bold" />
 						<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
 						<Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}" />

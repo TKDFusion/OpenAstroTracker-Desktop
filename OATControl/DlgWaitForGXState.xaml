@@ -12,7 +12,6 @@
 	<Window.Resources>
 		<Style x:Key="StatusText" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
 			<Setter Property="VerticalAlignment" Value="Center" />
-			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="FontSize" Value="12" />
 			<Setter Property="Margin" Value="0,0" />
 			<Setter Property="Padding" Value="0,0" />

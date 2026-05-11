@@ -59,7 +59,7 @@
 			</Setter>
 		</Style>
 		<Style x:Key="ComboBoxStyle" TargetType="ComboBox">
-			<Setter Property="Foreground" Value="Red" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
 			<Setter Property="BorderBrush" Value="{DynamicResource AppButtonHoverBrush}" />

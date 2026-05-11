@@ -96,10 +96,10 @@
 				<ColumnDefinition Width="60"/>
 				<ColumnDefinition Width="125"/>
 			</Grid.ColumnDefinitions>
-			<TextBlock Text="Name" Foreground="Red" FontWeight="Bold" Padding="4,0" />
-			<TextBlock Text="RA" Foreground="Red" FontWeight="Bold" Padding="4,0" Grid.Column="1" TextAlignment="Center"/>
-			<TextBlock Text="DEC" Foreground="Red" FontWeight="Bold" Padding="4,0" Grid.Column="2" TextAlignment="Center"/>
-			<TextBlock Text="Actions" Foreground="Red" FontWeight="Bold" Padding="4,0" Grid.Column="3" TextAlignment="Center"/>
+			<TextBlock Text="Name" Foreground="{DynamicResource AppForegroundBrush}" FontWeight="Bold" Padding="4,0" />
+			<TextBlock Text="RA" Foreground="{DynamicResource AppForegroundBrush}" FontWeight="Bold" Padding="4,0" Grid.Column="1" TextAlignment="Center"/>
+			<TextBlock Text="DEC" Foreground="{DynamicResource AppForegroundBrush}" FontWeight="Bold" Padding="4,0" Grid.Column="2" TextAlignment="Center"/>
+			<TextBlock Text="Actions" Foreground="{DynamicResource AppForegroundBrush}" FontWeight="Bold" Padding="4,0" Grid.Column="3" TextAlignment="Center"/>
 		</Grid>
 
 		<ListBox x:Name="slewPointsList" Grid.Row="2"

@@ -36,9 +36,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-		<converters:BoolToBrushConverter x:Key="HeaderColorConverter" TrueBrush="#842" FalseBrush="#F86" />
-		<converters:BoolToBrushConverter x:Key="SubitemColorConverter" TrueBrush="#930" FalseBrush="#F40" />
-
 
 	</controls:ThemedWindow.Resources>
 	<Grid Margin="0">
@@ -122,7 +119,7 @@
 																			<Condition Property="IsChecked" Value="True"/>
 																			<Condition Property="IsMouseOver" Value="True"/>
 																		</MultiTrigger.Conditions>
-																		<Setter TargetName="Border" Property="Background" Value="{DynamicResource AppForegroundBrush}"/>
+																		<Setter TargetName="Border" Property="Background" Value="{DynamicResource AppDisabledForegroundBrush}"/>
 																	</MultiTrigger>
 																</ControlTemplate.Triggers>
 															</ControlTemplate>
@@ -137,14 +134,23 @@
 												</Style>
 											</CheckBox.Style>
 										</CheckBox>
-										<TextBlock Text="{Binding Text}" 
+										<TextBlock Text="{Binding Text}"
 											FontWeight="Bold"
 											FontSize="16"
 											Padding="5,0"
 											HorizontalAlignment="Left"
-											Foreground="{Binding IsChecked, Converter={StaticResource HeaderColorConverter}}"
 											Margin="0,0,0,2"
 											VerticalAlignment="Center">
+											<TextBlock.Style>
+												<Style TargetType="TextBlock">
+													<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
+													<Style.Triggers>
+														<DataTrigger Binding="{Binding IsChecked}" Value="True">
+															<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
+														</DataTrigger>
+													</Style.Triggers>
+												</Style>
+											</TextBlock.Style>
 										</TextBlock>
 									</StackPanel>
 
@@ -216,10 +222,19 @@
 															</Style>
 														</CheckBox.Style>
 													</CheckBox>
-													<TextBlock Text="{Binding Text, StringFormat=' {0}' }" 
-														Foreground="{Binding IsChecked, Converter={StaticResource SubitemColorConverter}}"
+													<TextBlock Text="{Binding Text, StringFormat=' {0}' }"
 														FontSize="13"
-															   Margin="0,0,0,2">
+														Margin="0,0,0,2">
+														<TextBlock.Style>
+															<Style TargetType="TextBlock">
+																<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
+																<Style.Triggers>
+																	<DataTrigger Binding="{Binding IsChecked}" Value="True">
+																		<Setter Property="Foreground" Value="{DynamicResource AppDisabledForegroundBrush}" />
+																	</DataTrigger>
+																</Style.Triggers>
+															</Style>
+														</TextBlock.Style>
 													</TextBlock>
 												</StackPanel>
 											</DataTemplate>

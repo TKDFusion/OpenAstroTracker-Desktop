@@ -68,8 +68,8 @@
     <!-- ToolTip styles -->
     <Style x:Key="MetroToolTip" TargetType="ToolTip">
 		<Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}" />
-		<Setter Property="Background" Value="{DynamicResource AppTooltipBackgroundBrush}" />
-		<Setter Property="Foreground" Value="{DynamicResource AppTooltipForegroundBrush}" />
+		<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
         <Setter Property="Padding" Value="5,2,5,7" />
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
     </Style>

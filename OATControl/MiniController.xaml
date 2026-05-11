@@ -10,7 +10,7 @@
         controls:ThemedWindow.ShowTitleBar="False">
 	<controls:ThemedWindow.Resources>
 		<Style x:Key="OatToolTip" TargetType="ToolTip" BasedOn="{StaticResource MetroToolTip}">
-			<Setter Property="Background" Value="{DynamicResource AppTooltipBackgroundBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="Padding" Value="5,2,5,7" />	
 		</Style>

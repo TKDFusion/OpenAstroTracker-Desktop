@@ -279,11 +279,26 @@
 		private readonly List<Tuple<double, string>> labelList = new List<Tuple<double, string>>();
 		private double rounder = 0.0;
 		private string stringFormat = "0.00";
-		private Color _majorTickColor = Colors.White;
+		public static readonly DependencyProperty MajorTickColorProperty = DependencyProperty.Register(
+			"MajorTickColor",
+			typeof(Color),
+			typeof(RangeSlider),
+			new PropertyMetadata(Colors.White, TickColorChanged));
+
+		public static readonly DependencyProperty MinorTickColorProperty = DependencyProperty.Register(
+			"MinorTickColor",
+			typeof(Color),
+			typeof(RangeSlider),
+			new PropertyMetadata(Colors.Gray, TickColorChanged));
+
+		public static readonly DependencyProperty TickLabelColorProperty = DependencyProperty.Register(
+			"TickLabelColor",
+			typeof(Color),
+			typeof(RangeSlider),
+			new PropertyMetadata(Colors.White, TickColorChanged));
+
 		private SolidColorBrush _majorTickBrush = Brushes.White;
-		private Color _minorTickColor = Colors.Gray;
 		private SolidColorBrush _minorTickBrush = Brushes.Gray;
-		private Color _tickLabelColor = Colors.White;
 		private SolidColorBrush _tickLabelBrush = Brushes.White;
 
 
@@ -902,41 +917,32 @@
 
 		public Color MajorTickColor
 		{
-			get { return _majorTickColor; }
-			set
-			{
-				if (value != _majorTickColor)
-				{
-					_majorTickColor = value;
-					_majorTickBrush = new SolidColorBrush(_majorTickColor);
-				}
-			}
+			get { return (Color)this.GetValue(RangeSlider.MajorTickColorProperty); }
+			set { this.SetValue(RangeSlider.MajorTickColorProperty, value); }
 		}
 
 		public Color MinorTickColor
 		{
-			get { return _minorTickColor; }
-			set
-			{
-				if (value != _minorTickColor)
-				{
-					_minorTickColor = value;
-					_minorTickBrush = new SolidColorBrush(_minorTickColor);
-				}
-			}
+			get { return (Color)this.GetValue(RangeSlider.MinorTickColorProperty); }
+			set { this.SetValue(RangeSlider.MinorTickColorProperty, value); }
 		}
 
 		public Color TickLabelColor
 		{
-			get { return _tickLabelColor; }
-			set
-			{
-				if (value != _tickLabelColor)
-				{
-					_tickLabelColor = value;
-					_tickLabelBrush = new SolidColorBrush(_tickLabelColor);
-				}
-			}
+			get { return (Color)this.GetValue(RangeSlider.TickLabelColorProperty); }
+			set { this.SetValue(RangeSlider.TickLabelColorProperty, value); }
+		}
+
+		private static void TickColorChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+		{
+			var slider = (RangeSlider)obj;
+			if (e.Property == MajorTickColorProperty)
+				slider._majorTickBrush = new SolidColorBrush(slider.MajorTickColor);
+			else if (e.Property == MinorTickColorProperty)
+				slider._minorTickBrush = new SolidColorBrush(slider.MinorTickColor);
+			else if (e.Property == TickLabelColorProperty)
+				slider._tickLabelBrush = new SolidColorBrush(slider.TickLabelColor);
+			slider.RecalculateLabelsAndTicks();
 		}
 
 		/// <summary>

@@ -97,9 +97,9 @@
 			<TextBlock Text="{Binding Iterations}" Style="{StaticResource ChecklistItemLabelTextStyle}" VerticalAlignment="Top" Width="30"/>
 			<StackPanel Orientation="Vertical">
 				<StackPanel Orientation="Horizontal" Margin="10,0,10,5" HorizontalAlignment="Left">
-					<TextBlock Text="AZ" Width="80" TextAlignment="Center" Foreground="Red" Style="{StaticResource ChecklistItemLabelTextStyle}"/>
-					<TextBlock Text="ALT" Width="80" TextAlignment="Center" Foreground="Red" Style="{StaticResource ChecklistItemLabelTextStyle}" />
-					<TextBlock Text="Total" Width="80" TextAlignment="Center" Foreground="Red" Style="{StaticResource ChecklistItemLabelTextStyle}" />
+					<TextBlock Text="AZ" Width="80" TextAlignment="Center" Foreground="{DynamicResource AppForegroundBrush}" Style="{StaticResource ChecklistItemLabelTextStyle}"/>
+					<TextBlock Text="ALT" Width="80" TextAlignment="Center" Foreground="{DynamicResource AppForegroundBrush}" Style="{StaticResource ChecklistItemLabelTextStyle}" />
+					<TextBlock Text="Total" Width="80" TextAlignment="Center" Foreground="{DynamicResource AppForegroundBrush}" Style="{StaticResource ChecklistItemLabelTextStyle}" />
 				</StackPanel>
 				<ListView ItemsSource="{Binding ErrorEntries}" Margin="10,0,10,20" VerticalAlignment="Top"   IsTabStop="False" Focusable="False" >
 					<ListView.ItemContainerStyle>

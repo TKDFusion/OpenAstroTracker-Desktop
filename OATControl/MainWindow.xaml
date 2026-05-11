@@ -9,7 +9,6 @@
         mc:Ignorable="d"
 		Background="{DynamicResource AppWindowBackgroundBrush}"
 		controls:ThemedWindow.TitleBarButtons="Minimize, Close"
-
         Title="{Binding Version, StringFormat={} OpenAstroTracker Control V{0}}" MinHeight="767" MinWidth="720" Height="767" Width="720">
 	<Window.Resources>
 		<converters:AbsConverter x:Key="AbsConverter" />
@@ -27,7 +26,7 @@
 		<Path x:Key="IconArrowDown" x:Shared="false" Data="M0,0L32,0 16,19.745z" Stretch="Uniform" RenderTransformOrigin="0.5,0.5" Fill="{DynamicResource AppPrimaryBrush}"/>
 		<Path x:Key="IconArrowRight" x:Shared="false" Data="M0,0L25,16 0,32z" Stretch="Uniform" RenderTransformOrigin="0.5,0.5" Fill="{DynamicResource AppPrimaryBrush}" />
 		<Style x:Key="OatToolTip" TargetType="ToolTip" BasedOn="{StaticResource MetroToolTip}">
-			<Setter Property="Background" Value="{DynamicResource AppTooltipBackgroundBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="Padding" Value="5,2,5,7" />
 		</Style>
@@ -236,10 +235,10 @@
 				</Border.Resources>
 				<Border.BorderBrush>
 					<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-						<GradientStop Offset="0" Color="Red" />
-						<GradientStop Offset="{Binding RASlewProgress}" Color="Red" />
-						<GradientStop Offset="{Binding RASlewProgress}" Color="DarkRed" />
-						<GradientStop Offset="1.0" Color="DarkRed" />
+						<GradientStop Offset="0" Color="{DynamicResource AppForegroundColor}" />
+						<GradientStop Offset="{Binding RASlewProgress}" Color="{DynamicResource AppForegroundColor}" />
+						<GradientStop Offset="{Binding RASlewProgress}" Color="{DynamicResource AppForegroundSubtleColor}" />
+						<GradientStop Offset="1.0" Color="{DynamicResource AppForegroundSubtleColor}" />
 					</LinearGradientBrush>
 				</Border.BorderBrush>
 			</Border>
@@ -266,10 +265,10 @@
 				</Border.Resources>
 				<Border.BorderBrush>
 					<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-						<GradientStop Offset="0" Color="Red" />
-						<GradientStop Offset="{Binding DECSlewProgress}" Color="Red" />
-						<GradientStop Offset="{Binding DECSlewProgress}" Color="DarkRed" />
-						<GradientStop Offset="1.0" Color="DarkRed" />
+						<GradientStop Offset="0" Color="{DynamicResource AppForegroundColor}" />
+						<GradientStop Offset="{Binding DECSlewProgress}" Color="{DynamicResource AppForegroundColor}" />
+						<GradientStop Offset="{Binding DECSlewProgress}" Color="{DynamicResource AppForegroundSubtleColor}" />
+						<GradientStop Offset="1.0" Color="{DynamicResource AppForegroundSubtleColor}" />
 					</LinearGradientBrush>
 				</Border.BorderBrush>
 			</Border>
@@ -352,9 +351,9 @@
 						TickStart="{Binding DECTickStart}" 
 						TickEnd="180"
 						TickLabels="{Binding DECTickLabels}"
-						MajorTickColor="#FC11"
-						MinorTickColor="#F911"
-						TickLabelColor="#FB11"
+						MajorTickColor="{DynamicResource AppForegroundStrongColor}"
+						MinorTickColor="{DynamicResource AppBorderColor}"
+						TickLabelColor="{DynamicResource AppForegroundColor}"
 				  />
 
 				<controls:RangeSlider Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5"
@@ -373,9 +372,9 @@
 						TickStart="-7"
 						TickEnd="7"
 						TickLabels="-6|-3|-1|0|1|3|6"
-						MajorTickColor="#FC11"
-						MinorTickColor="#F911"
-						TickLabelColor="#FB11"
+						MajorTickColor="{DynamicResource AppForegroundStrongColor}"
+						MinorTickColor="{DynamicResource AppBorderColor}"
+						TickLabelColor="{DynamicResource AppForegroundColor}"
 				  />
 
 			</Grid>
@@ -568,10 +567,10 @@
 					</Border.Resources>
 					<Border.BorderBrush>
 						<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-							<GradientStop Offset="0" Color="Red" />
-							<GradientStop Offset="{Binding DriftPhase}" Color="Red" />
-							<GradientStop Offset="{Binding DriftPhase}" Color="DarkRed" />
-							<GradientStop Offset="1.0" Color="DarkRed" />
+							<GradientStop Offset="0" Color="{DynamicResource AppForegroundColor}" />
+							<GradientStop Offset="{Binding DriftPhase}" Color="{DynamicResource AppForegroundColor}" />
+							<GradientStop Offset="{Binding DriftPhase}" Color="{DynamicResource AppForegroundSubtleColor}" />
+							<GradientStop Offset="1.0" Color="{DynamicResource AppForegroundSubtleColor}" />
 						</LinearGradientBrush>
 					</Border.BorderBrush>
 					<StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal">

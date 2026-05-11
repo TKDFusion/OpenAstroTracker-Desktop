@@ -15,19 +15,14 @@
 		<convert:OrientationToVisibilityConverter x:Key="VerticalToVisibleConverter" VisibleOrientation="Vertical" Collapse="True" />
 		<convert:OrientationToVisibilityConverter x:Key="HorizontalToVisibleConverter" VisibleOrientation="Horizontal" Collapse="True" />
 
-		<SolidColorBrush x:Key="TextColor" Color="#F7F7"/>
-		<SolidColorBrush x:Key="UnsetBackground" Color="#F600"/>
-		<SolidColorBrush x:Key="UnsetBorder" Color="#F400"/>
-		<SolidColorBrush x:Key="SetBackground" Color="#F811"/>
-		<SolidColorBrush x:Key="SetBackgroundActive" Color="#FD11"/>
-		<SolidColorBrush x:Key="SetBorder" Color="#F911"/>
-		<SolidColorBrush x:Key="ValueBorder" Color="#FF21"/>
-		<SolidColorBrush x:Key="ValueFill" Color="#FF21"/>
-		<SolidColorBrush x:Key="MarkerValueBorder" Color="#F000"/>
-		<SolidColorBrush x:Key="MarkerValueFill" Color="#F000"/>
-		<SolidColorBrush x:Key="Gray06" Color="#F111"/>
-		<Color x:Key="ColorGray60"  A="0xFF" R="0x99" G="0x99" B="0x99" />
-
+		<SolidColorBrush x:Key="UnsetBackground" Color="{DynamicResource AppButtonBackgroundColor}"/>
+		<SolidColorBrush x:Key="UnsetBorder" Color="{DynamicResource AppButtonHoverColor}"/>
+		<SolidColorBrush x:Key="SetBackground" Color="{DynamicResource AppButtonHoverColor}"/>
+		<SolidColorBrush x:Key="SetBorder" Color="{DynamicResource AppButtonBorderColor}"/>
+		<SolidColorBrush x:Key="ValueBorder" Color="{DynamicResource AppForegroundStrongColor}"/>
+		<SolidColorBrush x:Key="ValueFill" Color="{DynamicResource AppForegroundStrongColor}"/>
+		<SolidColorBrush x:Key="MarkerValueBorder" Color="{DynamicResource AppBorderSubtleColor}"/>
+		<SolidColorBrush x:Key="MarkerValueFill" Color="{DynamicResource AppBorderSubtleColor}"/>
 	</UserControl.Resources>
 	<Grid>
 		<Grid Name="MainVGrid" Background="Transparent" IsHitTestVisible="True" MouseDown="MainGrid_OnMouseButtonDown" MouseUp="MainGrid_OnMouseButtonUp" MouseMove="MainGrid_OnMouseMove" Visibility="{Binding ElementName=RangeSliderControl, Path=Orientation, Converter={StaticResource VerticalToVisibleConverter}}">
