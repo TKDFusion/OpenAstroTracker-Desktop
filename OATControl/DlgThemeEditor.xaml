@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:OATControl.Controls"
-        Title="Theme Editor" Width="900" Height="620"
-        MinWidth="700" MinHeight="500"
+        Title="Theme Editor" Width="1150" Height="620"
+        MinWidth="900" MinHeight="500"
         WindowStartupLocation="CenterOwner"
         Loaded="Window_Loaded">
 
@@ -13,6 +13,32 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/OATControl;component/Resources/Themes/Daylight.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- Title bar button style for preview -->
+            <Style x:Key="PreviewTitleBarButton" TargetType="Button">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{DynamicResource AppTitleBarForegroundBrush}"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" Padding="0,2">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource AppTitleBarButtonHoverBrush}"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource AppTitleBarButtonPressedBrush}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </controls:ThemedWindow.Resources>
 
@@ -27,7 +53,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="180"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="460"/>
             </Grid.ColumnDefinitions>
 
             <!-- Left panel: Theme list -->
@@ -92,39 +118,132 @@
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top" Text="Preview" FontWeight="Bold" FontSize="14"
                                Margin="6,6,6,4" Foreground="#FF333333"/>
-                    <Border x:Name="PreviewPanel" Margin="4,0,4,4" CornerRadius="2">
-                        <StackPanel Margin="8">
-                            <!-- Preview uses DynamicResource bound to a local dict we swap -->
-                            <TextBlock Text="Sample Title" FontSize="16" FontWeight="Bold"
-                                       Foreground="{DynamicResource AppForegroundBrush}"/>
-                            <TextBlock Text="Normal text" FontSize="12" Margin="0,4,0,8"
-                                       Foreground="{DynamicResource AppForegroundSubtleBrush}"/>
-                            <Border BorderThickness="1" CornerRadius="2" Padding="6,4" Margin="0,0,0,6"
-                                    BorderBrush="{DynamicResource AppBorderBrush}"
-                                    Background="{DynamicResource AppInputBackgroundBrush}">
-                                <TextBlock Text="Input field" FontSize="12"
-                                           Foreground="{DynamicResource AppForegroundBrush}"/>
-                            </Border>
-                            <Border BorderThickness="1" CornerRadius="2" Padding="8,4" Margin="0,0,0,6"
-                                    BorderBrush="{DynamicResource AppButtonBorderBrush}"
-                                    Background="{DynamicResource AppButtonBackgroundBrush}">
-                                <TextBlock Text="Button" FontSize="12" HorizontalAlignment="Center"
-                                           Foreground="{DynamicResource AppForegroundBrush}"/>
-                            </Border>
-                            <Border BorderThickness="1" CornerRadius="2" Padding="8,4" Margin="0,0,0,6"
-                                    Background="{DynamicResource AppDisabledBackgroundBrush}"
-                                    BorderBrush="{DynamicResource AppDisabledBorderBrush}">
-                                <TextBlock Text="Disabled" FontSize="12" HorizontalAlignment="Center"
-                                           Foreground="{DynamicResource AppDisabledForegroundBrush}"/>
-                            </Border>
-                            <CheckBox Content="Checkbox" IsChecked="True" Margin="0,0,0,6"
-                                      Foreground="{DynamicResource AppForegroundBrush}"/>
-                            <Border Background="{DynamicResource AppTooltipBackgroundBrush}"
-                                    CornerRadius="2" Padding="6,4" Margin="0,0,0,4">
-                                <TextBlock Text="Tooltip" FontSize="11"
-                                           Foreground="{DynamicResource AppTooltipForegroundBrush}"/>
-                            </Border>
-                        </StackPanel>
+                    <Border x:Name="PreviewPanel" Margin="4,0,4,4">
+                        <!-- Mini app window frame -->
+                        <Border BorderThickness="1" CornerRadius="3"
+                                BorderBrush="{DynamicResource AppBorderBrush}"
+                                Background="{DynamicResource AppWindowBackgroundBrush}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- Title bar -->
+                                <Border Grid.Row="0" CornerRadius="3,3,0,0"
+                                        Background="{DynamicResource AppTitleBarBackgroundBrush}"
+                                        BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="0,0,0,1">
+                                    <Grid Margin="6,0">
+                                        <TextBlock Text="OATControl" FontSize="11" FontWeight="Bold"
+                                                   Foreground="{DynamicResource AppTitleBarForegroundBrush}"
+                                                   VerticalAlignment="Center"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <Button Content="─" Width="30" Height="26"
+                                                    Style="{StaticResource PreviewTitleBarButton}"/>
+                                            <Button Content="□" Width="30" Height="26"
+                                                    Style="{StaticResource PreviewTitleBarButton}"/>
+                                            <Button Content="✕" Width="30" Height="26"
+                                                    Style="{StaticResource PreviewTitleBarButton}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+
+                                <!-- Content area -->
+                                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                    <Grid Margin="10,8">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <!-- Stepper fields -->
+                                        <Grid Grid.Row="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="RA Stepper"
+                                                       Foreground="{DynamicResource AppForegroundBrush}"
+                                                       FontWeight="Bold" FontSize="11" Margin="0,0,10,4"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBox Grid.Row="0" Grid.Column="1" Text="12:34:56" IsReadOnly="True"
+                                                     Style="{StaticResource MetroTextBox}"
+                                                     FontSize="11" Margin="0,0,0,4" Padding="4,3"/>
+
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Text="DEC Stepper"
+                                                       Foreground="{DynamicResource AppForegroundBrush}"
+                                                       FontWeight="Bold" FontSize="11" Margin="0,0,10,4"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBox Grid.Row="1" Grid.Column="1" Text="+45&#176; 12' 34&#34;" IsReadOnly="True"
+                                                     Style="{StaticResource MetroTextBox}"
+                                                     FontSize="11" Margin="0,0,0,4" Padding="4,3"/>
+                                        </Grid>
+
+                                        <!-- Separator -->
+                                        <Border Grid.Row="1" BorderBrush="{DynamicResource AppBorderSubtleBrush}"
+                                                BorderThickness="0,0,0,1" Margin="0,4,0,6"/>
+
+                                        <!-- Toggle switches -->
+                                        <StackPanel Grid.Row="2" Margin="0,2">
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                                <controls:ToggleSwitch IsChecked="True"
+                                                                       ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}"/>
+                                                <TextBlock Text="Auto Tracking" FontSize="11"
+                                                           Foreground="{DynamicResource AppForegroundBrush}"
+                                                           VerticalAlignment="Center" Margin="8,0,0,0"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                                <controls:ToggleSwitch IsChecked="False"
+                                                                       ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}"/>
+                                                <TextBlock Text="Guiding" FontSize="11"
+                                                           Foreground="{DynamicResource AppForegroundBrush}"
+                                                           VerticalAlignment="Center" Margin="8,0,0,0"/>
+                                            </StackPanel>
+                                            <CheckBox Content="Dark Mode" IsChecked="False" FontSize="11" Margin="0,2"/>
+                                        </StackPanel>
+
+                                        <!-- Separator -->
+                                        <Border Grid.Row="3" BorderBrush="{DynamicResource AppBorderSubtleBrush}"
+                                                BorderThickness="0,0,0,1" Margin="0,4,0,6"/>
+
+                                        <!-- ListView with targets -->
+                                        <DockPanel Grid.Row="4">
+                                            <TextBlock DockPanel.Dock="Top" Text="Targets" FontWeight="Bold" FontSize="11"
+                                                       Foreground="{DynamicResource AppForegroundBrush}" Margin="0,0,0,4"/>
+                                            <Border BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1"
+                                                    CornerRadius="2" MaxHeight="80">
+                                                <ListBox FontSize="10" BorderThickness="0"
+                                                         Background="{DynamicResource AppInputBackgroundBrush}">
+                                                    <ListBoxItem Content="M31 - Andromeda Galaxy" IsSelected="True"/>
+                                                    <ListBoxItem Content="M42 - Orion Nebula"/>
+                                                    <ListBoxItem Content="NGC 7000 - North America"/>
+                                                </ListBox>
+                                            </Border>
+                                        </DockPanel>
+
+                                        <!-- Buttons -->
+                                        <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,10,0,0"
+                                                    HorizontalAlignment="Left">
+                                            <Button Content="Slew" Width="65" Margin="0,0,6,0" Padding="0,4"
+                                                    Style="{StaticResource AccentedDialogSquareButton}"/>
+                                            <Button Content="Stop" Width="65" Margin="0,0,6,0" Padding="0,4"
+                                                    Style="{StaticResource AccentedDialogSquareButton}"/>
+                                            <Button Content="Disabled" Width="65" Padding="0,4" IsEnabled="False"
+                                                    Style="{StaticResource AccentedDialogSquareButton}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
                     </Border>
                 </DockPanel>
             </Border>
