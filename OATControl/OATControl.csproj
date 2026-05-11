@@ -89,6 +89,7 @@
       <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Theming\ThemeManager.cs" />
+    <Compile Include="Theming\ThemeColorDefinitions.cs" />
     <Compile Include="Converters\AbsConverter.cs" />
     <Compile Include="Converters\BoolToBrushConverter.cs" />
     <Compile Include="Converters\BoolToFontWeightConverter.cs" />
