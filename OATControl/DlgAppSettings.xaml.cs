@@ -94,6 +94,7 @@ namespace OATControl
 
 			ThemeComboBox.ItemsSource = ThemeManager.Instance.AvailableThemes;
 			ThemeComboBox.SelectedItem = ThemeManager.Instance.CurrentTheme;
+			EditThemeButton.IsEnabled = ThemeManager.Instance.IsUserTheme(ThemeManager.Instance.CurrentTheme);
 		}
 
 
@@ -524,6 +525,48 @@ namespace OATControl
 				ThemeManager.Instance.ApplyTheme(themeName);
 				AppSettings.Instance.ThemeName = themeName;
 				AppSettings.Instance.Save();
+				EditThemeButton.IsEnabled = ThemeManager.Instance.IsUserTheme(themeName);
+			}
+		}
+
+		private void OnEditTheme(object sender, RoutedEventArgs e)
+		{
+			if (ThemeComboBox.SelectedItem is string themeName && ThemeManager.Instance.IsUserTheme(themeName))
+			{
+				var dlg = new DlgThemeEditor(themeName) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
+				dlg.ShowDialog();
+				ThemeComboBox.ItemsSource = ThemeManager.Instance.AvailableThemes;
+				ThemeComboBox.SelectedItem = ThemeManager.Instance.CurrentTheme;
+			}
+		}
+
+		private void OnCreateTheme(object sender, RoutedEventArgs e)
+		{
+			var dlg = new DlgThemeEditor(null, isNew: true) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
+			dlg.ShowDialog();
+			ThemeComboBox.ItemsSource = ThemeManager.Instance.AvailableThemes;
+			ThemeComboBox.SelectedItem = ThemeManager.Instance.CurrentTheme;
+		}
+
+		private void OnImportTheme(object sender, RoutedEventArgs e)
+		{
+			using (var dlg = new System.Windows.Forms.OpenFileDialog())
+			{
+				dlg.Filter = "Theme files (*.xaml)|*.xaml|All files (*.*)|*.*";
+				dlg.Title = "Import Theme";
+				if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+				{
+					try
+					{
+						ThemeManager.Instance.ImportTheme(dlg.FileName);
+						ThemeComboBox.ItemsSource = ThemeManager.Instance.AvailableThemes;
+					}
+					catch (Exception ex)
+					{
+						System.Windows.MessageBox.Show($"Failed to import theme: {ex.Message}", "Import Error",
+							MessageBoxButton.OK, MessageBoxImage.Warning);
+					}
+				}
 			}
 		}
 	}

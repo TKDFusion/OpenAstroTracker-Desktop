@@ -385,6 +385,15 @@
 						  SelectionChanged="ThemeComboBox_SelectionChanged"
 						  Style="{StaticResource ComboBoxStyle}" />
 
+					<StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="10,4,0,0">
+						<Button Content="Edit Theme" Click="OnEditTheme" Width="80" Margin="0,0,4,0"
+								Style="{StaticResource AccentedDialogSquareButton}" x:Name="EditThemeButton"/>
+						<Button Content="Create Theme" Click="OnCreateTheme" Width="90" Margin="0,0,4,0"
+								Style="{StaticResource AccentedDialogSquareButton}"/>
+						<Button Content="Import Theme" Click="OnImportTheme" Width="90"
+								Style="{StaticResource AccentedDialogSquareButton}"/>
+					</StackPanel>
+
 				</Grid>
 			</TabItem>
 			<TabItem Header="Autohoming">
