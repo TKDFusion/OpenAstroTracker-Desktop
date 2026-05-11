@@ -25,18 +25,9 @@
     <Color x:Key="AppButtonPressedColor">#FFB0B0B0</Color>
     <Color x:Key="AppButtonBorderColor">#FFCCCCCC</Color>
 
-    <!-- Selection -->
-    <Color x:Key="AppSelectedColor">#CC0050C8</Color>
-    <Color x:Key="AppSelectedHoverColor">#990050C8</Color>
-
     <!-- Tooltip -->
     <Color x:Key="AppTooltipBackgroundColor">#FF333333</Color>
     <Color x:Key="AppTooltipForegroundColor">#FFFFFFFF</Color>
-
-    <!-- Semantic state -->
-    <Color x:Key="AppWarningColor">#FFFF8000</Color>
-    <Color x:Key="AppSuccessColor">#FF228B22</Color>
-    <Color x:Key="AppDangerColor">#FFFF4444</Color>
 
     <!-- Disabled -->
     <Color x:Key="AppDisabledBackgroundColor">#FFD0D0D0</Color>
@@ -54,15 +45,6 @@
     <Color x:Key="AppToggleOffColor">#FFCCCCCC</Color>
     <Color x:Key="AppToggleThumbColor">#FFFFFFFF</Color>
     <Color x:Key="AppToggleOffBorderColor">#FFCCCCCC</Color>
-
-    <!-- Accent-tinted interactive states -->
-    <Color x:Key="AppAccentBackgroundColor">#330050C8</Color>
-    <Color x:Key="AppAccentHighlightColor">#990050C8</Color>
-    <Color x:Key="AppAccentActiveColor">#660050C8</Color>
-    <Color x:Key="AppAccentBorderColor">#CC0050C8</Color>
-
-    <!-- Ideal foreground (text on accent backgrounds) -->
-    <Color x:Key="AppIdealForegroundColor">White</Color>
 
     <!-- ===== Brushes ===== -->
 
@@ -88,18 +70,9 @@
     <SolidColorBrush x:Key="AppButtonPressedBrush" Color="{StaticResource AppButtonPressedColor}" />
     <SolidColorBrush x:Key="AppButtonBorderBrush" Color="{StaticResource AppButtonBorderColor}" />
 
-    <!-- Selection -->
-    <SolidColorBrush x:Key="AppSelectedBrush" Color="{StaticResource AppSelectedColor}" />
-    <SolidColorBrush x:Key="AppSelectedHoverBrush" Color="{StaticResource AppSelectedHoverColor}" />
-
     <!-- Tooltip -->
     <SolidColorBrush x:Key="AppTooltipBackgroundBrush" Color="{StaticResource AppTooltipBackgroundColor}" />
     <SolidColorBrush x:Key="AppTooltipForegroundBrush" Color="{StaticResource AppTooltipForegroundColor}" />
-
-    <!-- Semantic state -->
-    <SolidColorBrush x:Key="AppWarningBrush" Color="{StaticResource AppWarningColor}" />
-    <SolidColorBrush x:Key="AppSuccessBrush" Color="{StaticResource AppSuccessColor}" />
-    <SolidColorBrush x:Key="AppDangerBrush" Color="{StaticResource AppDangerColor}" />
 
     <!-- Disabled -->
     <SolidColorBrush x:Key="AppDisabledBackgroundBrush" Color="{StaticResource AppDisabledBackgroundColor}" />
@@ -117,15 +90,5 @@
     <SolidColorBrush x:Key="AppToggleOffBrush" Color="{StaticResource AppToggleOffColor}" />
     <SolidColorBrush x:Key="AppToggleThumbBrush" Color="{StaticResource AppToggleThumbColor}" />
     <SolidColorBrush x:Key="AppToggleOffBorderBrush" Color="{StaticResource AppToggleOffBorderColor}" />
-
-
-    <!-- Accent-tinted interactive states -->
-    <SolidColorBrush x:Key="AppAccentBackgroundBrush" Color="{StaticResource AppAccentBackgroundColor}" />
-    <SolidColorBrush x:Key="AppAccentHighlightBrush" Color="{StaticResource AppAccentHighlightColor}" />
-    <SolidColorBrush x:Key="AppAccentActiveBrush" Color="{StaticResource AppAccentActiveColor}" />
-    <SolidColorBrush x:Key="AppAccentBorderBrush" Color="{StaticResource AppAccentBorderColor}" />
-
-    <!-- Ideal foreground -->
-    <SolidColorBrush x:Key="AppIdealForegroundBrush" Color="{StaticResource AppIdealForegroundColor}" />
 
 </ResourceDictionary>

@@ -19,7 +19,7 @@
 			<Setter Property="Margin" Value="10,10" />
 			<Setter Property="Padding" Value="10,10" />
 			<Setter Property="Width" Value="100" />
-			<Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}"  />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}"  />
 			<Setter Property="VerticalAlignment" Value="Center"  />
 			<Setter Property="HorizontalAlignment" Value="Left" />
 		</Style>
@@ -46,7 +46,7 @@
 			<!-- Keep your visual styling -->
 			<Setter Property="Focusable" Value="False"/>
 			<Setter Property="IsHitTestVisible" Value="False"/>
-			<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			
 			<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -107,7 +107,7 @@
 							<Setter Property="FontSize" Value="12"/>
 							<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
 							<Setter Property="VerticalContentAlignment" Value="Center"/>
-							<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}"/>
+							<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}"/>
 							<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}"/>
 							<Setter Property="Padding" Value="0"/>
 							<Setter Property="BorderThickness" Value="0"/>
@@ -122,15 +122,15 @@
 									<ColumnDefinition Width="80"/>
 								</Grid.ColumnDefinitions>
 
-								<Border Grid.Column="0" BorderBrush="{DynamicResource AppSelectedBrush}" BorderThickness="1" Margin="2,1" Padding="4,2" Background="{DynamicResource AppWindowBackgroundBrush}">
+								<Border Grid.Column="0" BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="1" Margin="2,1" Padding="4,2" Background="{DynamicResource AppWindowBackgroundBrush}">
 									<TextBlock Text="{Binding AzimuthError}" TextAlignment="Center"/>
 								</Border>
 
-								<Border Grid.Column="1" BorderBrush="{DynamicResource AppSelectedBrush}" BorderThickness="1" Margin="2,1" Padding="4,2" Background="{DynamicResource AppWindowBackgroundBrush}">
+								<Border Grid.Column="1" BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="1" Margin="2,1" Padding="4,2" Background="{DynamicResource AppWindowBackgroundBrush}">
 									<TextBlock Text="{Binding AltitudeError}" TextAlignment="Center"/>
 								</Border>
 
-								<Border Grid.Column="2" BorderBrush="{DynamicResource AppSelectedBrush}" BorderThickness="1" Margin="2,1" Padding="4,2" Background="{DynamicResource AppWindowBackgroundBrush}">
+								<Border Grid.Column="2" BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="1" Margin="2,1" Padding="4,2" Background="{DynamicResource AppWindowBackgroundBrush}">
 									<TextBlock Text="{Binding TotalError}" TextAlignment="Center"/>
 								</Border>
 							</Grid>

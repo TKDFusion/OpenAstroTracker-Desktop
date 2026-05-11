@@ -6,6 +6,7 @@
         xmlns:controls="clr-namespace:OATControl.Controls"
         xmlns:local="clr-namespace:OATControl"
         xmlns:converters="clr-namespace:OATControl.Converters"
+   		controls:ThemedWindow.TitleBarButtons="Minimize,Close" 
         mc:Ignorable="d"
 		Background="{DynamicResource AppWindowBackgroundBrush}"
         Title="Target Chooser" Height="600" MinHeight="280" Width="550" MinWidth="210" MaxWidth="580">
@@ -37,56 +38,6 @@
 				</Trigger>
 			</Style.Triggers>
 		</Style>
-		<!--
-		<Style x:Key="TimerNameStyle" TargetType="TextBlock" >
-			<Setter Property="FontSize" Value="24" />
-			<Setter Property="Foreground" Value="LimeGreen" />
-		</Style>
-		<Style x:Key="TimerLeftStyle" TargetType="TextBlock" >
-			<Setter Property="FontSize" Value="24" />
-			<Setter Property="Foreground" Value="White" />
-		</Style>
-		<Style x:Key="TimerNextOccurrenceStyle" TargetType="TextBlock" >
-			<Setter Property="FontSize" Value="14" />
-			<Setter Property="Foreground" Value="Gray" />
-		</Style>
-		<DataTemplate x:Name="TimerDisplay">
-			<Grid Name="TimerItemTemplate" HorizontalAlignment="Stretch" Margin="10,5">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*" />
-				</Grid.ColumnDefinitions>
-				<TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Name}" Style="{StaticResource TimerNameStyle}"/>
-				<TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding TimeLeft}" Style="{StaticResource TimerLeftStyle}" Padding="0,0,0,8"/>
-				<TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding NextOccurrence}" Style="{StaticResource TimerNextOccurrenceStyle}" Margin="0,-4,0,0" Padding="0,0,0,8"/>
-
-				<ListView Grid.Row="3" 
-                          Margin="0,0"
-                          Visibility="{Binding IsSelected,Converter={StaticResource BoolToVisibilityConverter}}"
-                          ItemsSource="{Binding NextOccurrences}"
-                          SelectionMode="Single">
-					<ListView.ItemContainerStyle>
-						<Style TargetType="ListViewItem">
-							<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-							<Setter Property="Margin" Value="0,-6"/>
-							<Setter Property="Padding" Value="0,0"/>
-							<Setter Property="Foreground" Value="Gray"/>
-							<Setter Property="FontSize" Value="14"/>
-						</Style>
-					</ListView.ItemContainerStyle>
-					<ListView.ItemTemplate>
-						<DataTemplate>
-							
-						</DataTemplate>
-					</ListView.ItemTemplate>
-				</ListView>
-			</Grid>
-		</DataTemplate>-->
 		<DataTemplate x:Key="myHeaderTemplate">
 			<TextBlock Style="{StaticResource HeaderStyle}" >
 				<TextBlock.Text>
@@ -217,17 +168,6 @@
 				</Grid>
 			</Border>
 		</DataTemplate>
-
-		<!--<Style x:Key="ListHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
-			<Setter Property="BorderBrush" Value="{DynamicResource AppWarningBrush}"/>
-			<Setter Property="Background" Value="{DynamicResource AppWarningBrush}"/>
-			<Style.Triggers>
-				<Trigger Property="IsMouseOver" Value="true">
-					<Setter Property="Background" Value="{DynamicResource AppWarningBrush}" />
-				</Trigger>
-			</Style.Triggers>
-		</Style>-->
-
 		<Style TargetType="ListViewItem">
 			<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
 			<Setter Property="Margin" Value="11,0,1,0"/>
@@ -312,122 +252,19 @@
 			/>
 			<TextBlock Text="Showing Unreachable Targets" Style="{DynamicResource MetroTextBlock}" Margin="0,2"/>
 		</StackPanel>
-		<ListView Grid.Row="1" ItemsSource="{Binding AvailablePointsOfInterest}" HorizontalAlignment="Center" Background="{DynamicResource AppNestedBackgroundBrush}">
-			<ListView.View>
-				<GridView  ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}" >
-					<GridViewColumn Header="Catalog" Width="80" CellTemplate="{StaticResource CatalogNameCellTemplate}" HeaderTemplate="{StaticResource myHeaderTemplate}"/>
-					<GridViewColumn Header="Name" CellTemplate="{StaticResource NameCellTemplate}" HeaderTemplate="{StaticResource myHeaderTemplate}"/>
-					<GridViewColumn Header="RA" CellTemplate="{StaticResource RaCellTemplate}"/>
-					<!--<GridViewColumn Header="RA Pos" CellTemplate="{StaticResource RaPosCellTemplate}"/>-->
-					<!--<GridViewColumn Header="RA Dist" CellTemplate="{StaticResource RaDistCellTemplate}"/>-->
-					<GridViewColumn Header="DEC"  CellTemplate="{StaticResource DecCellTemplate}"/>
-					<!--<GridViewColumn Header="DEC Pos"  CellTemplate="{StaticResource DecPosCellTemplate}"/>-->
-					<!--<GridViewColumn Header="DEC Dist"  CellTemplate="{StaticResource DecDistCellTemplate}"/>-->
-					<GridViewColumn Header="Distance" Width="90" CellTemplate="{StaticResource DistCellTemplate}" />
-				</GridView>
-			</ListView.View>
-		</ListView>
+		<Border Grid.Row="1"  BorderThickness="1" BorderBrush="{DynamicResource AppButtonBorderBrush}" Margin="16,8">
+			<ListView ItemsSource="{Binding AvailablePointsOfInterest}" HorizontalAlignment="Center" Background="{DynamicResource AppNestedBackgroundBrush}" BorderThickness="0">
+				<ListView.View>
+					<GridView  ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}" >
+						<GridViewColumn Header="Catalog" Width="80" CellTemplate="{StaticResource CatalogNameCellTemplate}" HeaderTemplate="{StaticResource myHeaderTemplate}"/>
+						<GridViewColumn Header="Name" CellTemplate="{StaticResource NameCellTemplate}" HeaderTemplate="{StaticResource myHeaderTemplate}"/>
+						<GridViewColumn Header="RA" CellTemplate="{StaticResource RaCellTemplate}"/>
+						<GridViewColumn Header="DEC"  CellTemplate="{StaticResource DecCellTemplate}"/>
+						<GridViewColumn Header="Distance" Width="90" CellTemplate="{StaticResource DistCellTemplate}" />
+					</GridView>
+				</ListView.View>
+			</ListView>
+		</Border>
 		<TextBlock Grid.Row="2" Text="This list can be edited in the application Settings dialog" HorizontalAlignment="Center" Margin="0,6" Foreground="{DynamicResource AppForegroundBrush}" />
 	</Grid>
-	<!--
-	<Grid Grid.IsSharedSizeScope="true">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<Grid Grid.Row="0">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto" SharedSizeGroup="A" />
-					<ColumnDefinition Width="Auto" SharedSizeGroup="B"/>
-					<ColumnDefinition Width="Auto" SharedSizeGroup="C" MinWidth="80"/>
-					<ColumnDefinition Width="Auto" SharedSizeGroup="D"/>
-					<ColumnDefinition Width="Auto" SharedSizeGroup="E"/>
-					<ColumnDefinition Width="Auto" SharedSizeGroup="f"/>
-				</Grid.ColumnDefinitions>
-				<TextBlock Grid.Column="0" Text="Target" Style="{StaticResource HeaderStyle}"/>
-			<TextBlock Grid.Column="1" Text="RA"  Style="{StaticResource HeaderStyle}"/>
-			<TextBlock Grid.Column="2" Text="RA Dist"  Style="{StaticResource HeaderStyle}"/>
-			<TextBlock Grid.Column="3" Text="DEC" Style="{StaticResource HeaderStyle}"/>
-			<TextBlock Grid.Column="4" Text="DEC Dist"  Style="{StaticResource HeaderStyle}"/>
-			<TextBlock Grid.Column="5" Text="Dist"  Style="{StaticResource HeaderStyle}"/>
-			</Grid>
-
-		<ListView 			 Grid.Row="1"
-			 HorizontalAlignment="Stretch"
-             HorizontalContentAlignment="Stretch"
- 			 ItemsSource="{Binding AvailablePointsOfInterest}"
-			>
-
-			<ListView.ItemContainerStyle>
-				<Style TargetType="ListViewItem">
-					<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-					<Setter Property="Margin" Value="11,0,1,0"/>
-					<Setter Property="Padding" Value="0,2"/>
-					<Setter Property="Foreground" Value="Red"/>
-					<Setter Property="FontSize" Value="12"/>
-				</Style>
-			</ListView.ItemContainerStyle>
-			<ListView.ItemTemplate>
-				<DataTemplate >
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" SharedSizeGroup="A" />
-							<ColumnDefinition Width="Auto" SharedSizeGroup="B"/>
-								<ColumnDefinition Width="Auto" SharedSizeGroup="C" MinWidth="80"/>
-								<ColumnDefinition Width="Auto" SharedSizeGroup="D"/>
-								<ColumnDefinition Width="Auto" SharedSizeGroup="E"/>
-								<ColumnDefinition Width="Auto" SharedSizeGroup="f"/>
-							</Grid.ColumnDefinitions>
-							<TextBlock Grid.Column="0" Text="{Binding Name}" />
-							<TextBlock Grid.Column="1" Text="{Binding RA, Converter={StaticResource RAConverter}}" Padding="10,0" />
-							<Grid Grid.Column="2" >
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="{Binding RADistance, Converter={StaticResource RADiffConverter}}" />
-									<ColumnDefinition Width="{Binding RADistance, Converter={StaticResource RADiffInvertConverter}}" />
-								</Grid.ColumnDefinitions>
-
-								<Border Grid.Column="0"  >
-									<Rectangle Fill="{DynamicResource AppPrimaryBrush}"/>
-								</Border>
-								<Border Grid.Column="1"  >
-									<Rectangle Fill="{DynamicResource AppBorderBrush}"/>
-								</Border>
-							</Grid>
-							<TextBlock Grid.Column="2" Text="{Binding RADistance, Converter={StaticResource DECConverter}}" Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Stretch" />
-							<TextBlock Grid.Column="3" Text="{Binding DEC, Converter={StaticResource DECConverter}}" Padding="10,0" />
-							<Grid Grid.Column="4" >
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="{Binding DECDistance, Converter={StaticResource DECDiffConverter}}" />
-									<ColumnDefinition Width="{Binding DECDistance, Converter={StaticResource DECDiffInvertConverter}}" />
-								</Grid.ColumnDefinitions>
-
-								<Border Grid.Column="0"  >
-									<Rectangle Fill="{DynamicResource AppPrimaryBrush}"/>
-								</Border>
-								<Border Grid.Column="1"  >
-									<Rectangle Fill="{DynamicResource AppBorderBrush}"/>
-								</Border>
-							</Grid>
-							<TextBlock Grid.Column="4" Text="{Binding DECDistance, Converter={StaticResource DECConverter}}" Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Stretch" />
-							<Grid Grid.Column="5" >
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="{Binding DECDistance, Converter={StaticResource DECDiffConverter}}" />
-									<ColumnDefinition Width="{Binding DECDistance, Converter={StaticResource DECDiffInvertConverter}}" />
-								</Grid.ColumnDefinitions>
-
-								<Border Grid.Column="0"  >
-									<Rectangle Fill="{DynamicResource AppPrimaryBrush}"/>
-								</Border>
-								<Border Grid.Column="1"  >
-									<Rectangle Fill="{DynamicResource AppBorderBrush}"/>
-								</Border>
-							</Grid>
-							<TextBlock Grid.Column="5" Text="{Binding DECDistance, Converter={StaticResource DECConverter}}" Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Stretch" />
-							<TextBlock Grid.Column="6" Text="{Binding IsReachable}" Padding="10,0" />
-					</Grid>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
-	</Grid>
-		-->
 </controls:ThemedWindow>

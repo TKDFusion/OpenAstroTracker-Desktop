@@ -24,7 +24,7 @@ using System.Windows.Threading;
 namespace OATControl
 {
 	/// <summary>
-	/// Interaction logic for DlgStepCalibration.xaml
+	/// Interaction logic for DlgAxisCalibration.xaml
 	/// </summary>
 	public partial class DlgAxisCalibration : ThemedWindow, INotifyPropertyChanged
 	{

@@ -8,6 +8,7 @@
         xmlns:local="clr-namespace:OATControl" 
         xmlns:localVM="clr-namespace:OATControl.ViewModels" 
 		xmlns:converters="clr-namespace:OATControl.Converters"
+		controls:ThemedWindow.TitleBarButtons="Close"
 		Loaded="OnWindowLoaded"
 		mc:Ignorable="d"
         Title="OATControl Settings" MinHeight="400" Width="660" MinWidth="600" Height="560" WindowStyle="ToolWindow">
@@ -158,7 +159,7 @@
 											<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
 										</Trigger>
 										<Trigger Property="IsSelected" Value="True">
-											<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppSelectedBrush}" />
+											<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
 											<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 										</Trigger>
 									</ControlTemplate.Triggers>
@@ -514,14 +515,14 @@
 													<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
 												</Trigger>
 												<Trigger Property="IsSelected" Value="True">
-													<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppSelectedBrush}" />
+													<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
 												</Trigger>
 												<MultiTrigger>
 													<MultiTrigger.Conditions>
 														<Condition Property="IsSelected" Value="True" />
 														<Condition Property="Selector.IsSelectionActive" Value="False" />
 													</MultiTrigger.Conditions>
-													<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppSelectedHoverBrush}" />
+													<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
 												</MultiTrigger>
 											</ControlTemplate.Triggers>
 										</ControlTemplate>

@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:OATControl" 
 		xmlns:controls="clr-namespace:OATControl.Controls"
 		xmlns:converters="clr-namespace:OATControl.Converters"
+		controls:ThemedWindow.TitleBarButtons="Close"
         mc:Ignorable="d"
         Title=" Stepper Motor Calibration" MinHeight="400" Width="520" MinWidth="520" Height="400" WindowStyle="ToolWindow">
 	<Window.Resources>
@@ -53,12 +54,11 @@
 			<Setter Property="Margin" Value="0,4" />
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
 			<Setter Property="TextAlignment" Value="Center" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="MaxWidth"  Value="250" />
 		</Style>
 		<Style x:Key="TextBorder" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
-			<Setter Property="BorderBrush" Value="{DynamicResource AppAccentBorderBrush}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource AppNestedBorderBrush}" />
 			<Setter Property="Background" Value="{DynamicResource AppInputBackgroundBrush}" />
 			<Setter Property="HorizontalContentAlignment" Value="Center" />
 			<Setter Property="FontWeight" Value="Bold" />
@@ -176,7 +176,7 @@
 											<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
 										</Trigger>
 										<Trigger Property="IsSelected" Value="True">
-											<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppSelectedBrush}" />
+											<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
 											<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 										</Trigger>
 									</ControlTemplate.Triggers>

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OATControl" xmlns:controls="clr-namespace:OATControl.Controls" xmlns:converters="clr-namespace:OATControl.Converters"
 		mc:Ignorable="d"
+		controls:ThemedWindow.TitleBarButtons="Close"
 		Background="{DynamicResource AppWindowBackgroundBrush}"
         Title="N.I.N.A. Polar Alignment" Height="360" Width="480" WindowStyle="ToolWindow" FontSize="16" SizeToContent="Height">
 	<controls:ThemedWindow.Resources>
@@ -19,7 +20,7 @@
 			<Setter Property="Margin" Value="10,10" />
 			<Setter Property="Padding" Value="10,10" />
 			<Setter Property="Width" Value="100" />
-			<Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}"  />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}"  />
 			<Setter Property="VerticalAlignment" Value="Center"  />
 			<Setter Property="HorizontalAlignment" Value="Left" />
 		</Style>
@@ -27,7 +28,7 @@
 		<Style x:Key="ChecklistItemTextStyle" TargetType="TextBlock">
 			<Setter Property="FontWeight" Value="Normal"/>
 			<Setter Property="FontSize" Value="13"/>
-			<Setter Property="Foreground" Value="{DynamicResource AppButtonPressedBrush}"/>
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"/>
 			<Style.Triggers>
 				<DataTrigger Binding="{Binding IsComplete}" Value="True">
 					<Setter Property="FontWeight" Value="Bold"/>
@@ -81,7 +82,7 @@
 			<!-- Keep your visual styling -->
 			<Setter Property="Focusable" Value="False"/>
 			<Setter Property="IsHitTestVisible" Value="False"/>
-			<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			
 			<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -112,7 +113,6 @@
 
 		<TextBlock Grid.Row="0" 
 				   Text="N.I.N.A. has started Polar Alignment"
-                   FontWeight="Bold"
                    Style="{StaticResource StateText}"
                    Margin="20,10,20,16"/>
 
@@ -146,7 +146,7 @@
 							<Setter Property="FontSize" Value="12"/>
 							<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
 							<Setter Property="VerticalContentAlignment" Value="Center"/>
-							<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}"/>
+							<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}"/>
 							<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}"/>
 							<Setter Property="Padding" Value="0"/>
 							<Setter Property="BorderThickness" Value="0"/>
@@ -161,15 +161,15 @@
 									<ColumnDefinition Width="80"/>
 								</Grid.ColumnDefinitions>
 
-								<Border Grid.Column="0" BorderBrush="{DynamicResource AppSelectedBrush}" BorderThickness="1" Margin="2,1" Padding="4,2" Background="{DynamicResource AppWindowBackgroundBrush}">
+								<Border Grid.Column="0" BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="1" Margin="2,1" Padding="4,2" Background="{DynamicResource AppWindowBackgroundBrush}">
 									<TextBlock Text="{Binding AzimuthError}" TextAlignment="Center"/>
 								</Border>
 
-								<Border Grid.Column="1" BorderBrush="{DynamicResource AppSelectedBrush}" BorderThickness="1" Margin="2,1" Padding="4,2" Background="{DynamicResource AppWindowBackgroundBrush}">
+								<Border Grid.Column="1" BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="1" Margin="2,1" Padding="4,2" Background="{DynamicResource AppWindowBackgroundBrush}">
 									<TextBlock Text="{Binding AltitudeError}" TextAlignment="Center"/>
 								</Border>
 
-								<Border Grid.Column="2" BorderBrush="{DynamicResource AppSelectedBrush}" BorderThickness="1" Margin="2,1" Padding="4,2" Background="{DynamicResource AppWindowBackgroundBrush}">
+								<Border Grid.Column="2" BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="1" Margin="2,1" Padding="4,2" Background="{DynamicResource AppWindowBackgroundBrush}">
 									<TextBlock Text="{Binding TotalError}" TextAlignment="Center"/>
 								</Border>
 							</Grid>

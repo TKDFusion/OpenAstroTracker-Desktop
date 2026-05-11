@@ -54,7 +54,7 @@
 			<Setter Property="HorizontalAlignment" Value="Left" />
 		</Style>
 		<Style x:Key="TextBlockLabelSmall" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabel}">
-			<Setter Property="FontSize" Value="14" />
+			<Setter Property="FontSize" Value="13" />
 			<Setter Property="Padding" Value="4,4" />
 			<Setter Property="HorizontalAlignment" Value="Right" />
 		</Style>
@@ -64,7 +64,7 @@
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
 			<Setter Property="TextAlignment" Value="Center" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="MaxWidth"  Value="250" />
 		</Style>
@@ -172,7 +172,7 @@
                                             <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
                                         </Trigger>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppSelectedBrush}" />
+											<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
                                             <Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
                                         </Trigger>
                                     </ControlTemplate.Triggers>

@@ -6,20 +6,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OATControl" xmlns:controls="clr-namespace:OATControl.Controls" xmlns:converters="clr-namespace:OATControl.Converters"
 		mc:Ignorable="d"
-        Title="Polar Alignment" Height="220" Width="570.879" ResizeMode="NoResize" WindowStyle="ToolWindow" FontSize="16" FontWeight="Bold" >
+        Title="Polar Alignment" Height="220" Width="500" ResizeMode="NoResize" WindowStyle="ToolWindow" FontSize="16"  >
 	<controls:ThemedWindow.Resources>
-		<Style x:Key="StateText" TargetType="TextBlock">
+		<Style x:Key="StateText" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
 			<Setter Property="Margin" Value="10,0" />
+			<Setter Property="FontSize" Value="14" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}"  />
 			<Setter Property="TextWrapping" Value="Wrap"  />
 			<Setter Property="VerticalAlignment" Value="Center"  />
 			<Setter Property="HorizontalAlignment" Value="Left" />
 		</Style>
+
+		<Style x:Key="StateTextHelp" TargetType="TextBlock" BasedOn="{StaticResource StateText}">
+			<Setter Property="FontSize" Value="11" />
+		</Style>
 		<Style x:Key="StateButton" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}" >
 			<Setter Property="Margin" Value="10,10" />
-			<Setter Property="Padding" Value="10,10" />
+			<Setter Property="Padding" Value="10,4" />
 			<Setter Property="Width" Value="100" />
-			<Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}"  />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"  />
 			<Setter Property="VerticalAlignment" Value="Center"  />
 			<Setter Property="HorizontalAlignment" Value="Left" />
 		</Style>
@@ -35,47 +40,53 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<TextBlock Grid.Row="0" Grid.Column="0"  
+		<TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"
+				   Padding="4"
+				   Text="This is a very inaccurate method Polar Alignment and is meant for cases where Plate Solving is not available. If you are using N.I.N.A or SharpCap, this method should not be used." 
+				   Style="{StaticResource StateTextHelp}" 
+				   />
+
+		<TextBlock Grid.Row="1" Grid.Column="0"  
 				   Text="Is the mount at the home position?" 
 				   Style="{StaticResource StateText}" 
 		 		   IsEnabled="{Binding State, Converter={StaticResource StateIsEnabledIf}, ConverterParameter=1}"
 				   />
-		<Button Grid.Row="0" Grid.Column="1" 
+		<Button Grid.Row="1" Grid.Column="1" 
 				Content="Yes" 
+				VerticalAlignment="Top"
 				Command="{Binding OKCommand}" 
 				Style="{StaticResource StateButton}" 
 	 			IsEnabled="{Binding State, Converter={StaticResource StateIsEnabledIf}, ConverterParameter=1}"
 				/>
 
-		<TextBlock Grid.Row="2" Grid.Column="0" 
+		<TextBlock Grid.Row="3" Grid.Column="0" 
 				   Text="Wait for slewing to stop, then move the mount such that Polaris is in the center of your cameras viewfinder." 
 				   Style="{StaticResource StateText}" 
 	 			   IsEnabled="{Binding State, Converter={StaticResource StateIsEnabledIf}, ConverterParameter=2}"
 				   Visibility="{Binding State, Converter={StaticResource StateVisibleIf}, ConverterParameter=2}"
 				   />
 
-		<Button Grid.Row="2" Grid.Column="1" 
+		<Button Grid.Row="3" Grid.Column="1" 
 				Content="Done" 
+				VerticalAlignment="Center"
 				Command="{Binding OKCommand}" 
 	 			   IsEnabled="{Binding State, Converter={StaticResource StateIsEnabledIf}, ConverterParameter=2}"
 				   Visibility="{Binding State, Converter={StaticResource StateVisibleIf}, ConverterParameter=2}"
 				Style="{StaticResource StateButton}" 
 		/>
 
-		<TextBlock Grid.Row="3" Grid.Column="0"  
+		<TextBlock Grid.Row="4" Grid.Column="0"  
 				   Text="Your mount is now polar aligned." 
 				   Style="{StaticResource StateText}" 
 	 			   IsEnabled="{Binding State, Converter={StaticResource StateIsEnabledIf}, ConverterParameter=3}"
 				   Visibility="{Binding State, Converter={StaticResource StateVisibleIf}, ConverterParameter=3}"
 		/>
 
-		<Button Grid.Row="3" Grid.Column="2" 
+		<Button Grid.Row="4" Grid.Column="2" 
 				Content="Close" 
 				Command="{Binding CloseCommand}" 
 				Style="{StaticResource StateButton}"  

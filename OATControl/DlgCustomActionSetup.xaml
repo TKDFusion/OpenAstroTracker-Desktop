@@ -6,16 +6,16 @@
 		xmlns:controls="clr-namespace:OATControl.Controls"
         xmlns:local="clr-namespace:OATControl" xmlns:converters="clr-namespace:OATControl.Converters"
 		mc:Ignorable="d"
-        Title=" Custom Action Definition" MinHeight="250" Width="470" MinWidth="285" Height="200" >
+		controls:ThemedWindow.TitleBarButtons="Close"
+        Title=" Custom Action Definition" MinHeight="250" Width="470" MinWidth="285" Height="200"  >
 	<controls:ThemedWindow.Resources>
 		<Style x:Key="TextBoxSmall" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}" >
 			<Setter Property="Margin" Value="10,4" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AppBackgroundColor}" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 		</Style>
 		<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
 			<Setter Property="VerticalAlignment" Value="Center" />
-			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="FontSize" Value="20" />
 			<Setter Property="Margin" Value="2,0" />
 			<Setter Property="Padding" Value="6,0" />
@@ -34,8 +34,8 @@
 		<Style x:Key="TextBlockHelpSmall" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabelSmall}">
 			<Setter Property="HorizontalAlignment" Value="Left" />
 			<Setter Property="TextAlignment" Value="Left" />
-			<Setter Property="Foreground" Value="{DynamicResource AppForegroundSubtleBrush}" />
-			<Setter Property="FontSize" Value="8pt" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
+			<Setter Property="FontSize" Value="11" />
 			<Setter Property="FontWeight" Value="Normal" />
 			<Setter Property="Padding" Value="8,0" />
 		</Style>
@@ -68,7 +68,7 @@
 		</TextBlock>
 
 		<StackPanel Grid.Row="20" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,10,0,0">
-			<Button Margin="16,8" Padding="20,0" Content="OK" HorizontalAlignment="Right" Style="{StaticResource MainButtonStyle}" Command="{Binding OKCommand}" Width="80"/>
+			<Button Margin="16,8" Padding="20,0" Content="OK" HorizontalAlignment="Right" Style="{StaticResource MainButtonStyle}" Command="{Binding OKCommand}" Width="80" Height="26"/>
 			<Button Margin="16,8" Padding="20,0" Content="Cancel" HorizontalAlignment="Right" Style="{StaticResource MainButtonStyle}" IsCancel="True" Command="{Binding CancelCommand}" Width="80"/>
 		</StackPanel>
 

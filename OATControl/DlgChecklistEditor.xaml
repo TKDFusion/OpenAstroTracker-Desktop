@@ -41,7 +41,7 @@
         </Grid.RowDefinitions>
         <!-- Multi-line TextBox for editing -->
         <Border BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1" Grid.Row="0">
-            <TextBox x:Name="ChecklistTextBox"                 
+            <TextBox x:Name="ChecklistTextBox"
                  AcceptsReturn="True"
                  VerticalScrollBarVisibility="Auto"
                  HorizontalScrollBarVisibility="Auto"
@@ -52,7 +52,7 @@
                  Foreground="{DynamicResource AppForegroundStrongBrush}"
                  Background="{DynamicResource AppNestedBackgroundBrush}"
                  BorderThickness="0"
-                 CaretBrush="{DynamicResource AppIdealForegroundBrush}"
+                 CaretBrush="{DynamicResource AppForegroundStrongBrush}"
                  />
         </Border>
         <TextBlock Grid.Row="1" Text="One checklist item line. Headers start with '*', subitems with '-'." Foreground="{DynamicResource AppForegroundBrush}"/>

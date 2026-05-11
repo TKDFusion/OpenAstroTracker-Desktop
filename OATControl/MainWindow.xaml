@@ -8,6 +8,8 @@
         xmlns:converters="clr-namespace:OATControl.Converters"
         mc:Ignorable="d"
 		Background="{DynamicResource AppWindowBackgroundBrush}"
+		controls:ThemedWindow.TitleBarButtons="Minimize, Close"
+
         Title="{Binding Version, StringFormat={} OpenAstroTracker Control V{0}}" MinHeight="767" MinWidth="720" Height="767" Width="720">
 	<Window.Resources>
 		<converters:AbsConverter x:Key="AbsConverter" />
@@ -35,7 +37,7 @@
 			<Setter Property="Padding" Value="0,0" />
 		</Style>
 		<Style x:Key="TextBorder" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
-			<Setter Property="BorderBrush" Value="{DynamicResource AppAccentBorderBrush}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource AppNestedBorderBrush}" />
 			<Setter Property="Background" Value="{DynamicResource AppInputBackgroundBrush}" />
 			<Setter Property="HorizontalContentAlignment" Value="Center" />
 			<Setter Property="FontWeight" Value="Bold" />
@@ -122,7 +124,7 @@
 		<Style x:Key="TextBlockLabelValue" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabelSmall}">
 			<Setter Property="Padding" Value="12,2" />
 			<Setter Property="Margin" Value="0,4" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}" />
 		</Style>
 
 	</Window.Resources>
@@ -329,7 +331,7 @@
 						<Button MinWidth="50" Margin="2,2" Style="{StaticResource MainButtonStyle}" Command="{Binding HomeCommand}" >Home</Button>
 						<Button MinWidth="50" Margin="2,2" Style="{StaticResource MainButtonStyle}" Command="{Binding ParkCommand}" Content="{Binding ParkCommandString}" />
 					</StackPanel>
-					<Button  Height="26" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,2,2,0" Content="Set Home" Style="{StaticResource MainButtonStyle}" Command="{Binding SetHomeCommand}" />
+					<Button  Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2,2,2,0" Content="Set Home" Style="{StaticResource MainButtonStyle}" Command="{Binding SetHomeCommand}" />
 				</StackPanel>
 
 				<controls:RangeSlider Grid.Column="4" Grid.RowSpan="4" 
@@ -785,8 +787,8 @@
 				</Grid.RowDefinitions>
 				<StackPanel Orientation="Horizontal" Grid.Column="1">
 					<TextBlock Text="Autohoming:" VerticalAlignment="Center" Margin="0,0,2,0" Style="{StaticResource TextBlockLabelSmall}" />
-					<Button Content="RA" Command="{Binding AutoHomeRACommand}" Style="{StaticResource MainButtonStyle}" Width="40" Margin="0,0,8,0"/>
-					<Button Content="DEC" Command="{Binding AutoHomeDECCommand}" Style="{StaticResource MainButtonStyle}" Width="40" />
+					<Button Content="RA" Command="{Binding AutoHomeRACommand}" Style="{StaticResource MainButtonStyle}" Width="50" Height="24" Margin="0,0,6,0" Padding="0"/>
+					<Button Content="DEC" Command="{Binding AutoHomeDECCommand}" Style="{StaticResource MainButtonStyle}" Width="50" Height="24" Padding="0"/>
 				</StackPanel>
 				<StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding ShowHomingResult, Converter={StaticResource TrueBoolToVisible}}">
 					<TextBlock Text="{Binding RaHomingState}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TextBlockLabelTiny}" />

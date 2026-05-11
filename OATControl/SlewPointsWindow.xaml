@@ -55,12 +55,9 @@
 		<Style x:Key="TextBorder" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
 			<Setter Property="VerticalAlignment" Value="Center" />
 			<Setter Property="Padding" Value="0" />
-			<Setter Property="BorderBrush" Value="{DynamicResource AppAccentBorderBrush}" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentActiveBrush}" />
 			<Setter Property="HorizontalContentAlignment" Value="Left" />
 			<Setter Property="FontSize" Value="12" />
 			<Setter Property="MinWidth" Value="120" />
-			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 		</Style>
 
 
@@ -140,8 +137,8 @@
 								<TextBox x:Name="NameTextBox"
 									Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 									Style="{StaticResource TextBorder}"
-									Background="{DynamicResource AppSelectedBrush}" 
-										 Foreground="{DynamicResource AppForegroundStrongBrush}"
+									Background="{DynamicResource AppButtonHoverBrush}" 
+									Foreground="{DynamicResource AppForegroundStrongBrush}"
 									Visibility="{Binding IsEditing, Converter={StaticResource BoolToShow}}"
 									KeyDown="NameTextBox_KeyDown"
 									LostFocus="NameTextBox_LostFocus"
