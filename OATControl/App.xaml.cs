@@ -52,6 +52,7 @@ namespace OATControl
 				#if DEBUG
 				ThemeManager.Instance.HotReloadEnabled = true;
 				#endif
+				ThemeManager.Instance.ScanUserThemes();
 				ThemeManager.Instance.ApplyTheme(savedTheme);
 
 			base.OnStartup(e);
