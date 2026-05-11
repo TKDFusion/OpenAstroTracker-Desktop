@@ -154,7 +154,9 @@ namespace OATControl
             foreach (var def in defaults)
             {
                 var current = themeColors.TryGetValue(def.Key, out var c) ? c : def.DefaultColor;
-                _colorItems.Add(new ColorEditItem(def.Key, def.DisplayName, def.Group, current, def.DefaultColor));
+                var item = new ColorEditItem(def.Key, def.DisplayName, def.Group, current, def.DefaultColor);
+                item.PropertyChanged += (s, e) => { if (e.PropertyName == "Color") UpdatePreview(); };
+                _colorItems.Add(item);
             }
 
             ColorEditorGrid.ItemsSource = _colorItems;
@@ -231,6 +233,7 @@ namespace OATControl
                         MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
+        }
 
         private void OnSave(object sender, RoutedEventArgs e)
         {
