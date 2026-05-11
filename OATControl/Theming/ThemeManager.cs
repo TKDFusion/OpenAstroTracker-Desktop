@@ -172,25 +172,29 @@ namespace OATControl.Theming
         {
             var result = new Dictionary<string, Color>();
 
-            ResourceDictionary dict;
-            if (_userThemes.Contains(themeName))
+            try
             {
-                var path = Path.Combine(UserThemesFolder, $"{themeName}.xaml");
-                dict = new ResourceDictionary { Source = new Uri(path, UriKind.Absolute) };
-            }
-            else
-            {
-                dict = new ResourceDictionary
+                ResourceDictionary dict;
+                if (_userThemes.Contains(themeName))
                 {
-                    Source = new Uri($"{ThemeDictionaryPrefix}{themeName}.xaml")
-                };
-            }
+                    var path = Path.Combine(UserThemesFolder, $"{themeName}.xaml");
+                    dict = new ResourceDictionary { Source = new Uri(path, UriKind.Absolute) };
+                }
+                else
+                {
+                    dict = new ResourceDictionary
+                    {
+                        Source = new Uri($"{ThemeDictionaryPrefix}{themeName}.xaml")
+                    };
+                }
 
-            foreach (var def in ThemeColorDefinitions.Colors)
-            {
-                if (dict[def.Key] is Color color)
-                    result[def.Key] = color;
+                foreach (var def in ThemeColorDefinitions.Colors)
+                {
+                    if (dict[def.Key] is Color color)
+                        result[def.Key] = color;
+                }
             }
+            catch { }
 
             return result;
         }
