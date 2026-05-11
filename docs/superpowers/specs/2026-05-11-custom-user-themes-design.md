@@ -29,6 +29,8 @@ Example:
 
 **Missing colors:** Not an error. `DynamicResource` falls back through the merged dictionary chain to the built-in theme values. The editor shows defaults pre-filled.
 
+**Theme validation:** A `.xaml` file is only treated as a theme if it parses as a valid `ResourceDictionary` **and** contains at least one recognized color key (e.g. `AppPrimaryColor`, `AppForegroundColor`). Random XAML files in the folder (windows, user controls, etc.) are silently skipped. This prevents non-theme files from appearing in the theme list.
+
 ## ThemeManager Changes
 
 ### Theme scanning
