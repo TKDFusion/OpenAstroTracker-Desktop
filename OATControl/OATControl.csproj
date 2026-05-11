@@ -46,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -115,6 +116,9 @@
     </Compile>
     <Compile Include="DlgAppSettings.xaml.cs">
       <DependentUpon>DlgAppSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DlgThemeEditor.xaml.cs">
+      <DependentUpon>DlgThemeEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="DlgCustomActionSetup.xaml.cs">
       <DependentUpon>DlgCustomActionSetup.xaml</DependentUpon>
@@ -199,6 +203,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="DlgAppSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DlgThemeEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
