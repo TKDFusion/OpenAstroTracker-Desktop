@@ -14,7 +14,7 @@
 			<Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 			<Setter Property="Width" Value="Auto" />
-			<Setter Property="BorderBrush" Value="{DynamicResource AppAccentActiveBrush}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource AppButtonBorderBrush}" />
 			<Setter Property="HorizontalAlignment" Value="Stretch"/>
 		</Style>
 		<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">

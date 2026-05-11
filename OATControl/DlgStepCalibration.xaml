@@ -48,7 +48,7 @@
         </Style>
 <Style x:Key="TextBorder" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
             <Setter Property="BorderBrush" Value="{DynamicResource AppAccentBorderBrush}" />
-            <Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AppInputBackgroundBrush}" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="20" />
@@ -57,7 +57,7 @@
         </Style>
         <Style x:Key="TextBorderSmall" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
             <Setter Property="BorderBrush" Value="{DynamicResource AppAccentBorderBrush}" />
-            <Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AppInputBackgroundBrush}" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="14" />

@@ -21,7 +21,7 @@
 			<Setter Property="SnapsToDevicePixels" Value="True"/>
 			<Style.Triggers>
 				<Trigger Property="IsSelected" Value="True">
-					<Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
+					<Setter Property="Background" Value="{DynamicResource AppInputBackgroundBrush}" />
 				</Trigger>
 				<Trigger Property="IsMouseOver" Value="True">
 					<Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}"/>

@@ -32,7 +32,11 @@
 								BorderThickness="{TemplateBinding BorderThickness}"
 								Padding="{TemplateBinding Padding}"
 								SnapsToDevicePixels="True">
-							<ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+							<TextBlock Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+									   FontSize="{TemplateBinding FontSize}"
+									   FontWeight="{TemplateBinding FontWeight}"
+									   Foreground="{TemplateBinding Foreground}"
+									   HorizontalAlignment="Left" VerticalAlignment="Center" />
 						</Border>
 						<ControlTemplate.Triggers>
 							<MultiTrigger>
@@ -134,9 +138,6 @@
 			<Setter Property="ItemContainerStyle">
 				<Setter.Value>
 					<Style TargetType="ComboBoxItem">
-						<Setter Property="FontSize" Value="14" />
-						<Setter Property="Foreground" Value="Red" />
-						<Setter Property="FontWeight" Value="Bold" />
 						<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
 						<Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}" />
 						<Setter Property="BorderThickness" Value="1" />
@@ -185,23 +186,16 @@
 			<Setter Property="Width" Value="60" />
 			<Setter Property="HorizontalAlignment" Value="Left"/>
 		</Style>
-		<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
-			<Setter Property="VerticalAlignment" Value="Center" />
-			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="FontSize" Value="20" />
-			<Setter Property="Margin" Value="2,0" />
-			<Setter Property="Padding" Value="6,0" />
-			<Setter Property="HorizontalAlignment" Value="Left" />
+		<Style x:Key="TextBlockLabel" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
-		</Style>
-		<Style x:Key="TextBlockLabel" TargetType="TextBlock" BasedOn="{StaticResource TextBlockHeading}">
-			<Setter Property="FontSize" Value="13" />
+			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="FontSize" Value="14" />
 			<Setter Property="Margin" Value="0,8,0,0" />
 			<Setter Property="Padding" Value="2,0" />
 			<Setter Property="HorizontalAlignment" Value="Left" />
 		</Style>
 		<Style x:Key="TextBlockOptionHelp" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
-			<Setter Property="FontSize" Value="9" />
+			<Setter Property="FontSize" Value="10" />
 			<Setter Property="FontWeight" Value="Normal" />
 			<Setter Property="TextWrapping" Value="Wrap" />
 			<Setter Property="Width" Value="Auto" />

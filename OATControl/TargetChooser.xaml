@@ -20,6 +20,8 @@
 		<converters:DoubleToGridLengthDividerConverter x:Key="DECDiffInvertConverter" Divisor= "1" Inverter="100"/>
 		<converters:DoubleToGridLengthDividerConverter x:Key="DistDiffConverter" Divisor= "1"/>
 		<converters:DoubleToGridLengthDividerConverter x:Key="DistDiffInvertConverter" Divisor= "1" Inverter="100"/>
+		<converters:BoolToVisibilityConverter x:Key="BoolToVisibleConverter"  Collapse="True" />
+		<converters:BoolToVisibilityConverter x:Key="BoolToHiddenConverter"  IsReversed="True" />
 
 		<Style x:Key="HeaderStyle" TargetType="TextBlock" >
 			<Setter Property="FontSize" Value="13" />
@@ -192,26 +194,28 @@
 		</DataTemplate>
 
 		<DataTemplate x:Key="DistCellTemplate">
-			<Grid>
+			<Border BorderBrush="{DynamicResource AppForegroundBrush}" BorderThickness="1" >
 				<Grid>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="{Binding DistanceNormalized, Converter={StaticResource DistDiffConverter}}" />
-						<ColumnDefinition Width="{Binding DistanceNormalized, Converter={StaticResource DistDiffInvertConverter}}" />
-					</Grid.ColumnDefinitions>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="{Binding DistanceNormalized, Converter={StaticResource DistDiffConverter}}" />
+							<ColumnDefinition Width="{Binding DistanceNormalized, Converter={StaticResource DistDiffInvertConverter}}" />
+						</Grid.ColumnDefinitions>
 
-					<Border Grid.Column="0"  >
-						<Rectangle Fill="{DynamicResource AppPrimaryBrush}"/>
-					</Border>
-					<Border Grid.Column="1"  >
-						<Rectangle Fill="{DynamicResource AppBorderBrush}"/>
-					</Border>
+						<Border Grid.Column="0"  >
+							<Rectangle Fill="{DynamicResource AppButtonHoverBrush}"/>
+						</Border>
+						<Border Grid.Column="1"  >
+							<Rectangle Fill="{DynamicResource AppWindowBackgroundBrush}"/>
+						</Border>
+					</Grid>
+					<TextBlock Foreground="{DynamicResource AppForegroundStrongBrush}" Padding="10,0" HorizontalAlignment="Center" FontWeight="Bold">
+						<TextBlock.Text>
+							<Binding Path="DistanceNormalized" StringFormat="{}{0:0}"/>
+						</TextBlock.Text>
+					</TextBlock>
 				</Grid>
-				<TextBlock Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Center" FontWeight="Bold">
-					<TextBlock.Text>
-						<Binding Path="DistanceNormalized" StringFormat="{}{0:0}"/>
-					</TextBlock.Text>
-				</TextBlock>
-			</Grid>
+			</Border>
 		</DataTemplate>
 
 		<!--<Style x:Key="ListHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
@@ -228,7 +232,7 @@
 			<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
 			<Setter Property="Margin" Value="11,0,1,0"/>
 			<Setter Property="Padding" Value="0,2"/>
-			<Setter Property="Foreground" Value="Red"/>
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"/>
 			<Setter Property="FontSize" Value="12"/>
 			<EventSetter Event='MouseDoubleClick' Handler='HandleDoubleClick'/>
 			<Setter Property="Template">
@@ -246,16 +250,17 @@
 			<Style.Triggers>
 				<Trigger Property="IsSelected" Value="true">
 					<Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
-					<Setter Property="BorderBrush" Value="{DynamicResource AppAccentActiveBrush}" />
+					<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
+					<Setter Property="BorderBrush" Value="{DynamicResource AppButtonHoverBrush}" />
 					<Setter Property="BorderThickness" Value="1" />
 				</Trigger>
 				<Trigger Property="IsMouseOver" Value="true">
-					<Setter Property="Background" Value="{DynamicResource AppAccentActiveBrush}" />
+					<Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
 					<Setter Property="BorderBrush" Value="{DynamicResource AppForegroundBrush}" />
 					<Setter Property="BorderThickness" Value="1" />
 				</Trigger>
 				<DataTrigger Binding="{Binding IsReachable}" Value="false">
-					<Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
+					<Setter Property="Background" Value="{DynamicResource AppInputBackgroundBrush}" />
 					<Setter Property="BorderBrush" Value="{DynamicResource AppBorderSubtleBrush}" />
 					<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"/>
 				</DataTrigger>
@@ -290,20 +295,23 @@
 
 	</Window.Resources>
 
-	<Grid>
+	<Grid Margin="0,8,0,2">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
-		<controls:ToggleSwitch
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8">
+			<controls:ToggleSwitch
 			x:Name="ShowReachable"
 			Grid.Row="0"
-			Margin="0,0"
+			Margin="10,0"
 			HorizontalAlignment="Center"
 			ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}"
 			/>
+			<TextBlock Text="Showing Unreachable Targets" Style="{DynamicResource MetroTextBlock}" Margin="0,2"/>
+		</StackPanel>
 		<ListView Grid.Row="1" ItemsSource="{Binding AvailablePointsOfInterest}" HorizontalAlignment="Center" Background="{DynamicResource AppNestedBackgroundBrush}">
 			<ListView.View>
 				<GridView  ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}" >

@@ -28,8 +28,7 @@
 
 		<Style x:Key="SmallTextBlockLabel" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
 			<Setter Property="VerticalAlignment" Value="Center" />
-			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="FontSize" Value="10" />
+			<Setter Property="FontSize" Value="13" />
 			<Setter Property="Margin" Value="0,0" />
 			<Setter Property="Padding" Value="0,0" />
 			<Setter Property="HorizontalAlignment" Value="Center" />
@@ -38,13 +37,12 @@
 
 		<Style x:Key="TinyTextBlockLabel" TargetType="TextBlock" BasedOn="{StaticResource SmallTextBlockLabel}">
 			<Setter Property="FontWeight" Value="Normal" />
-			<Setter Property="FontSize" Value="8" />
+			<Setter Property="FontSize" Value="10" />
 			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
 		</Style>
 
 		<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
 			<Setter Property="VerticalAlignment" Value="Center" />
-			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="FontSize" Value="20" />
 			<Setter Property="Margin" Value="2,0" />
 			<Setter Property="Padding" Value="6,0" />
@@ -63,6 +61,7 @@
 		<Style x:Key="TextBlockLabelValue" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabelSmall}">
 			<Setter Property="Padding" Value="12,2" />
 			<Setter Property="Margin" Value="0,4" />
+			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
 			<Setter Property="TextAlignment" Value="Center" />
 			<Setter Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
@@ -355,7 +354,7 @@
 		<TextBlock Grid.Row="16" Grid.Column="1" Text="{Binding ScopeNetworkState}"  Style="{StaticResource TextBlockLabelValue}" Margin="0,3.38,0,3.62" Visibility="{Binding ScopeNetworkState, Converter={StaticResource CollapseOnStringEqual}, ConverterParameter={}Disabled}"/>
 
 		<TextBlock Grid.Row="17" Grid.Column="0" Text="IP:" HorizontalAlignment="Right"  Style="{StaticResource TextBlockLabelSmall}" Margin="0,1.38,2,1.62" Visibility="{Binding ScopeNetworkState, Converter={StaticResource CollapseOnStringEqual}, ConverterParameter={}Disabled}"/>
-        <TextBlock Grid.Row="17" Text="{Binding ScopeNetworkIPAddress}"  Style="{StaticResource TextBlockLabelValue}" Margin="144,6,0,0" Visibility="{Binding ScopeNetworkState, Converter={StaticResource CollapseOnStringEqual}, ConverterParameter={}Disabled}" Grid.ColumnSpan="2" VerticalAlignment="Top"/>
+        <TextBlock Grid.Row="17" Text="{Binding ScopeNetworkIPAddress}"  Style="{StaticResource TextBlockLabelValue}" Margin="134,6,0,0" Visibility="{Binding ScopeNetworkState, Converter={StaticResource CollapseOnStringEqual}, ConverterParameter={}Disabled}" Grid.ColumnSpan="2" VerticalAlignment="Top"/>
 
 		<TextBlock Grid.Row="18" Grid.Column="0" Text="SSID:" HorizontalAlignment="Right"  Style="{StaticResource TextBlockLabelSmall}" Margin="0,2.38,1,1.62" Visibility="{Binding ScopeNetworkState, Converter={StaticResource CollapseOnStringEqual}, ConverterParameter={}Disabled}"/>
 		<TextBlock Grid.Row="18" Grid.Column="1" Text="{Binding ScopeNetworkSSID}"  Style="{StaticResource TextBlockLabelValue}" Margin="0,4.38,0,3.62" Visibility="{Binding ScopeNetworkState, Converter={StaticResource CollapseOnStringEqual}, ConverterParameter={}Disabled}"/>
@@ -500,8 +499,8 @@
 					  HorizontalAlignment="Left" 
                   Style="{StaticResource ComboBoxStyle}"/>
 		
-		<StackPanel Grid.Row="20" Grid.ColumnSpan="5" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,9.38,0,-0.38" Grid.RowSpan="2">
-            <Button Margin="15,10" Padding="20,0" Content="Close" HorizontalAlignment="Right" Style="{StaticResource MainButtonStyle}" IsCancel="True"/>
+		<StackPanel Grid.Row="20" Grid.ColumnSpan="5" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,4,0,0" Grid.RowSpan="2">
+            <Button Width="150" Height="28" Content="Close" Style="{StaticResource MainButtonStyle}" IsCancel="True"/>
 		</StackPanel>
 	</Grid>
 </controls:ThemedWindow>

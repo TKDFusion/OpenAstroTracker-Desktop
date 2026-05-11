@@ -14,7 +14,7 @@
     <!-- Backgrounds -->
 	<Color x:Key="AppWindowBackgroundColor">#500</Color> <!-- All Window and Dialog background: DONE-->
 	<Color x:Key="AppNestedBackgroundColor">#600</Color> <!-- Nested areas (ListViews, etc) background -->
-	<Color x:Key="AppInputBackgroundColor">#900</Color> <!-- Texbox/Combobox backgrounds -->
+	<Color x:Key="AppInputBackgroundColor">#700</Color> <!-- Texbox/Combobox backgrounds -->
 	
 	<!-- Title bar -->
 	<Color x:Key="AppTitleBarBackgroundColor">#500</Color>
@@ -57,9 +57,8 @@
     <Color x:Key="AppToggleOffBorderColor">#D11</Color>
 
     <!-- Accent-tinted interactive states -->
-    <Color x:Key="AppAccentBackgroundColor">#710</Color> <!-- input background color -->
     <Color x:Key="AppAccentHighlightColor">#99901400</Color> <!-- Label background -->
-    <Color x:Key="AppAccentActiveColor">#710</Color> <!-- stop/speed button back -->
+    <Color x:Key="AppAccentActiveColor">#7F0</Color> <!-- stop/speed button back -->
     <Color x:Key="AppAccentBorderColor">#951400</Color> <!-- RA input, MotorOff -->
 
     <!-- Ideal foreground (text on accent backgrounds) -->
@@ -121,7 +120,6 @@
     <SolidColorBrush x:Key="AppToggleOffBorderBrush" Color="{StaticResource AppToggleOffBorderColor}" />
 
     <!-- Accent-tinted interactive states -->
-    <SolidColorBrush x:Key="AppAccentBackgroundBrush" Color="{StaticResource AppAccentBackgroundColor}" />
     <SolidColorBrush x:Key="AppAccentHighlightBrush" Color="{StaticResource AppAccentHighlightColor}" />
     <SolidColorBrush x:Key="AppAccentActiveBrush" Color="{StaticResource AppAccentActiveColor}" />
     <SolidColorBrush x:Key="AppAccentBorderBrush" Color="{StaticResource AppAccentBorderColor}" />

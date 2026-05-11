@@ -11,7 +11,7 @@
         Title="{Binding Version, StringFormat={} OpenAstroTracker Control V{0}}" MinHeight="767" MinWidth="720" Height="767" Width="720">
 	<Window.Resources>
 		<converters:AbsConverter x:Key="AbsConverter" />
-		<converters:BoolToStringConverter x:Key="SlewModeConverter" TrueString="pulsed" FalseString="continuous" />
+		<converters:BoolToStringConverter x:Key="SlewModeConverter" TrueString="Pulsed" FalseString="Continuous" />
 		<converters:BoolToVisibilityConverter x:Key="TrueBoolToHidden" Collapse="False" IsReversed="True"/>
 		<converters:BoolToVisibilityConverter x:Key="TrueBoolToVisible" Collapse="False" />
 		<converters:BoolToVisibilityConverter x:Key="CollapseIfFalse" Collapse="True" IsReversed="False" />
@@ -36,7 +36,7 @@
 		</Style>
 		<Style x:Key="TextBorder" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
 			<Setter Property="BorderBrush" Value="{DynamicResource AppAccentBorderBrush}" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AppInputBackgroundBrush}" />
 			<Setter Property="HorizontalContentAlignment" Value="Center" />
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="FontSize" Value="20" />
@@ -87,7 +87,6 @@
 		</Style>
 		<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
 			<Setter Property="VerticalAlignment" Value="Center" />
-			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="FontSize" Value="20" />
 			<Setter Property="Margin" Value="2,0" />
 			<Setter Property="Padding" Value="6,0" />
@@ -98,46 +97,8 @@
 			<Setter Property="Padding" Value="2,0" />
 			<Setter Property="HorizontalAlignment" Value="Left" />
 		</Style>
-		<Style x:Key="ToggleButtonState" TargetType="ToggleButton" >
-			<Setter Property="BorderBrush" Value="{DynamicResource AppButtonBorderBrush}" />
-			<Setter Property="BorderThickness" Value="1" />
-			<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
-			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
-			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="FontSize" Value="14" />
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="ToggleButton">
-						<Border Name="border" 
-                    BorderThickness="1"
-                    BorderBrush="{DynamicResource AppButtonBorderBrush}" 
-                    CornerRadius="0" 
-                    Background="{TemplateBinding Background}">
-							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-						</Border>
-						<ControlTemplate.Triggers>
-							<Trigger Property="IsMouseOver" Value="True">
-								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppButtonBorderBrush}" />
-								<Setter TargetName="border" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
-								<Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}" />
-							</Trigger>
-							<Trigger Property="IsChecked" Value="True">
-								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppButtonBorderBrush}" />
-								<Setter TargetName="border" Property="Background" Value="{DynamicResource AppSelectedBrush}" />
-								<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
-							</Trigger>
-							<Trigger Property="IsEnabled" Value="False">
-								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppDisabledBorderBrush}" />
-								<Setter TargetName="border" Property="Background" Value="{DynamicResource AppDisabledBackgroundBrush}" />
-								<Setter Property="Foreground" Value="{DynamicResource AppDisabledForegroundBrush}" />
-							</Trigger>
-						</ControlTemplate.Triggers>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
 		<Style x:Key="TextBlockValue" TargetType="TextBlock" BasedOn="{StaticResource TextBlockLabel}">
-			<Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AppInputBackgroundBrush}" />
 			<Setter Property="FontSize" Value="20" />
 			<Setter Property="Padding" Value="6,2" />
 			<Setter Property="Margin" Value="0,4" />
@@ -243,7 +204,7 @@
 			<controls:PushButton Grid.Row="6" Grid.Column="4" Style="{StaticResource ArrowStyle}" Direction="S" IsEnabled="{Binding MountConnected}" Command="{Binding StartChangingCommand}" CommandParameter="DM-" Margin="10,0,10,3" />
 			<controls:PushButton Grid.Row="6" Grid.Column="6" Style="{StaticResource ArrowStyle}" Direction="S" IsEnabled="{Binding MountConnected}" Command="{Binding StartChangingCommand}" CommandParameter="DS-" Margin="11,0,10,3" />
 
-			<Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Content="Choose Target..." MinWidth="50" Margin="0,0,2,0" Style="{StaticResource MainButtonStyle}" Command="{Binding ChooseTargetCommand}" Height="32"/>
+			<Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Content="Choose Target..." MinWidth="50" Margin="0,0,2,0" Style="{StaticResource MainButtonStyle}" Command="{Binding ChooseTargetCommand}" Height="24" Padding="0"/>
 			<TextBlock Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="6" Grid.RowSpan="2"  Text="{Binding SelectedPointOfInterest.Name}"  Margin="10,0,0,0" Style="{StaticResource TextBlockLabelSmall}" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap"/>
 
 			<Button Grid.Column="8" Grid.RowSpan="2" Margin="8,37,8,4" Padding="0,4,0,8"  Content="&lt;- Update" Style="{StaticResource MainButtonStyle}" Command="{Binding SyncToCurrentCommand}" />
@@ -436,6 +397,7 @@
 			<ToggleButton Grid.Row="2" Grid.Column="0" 
 					Margin="10,0,0,0" 
 					Width="80" 
+					FontWeight="Normal"
 					HorizontalAlignment="Left" 
 					VerticalAlignment="Bottom" 
 				    IsChecked="{Binding IsCoarseSlewing}"
@@ -682,30 +644,46 @@
 					</Grid.ColumnDefinitions>
 
 					<DockPanel Grid.Row="0" Grid.Column="0" Style="{StaticResource DockBlockStatus}" DataContext="{Binding IsSlewingAz}" Visibility="{Binding ScopeHasAZ, Converter={StaticResource CollapseIfFalse}}">
-						<TextBlock Text="AZ" Style="{StaticResource TextBlockStatusMinor}" />
+						<Border BorderThickness="1" BorderBrush="{DynamicResource AppButtonBorderBrush}">
+							<TextBlock Text="AZ" Style="{StaticResource TextBlockStatusMinor}" />
+						</Border>
 					</DockPanel>
 
 					<DockPanel Grid.Row="0" Grid.Column="2" Style="{StaticResource DockBlockStatus}" DataContext="{Binding IsSlewingNorth}">
-						<TextBlock Text="N" Style="{StaticResource TextBlockStatus}" />
+						<Border BorderThickness="1" BorderBrush="{DynamicResource AppButtonBorderBrush}">
+							<TextBlock Text="N" Style="{StaticResource TextBlockStatus}" />
+						</Border>
 					</DockPanel>
 					<DockPanel Grid.Row="1" Grid.Column="3" Style="{StaticResource DockBlockStatus}" DataContext="{Binding IsSlewingEast}">
-						<TextBlock Text="E" Style="{StaticResource TextBlockStatus}"  />
+						<Border BorderThickness="1" BorderBrush="{DynamicResource AppButtonBorderBrush}">
+							<TextBlock Text="E" Style="{StaticResource TextBlockStatus}"  />
+						</Border>
 					</DockPanel>
 					<DockPanel Grid.Row="1" Grid.Column="2" Style="{StaticResource DockBlockStatus}" DataContext="{Binding IsGuiding}">
-						<TextBlock Text="G" Style="{StaticResource TextBlockStatus}"  />
+						<Border BorderThickness="1" BorderBrush="{DynamicResource AppButtonBorderBrush}">
+							<TextBlock Text="G" Style="{StaticResource TextBlockStatus}"  />
+						</Border>
 					</DockPanel>
 					<DockPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource DockBlockStatus}" DataContext="{Binding IsSlewingWest}">
-						<TextBlock Text="W" Style="{StaticResource TextBlockStatus}"  />
+						<Border BorderThickness="1" BorderBrush="{DynamicResource AppButtonBorderBrush}">
+							<TextBlock Text="W" Style="{StaticResource TextBlockStatus}"  />
+						</Border>
 					</DockPanel>
 					<DockPanel Grid.Row="2" Grid.Column="0" Style="{StaticResource DockBlockStatus}" DataContext="{Binding IsSlewingAlt}" Visibility="{Binding ScopeHasALT, Converter={StaticResource CollapseIfFalse}}">
-						<TextBlock Text="ALT" Style="{StaticResource TextBlockStatusMinor}" />
+						<Border BorderThickness="1" BorderBrush="{DynamicResource AppButtonBorderBrush}">
+							<TextBlock Text="ALT" Style="{StaticResource TextBlockStatusMinor}" />
+						</Border>
 					</DockPanel>
 					<DockPanel Grid.Row="2" Grid.Column="2" Style="{StaticResource DockBlockStatus}" DataContext="{Binding IsSlewingSouth}">
-						<TextBlock Text="S" Style="{StaticResource TextBlockStatus}"  />
+						<Border BorderThickness="1" BorderBrush="{DynamicResource AppButtonBorderBrush}">
+							<TextBlock Text="S" Style="{StaticResource TextBlockStatus}"  />
+						</Border>
 					</DockPanel>
 
 					<DockPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource DockBlockStatus}" DataContext="{Binding IsTracking}" Margin="10,0">
-						<TextBlock Text="T" Style="{StaticResource TextBlockStatus}" />
+						<Border BorderThickness="1" BorderBrush="{DynamicResource AppButtonBorderBrush}">
+							<TextBlock Text="T" Style="{StaticResource TextBlockStatus}" />
+						</Border>
 					</DockPanel>
 				</Grid>
 
@@ -763,7 +741,7 @@
 
 
 
-			<Button Grid.Row="3" Grid.Column="2" Content="Mini-Ctrl" Margin="1,8,65,8" Width="60" HorizontalAlignment="Right" Padding="5,0" Style="{StaticResource MainButtonStyle}" Command="{Binding ShowMiniControllerCommand}">
+			<Button Grid.Row="3" Grid.Column="2" Content="Mini-Ctrl" Margin="2,8,66,8" Width="60" Height="24" HorizontalAlignment="Right" Padding="1,0" Style="{StaticResource MainButtonStyle}" Command="{Binding ShowMiniControllerCommand}">
 				<Button.ContextMenu>
 					<ContextMenu>
 						<MenuItem Header="Keep On Top" IsCheckable="True" IsChecked="{Binding KeepMiniControlOnTop}" Style="{StaticResource MetroMenuItem}"/>
@@ -779,10 +757,10 @@
 				</Button.ContextMenu>
 			</Button>
 
-			<Button Grid.Row="4" Grid.Column="2" Content="Mount Settings" Margin="1,2" Width="125" HorizontalAlignment="Right" Padding="0,0" IsEnabled="{Binding MountConnected}" Style="{StaticResource MainButtonStyle}" Command="{Binding ShowSettingsCommand}"/>
+			<Button Grid.Row="4" Grid.Column="2" Content="Mount Settings" Height="24 " Margin="1,2" Width="125" HorizontalAlignment="Right" Padding="0" IsEnabled="{Binding MountConnected}" Style="{StaticResource MainButtonStyle}" Command="{Binding ShowSettingsCommand}"/>
 
-			<Button Grid.Row="5" Grid.Column="2" Content="Log Files" Margin="0,2,66,2" Width="60" HorizontalAlignment="Right" Padding="0,0" Style="{StaticResource MainButtonStyle}" Command="{Binding ShowLogFolderCommand}" Visibility="{Binding IsLoggingEnabled, Converter={StaticResource CollapseIfFalse}}"/>
-			<Button Grid.Row="5" Grid.Column="2" Content="Checklist" Margin="1,2" Width="60" HorizontalAlignment="Right" Padding="0,0" Style="{StaticResource MainButtonStyle}" Command="{Binding ShowChecklistCommand}" />
+			<Button Grid.Row="5" Grid.Column="2" Content="Log Files" Margin="0,6,66,2" Width="60" Height="24 " HorizontalAlignment="Right" Padding="0,0" Style="{StaticResource MainButtonStyle}" Command="{Binding ShowLogFolderCommand}" Visibility="{Binding IsLoggingEnabled, Converter={StaticResource CollapseIfFalse}}"/>
+			<Button Grid.Row="5" Grid.Column="2" Content="Checklist" Margin="0,6,1,2" Width="60" Height="24 " HorizontalAlignment="Right" Padding="0,0" Style="{StaticResource MainButtonStyle}" Command="{Binding ShowChecklistCommand}" />
 
 			<Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Margin="0">
 				<Grid.ColumnDefinitions>
@@ -791,7 +769,7 @@
 					<ColumnDefinition Width="128" />
 				</Grid.ColumnDefinitions>
 				<TextBlock Grid.Row="0" Grid.Column="1"  Text="Mount" Style="{StaticResource TextBlockHeading}" Margin="0,10,0,0" HorizontalAlignment="Right" Height="27" Width="75"/>
-				<Button Grid.Column="2" Margin="0,12,0,0" Width="125" Style="{StaticResource MainButtonStyle}" Command="{Binding ConnectScopeCommand}" Content="{Binding ConnectCommandString}" HorizontalAlignment="Right"/>
+				<Button Grid.Column="2" Margin="0,8,1,0" Width="125" Style="{StaticResource MainButtonStyle}" Command="{Binding ConnectScopeCommand}" Content="{Binding ConnectCommandString}" HorizontalAlignment="Right"/>
 			</Grid>
 			<TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding ScopeName}" Style="{StaticResource TextBlockLabel}" Margin="0,2,0,0" HorizontalAlignment="Right" />
 			<TextBlock Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding ConnectionState}" Style="{StaticResource TextBlockLabelSmall}" Margin="0,2,0,0" HorizontalAlignment="Right" />

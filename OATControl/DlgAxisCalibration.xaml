@@ -10,49 +10,9 @@
         mc:Ignorable="d"
         Title=" Stepper Motor Calibration" MinHeight="400" Width="520" MinWidth="520" Height="400" WindowStyle="ToolWindow">
 	<Window.Resources>
-		<Style x:Key="ToggleButtonState" TargetType="ToggleButton" >
-			<Setter Property="BorderBrush" Value="{DynamicResource AppPrimaryBrush}" />
-			<Setter Property="BorderThickness" Value="1" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentActiveBrush}" />
-			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
-			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="Width" Value="40" />
-			<Setter Property="Height" Value="24" />
-			<Setter Property="FontSize" Value="14" />
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="ToggleButton">
-						<Border Name="border" 
-                            BorderThickness="1"
-                            BorderBrush="{DynamicResource AppPrimaryBrush}" 
-                            CornerRadius="0" 
-                            Background="{TemplateBinding Background}">
-							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-						</Border>
-						<ControlTemplate.Triggers>
-							<Trigger Property="IsMouseOver" Value="True">
-								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppAccentHighlightBrush}" />
-								<Setter TargetName="border" Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
-								<Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}" />
-							</Trigger>
-							<Trigger Property="IsChecked" Value="True">
-								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppIdealForegroundBrush}" />
-								<Setter TargetName="border" Property="Background" Value="{DynamicResource AppAccentHighlightBrush}" />
-								<Setter Property="Foreground" Value="{DynamicResource AppIdealForegroundBrush}" />
-							</Trigger>
-							<Trigger Property="IsEnabled" Value="False">
-								<Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppAccentBorderBrush}" />
-								<Setter TargetName="border" Property="Background" Value="{DynamicResource AppAccentActiveBrush}" />
-								<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
-							</Trigger>
-						</ControlTemplate.Triggers>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
 		<Style x:Key="TextBlockHeading" TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}">
 			<Setter Property="VerticalAlignment" Value="Center" />
-			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="FontWeight" Value="Normal" />
 			<Setter Property="FontSize" Value="20" />
 			<Setter Property="Margin" Value="2,0" />
 			<Setter Property="Padding" Value="6,0" />
@@ -99,7 +59,7 @@
 		</Style>
 		<Style x:Key="TextBorder" TargetType="TextBox" BasedOn="{StaticResource MetroTextBox}">
 			<Setter Property="BorderBrush" Value="{DynamicResource AppAccentBorderBrush}" />
-			<Setter Property="Background" Value="{DynamicResource AppAccentBackgroundBrush}" />
+			<Setter Property="Background" Value="{DynamicResource AppInputBackgroundBrush}" />
 			<Setter Property="HorizontalContentAlignment" Value="Center" />
 			<Setter Property="FontWeight" Value="Bold" />
 			<Setter Property="FontSize" Value="20" />
@@ -243,7 +203,7 @@
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="*"/>
 			</Grid.RowDefinitions>
-			<TextBlock Grid.Row="0" Text="To perform stepper motor Calibration, you:" Margin="10" Style="{StaticResource TextBlockHeading}" TextWrapping="Wrap"/>
+			<TextBlock Grid.Row="0" Text="To perform stepper motor Calibration, you:" Margin="10" Style="{StaticResource TextBlockHeading}" TextWrapping="Wrap" FontWeight="Bold"/>
 			<TextBlock Grid.Row="1" Text="· need a clear view of the sky extending a few degrees along the axis to calibrate." Style="{StaticResource TextBlockListItem}"/>
 			<TextBlock Grid.Row="2" Text="· have slewed the calibration axis to the start position." Style="{StaticResource TextBlockListItem}"/>
 			<TextBlock Grid.Row="3" Text="· have the ability to capture and plate solve image when prompted." Style="{StaticResource TextBlockListItem}"/>
@@ -288,7 +248,7 @@
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
-			<TextBlock Grid.Row="0" Text="Step 1: Plate solve" Margin="10" Style="{StaticResource TextBlockHeading}" TextWrapping="Wrap" />
+			<TextBlock Grid.Row="0" Text="Step 1: Plate solve" Margin="10" Style="{StaticResource TextBlockHeading}" TextWrapping="Wrap" FontWeight="Bold"/>
 			<TextBlock Grid.Row="1" Text="Take an image and plate solve it. Type the coordinates below, three numbers with spaces in each box. If you have N.I.N.A. Monitoring enabled and are using N.I.N.A. to plate solve, they will auto-populate once the solution is found." Style="{StaticResource TextBlockListItem}" Margin="25,15"/>
 			<TextBlock Grid.Row="4" Text="RA:" Style="{StaticResource TextBlockHeading}" Margin="40,0,40,0"/>
 			<TextBox Grid.Row="4" Text="{Binding InputCoordinateRA, Mode=TwoWay}" Margin="110,5" Style="{StaticResource TextBorder}"/>
@@ -310,7 +270,7 @@
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
-			<TextBlock Grid.Row="0" Text="Step 2: Move Axis and plate solve" Margin="10" Style="{StaticResource TextBlockHeading}" TextWrapping="Wrap" />
+			<TextBlock Grid.Row="0" Text="Step 2: Move Axis and plate solve" Margin="10" Style="{StaticResource TextBlockHeading}" TextWrapping="Wrap" FontWeight="Bold"/>
 			<TextBlock Grid.Row="1" Text="Use the controls below (or in the main view or MiniControl) to move the mount. Once done, take an image and plate solve it. Type the coordinates below, three numbers with spaces. If you have N.I.N.A. Monitoring enabled and are using N.I.N.A. to plate solve, they will auto-populate once the solution is found." Style="{StaticResource TextBlockListItem}" Margin="25,0,25,5"/>
 
 			<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" Visibility="{Binding IsPrimaryAxis, Converter={StaticResource VisibleIfPrimaryAxis}}">
@@ -325,26 +285,31 @@
 				<StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsEnabled="{Binding MountConnected}">
 					<ToggleButton 
 						Margin="0,0,0,0"
+						Width="45"
 						Style="{StaticResource ToggleButtonState}" 
 						IsChecked="{Binding SlewRate, Mode=TwoWay,Converter={StaticResource IntToBoolConverter}, ConverterParameter=1}"
 						Content="3s"/>
 					<ToggleButton 
 						Margin="5,0,0,0"
+						Width="45"
 						Style="{StaticResource ToggleButtonState}" 
 						IsChecked="{Binding SlewRate, Mode=TwoWay,Converter={StaticResource IntToBoolConverter}, ConverterParameter=2}"
 						Content="15s"/>
 					<ToggleButton 
 						Margin="5,0,0,0"
+						Width="45"
 						Style="{StaticResource ToggleButtonState}" 
 						IsChecked="{Binding SlewRate, Mode=TwoWay,Converter={StaticResource IntToBoolConverter}, ConverterParameter=3}"
 						Content="2m"/>
 					<ToggleButton 
 						Margin="5,0,0,0"
+						Width="45"
 						Style="{StaticResource ToggleButtonState}" 
 						IsChecked="{Binding SlewRate, Mode=TwoWay,Converter={StaticResource IntToBoolConverter}, ConverterParameter=4}"
 						Content="7.5m"/>
 					<ToggleButton 
 						Margin="5,0,0,0"
+						Width="45"
 						Style="{StaticResource ToggleButtonState}" 
 						IsChecked="{Binding SlewRate, Mode=TwoWay,Converter={StaticResource IntToBoolConverter}, ConverterParameter=5}"
 						Content="30m"/>
@@ -381,7 +346,7 @@
 				<RowDefinition Height="*"/>
 				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
-			<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Result: Axis Calibration" Margin="10" Style="{StaticResource TextBlockHeading}" TextWrapping="Wrap" />
+			<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Result: Axis Calibration" Margin="10" Style="{StaticResource TextBlockHeading}" TextWrapping="Wrap" FontWeight="Bold"/>
 			<TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="The solved images were used to calculate the actual distance moved." Style="{StaticResource TextBlockListItem}" VerticalAlignment="Top"/>
 
 			<Grid Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="2">
