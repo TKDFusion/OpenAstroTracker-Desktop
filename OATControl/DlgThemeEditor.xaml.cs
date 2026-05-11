@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Forms;
+using Microsoft.Win32;
 using OATControl.Controls;
 using OATControl.Theming;
 
@@ -172,26 +172,6 @@ namespace OATControl
             }
         }
 
-        private void OnPickColor(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button btn && btn.Tag is string key)
-            {
-                var item = _colorItems.FirstOrDefault(c => c.Key == key);
-                if (item == null) return;
-
-                using (var dlg = new ColorDialog())
-                {
-                    dlg.Color = System.Drawing.Color.FromArgb(item.Color.A, item.Color.R, item.Color.G, item.Color.B);
-                    dlg.FullOpen = true;
-                    if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-                        item.Color = Color.FromArgb(dlg.Color.A, dlg.Color.R, dlg.Color.G, dlg.Color.B);
-                        UpdatePreview();
-                    }
-                }
-            }
-        }
-
         private void OnResetColor(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn && btn.Tag is string key)
@@ -228,30 +208,29 @@ namespace OATControl
 
         private void OnImportTheme(object sender, RoutedEventArgs e)
         {
-            using (var dlg = new OpenFileDialog())
+            var dlg = new OpenFileDialog
             {
-                dlg.Filter = "Theme files (*.xaml)|*.xaml|All files (*.*)|*.*";
-                dlg.Title = "Import Theme";
-                if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                Filter = "Theme files (*.xaml)|*.xaml|All files (*.*)|*.*",
+                Title = "Import Theme"
+            };
+            if (dlg.ShowDialog() == true)
+            {
+                try
                 {
-                    try
-                    {
-                        ThemeManager.Instance.ImportTheme(dlg.FileName);
-                        var name = Path.GetFileNameWithoutExtension(dlg.FileName);
-                        ThemeListBox.ItemsSource = ThemeManager.Instance.AvailableThemes.ToList();
-                        _editingTheme = name;
-                        _isNewTheme = false;
-                        ThemeListBox.SelectedItem = name;
-                        LoadThemeColors();
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Windows.MessageBox.Show($"Failed to import theme: {ex.Message}", "Import Error",
-                            MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
+                    ThemeManager.Instance.ImportTheme(dlg.FileName);
+                    var name = Path.GetFileNameWithoutExtension(dlg.FileName);
+                    ThemeListBox.ItemsSource = ThemeManager.Instance.AvailableThemes.ToList();
+                    _editingTheme = name;
+                    _isNewTheme = false;
+                    ThemeListBox.SelectedItem = name;
+                    LoadThemeColors();
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show($"Failed to import theme: {ex.Message}", "Import Error",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
-        }
 
         private void OnSave(object sender, RoutedEventArgs e)
         {
@@ -384,23 +363,23 @@ namespace OATControl
 
         private void OnExport(object sender, RoutedEventArgs e)
         {
-            using (var dlg = new SaveFileDialog())
+            var dlg = new SaveFileDialog
             {
-                dlg.Filter = "Theme files (*.xaml)|*.xaml";
-                dlg.Title = "Export Theme";
-                dlg.FileName = (_editingTheme ?? "MyTheme") + ".xaml";
-                if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                Filter = "Theme files (*.xaml)|*.xaml",
+                Title = "Export Theme",
+                FileName = (_editingTheme ?? "MyTheme") + ".xaml"
+            };
+            if (dlg.ShowDialog() == true)
+            {
+                try
                 {
-                    try
-                    {
-                        var colors = _colorItems.ToDictionary(i => i.Key, i => i.Color);
-                        WriteThemeFile(dlg.FileName, EditingThemeName ?? _editingTheme ?? "MyTheme", ThemeAuthor, colors);
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Windows.MessageBox.Show($"Failed to export theme: {ex.Message}", "Export Error",
-                            MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
+                    var colors = _colorItems.ToDictionary(i => i.Key, i => i.Color);
+                    WriteThemeFile(dlg.FileName, EditingThemeName ?? _editingTheme ?? "MyTheme", ThemeAuthor, colors);
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show($"Failed to export theme: {ex.Message}", "Export Error",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }

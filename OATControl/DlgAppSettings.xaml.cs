@@ -550,22 +550,22 @@ namespace OATControl
 
 		private void OnImportTheme(object sender, RoutedEventArgs e)
 		{
-			using (var dlg = new System.Windows.Forms.OpenFileDialog())
+			var dlg = new Microsoft.Win32.OpenFileDialog
 			{
-				dlg.Filter = "Theme files (*.xaml)|*.xaml|All files (*.*)|*.*";
-				dlg.Title = "Import Theme";
-				if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+				Filter = "Theme files (*.xaml)|*.xaml|All files (*.*)|*.*",
+				Title = "Import Theme"
+			};
+			if (dlg.ShowDialog() == true)
+			{
+				try
 				{
-					try
-					{
-						ThemeManager.Instance.ImportTheme(dlg.FileName);
-						ThemeComboBox.ItemsSource = ThemeManager.Instance.AvailableThemes;
-					}
-					catch (Exception ex)
-					{
-						System.Windows.MessageBox.Show($"Failed to import theme: {ex.Message}", "Import Error",
-							MessageBoxButton.OK, MessageBoxImage.Warning);
-					}
+					ThemeManager.Instance.ImportTheme(dlg.FileName);
+					ThemeComboBox.ItemsSource = ThemeManager.Instance.AvailableThemes;
+				}
+				catch (Exception ex)
+				{
+					System.Windows.MessageBox.Show($"Failed to import theme: {ex.Message}", "Import Error",
+						MessageBoxButton.OK, MessageBoxImage.Warning);
 				}
 			}
 		}
