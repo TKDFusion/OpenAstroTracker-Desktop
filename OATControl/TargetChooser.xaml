@@ -70,28 +70,6 @@
 			</TextBlock>
 		</DataTemplate>
 		
-		<DataTemplate x:Key="RaDistCellTemplate">
-			<Grid>
-				<Grid>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="{Binding RAStepDistance, Converter={StaticResource RADiffConverter}}" />
-						<ColumnDefinition Width="{Binding RAStepDistance, Converter={StaticResource RADiffInvertConverter}}" />
-					</Grid.ColumnDefinitions>
-
-					<Border Grid.Column="0"  >
-						<Rectangle Fill="{DynamicResource AppButtonBackgroundBrush}"/>
-					</Border>
-					<Border Grid.Column="1"  >
-						<Rectangle Fill="{DynamicResource AppButtonHoverBrush}"/>
-					</Border>
-				</Grid>
-				<TextBlock Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Stretch" >
-					<TextBlock.Text>
-						<Binding Path="RADistance" Converter="{StaticResource RAConverter}"/>
-					</TextBlock.Text>
-				</TextBlock>
-			</Grid>
-		</DataTemplate>
 
 		<DataTemplate x:Key="DecCellTemplate">
 			<TextBlock Padding="10,0" >
@@ -99,49 +77,6 @@
 					<Binding Path="DEC" Converter="{StaticResource DECConverter}"/>
 				</TextBlock.Text>
 			</TextBlock>
-		</DataTemplate>
-
-		<DataTemplate x:Key="DecDistCellTemplate">
-			<Grid>
-				<Grid>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="{Binding DECStepDistance, Converter={StaticResource DECDiffConverter}}" />
-						<ColumnDefinition Width="{Binding DECStepDistance, Converter={StaticResource DECDiffInvertConverter}}" />
-					</Grid.ColumnDefinitions>
-
-					<Border Grid.Column="0"  >
-						<Rectangle Fill="{DynamicResource AppButtonBackgroundBrush}"/>
-					</Border>
-					<Border Grid.Column="1"  >
-						<Rectangle Fill="{DynamicResource AppButtonHoverBrush}"/>
-					</Border>
-				</Grid>
-				<TextBlock Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Stretch" >
-					<TextBlock.Text>
-						<Binding Path="DECDistance" Converter="{StaticResource DECNoSignConverter}"/>
-					</TextBlock.Text>
-				</TextBlock>
-			</Grid>
-		</DataTemplate>
-
-		<DataTemplate x:Key="DecPosCellTemplate">
-			<Grid>
-				<TextBlock Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Stretch" >
-					<TextBlock.Text>
-						<Binding Path="DECPosition" />
-					</TextBlock.Text>
-				</TextBlock>
-			</Grid>
-		</DataTemplate>
-
-		<DataTemplate x:Key="RaPosCellTemplate">
-			<Grid>
-				<TextBlock Foreground="{DynamicResource AppForegroundSubtleBrush}" Padding="10,0" HorizontalAlignment="Stretch" >
-					<TextBlock.Text>
-						<Binding Path="RAPosition" />
-					</TextBlock.Text>
-				</TextBlock>
-			</Grid>
 		</DataTemplate>
 
 		<DataTemplate x:Key="DistCellTemplate">

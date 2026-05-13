@@ -11,7 +11,7 @@
                 Width="44" Height="22"
                 CornerRadius="11"
                 Background="{DynamicResource AppToggleOffBrush}"
-                BorderBrush="{DynamicResource AppToggleOffBorderBrush}"
+                BorderBrush="{DynamicResource AppToggleBorderBrush}"
                 BorderThickness="1">
             <Grid>
                 <Path x:Name="Checkmark"

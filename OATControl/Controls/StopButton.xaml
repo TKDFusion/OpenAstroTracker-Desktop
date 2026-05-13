@@ -11,7 +11,7 @@
 	<Grid x:Name="MainGrid" Background="Transparent"  IsHitTestVisible="True" MouseDown="MainGrid_OnMouseButtonDown" MouseUp="MainGrid_OnMouseButtonUp" >
 		<Grid.Resources>
 			<Style x:Key="arrowStyle" TargetType="{x:Type local:StopSign}" x:Name="arrowStyle">
-				<Setter Property="Foreground" Value="{Binding Foreground}" />
+				<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
 				<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
 				<Setter Property="TextColor" Value="{DynamicResource AppForegroundBrush}" />
 				<Style.Triggers>
@@ -26,9 +26,9 @@
 						<Setter Property="TextColor" Value="{DynamicResource AppForegroundBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsEnabled, ElementName=ThisStopButton}" Value="False">
-						<Setter Property="Foreground" Value="{DynamicResource AppForegroundSubtleBrush}" />
-						<Setter Property="Background" Value="{DynamicResource AppWindowBackgroundBrush}" />
-						<Setter Property="TextColor" Value="{DynamicResource AppForegroundSubtleBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppDisabledForegroundBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppDisabledBackgroundBrush}" />
+						<Setter Property="TextColor" Value="{DynamicResource AppDisabledForegroundBrush}" />
 					</DataTrigger>
 				</Style.Triggers>
 			</Style>

@@ -7,7 +7,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using OATControl.Controls;
 using OATControl.Theming;
@@ -98,6 +100,15 @@ namespace OATControl
         private double _averageLightness;
         private bool _updatingFromSlider;
 
+        private ColorEditItem _selectedColorItem;
+        private bool _updatingPicker;
+        private bool _isDraggingSquare;
+        private bool _isDraggingBar;
+        private WriteableBitmap _hueSatBitmap;
+        private WriteableBitmap _lightnessBitmap;
+        private const int PickerSize = 256;
+        private const int BarWidth = 24;
+
         public DlgThemeEditor(string themeName = null, bool isNew = false)
         {
             _editingTheme = themeName;
@@ -120,6 +131,30 @@ namespace OATControl
         {
             get => _themeAuthor;
             set { _themeAuthor = value; OnPropertyChanged(); }
+        }
+
+        public ColorEditItem SelectedColorItem
+        {
+            get => _selectedColorItem;
+            set
+            {
+                if (_selectedColorItem != value)
+                {
+                    if (_selectedColorItem != null)
+                        _selectedColorItem.PropertyChanged -= OnSelectedColorChanged;
+                    _selectedColorItem = value;
+                    if (_selectedColorItem != null)
+                        _selectedColorItem.PropertyChanged += OnSelectedColorChanged;
+                    OnPropertyChanged();
+                    UpdatePickerDisplay();
+                }
+            }
+        }
+
+        private void OnSelectedColorChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Color" && !_updatingPicker)
+                UpdatePickerDisplay();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -164,7 +199,11 @@ namespace OATControl
                 _colorItems.Add(item);
             }
 
-            ColorEditorGrid.ItemsSource = _colorItems;
+            if (ColorSwatchList != null)
+            {
+                ColorSwatchList.ItemsSource = _colorItems;
+                ColorSwatchList.SelectedIndex = _colorItems.Count > 0 ? 0 : -1;
+            }
             ThemeNameLabel.Text = EditingThemeName ?? _editingTheme ?? "";
 
             // Snapshot original colors for HSL adjustment sliders
@@ -200,19 +239,6 @@ namespace OATControl
             }
         }
 
-        private void OnResetColor(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button btn && btn.Tag is string key)
-            {
-                var item = _colorItems.FirstOrDefault(c => c.Key == key);
-                if (item != null)
-                {
-                    item.Color = item.DefaultColor;
-                    UpdatePreview();
-                }
-            }
-        }
-
         private void UpdatePreview()
         {
             if (_previewDict != null)
@@ -225,6 +251,9 @@ namespace OATControl
             }
 
             PreviewPanel.Resources.MergedDictionaries.Add(_previewDict);
+
+            if (_selectedColorItem != null && !_updatingPicker)
+                UpdatePickerDisplay();
         }
 
         private void OnNewTheme(object sender, RoutedEventArgs e)
@@ -329,20 +358,19 @@ namespace OATControl
                 OmitXmlDeclaration = true
             }))
             {
-                writer.WriteStartElement("ResourceDictionary");
-                writer.WriteAttributeString("xmlns", "http://schemas.microsoft.com/winfx/2006/xaml/presentation");
-                writer.WriteAttributeString("xmlns:x", "http://schemas.microsoft.com/winfx/2006/xaml");
-                writer.WriteAttributeString("xmlns:sys", "clr-namespace:System;assembly=mscorlib");
+                writer.WriteStartElement("ResourceDictionary", "http://schemas.microsoft.com/winfx/2006/xaml/presentation");
+                writer.WriteAttributeString("xmlns", "x", null, "http://schemas.microsoft.com/winfx/2006/xaml");
+                writer.WriteAttributeString("xmlns", "sys", null, "clr-namespace:System;assembly=mscorlib");
 
-                writer.WriteStartElement("sys:String");
-                writer.WriteAttributeString("x:Key", "ThemeName");
+                writer.WriteStartElement("String", "clr-namespace:System;assembly=mscorlib");
+                writer.WriteAttributeString("x", "Key", "http://schemas.microsoft.com/winfx/2006/xaml", "ThemeName");
                 writer.WriteString(themeName);
                 writer.WriteEndElement();
 
                 if (!string.IsNullOrEmpty(author))
                 {
-                    writer.WriteStartElement("sys:String");
-                    writer.WriteAttributeString("x:Key", "ThemeAuthor");
+                    writer.WriteStartElement("String", "clr-namespace:System;assembly=mscorlib");
+                    writer.WriteAttributeString("x", "Key", "http://schemas.microsoft.com/winfx/2006/xaml", "ThemeAuthor");
                     writer.WriteString(author);
                     writer.WriteEndElement();
                 }
@@ -351,8 +379,8 @@ namespace OATControl
                 {
                     if (colors.TryGetValue(def.Key, out var color))
                     {
-                        writer.WriteStartElement("Color");
-                        writer.WriteAttributeString("x:Key", def.Key);
+                        writer.WriteStartElement("Color", "http://schemas.microsoft.com/winfx/2006/xaml/presentation");
+                        writer.WriteAttributeString("x", "Key", "http://schemas.microsoft.com/winfx/2006/xaml", def.Key);
                         writer.WriteString(color.ToString());
                         writer.WriteEndElement();
                     }
@@ -542,6 +570,211 @@ namespace OATControl
         {
             var (_, _, l) = ColorToHsl(c);
             return l < 0.05 || l > 0.95;
+        }
+
+        private void UpdatePickerDisplay()
+        {
+            if (HueSatImage == null) return;
+
+            var item = _selectedColorItem;
+            if (item == null) return;
+
+            var (h, s, l) = ColorToHsl(item.Color);
+            RenderHueSaturationSquare(h, l);
+            RenderLightnessBar(h, s);
+            UpdatePickerMarkers(h, s, l);
+            UpdateSliderValues(item.Color, h, s, l);
+        }
+
+        private void RenderHueSaturationSquare(double currentH, double currentL)
+        {
+            if (_hueSatBitmap == null)
+            {
+                _hueSatBitmap = new WriteableBitmap(PickerSize, PickerSize, 96, 96, PixelFormats.Bgr24, null);
+                HueSatImage.Source = _hueSatBitmap;
+            }
+
+            byte[] pixels = new byte[PickerSize * PickerSize * 3];
+            for (int y = 0; y < PickerSize; y++)
+            {
+                double sat = 1.0 - (double)y / (PickerSize - 1);
+                for (int x = 0; x < PickerSize; x++)
+                {
+                    double hue = (double)x / (PickerSize - 1) * 360.0;
+                    var c = HslToColor(hue, sat, currentL);
+                    int idx = (y * PickerSize + x) * 3;
+                    pixels[idx] = c.B;
+                    pixels[idx + 1] = c.G;
+                    pixels[idx + 2] = c.R;
+                }
+            }
+
+            _hueSatBitmap.WritePixels(
+                new Int32Rect(0, 0, PickerSize, PickerSize),
+                pixels, PickerSize * 3, 0);
+        }
+
+        private void RenderLightnessBar(double currentH, double currentS)
+        {
+            if (_lightnessBitmap == null)
+            {
+                _lightnessBitmap = new WriteableBitmap(BarWidth, PickerSize, 96, 96, PixelFormats.Bgr24, null);
+                LightnessImage.Source = _lightnessBitmap;
+            }
+
+            byte[] pixels = new byte[BarWidth * PickerSize * 3];
+            for (int y = 0; y < PickerSize; y++)
+            {
+                double l = 1.0 - (double)y / (PickerSize - 1);
+                var c = HslToColor(currentH, currentS, l);
+                for (int x = 0; x < BarWidth; x++)
+                {
+                    int idx = (y * BarWidth + x) * 3;
+                    pixels[idx] = c.B;
+                    pixels[idx + 1] = c.G;
+                    pixels[idx + 2] = c.R;
+                }
+            }
+
+            _lightnessBitmap.WritePixels(
+                new Int32Rect(0, 0, BarWidth, PickerSize),
+                pixels, BarWidth * 3, 0);
+        }
+
+        private void UpdatePickerMarkers(double h, double s, double l)
+        {
+            if (Crosshair == null || LightnessMarker == null) return;
+
+            double x = h / 360.0 * (PickerSize - 1);
+            double y = (1.0 - s) * (PickerSize - 1);
+            Canvas.SetLeft(Crosshair, x - Crosshair.Width / 2);
+            Canvas.SetTop(Crosshair, y - Crosshair.Height / 2);
+
+            double barY = (1.0 - l) * (PickerSize - 1);
+            Canvas.SetLeft(LightnessMarker, 0);
+            Canvas.SetTop(LightnessMarker, barY - LightnessMarker.Height / 2);
+        }
+
+        private void UpdateSliderValues(Color c, double h, double s, double l)
+        {
+            _updatingFromSlider = true;
+            SliderR.Value = c.R;
+            SliderG.Value = c.G;
+            SliderB.Value = c.B;
+            SliderH.Value = Math.Round(h);
+            SliderS.Value = Math.Round(s * 100);
+            SliderL.Value = Math.Round(l * 100);
+            _updatingFromSlider = false;
+        }
+
+        private void OnSwatchListSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedColorItem = ColorSwatchList.SelectedItem as ColorEditItem;
+        }
+
+        private void OnColorSquareMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (_selectedColorItem == null) return;
+            _isDraggingSquare = true;
+            HueSatCanvas.CaptureMouse();
+            UpdateFromSquareMouse(e.GetPosition(HueSatImage));
+        }
+
+        private void OnColorSquareMouseMove(object sender, MouseEventArgs e)
+        {
+            if (!_isDraggingSquare) return;
+            UpdateFromSquareMouse(e.GetPosition(HueSatImage));
+        }
+
+        private void OnColorSquareMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (_isDraggingSquare)
+            {
+                _isDraggingSquare = false;
+                HueSatCanvas.ReleaseMouseCapture();
+            }
+        }
+
+        private void UpdateFromSquareMouse(Point pos)
+        {
+            var (h, s, l) = ColorToHsl(_selectedColorItem.Color);
+            double newH = Math.Max(0, Math.Min(PickerSize - 1, pos.X)) / (PickerSize - 1) * 360.0;
+            double newS = 1.0 - Math.Max(0, Math.Min(PickerSize - 1, pos.Y)) / (PickerSize - 1);
+            _updatingPicker = true;
+            _selectedColorItem.Color = HslToColor(newH, newS, l);
+            _updatingPicker = false;
+            RenderLightnessBar(newH, newS);
+            UpdatePickerMarkers(newH, newS, l);
+            UpdateSliderValues(_selectedColorItem.Color, newH, newS, l);
+        }
+
+        private void OnLightnessBarMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (_selectedColorItem == null) return;
+            _isDraggingBar = true;
+            LightnessCanvas.CaptureMouse();
+            UpdateFromBarMouse(e.GetPosition(LightnessImage));
+        }
+
+        private void OnLightnessBarMouseMove(object sender, MouseEventArgs e)
+        {
+            if (!_isDraggingBar) return;
+            UpdateFromBarMouse(e.GetPosition(LightnessImage));
+        }
+
+        private void OnLightnessBarMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (_isDraggingBar)
+            {
+                _isDraggingBar = false;
+                LightnessCanvas.ReleaseMouseCapture();
+            }
+        }
+
+        private void UpdateFromBarMouse(Point pos)
+        {
+            var (h, s, l) = ColorToHsl(_selectedColorItem.Color);
+            double newL = 1.0 - Math.Max(0, Math.Min(PickerSize - 1, pos.Y)) / (PickerSize - 1);
+            _updatingPicker = true;
+            _selectedColorItem.Color = HslToColor(h, s, newL);
+            _updatingPicker = false;
+            RenderHueSaturationSquare(h, newL);
+            UpdatePickerMarkers(h, s, newL);
+            UpdateSliderValues(_selectedColorItem.Color, h, s, newL);
+        }
+
+        private void OnRgbSliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (_updatingFromSlider || _selectedColorItem == null) return;
+            var c = Color.FromRgb((byte)SliderR.Value, (byte)SliderG.Value, (byte)SliderB.Value);
+            _updatingPicker = true;
+            _selectedColorItem.Color = c;
+            _updatingPicker = false;
+            var (h, s, l) = ColorToHsl(c);
+            RenderHueSaturationSquare(h, l);
+            RenderLightnessBar(h, s);
+            UpdatePickerMarkers(h, s, l);
+            SliderH.Value = Math.Round(h);
+            SliderS.Value = Math.Round(s * 100);
+            SliderL.Value = Math.Round(l * 100);
+        }
+
+        private void OnHslSliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (_updatingFromSlider || _selectedColorItem == null) return;
+            double h = SliderH.Value;
+            double s = SliderS.Value / 100.0;
+            double l = SliderL.Value / 100.0;
+            var c = HslToColor(h, s, l);
+            _updatingPicker = true;
+            _selectedColorItem.Color = c;
+            _updatingPicker = false;
+            RenderHueSaturationSquare(h, l);
+            RenderLightnessBar(h, s);
+            UpdatePickerMarkers(h, s, l);
+            SliderR.Value = c.R;
+            SliderG.Value = c.G;
+            SliderB.Value = c.B;
         }
     }
 }

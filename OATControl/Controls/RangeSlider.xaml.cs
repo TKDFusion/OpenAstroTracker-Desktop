@@ -311,6 +311,10 @@
 		public RangeSlider()
 		{
 			this.InitializeComponent();
+
+			SetResourceReference(MajorTickColorProperty, "AppForegroundStrongColor");
+			SetResourceReference(MinorTickColorProperty, "AppBorderColor");
+			SetResourceReference(TickLabelColorProperty, "AppForegroundColor");
 		}
 
 		/// <summary>
@@ -787,13 +791,13 @@
 				{
 					Text = label.Item2,
 					FontSize = LabelFontSize,
-					Foreground = _tickLabelBrush,
 					Background = Brushes.Transparent,
 					HorizontalAlignment = IsVertical ? HorizontalAlignment.Right : HorizontalAlignment.Center,
 					VerticalAlignment = IsVertical ? VerticalAlignment.Center : VerticalAlignment.Bottom,
 					Margin = new Thickness(0.0),
 					Height = ValueIndicatorSize
 				};
+				textBlock.SetResourceReference(ForegroundProperty, "AppForegroundBrush");
 
 				// Calculate the normalized (0..1) horizontal location of the label (which is centered below this)
 				double location = GetLocation(label.Item1);
@@ -822,7 +826,6 @@
 			{
 				Text = AxisLabel,
 				FontSize = LabelFontSize * 1.5,
-				Foreground = _tickLabelBrush,
 				Background = Brushes.Transparent,
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
@@ -830,6 +833,7 @@
 				RenderTransformOrigin = new Point(1.0, 0.5),
 				RenderTransform = rotate90CCW,
 			};
+			axisLabelBlock.SetResourceReference(ForegroundProperty, "AppForegroundBrush");
 
 			this.TickLabelCanvas.Children.Add(axisLabelBlock);
 			if (IsVertical)
@@ -870,10 +874,11 @@
 							Y2 = IsVertical ? location : LabelColumnSize - MinorTickLength,
 							X1 = IsVertical ? LabelColumnSize : location,
 							X2 = IsVertical ? LabelColumnSize - MinorTickLength : location,
-							Stroke = _minorTickBrush,
 							SnapsToDevicePixels = true
 						};
-						lines[key] = line;
+						line.SetResourceReference(Shape.StrokeProperty, "AppBorderBrush");
+
+                        lines[key] = line;
 
 					}
 				}
@@ -905,9 +910,9 @@
 							Y2 = IsVertical ? location : LabelColumnSize - MajorTickLength,
 							X1 = IsVertical ? LabelColumnSize : location,
 							X2 = IsVertical ? LabelColumnSize - MajorTickLength : location,
-							Stroke = _majorTickBrush,
 							SnapsToDevicePixels = true
 						};
+						line.SetResourceReference(Shape.StrokeProperty, "AppForegroundStrongBrush");
 
 						lines[key] = line;
 					}

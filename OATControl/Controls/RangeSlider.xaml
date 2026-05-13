@@ -50,8 +50,8 @@
 
 
 				<!-- Middle Slider piece -->
-				<Border Grid.Row="2" BorderBrush="{StaticResource UnsetBorder}" BorderThickness="1,0,1,0"  Margin="8,0,2,0" 	>
-					<Rectangle Fill="{StaticResource UnsetBackground}" RadiusX="0" RadiusY="0"  />
+				<Border Grid.Row="2" BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="1,0,1,0"  Margin="8,0,2,0" 	>
+					<Rectangle Fill="{DynamicResource AppButtonBackgroundBrush}" RadiusX="0" RadiusY="0"  />
 				</Border>
 
 
@@ -59,9 +59,9 @@
 				<Grid Grid.Row="0" Grid.RowSpan="5" Grid.Column="1" >
 					<Path Data="M0,-5 L-10,0 0,5 16,5 16,-5z" 
 					  Stretch="Uniform" 
-					  Fill="{StaticResource ValueFill}" 
+					  Fill="{DynamicResource AppForegroundStrongBrush}" 
 					  StrokeThickness="1"  
-					  Stroke="{StaticResource ValueBorder}" 
+					  Stroke="{DynamicResource AppForegroundStrongBrush}" 
 					  Width="20" 
 					  Height="10" 
 					  VerticalAlignment="Top"
@@ -74,9 +74,9 @@
 				<Grid Grid.Row="0" Grid.RowSpan="5" Grid.Column="1" >
 					<Path Data="M0,-5 M0,-3 L-6,0 0,3 16,3 M16,5 M16,3 L16,-3 0,-3 M16,-5z" 
 					  Stretch="Uniform" 
-					  Fill="{StaticResource MarkerValueFill}" 
+					  Fill="{DynamicResource AppBorderSubtleBrush}" 
 					  StrokeThickness="1"  
-					  Stroke="{StaticResource MarkerValueBorder}" 
+					  Stroke="{DynamicResource AppBorderSubtleBrush}" 
 					  Width="20" 
 					  Height="10" 
 					  VerticalAlignment="Top"
@@ -87,33 +87,33 @@
 
 				<!-- Upper limit with limits showing -->
 				<Border Grid.Row="1" 
-					BorderBrush="{StaticResource SetBorder}" 
+					BorderBrush="{DynamicResource AppButtonBorderBrush}" 
 					BorderThickness="1,1,5,1" 
 					Width="{Binding ElementName=RangeSliderControl, Path=SliderPartWidth}"
 					Margin="6,0,0,0"
 					Visibility="{Binding ElementName=RangeSliderControl,Path=ShowLimits,Converter={StaticResource BoolToVisibleConverter}}"
 						   >
-					<Rectangle Margin="0,0" Fill="{StaticResource SetBackground}" />
+					<Rectangle Margin="0,0" Fill="{DynamicResource AppButtonHoverBrush}" />
 				</Border>
 
 				<!-- Upper limit -->
-				<Border Grid.Row="1" BorderBrush="{StaticResource UnsetBorder}" BorderThickness="1,1,1,0"  Margin="8,0,2,0" Visibility="{Binding ElementName=RangeSliderControl,Path=ShowLimits,Converter={StaticResource BoolToHiddenConverter}}">
-					<Rectangle Fill="{StaticResource UnsetBackground}" RadiusX="0" RadiusY="0"  />
+				<Border Grid.Row="1" BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="1,1,1,0"  Margin="8,0,2,0" Visibility="{Binding ElementName=RangeSliderControl,Path=ShowLimits,Converter={StaticResource BoolToHiddenConverter}}">
+					<Rectangle Fill="{DynamicResource AppButtonBackgroundBrush}" RadiusX="0" RadiusY="0"  />
 				</Border>
 
 				<!-- Lower limit -->
-				<Border Grid.Row="3" BorderBrush="{StaticResource UnsetBorder}" BorderThickness="1,0,1,1"  Margin="8,0,2,0" Visibility="{Binding ElementName=RangeSliderControl,Path=ShowLimits,Converter={StaticResource BoolToHiddenConverter}}">
-					<Rectangle Fill="{StaticResource UnsetBackground}" RadiusX="0" RadiusY="0"  />
+				<Border Grid.Row="3" BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="1,0,1,1"  Margin="8,0,2,0" Visibility="{Binding ElementName=RangeSliderControl,Path=ShowLimits,Converter={StaticResource BoolToHiddenConverter}}">
+					<Rectangle Fill="{DynamicResource AppButtonBackgroundBrush}" RadiusX="0" RadiusY="0"  />
 				</Border>
 
 				<!-- Lower limit with limits showing -->
 				<Border Grid.Row="3" 
-					BorderBrush="{StaticResource SetBorder}" 
+					BorderBrush="{DynamicResource AppButtonBorderBrush}" 
 					BorderThickness="1,1,1,1" 
 					Margin="6,0,0,0"
 						
 					Visibility="{Binding ElementName=RangeSliderControl,Path=ShowLimits,Converter={StaticResource BoolToVisibleConverter}}">
-					<Rectangle Margin="0,0" Fill="{StaticResource SetBackground}" />
+					<Rectangle Margin="0,0" Fill="{DynamicResource AppButtonHoverBrush}" />
 				</Border>
 
 
@@ -165,25 +165,25 @@
 					<ColumnDefinition Width="5"/>
 				</Grid.ColumnDefinitions>
 
-				<Border Grid.Column="1" BorderBrush="{StaticResource UnsetBorder}" BorderThickness="1,1,0,1"  Margin="0,8,0,2" Visibility="{Binding ElementName=RangeSliderControl,Path=ShowLimits,Converter={StaticResource BoolToHiddenConverter}}">
-					<Rectangle Fill="{StaticResource UnsetBackground}" RadiusX="0" RadiusY="0"  />
+				<Border Grid.Column="1" BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="1,1,0,1"  Margin="0,8,0,2" Visibility="{Binding ElementName=RangeSliderControl,Path=ShowLimits,Converter={StaticResource BoolToHiddenConverter}}">
+					<Rectangle Fill="{DynamicResource AppButtonBackgroundBrush}" RadiusX="0" RadiusY="0"  />
 				</Border>
 
-				<Border Grid.Column="3" BorderBrush="{StaticResource UnsetBorder}" BorderThickness="0,1,1,1"  Margin="0,8,0,2"	 Visibility="{Binding ElementName=RangeSliderControl,Path=ShowLimits,Converter={StaticResource BoolToHiddenConverter}}"		>
-					<Rectangle Fill="{StaticResource UnsetBackground}" RadiusX="0" RadiusY="0"  />
+				<Border Grid.Column="3" BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="0,1,1,1"  Margin="0,8,0,2"	 Visibility="{Binding ElementName=RangeSliderControl,Path=ShowLimits,Converter={StaticResource BoolToHiddenConverter}}"		>
+					<Rectangle Fill="{DynamicResource AppButtonBackgroundBrush}" RadiusX="0" RadiusY="0"  />
 				</Border>
 
-				<Border Grid.Column="2" BorderBrush="{StaticResource UnsetBorder}" BorderThickness="0,1"  Margin="0,8,0,2"	 >
-					<Rectangle Fill="{StaticResource UnsetBackground}" RadiusX="0" RadiusY="0"  />
+				<Border Grid.Column="2" BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="0,1"  Margin="0,8,0,2"	 >
+					<Rectangle Fill="{DynamicResource AppButtonBackgroundBrush}" RadiusX="0" RadiusY="0"  />
 				</Border>
 
 				<!-- Value Indicator -->
 				<Grid Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" >
 					<Path Data="M-5,0 L0,-5 5,0 5,16 -5,16z" 
 						Stretch="Uniform" 
-						Fill="{StaticResource ValueFill}" 
+						Fill="{DynamicResource AppForegroundStrongBrush}" 
 						StrokeThickness="1"  
-						Stroke="{StaticResource ValueBorder}" 
+						Stroke="{DynamicResource AppForegroundStrongBrush}" 
 						Width="10" 
 						Height="20" 
 						HorizontalAlignment="Left"
@@ -196,9 +196,9 @@
 				<Grid Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" >
 					<Path Data="M-5,0 M-3,0 L0,-6 3,0 3,16 M5,16 M3,16 L-3,16 -3,0 M-5,16z" 
 					  Stretch="Uniform" 
-					  Fill="{StaticResource MarkerValueFill}" 
+					  Fill="{DynamicResource AppBorderSubtleBrush}" 
 					  StrokeThickness="1"  
-					  Stroke="{StaticResource MarkerValueBorder}" 
+					  Stroke="{DynamicResource AppBorderSubtleBrush}" 
 					  Width="10" 
 					  Height="20" 
 					  HorizontalAlignment="Left"
@@ -209,24 +209,24 @@
 
 				<!-- Left Slider piece when limits shown -->
 				<Border Grid.Column="1" 
-					BorderBrush="{StaticResource SetBorder}" 
+					BorderBrush="{DynamicResource AppButtonBorderBrush}" 
 					BorderThickness="1,1,1,5" 
 					Height="{Binding ElementName=RangeSliderControl, Path=SliderPartWidth}"
 					Margin="0,6,0,0"
 					Visibility="{Binding ElementName=RangeSliderControl,Path=ShowLimits,Converter={StaticResource BoolToVisibleConverter}}"
 					>
-					<Rectangle Margin="0,0" Fill="{StaticResource SetBackground}" />
+					<Rectangle Margin="0,0" Fill="{DynamicResource AppButtonHoverBrush}" />
 				</Border>
 
 				<!-- Right Slider piece when limits shown -->
 				<Border Grid.Column="3" 
-					BorderBrush="{StaticResource SetBorder}" 
+					BorderBrush="{DynamicResource AppButtonBorderBrush}" 
 					BorderThickness="1,1,1,5" 
 					Height="{Binding ElementName=RangeSliderControl, Path=SliderPartWidth}"
 					Margin="0,6,0,0"
 					Visibility="{Binding ElementName=RangeSliderControl,Path=ShowLimits,Converter={StaticResource BoolToVisibleConverter}}"
 					>
-					<Rectangle Margin="0,0" Fill="{StaticResource SetBackground}" />
+					<Rectangle Margin="0,0" Fill="{DynamicResource AppButtonHoverBrush}" />
 				</Border>
 
 				<!-- Left Limit marker -->

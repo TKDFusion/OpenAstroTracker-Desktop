@@ -174,7 +174,10 @@ namespace OATControl.Controls
 			{
 				IsPressed = true;
 				this.MainGrid.CaptureMouse();
-				this.Command.Execute("+" + CommandParameter.ToString());
+				if (this.Command != null)
+				{
+					this.Command.Execute("+" + CommandParameter.ToString());
+				}
 			}
 		}
 
@@ -187,7 +190,10 @@ namespace OATControl.Controls
 		{
 			this.MainGrid.ReleaseMouseCapture();
 			IsPressed = false;
-			this.Command.Execute("-" + CommandParameter.ToString());
+			if (this.Command != null)
+			{
+				this.Command.Execute("-" + CommandParameter.ToString());
+			}
 		}
 	}
 }

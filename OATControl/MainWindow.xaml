@@ -169,8 +169,8 @@
 					<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
 						<GradientStop Offset="0" Color="{DynamicResource AppForegroundColor}" />
 						<GradientStop Offset="{Binding RASlewProgress}" Color="{DynamicResource AppForegroundColor}" />
-						<GradientStop Offset="{Binding RASlewProgress}" Color="{DynamicResource AppForegroundSubtleColor}" />
-						<GradientStop Offset="1.0" Color="{DynamicResource AppForegroundSubtleColor}" />
+						<GradientStop Offset="{Binding RASlewProgress}" Color="{DynamicResource AppPrimaryColor}" />
+						<GradientStop Offset="1.0" Color="{DynamicResource AppPrimaryColor}" />
 					</LinearGradientBrush>
 				</Border.BorderBrush>
 			</Border>
@@ -199,8 +199,8 @@
 					<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
 						<GradientStop Offset="0" Color="{DynamicResource AppForegroundColor}" />
 						<GradientStop Offset="{Binding DECSlewProgress}" Color="{DynamicResource AppForegroundColor}" />
-						<GradientStop Offset="{Binding DECSlewProgress}" Color="{DynamicResource AppForegroundSubtleColor}" />
-						<GradientStop Offset="1.0" Color="{DynamicResource AppForegroundSubtleColor}" />
+						<GradientStop Offset="{Binding DECSlewProgress}" Color="{DynamicResource AppPrimaryColor}" />
+						<GradientStop Offset="1.0" Color="{DynamicResource AppPrimaryColor}" />
 					</LinearGradientBrush>
 				</Border.BorderBrush>
 			</Border>
@@ -501,8 +501,8 @@
 						<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
 							<GradientStop Offset="0" Color="{DynamicResource AppForegroundColor}" />
 							<GradientStop Offset="{Binding DriftPhase}" Color="{DynamicResource AppForegroundColor}" />
-							<GradientStop Offset="{Binding DriftPhase}" Color="{DynamicResource AppForegroundSubtleColor}" />
-							<GradientStop Offset="1.0" Color="{DynamicResource AppForegroundSubtleColor}" />
+							<GradientStop Offset="{Binding DriftPhase}" Color="{DynamicResource AppForegroundStrongColor}" />
+							<GradientStop Offset="1.0" Color="{DynamicResource AppPrimaryColor}" />
 						</LinearGradientBrush>
 					</Border.BorderBrush>
 					<StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal">

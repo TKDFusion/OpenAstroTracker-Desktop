@@ -4,165 +4,177 @@
         xmlns:controls="clr-namespace:OATControl.Controls"
 		xmlns:converters="clr-namespace:OATControl.Converters"
         Title="Theme Editor" Width="1150" Height="620"
-        MinWidth="900" MinHeight="500"
+        MinWidth="900" MinHeight="640"
         WindowStartupLocation="CenterOwner"
         Loaded="Window_Loaded">
 
-	<controls:ThemedWindow.Resources>
-		<!-- Force Daylight theme for the editor chrome -->
-		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="pack://application:,,,/OATControl;component/Resources/Themes/Daylight.xaml"/>
-			</ResourceDictionary.MergedDictionaries>
-			<converters:IntToBoolConverter x:Key="IntToBoolConverter" Operator="==" />
-			<Style x:Key="OatToolTip" TargetType="ToolTip" BasedOn="{StaticResource MetroToolTip}">
-				<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}" />
-				<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
-				<Setter Property="Padding" Value="5,2,5,7" />
-			</Style>
+		<controls:ThemedWindow.Resources>
+			<!-- Force Daylight theme for the editor chrome -->
+			<ResourceDictionary>
+				<ResourceDictionary.MergedDictionaries>
+					<ResourceDictionary Source="pack://application:,,,/OATControl;component/Resources/Themes/Daylight.xaml"/>
+				</ResourceDictionary.MergedDictionaries>
+				<converters:IntToBoolConverter x:Key="IntToBoolConverter" Operator="==" />
+				<Style x:Key="OatToolTip" TargetType="ToolTip" BasedOn="{StaticResource MetroToolTip}">
+					<Setter Property="Background" Value="{DynamicResource AppTooltipBackgroundBrush}" />
+					<Setter Property="Foreground" Value="{DynamicResource AppTooltipForegroundStrongBrush}" />
+					<Setter Property="Padding" Value="5,2,5,7" />
+				</Style>
 
-			<!-- Title bar button style for preview -->
-			<Style x:Key="PreviewTitleBarButton" TargetType="Button">
-				<Setter Property="Background" Value="Transparent"/>
-				<Setter Property="Foreground" Value="{DynamicResource AppTitleBarForegroundBrush}"/>
-				<Setter Property="BorderBrush" Value="Transparent"/>
-				<Setter Property="BorderThickness" Value="0"/>
-				<Setter Property="FontSize" Value="10"/>
-				<Setter Property="Template">
-					<Setter.Value>
-						<ControlTemplate TargetType="Button">
-							<Border Background="{TemplateBinding Background}" Padding="0,2">
-								<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-							</Border>
-							<ControlTemplate.Triggers>
-								<Trigger Property="IsMouseOver" Value="True">
-									<Setter Property="Background" Value="{DynamicResource AppTitleBarButtonHoverBrush}"/>
-								</Trigger>
-								<Trigger Property="IsPressed" Value="True">
-									<Setter Property="Background" Value="{DynamicResource AppTitleBarButtonPressedBrush}"/>
-								</Trigger>
-							</ControlTemplate.Triggers>
-						</ControlTemplate>
-					</Setter.Value>
-				</Setter>
-			</Style>
-		</ResourceDictionary>
-	</controls:ThemedWindow.Resources>
-
-	<Grid Margin="8">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
-
-		<!-- Main three-panel area -->
-		<Grid Grid.Row="0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="180"/>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="460"/>
-			</Grid.ColumnDefinitions>
-
-			<!-- Left panel: Theme list -->
-			<Border Grid.Column="0" BorderBrush="#FFCCCCCC" BorderThickness="1" Margin="0,0,4,0">
-				<DockPanel>
-					<TextBlock DockPanel.Dock="Top" Text="Themes" FontWeight="Bold" FontSize="14"
-                               Margin="6,6,6,4" Foreground="#FF333333"/>
-					<StackPanel DockPanel.Dock="Bottom" Margin="4,4,4,4" Orientation="Vertical">
-						<Button Content="New Theme" Click="OnNewTheme" Margin="0,0,0,4" Padding="4,2"/>
-						<Button Content="Import Theme" Click="OnImportTheme" Padding="4,2"/>
-					</StackPanel>
-					<ListBox x:Name="ThemeListBox" Margin="4,0,4,4"
-                             SelectionChanged="ThemeListBox_SelectionChanged"/>
-				</DockPanel>
-			</Border>
-
-			<!-- Center panel: Color editor grid -->
-			<Border Grid.Column="1" BorderBrush="#FFCCCCCC" BorderThickness="1" Margin="4,0">
-				<DockPanel>
-					<TextBlock DockPanel.Dock="Top" FontWeight="Bold" FontSize="14"
-                               Margin="6,6,6,4" Foreground="#FF333333">
-                        <Run Text="Colors"/>
-                        <Run Text=" (" /><Run x:Name="ThemeNameLabel"/><Run Text=")"/>
-					</TextBlock>
-					<ScrollViewer VerticalScrollBarVisibility="Auto" Margin="4,0,4,4">
-						<ItemsControl x:Name="ColorEditorGrid">
-							<ItemsControl.ItemTemplate>
-								<DataTemplate>
-									<Grid Margin="0,2">
-										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="140"/>
-											<ColumnDefinition Width="40"/>
-											<ColumnDefinition Width="*"/>
-											<ColumnDefinition Width="Auto"/>
-										</Grid.ColumnDefinitions>
-										<TextBlock Grid.Column="0" Text="{Binding DisplayName}"
-                                                   VerticalAlignment="Center" FontSize="12" Foreground="#FF333333"/>
-										<Border Grid.Column="1" Width="28" Height="20"
-                                                BorderBrush="#FF999999" BorderThickness="1"
-                                                CornerRadius="2" Margin="0,0,4,0">
-											<Border.Background>
-												<SolidColorBrush Color="{Binding Color}"/>
-											</Border.Background>
-										</Border>
-										<TextBox Grid.Column="2" Text="{Binding HexValue, UpdateSourceTrigger=PropertyChanged}"
-                                                 VerticalAlignment="Center" FontSize="11"
-                                                 Margin="0,0,4,0" Width="80"
-                                                 Background="#FFF0F0F0" Foreground="#FF333333"
-                                                 BorderBrush="#FFCCCCCC"/>
-										<Button Grid.Column="3" Content="Reset" Click="OnResetColor" Tag="{Binding Key}"
-                                                    Padding="6,1" FontSize="10"/>
-									</Grid>
-								</DataTemplate>
-							</ItemsControl.ItemTemplate>
-						</ItemsControl>
-					</ScrollViewer>
-				</DockPanel>
-			</Border>
-
-			<!-- Right panel: Live preview -->
-			<Border Grid.Column="2" BorderBrush="#FFCCCCCC" BorderThickness="1" Margin="4,0,0,0">
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="*"/>
-						<RowDefinition Height="Auto"/>
-					</Grid.RowDefinitions>
-					<TextBlock Grid.Row="0" Text="Preview" FontWeight="Bold" FontSize="14"
-                               Margin="6,6,6,4" Foreground="#FF333333"/>
-					<Border Grid.Row="1" x:Name="PreviewPanel" Margin="4,0,4,4">
-						<!-- Mini app window frame -->
-						<Border BorderThickness="1" CornerRadius="3"
-                                BorderBrush="{DynamicResource AppBorderBrush}"
-                                Background="{DynamicResource AppWindowBackgroundBrush}">
-							<Grid>
-								<Grid.RowDefinitions>
-									<RowDefinition Height="26"/>
-									<RowDefinition Height="*"/>
-								</Grid.RowDefinitions>
-
-								<!-- Title bar -->
-								<Border Grid.Row="0" CornerRadius="3,3,0,0"
-                                        Background="{DynamicResource AppTitleBarBackgroundBrush}"
-                                        BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="0,0,0,1">
-									<Grid Margin="6,0">
-										<TextBlock Text="OATControl" FontSize="11" FontWeight="Bold"
-                                                   Foreground="{DynamicResource AppTitleBarForegroundBrush}"
-                                                   VerticalAlignment="Center"/>
-										<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-											<Button Content="─" Width="30" Height="26"
-                                                    Style="{StaticResource PreviewTitleBarButton}"/>
-											<Button Content="□" Width="30" Height="26"
-                                                    Style="{StaticResource PreviewTitleBarButton}"/>
-											<Button Content="✕" Width="30" Height="26"
-                                                    Style="{StaticResource PreviewTitleBarButton}"/>
-										</StackPanel>
-									</Grid>
+				<!-- Title bar button style for preview -->
+				<Style x:Key="PreviewTitleBarButton" TargetType="Button">
+					<Setter Property="Background" Value="Transparent"/>
+					<Setter Property="Foreground" Value="{DynamicResource AppTitleBarForegroundBrush}"/>
+					<Setter Property="BorderBrush" Value="Transparent"/>
+					<Setter Property="BorderThickness" Value="0"/>
+					<Setter Property="FontSize" Value="10"/>
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="Button">
+								<Border Background="{TemplateBinding Background}" Padding="0,2">
+									<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
 								</Border>
+								<ControlTemplate.Triggers>
+									<Trigger Property="IsMouseOver" Value="True">
+										<Setter Property="Background" Value="{DynamicResource AppTitleBarButtonHoverBrush}"/>
+									</Trigger>
+									<Trigger Property="IsPressed" Value="True">
+										<Setter Property="Background" Value="{DynamicResource AppTitleBarButtonPressedBrush}"/>
+									</Trigger>
+								</ControlTemplate.Triggers>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			<Style x:Key="MotorIndicatorStyle" TargetType="controls:MotorIndicator" >
+				<Setter Property="Width" Value="38" />
+				<Setter Property="Height" Value="8" />
+				<Setter Property="Margin" Value="1,1,1,1" />
+				<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}" />
+				<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
+				<Setter Property="ActiveBackground" Value="{DynamicResource AppButtonBorderBrush}" />
+				<Setter Property="ActiveForeground" Value="{DynamicResource AppForegroundStrongBrush}" />
+				<Setter Property="DisabledForeground" Value="{DynamicResource AppDisabledForegroundBrush}" />
+			</Style>
 
-								<!-- Content area -->
-								<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-									<Grid Margin="10,8">
+		</ResourceDictionary>
+		</controls:ThemedWindow.Resources>
+
+		<Grid Margin="8">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+
+			<!-- Main three-panel area -->
+			<Grid Grid.Row="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="180"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="460"/>
+				</Grid.ColumnDefinitions>
+
+				<!-- Left panel: Theme list -->
+				<Border Grid.Column="0" BorderBrush="#FFCCCCCC" BorderThickness="1" Margin="0,0,4,0">
+					<DockPanel>
+						<TextBlock DockPanel.Dock="Top" Text="Themes" FontWeight="Bold" FontSize="14"
+	                               Margin="6,6,6,4" Foreground="#FF333333"/>
+						<StackPanel DockPanel.Dock="Bottom" Margin="4,4,4,4" Orientation="Vertical">
+							<Button Content="New Theme" Click="OnNewTheme" Margin="0,0,0,4" Padding="4,2"/>
+							<Button Content="Import Theme" Click="OnImportTheme" Padding="4,2"/>
+						</StackPanel>
+						<ListBox x:Name="ThemeListBox" Margin="4,0,4,4"
+	                             SelectionChanged="ThemeListBox_SelectionChanged"/>
+					</DockPanel>
+				</Border>
+
+				<!-- Center panel: Color picker -->
+				<Border Grid.Column="1" BorderBrush="#FFCCCCCC" BorderThickness="1" Margin="4,0">
+					<DockPanel>
+						<TextBlock DockPanel.Dock="Top" FontWeight="Bold" FontSize="14"
+	                               Margin="6,6,6,4" Foreground="#FF333333">
+	                        <Run Text="Colors"/>
+	                        <Run Text=" (" /><Run x:Name="ThemeNameLabel"/><Run Text=")"/>
+						</TextBlock>
+						<Grid Margin="4,0,4,4">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="160"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+
+							<!-- Swatch list -->
+							<ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="0,0,4,0">
+								<ListBox x:Name="ColorSwatchList"
+								         SelectionChanged="OnSwatchListSelectionChanged"
+								         BorderThickness="1" BorderBrush="#FFCCCCCC">
+									<ListBox.ItemTemplate>
+										<DataTemplate>
+											<StackPanel Orientation="Horizontal" Margin="2,1">
+												<Border Width="16" Height="16" BorderBrush="#FF999999"
+												        BorderThickness="1" CornerRadius="2" Margin="0,0,6,0">
+													<Border.Background>
+														<SolidColorBrush Color="{Binding Color}"/>
+													</Border.Background>
+												</Border>
+												<TextBlock Text="{Binding DisplayName}" FontSize="11"
+												           VerticalAlignment="Center" Foreground="#FF333333"/>
+											</StackPanel>
+										</DataTemplate>
+									</ListBox.ItemTemplate>
+								</ListBox>
+							</ScrollViewer>
+
+							<!-- Picker area -->
+							<ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+								<StackPanel>
+									<!-- Hue/Saturation square + Lightness bar -->
+									<Grid HorizontalAlignment="Left" Margin="0,0,0,8">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="256"/>
+											<ColumnDefinition Width="8"/>
+											<ColumnDefinition Width="24"/>
+										</Grid.ColumnDefinitions>
+
+										<!-- H×S square -->
+										<Grid Grid.Column="0" Width="256" Height="256">
+											<Image x:Name="HueSatImage" Width="256" Height="256"
+											       RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+											<Canvas x:Name="HueSatCanvas" Width="256" Height="256"
+											        Background="Transparent"
+											        MouseDown="OnColorSquareMouseDown"
+											        MouseMove="OnColorSquareMouseMove"
+											        MouseUp="OnColorSquareMouseUp">
+												<Border x:Name="Crosshair" Width="12" Height="12"
+												        BorderBrush="White" BorderThickness="2"
+												        CornerRadius="6" Background="Transparent"
+												        IsHitTestVisible="False"/>
+											</Canvas>
+										</Grid>
+
+										<!-- Lightness bar -->
+										<Grid Grid.Column="2" Width="24" Height="256">
+											<Image x:Name="LightnessImage" Width="24" Height="256"
+											       RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+											<Canvas x:Name="LightnessCanvas" Width="24" Height="256"
+											        Background="Transparent"
+											        MouseDown="OnLightnessBarMouseDown"
+											        MouseMove="OnLightnessBarMouseMove"
+											        MouseUp="OnLightnessBarMouseUp">
+												<Border x:Name="LightnessMarker" Width="24" Height="4"
+												        BorderBrush="White" BorderThickness="1"
+												        Background="Transparent"
+												        IsHitTestVisible="False"/>
+											</Canvas>
+										</Grid>
+									</Grid>
+
+									<!-- RGB + HSL sliders -->
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="20"/>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="40"/>
+										</Grid.ColumnDefinitions>
 										<Grid.RowDefinitions>
 											<RowDefinition Height="Auto"/>
 											<RowDefinition Height="Auto"/>
@@ -172,177 +184,356 @@
 											<RowDefinition Height="Auto"/>
 										</Grid.RowDefinitions>
 
-										<!-- Stepper fields -->
-										<Grid Grid.Row="0">
+										<TextBlock Grid.Row="0" Grid.Column="0" Text="R" FontSize="10"
+										           Foreground="#FF333333" VerticalAlignment="Center" Margin="0,0,4,2"/>
+										<Slider x:Name="SliderR" Grid.Row="0" Grid.Column="1"
+										        Minimum="0" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1"
+										        ValueChanged="OnRgbSliderChanged" Margin="0,0,4,2"/>
+										<TextBlock Grid.Row="0" Grid.Column="2"
+										           Text="{Binding Value, ElementName=SliderR, StringFormat={}{0:0}}"
+										           FontSize="10" Foreground="#FF333333" VerticalAlignment="Center"/>
+
+										<TextBlock Grid.Row="1" Grid.Column="0" Text="G" FontSize="10"
+										           Foreground="#FF333333" VerticalAlignment="Center" Margin="0,0,4,2"/>
+										<Slider x:Name="SliderG" Grid.Row="1" Grid.Column="1"
+										        Minimum="0" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1"
+										        ValueChanged="OnRgbSliderChanged" Margin="0,0,4,2"/>
+										<TextBlock Grid.Row="1" Grid.Column="2"
+										           Text="{Binding Value, ElementName=SliderG, StringFormat={}{0:0}}"
+										           FontSize="10" Foreground="#FF333333" VerticalAlignment="Center"/>
+
+										<TextBlock Grid.Row="2" Grid.Column="0" Text="B" FontSize="10"
+										           Foreground="#FF333333" VerticalAlignment="Center" Margin="0,0,4,2"/>
+										<Slider x:Name="SliderB" Grid.Row="2" Grid.Column="1"
+										        Minimum="0" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1"
+										        ValueChanged="OnRgbSliderChanged" Margin="0,0,4,2"/>
+										<TextBlock Grid.Row="2" Grid.Column="2"
+										           Text="{Binding Value, ElementName=SliderB, StringFormat={}{0:0}}"
+										           FontSize="10" Foreground="#FF333333" VerticalAlignment="Center"/>
+
+										<TextBlock Grid.Row="3" Grid.Column="0" Text="H" FontSize="10"
+										           Foreground="#FF333333" VerticalAlignment="Center" Margin="0,0,4,2"/>
+										<Slider x:Name="SliderH" Grid.Row="3" Grid.Column="1"
+										        Minimum="0" Maximum="360" IsSnapToTickEnabled="True" TickFrequency="1"
+										        ValueChanged="OnHslSliderChanged" Margin="0,0,4,2"/>
+										<TextBlock Grid.Row="3" Grid.Column="2"
+										           Text="{Binding Value, ElementName=SliderH, StringFormat={}{0:0}}"
+										           FontSize="10" Foreground="#FF333333" VerticalAlignment="Center"/>
+
+										<TextBlock Grid.Row="4" Grid.Column="0" Text="S" FontSize="10"
+										           Foreground="#FF333333" VerticalAlignment="Center" Margin="0,0,4,2"/>
+										<Slider x:Name="SliderS" Grid.Row="4" Grid.Column="1"
+										        Minimum="0" Maximum="100" IsSnapToTickEnabled="True" TickFrequency="1"
+										        ValueChanged="OnHslSliderChanged" Margin="0,0,4,2"/>
+										<TextBlock Grid.Row="4" Grid.Column="2"
+										           Text="{Binding Value, ElementName=SliderS, StringFormat={}{0:0}}"
+										           FontSize="10" Foreground="#FF333333" VerticalAlignment="Center"/>
+
+										<TextBlock Grid.Row="5" Grid.Column="0" Text="L" FontSize="10"
+										           Foreground="#FF333333" VerticalAlignment="Center" Margin="0,0,4,2"/>
+										<Slider x:Name="SliderL" Grid.Row="5" Grid.Column="1"
+										        Minimum="0" Maximum="100" IsSnapToTickEnabled="True" TickFrequency="1"
+										        ValueChanged="OnHslSliderChanged" Margin="0,0,4,2"/>
+										<TextBlock Grid.Row="5" Grid.Column="2"
+										           Text="{Binding Value, ElementName=SliderL, StringFormat={}{0:0}}"
+										           FontSize="10" Foreground="#FF333333" VerticalAlignment="Center"/>
+									</Grid>
+								</StackPanel>
+							</ScrollViewer>
+						</Grid>
+					</DockPanel>
+				</Border>
+
+				<!-- Right panel: Live preview -->
+				<Border Grid.Column="2" BorderBrush="#FFCCCCCC" BorderThickness="1" Margin="4,0,0,0">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="*"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+						<TextBlock Grid.Row="0" Text="Preview" FontWeight="Bold" FontSize="14"
+	                               Margin="6,6,6,4" Foreground="#FF333333"/>
+						<Border Grid.Row="1" x:Name="PreviewPanel" Margin="4,0,4,4">
+							<!-- Mini app window frame -->
+							<Border BorderThickness="1" CornerRadius="3"
+	                                BorderBrush="{DynamicResource AppBorderBrush}"
+	                                Background="{DynamicResource AppWindowBackgroundBrush}">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="26"/>
+										<RowDefinition Height="*"/>
+									</Grid.RowDefinitions>
+
+									<!-- Title bar -->
+									<Border Grid.Row="0" CornerRadius="3,3,0,0"
+	                                        Background="{DynamicResource AppTitleBarBackgroundBrush}"
+	                                        BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="0,0,0,1">
+										<Grid Margin="6,0">
+											<TextBlock Text="OATControl" FontSize="11" FontWeight="Bold"
+	                                                   Foreground="{DynamicResource AppTitleBarForegroundBrush}"
+	                                                   VerticalAlignment="Center"/>
+											<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+												<Button Content="─" Width="30" Height="26"
+	                                                    Style="{StaticResource PreviewTitleBarButton}"/>
+												<Button Content="□" Width="30" Height="26"
+	                                                    Style="{StaticResource PreviewTitleBarButton}"/>
+												<Button Content="✕" Width="30" Height="26"
+	                                                    Style="{StaticResource PreviewTitleBarButton}"/>
+											</StackPanel>
+										</Grid>
+									</Border>
+
+									<!-- Content area -->
+									<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+										<Grid Margin="10,8">
 											<Grid.RowDefinitions>
 												<RowDefinition Height="Auto"/>
 												<RowDefinition Height="Auto"/>
+												<RowDefinition Height="Auto"/>
+												<RowDefinition Height="Auto"/>
+												<RowDefinition Height="Auto"/>
+												<RowDefinition Height="Auto"/>
 											</Grid.RowDefinitions>
-											<Grid.ColumnDefinitions>
-												<ColumnDefinition Width="Auto"/>
-												<ColumnDefinition Width="*"/>
-											</Grid.ColumnDefinitions>
 
-											<TextBlock Grid.Row="0" Grid.Column="0" Text="RA Stepper"
-                                                       Foreground="{DynamicResource AppForegroundBrush}"
-                                                       FontWeight="Bold" FontSize="11" Margin="0,0,10,4"
-                                                       VerticalAlignment="Center"/>
-											<TextBox Grid.Row="0" Grid.Column="1" Text="12:34:56" IsReadOnly="True"
-                                                     Style="{StaticResource MetroTextBox}"
-                                                     FontSize="11" Margin="0,0,0,4" Padding="4,3"/>
+											<!-- Stepper fields -->
+											<Grid Grid.Row="0">
+												<Grid.RowDefinitions>
+													<RowDefinition Height="Auto"/>
+													<RowDefinition Height="Auto"/>
+												</Grid.RowDefinitions>
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="Auto"/>
+													<ColumnDefinition Width="*"/>
+												</Grid.ColumnDefinitions>
 
-											<TextBlock Grid.Row="1" Grid.Column="0" Text="DEC Stepper"
-                                                       Foreground="{DynamicResource AppForegroundBrush}"
-                                                       FontWeight="Bold" FontSize="11" Margin="0,0,10,4"
-                                                       VerticalAlignment="Center"/>
-											<TextBox Grid.Row="1" Grid.Column="1" Text="+45&#176; 12' 34&#34;" IsReadOnly="True"
-                                                     Style="{StaticResource MetroTextBox}"
-                                                     FontSize="11" Margin="0,0,0,4" Padding="4,3"/>
+												<TextBlock Grid.Row="0" Grid.Column="0" Text="RA Stepper"
+	                                                           Foreground="{DynamicResource AppForegroundBrush}"
+	                                                           FontWeight="Bold" FontSize="11" Margin="0,0,10,4"
+	                                                           VerticalAlignment="Center"/>
+												<TextBox Grid.Row="0" Grid.Column="1" Text="12:34:56" IsReadOnly="True"
+	                                                     Style="{StaticResource MetroTextBox}"
+	                                                     FontSize="11" Margin="0,0,0,4" Padding="4,3"/>
+
+												<TextBlock Grid.Row="1" Grid.Column="0" Text="DEC Stepper"
+	                                                           Foreground="{DynamicResource AppForegroundBrush}"
+	                                                           FontWeight="Bold" FontSize="11" Margin="0,0,10,4"
+	                                                           VerticalAlignment="Center"/>
+												<TextBox Grid.Row="1" Grid.Column="1" Text="+45&#176; 12' 34&#34;" IsReadOnly="True"
+	                                                     Style="{StaticResource MetroTextBox}"
+	                                                     FontSize="11" Margin="0,0,0,4" Padding="4,3"/>
+											</Grid>
+
+											<!-- Separator -->
+											<Border Grid.Row="1" BorderBrush="{DynamicResource AppBorderSubtleBrush}"
+	                                                BorderThickness="0,0,0,1" Margin="0,4,0,6"/>
+
+											<!-- Toggle switches -->
+											<StackPanel Grid.Row="2" Margin="0,2">
+												<Grid Margin="0,4,0,8">
+													<Grid.RowDefinitions>
+														<RowDefinition Height="Auto" />
+														<RowDefinition Height="Auto" />
+														<RowDefinition Height="Auto" />
+													<RowDefinition Height="Auto" />
+													<RowDefinition Height="Auto" />
+												</Grid.RowDefinitions>
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="Auto" />
+													<ColumnDefinition Width="*" />
+													<ColumnDefinition Width="Auto" />
+												</Grid.ColumnDefinitions>
+												<StackPanel Grid.Row="0" Grid.Column="0" 
+													Orientation="Horizontal" Margin="0,0,0,8">
+													<TextBlock Text="Label Text:" FontSize="11"
+	                                                           Foreground="{DynamicResource AppForegroundBrush}"
+	                                                           VerticalAlignment="Center" Margin="8,0,8,0"/>
+													<TextBlock Grid.Row="1" Grid.Column="2" MinWidth="75" Text="Label Value"  Style="{StaticResource TextValue}" TextAlignment="Center" />
+												</StackPanel>
+												<CheckBox Grid.Row="1" Grid.Column="0" Content="Checkbox" IsChecked="False" FontSize="11" Margin="0,2"/>
+												<StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Margin="0,12,0,8">
+													<controls:ToggleSwitch IsChecked="True"/>
+													<TextBlock Text="Toggle Switch" FontSize="11"
+	                                                           Foreground="{DynamicResource AppForegroundBrush}"
+	                                                           VerticalAlignment="Center" Margin="8,0,0,0"/>
+												</StackPanel>
+												<StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal" Margin="0,12,0,8">
+													<ToggleButton
+														Width="24" Margin="0,0,0,0"
+														Height="24"
+														Style="{StaticResource ToggleButtonState}"
+														Content="RA">
+														<ToggleButton.ToolTip>
+															<ToolTip Style="{StaticResource OatToolTip}">
+																<Grid>
+																	<Grid.ColumnDefinitions>
+																		<ColumnDefinition Width="Auto"/>
+																		<ColumnDefinition Width="Auto"/>
+																	</Grid.ColumnDefinitions>
+																	<Grid.RowDefinitions>
+																		<RowDefinition Height="Auto" />
+																		<RowDefinition Height="Auto" />
+																		<RowDefinition Height="Auto" />
+																	</Grid.RowDefinitions>
+																	<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Slowest" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="{DynamicResource AppTooltipHeaderBrush}" Padding="0,1,0,4"/>
+																	<TextBlock Grid.Row="1" Grid.Column="0" Text="RA/DEC Speed" FontWeight="Normal" FontSize="10"/>
+																	<TextBlock Grid.Row="1" Grid.Column="1" Text="5%" FontWeight="Bold" FontSize="10" Padding="5,0"/>
+																	<TextBlock Grid.Row="2" Grid.Column="0" Text="AZ/ALT Distance" FontWeight="Normal"  FontSize="10"/>
+																	<TextBlock Grid.Row="2" Grid.Column="1" Text="3 arcsecs" FontWeight="Bold"  FontSize="10" Padding="5,0"/>
+																</Grid>
+															</ToolTip>
+														</ToggleButton.ToolTip>
+													</ToggleButton>
+													<TextBlock 
+														Text="Toggle Button (with Tooltip)" FontSize="11"
+													   Foreground="{DynamicResource AppForegroundBrush}"
+													   VerticalAlignment="Center" Margin="8,0,8,0"/>
+												</StackPanel>
+
+												<StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical">
+													<controls:IconButton HorizontalAlignment="Center" Width="28" Height="28"
+														Margin="0,2,0,0"
+														Padding="0" ToolTip="Configure the items on the checklist to display."
+														IconData="M16.000015,9.6000061C12.500012,9.6000061 9.5999844,12.5 9.5999844,16 9.5999844,19.5 12.500012,22.399994 16.000015,22.399994 19.500019,22.399994 22.400015,19.5 22.400015,16 22.400015,12.5 19.500019,9.6000061 16.000015,9.6000061z M14.199995,0L17.800005,0C18.199999,0,18.599993,0.29998779,18.599993,0.79998779L18.599993,4.7999878C19.900013,5.1000061,21.000019,5.6000061,22.099997,6.2999878L25.000023,3.3999939C25.099999,3.2999878 25.300011,3.1999817 25.500025,3.1999817 25.700007,3.1999817 25.900019,3.2999878 26.000025,3.3999939L28.600033,6C28.900021,6.2999878,28.900021,6.7999878,28.600033,7.1000061L25.700007,10C26.400019,11.100006,26.900019,12.299988,27.200007,13.5L31.20001,13.5C31.600037,13.5,31.999998,13.799988,31.999998,14.299988L31.999998,17.899994C31.999998,18.299988,31.700012,18.699982,31.20001,18.699982L27.200007,18.699982C26.900019,20,26.400019,21.100006,25.700007,22.199982L28.600033,25.100006C28.700009,25.199982 28.799984,25.399994 28.799984,25.600006 28.799984,25.799988 28.700009,26 28.600033,26.100006L26.000025,28.600006C25.900019,28.699982 25.700007,28.799988 25.500025,28.799988 25.300011,28.799988 25.099999,28.699982 25.000023,28.600006L22.099997,25.699982C21.000019,26.399994,19.800007,26.899994,18.599993,27.199982L18.599993,31.199982C18.599993,31.600006,18.300005,32,17.800005,32L14.199995,32C13.8,32,13.400006,31.699982,13.400006,31.199982L13.400006,27.199982C12.099987,26.899994,11.000011,26.399994,9.9000027,25.699982L7.0000064,28.600006C6.9000003,28.699982 6.6999881,28.799988 6.5000059,28.799988 6.2999937,28.799988 6.099981,28.699982 6.0000054,28.600006L3.3999967,26C3.0999784,25.699982,3.0999784,25.199982,3.3999967,24.899994L6.2999937,22C5.5999805,20.899994,5.0999801,19.699982,4.7999923,18.5L0.79998828,18.5C0.39999409,18.5,-1.933513E-07,18.199982,0,17.699982L0,14.100006C-1.933513E-07,13.699982,0.2999879,13.299988,0.79998828,13.299988L4.7999923,13.299988C5.0999801,12,5.5999805,10.899994,6.2999937,9.7999878L3.3999967,7C3.2999908,6.8999939 3.1999845,6.6999817 3.1999845,6.5 3.1999845,6.2999878 3.2999908,6.1000061 3.3999967,6L6.0000054,3.3999939C6.099981,3.2999878 6.2999937,3.1999817 6.5000059,3.1999817 6.6999881,3.1999817 6.9000003,3.2999878 7.0000064,3.3999939L9.9000027,6.2999878C11.000011,5.6000061,12.199993,5.1000061,13.400006,4.7999878L13.400006,0.79998779C13.400006,0.29998779,13.8,0,14.199995,0z" />
+												</StackPanel>
+
+												<StackPanel Grid.Row="2" Grid.Column="2" Orientation="Vertical">
+													<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="Track" IsRunning="true" IsEnabled="true"/>
+													<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="Guide" IsRunning="false" IsEnabled="true"/>
+													<controls:MotorIndicator Style="{StaticResource MotorIndicatorStyle}" MotorName="Disabled" IsRunning="false" IsEnabled="false"/>
+												</StackPanel>
+
+												<StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal">
+													<controls:PushButton 	Width="36" Height="32" Direction="W" IsEnabled="True"  />
+													<TextBlock 
+														Text="Push Button" FontSize="11"
+													   Foreground="{DynamicResource AppForegroundBrush}"
+													   VerticalAlignment="Center" Margin="8,0,8,0"/>
+												</StackPanel>
+
+												<StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal" Margin="0,10,0,0">
+													<controls:RangeSlider
+														Width="200"
+														Height="44"
+														Orientation="Horizontal"
+														LabelColumnSize="22"
+														Minimum="-2"
+														Maximum="2"
+														Value="-1.4" 
+														MarkerValue="0.8" 
+														Padding="0" 
+														ShowLimits="False"
+														AxisLabel="Axis" 
+														TickMajorSpacing="1" 
+														TickMinorSpacing="0.2" 
+														TickStart="-2"
+														TickEnd="2"
+														TickLabels="-2|-1|0|1|2"
+														MajorTickColor="{DynamicResource AppForegroundStrongColor}"
+														MinorTickColor="{DynamicResource AppBorderColor}"
+														TickLabelColor="{DynamicResource AppForegroundColor}"														/>
+												</StackPanel>
+
+												<StackPanel Grid.Row="4" Grid.Column="2" Orientation="Horizontal">
+													<controls:PushButton 	Width="36" Height="32" Direction="W" IsEnabled="False"  />
+														<TextBlock 
+															Text="Push Button (disabled)" FontSize="11"
+															   Foreground="{DynamicResource AppForegroundBrush}"
+															   VerticalAlignment="Center" Margin="8,0,8,0"/>
+												</StackPanel>
+											</Grid>
+											</StackPanel>
+
+											<!-- Separator -->
+											<Border Grid.Row="3" BorderBrush="{DynamicResource AppBorderSubtleBrush}"
+	                                                BorderThickness="0,0,0,1" Margin="0,4,0,6"/>
+
+											<!-- ListView with targets -->
+											<DockPanel Grid.Row="4">
+												<TextBlock DockPanel.Dock="Top" Text="List View" FontWeight="Bold" FontSize="11"
+	                                                           Foreground="{DynamicResource AppForegroundBrush}" Margin="0,0,0,4"/>
+												<Border BorderBrush="{DynamicResource AppButtonBorderBrush}" BorderThickness="1" MaxHeight="80">
+													<ListView FontSize="10" BorderThickness="0" Background="{DynamicResource AppNestedBackgroundBrush}">
+														<ListViewItem Content="M31 - Andromeda Galaxy" IsSelected="True"/>
+														<ListViewItem Content="M42 - Orion Nebula"/>
+														<ListViewItem Content="NGC 7000 - North America"/>
+													</ListView>
+												</Border>
+											</DockPanel>
+
+											<!-- Buttons -->
+											<StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,10,0,0"
+	                                                    HorizontalAlignment="Left">
+												<Button Content="Slew" Width="65" Margin="0,0,6,0" Padding="0,4"
+	                                                    Style="{StaticResource MainButtonStyle}"/>
+												<Button Content="Stop" Width="65" Margin="0,0,6,0" Padding="0,4"
+	                                                    Style="{StaticResource MainButtonStyle}"/>
+												<Button Content="Disabled" Width="65" Padding="0,4" IsEnabled="False"
+	                                                    Style="{StaticResource MainButtonStyle}"/>
+											</StackPanel>
 										</Grid>
-
-										<!-- Separator -->
-										<Border Grid.Row="1" BorderBrush="{DynamicResource AppBorderSubtleBrush}"
-                                                BorderThickness="0,0,0,1" Margin="0,4,0,6"/>
-
-										<!-- Toggle switches -->
-										<StackPanel Grid.Row="2" Margin="0,2">
-											<StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-												<TextBlock Text="Label Text:" FontSize="11"
-                                                           Foreground="{DynamicResource AppForegroundBrush}"
-                                                           VerticalAlignment="Center" Margin="8,0,8,0"/>
-												<TextBlock Grid.Row="1" Grid.Column="2" MinWidth="75" Text="Label Value"  Style="{StaticResource TextValue}" TextAlignment="Center" />
-											</StackPanel>
-											<CheckBox Content="Checkbox" IsChecked="False" FontSize="11" Margin="0,2"/>
-											<StackPanel Orientation="Horizontal" Margin="0,12,0,8">
-												<controls:ToggleSwitch IsChecked="True"/>
-												<TextBlock Text="Toggle Switch" FontSize="11"
-                                                           Foreground="{DynamicResource AppForegroundBrush}"
-                                                           VerticalAlignment="Center" Margin="8,0,0,0"/>
-											</StackPanel>
-											<StackPanel Orientation="Horizontal" Margin="0,4,0,8">
-												<ToggleButton 
-		                                        Width="24" Margin="0,0,0,0"
-				                                Height="24"
-				                                IsChecked="{Binding SlewRate, Mode=TwoWay,Converter={StaticResource IntToBoolConverter}, ConverterParameter=1}"
-				                                Style="{StaticResource ToggleButtonState}"
-				                                Content="RA">
-													<ToggleButton.ToolTip>
-														<ToolTip Style="{StaticResource OatToolTip}">
-															<Grid>
-																<Grid.ColumnDefinitions>
-																	<ColumnDefinition Width="Auto"/>
-																	<ColumnDefinition Width="Auto"/>
-																</Grid.ColumnDefinitions>
-																<Grid.RowDefinitions>
-																	<RowDefinition Height="Auto" />
-																	<RowDefinition Height="Auto" />
-																	<RowDefinition Height="Auto" />
-																</Grid.RowDefinitions>
-																<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Slowest" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" TextAlignment="Center" Background="{DynamicResource AppButtonBackgroundBrush}" Padding="0,1,0,4"/>
-																<TextBlock Grid.Row="1" Grid.Column="0" Text="RA/DEC Speed" FontWeight="Normal" FontSize="10"/>
-																<TextBlock Grid.Row="1" Grid.Column="1" Text="5%" FontWeight="Bold" FontSize="10" Padding="5,0"/>
-																<TextBlock Grid.Row="2" Grid.Column="0" Text="AZ/ALT Distance" FontWeight="Normal"  FontSize="10"/>
-																<TextBlock Grid.Row="2" Grid.Column="1" Text="3 arcsecs" FontWeight="Bold"  FontSize="10" Padding="5,0"/>
-															</Grid>
-														</ToolTip>
-													</ToggleButton.ToolTip>
-												</ToggleButton>
-												<TextBlock Text="Toggle Button (with Tooltip)" FontSize="11"
-												   Foreground="{DynamicResource AppForegroundBrush}"
-												   VerticalAlignment="Center" Margin="8,0,8,0"/>
-											</StackPanel>
-
-										</StackPanel>
-										<!-- Separator -->
-										<Border Grid.Row="3" BorderBrush="{DynamicResource AppBorderSubtleBrush}"
-                                                BorderThickness="0,0,0,1" Margin="0,4,0,6"/>
-
-										<!-- ListView with targets -->
-										<DockPanel Grid.Row="4">
-											<TextBlock DockPanel.Dock="Top" Text="List View" FontWeight="Bold" FontSize="11"
-                                                       Foreground="{DynamicResource AppForegroundBrush}" Margin="0,0,0,4"/>
-											<Border BorderBrush="{DynamicResource AppButtonBorderBrush}" BorderThickness="1" MaxHeight="80">
-												<ListView FontSize="10" BorderThickness="0" Background="{DynamicResource AppNestedBackgroundBrush}">
-													<ListViewItem Content="M31 - Andromeda Galaxy" IsSelected="True"/>
-													<ListViewItem Content="M42 - Orion Nebula"/>
-													<ListViewItem Content="NGC 7000 - North America"/>
-												</ListView>
-											</Border>
-										</DockPanel>
-
-										<!-- Buttons -->
-										<StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,10,0,0"
-                                                    HorizontalAlignment="Left">
-											<Button Content="Slew" Width="65" Margin="0,0,6,0" Padding="0,4"
-                                                    Style="{StaticResource MainButtonStyle}"/>
-											<Button Content="Stop" Width="65" Margin="0,0,6,0" Padding="0,4"
-                                                    Style="{StaticResource MainButtonStyle}"/>
-											<Button Content="Disabled" Width="65" Padding="0,4" IsEnabled="False"
-                                                    Style="{StaticResource MainButtonStyle}"/>
-										</StackPanel>
-									</Grid>
-								</ScrollViewer>
-							</Grid>
+									</ScrollViewer>
+								</Grid>
+							</Border>
 						</Border>
-					</Border>
-					<!-- HSL adjustment sliders -->
-					<StackPanel Grid.Row="2" Margin="8,4,8,4">
-						<Grid Margin="0,0,0,2">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto"/>
-								<ColumnDefinition Width="*"/>
-								<ColumnDefinition Width="Auto"/>
-							</Grid.ColumnDefinitions>
-							<TextBlock Grid.Column="0" Text="H" FontSize="10" Foreground="#FF333333"
-							           VerticalAlignment="Center" Margin="0,0,4,0"/>
-							<Slider x:Name="HueSlider" Grid.Column="1"
-							        Minimum="0" Maximum="360" IsSnapToTickEnabled="True" TickFrequency="1"
-							        ValueChanged="OnHueSliderChanged"/>
-							<TextBlock Grid.Column="2" FontSize="10"
-							           Foreground="#FF333333" VerticalAlignment="Center" Margin="4,0,0,0"
-							           Text="{Binding Value, ElementName=HueSlider, StringFormat={}{0:0}}"/>
-						</Grid>
-						<Grid Margin="0,0,0,2">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto"/>
-								<ColumnDefinition Width="*"/>
-								<ColumnDefinition Width="Auto"/>
-							</Grid.ColumnDefinitions>
-							<TextBlock Grid.Column="0" Text="S" FontSize="10" Foreground="#FF333333"
-							           VerticalAlignment="Center" Margin="0,0,4,0"/>
-							<Slider x:Name="SaturationSlider" Grid.Column="1"
-							        Minimum="0" Maximum="1" IsSnapToTickEnabled="True" TickFrequency="0.01"
-							        ValueChanged="OnSaturationSliderChanged"/>
-							<TextBlock Grid.Column="2" FontSize="10"
-							           Foreground="#FF333333" VerticalAlignment="Center" Margin="4,0,0,0"
-							           Text="{Binding Value, ElementName=SaturationSlider, StringFormat={}{0:P0}}"/>
-						</Grid>
-						<Grid>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto"/>
-								<ColumnDefinition Width="*"/>
-								<ColumnDefinition Width="Auto"/>
-							</Grid.ColumnDefinitions>
-							<TextBlock Grid.Column="0" Text="L" FontSize="10" Foreground="#FF333333"
-							           VerticalAlignment="Center" Margin="0,0,4,0"/>
-							<Slider x:Name="LightnessSlider" Grid.Column="1"
-							        Minimum="0" Maximum="1" IsSnapToTickEnabled="True" TickFrequency="0.01"
-							        ValueChanged="OnLightnessSliderChanged"/>
-							<TextBlock Grid.Column="2" FontSize="10"
-							           Foreground="#FF333333" VerticalAlignment="Center" Margin="4,0,0,0"
-							           Text="{Binding Value, ElementName=LightnessSlider, StringFormat={}{0:P0}}"/>
-						</Grid>
-					</StackPanel>
-				</Grid>
-			</Border>
-		</Grid>
+						<!-- HSL adjustment sliders -->
+						<StackPanel Grid.Row="2" Margin="8,4,8,4">
+							<Grid Margin="0,0,0,2">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock Grid.Column="0" Text="H" FontSize="10" Foreground="#FF333333"
+								           VerticalAlignment="Center" Margin="0,0,4,0"/>
+								<Slider x:Name="HueSlider" Grid.Column="1"
+								        Minimum="0" Maximum="360" IsSnapToTickEnabled="True" TickFrequency="1"
+								        ValueChanged="OnHueSliderChanged"/>
+								<TextBlock Grid.Column="2" FontSize="10"
+								           Foreground="#FF333333" VerticalAlignment="Center" Margin="4,0,0,0"
+								           Text="{Binding Value, ElementName=HueSlider, StringFormat={}{0:0}}"/>
+							</Grid>
+							<Grid Margin="0,0,0,2">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock Grid.Column="0" Text="S" FontSize="10" Foreground="#FF333333"
+								           VerticalAlignment="Center" Margin="0,0,4,0"/>
+								<Slider x:Name="SaturationSlider" Grid.Column="1"
+								        Minimum="0" Maximum="1" IsSnapToTickEnabled="True" TickFrequency="0.01"
+								        ValueChanged="OnSaturationSliderChanged"/>
+								<TextBlock Grid.Column="2" FontSize="10"
+								           Foreground="#FF333333" VerticalAlignment="Center" Margin="4,0,0,0"
+								           Text="{Binding Value, ElementName=SaturationSlider, StringFormat={}{0:P0}}"/>
+							</Grid>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock Grid.Column="0" Text="L" FontSize="10" Foreground="#FF333333"
+								           VerticalAlignment="Center" Margin="0,0,4,0"/>
+								<Slider x:Name="LightnessSlider" Grid.Column="1"
+								        Minimum="0" Maximum="1" IsSnapToTickEnabled="True" TickFrequency="0.01"
+								        ValueChanged="OnLightnessSliderChanged"/>
+								<TextBlock Grid.Column="2" FontSize="10"
+								           Foreground="#FF333333" VerticalAlignment="Center" Margin="4,0,0,0"
+								           Text="{Binding Value, ElementName=LightnessSlider, StringFormat={}{0:P0}}"/>
+							</Grid>
+						</StackPanel>
+					</Grid>
+				</Border>
+			</Grid>
 
-		<!-- Bottom bar: actions -->
-		<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
-			<Button Content="Save" Click="OnSave" Width="70" Margin="0,0,8,0" Padding="0,4"/>
-			<Button Content="Save As..." Click="OnSaveAs" Width="80" Margin="0,0,8,0" Padding="0,4"/>
-			<Button Content="Export" Click="OnExport" Width="70" Margin="0,0,8,0" Padding="0,4"/>
-			<Button Content="Cancel" Click="OnCancel" Width="70" Padding="0,4"/>
-		</StackPanel>
-	</Grid>
-</controls:ThemedWindow>
+			<!-- Bottom bar: actions -->
+			<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+				<Button Content="Save" Click="OnSave" Width="70" Margin="0,0,8,0" Padding="0,4"/>
+				<Button Content="Save As..." Click="OnSaveAs" Width="80" Margin="0,0,8,0" Padding="0,4"/>
+				<Button Content="Export" Click="OnExport" Width="70" Margin="0,0,8,0" Padding="0,4"/>
+				<Button Content="Cancel" Click="OnCancel" Width="70" Padding="0,4"/>
+			</StackPanel>
+		</Grid>
+	</controls:ThemedWindow>

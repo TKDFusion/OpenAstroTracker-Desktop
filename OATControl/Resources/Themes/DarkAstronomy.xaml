@@ -9,7 +9,6 @@
     <!-- Foreground / text -->
     <Color x:Key="AppForegroundColor">#D11</Color>
     <Color x:Key="AppForegroundStrongColor">#F22</Color>
-    <Color x:Key="AppForegroundSubtleColor">#FF800000</Color>
 
     <!-- Backgrounds -->
 	<Color x:Key="AppWindowBackgroundColor">#500</Color> <!-- All Window and Dialog background: DONE-->
@@ -38,11 +37,16 @@
 	<Color x:Key="AppDisabledBorderColor">#822</Color>
 	<Color x:Key="AppDisabledForegroundColor">#822</Color>
 
-    <!-- Toggle switch -->
+	<!-- Tooltip -->
+	<Color x:Key="AppTooltipBackgroundColor">#600</Color>
+	<Color x:Key="AppTooltipHeaderColor">#700</Color>
+	<Color x:Key="AppTooltipForegroundColor">#B00</Color>
+
+	<!-- Toggle switch -->
     <Color x:Key="AppToggleOffColor">#611</Color>
     <Color x:Key="AppToggleThumbColor">#C11</Color>
     <Color x:Key="AppToggleOnColor">#610</Color>
-    <Color x:Key="AppToggleOffBorderColor">#D11</Color>
+    <Color x:Key="AppToggleBorderColor">#D11</Color>
 
     <!-- ===== Brushes ===== -->
 
@@ -52,7 +56,6 @@
     <!-- Foreground / text -->
     <SolidColorBrush x:Key="AppForegroundBrush" Color="{StaticResource AppForegroundColor}" />
     <SolidColorBrush x:Key="AppForegroundStrongBrush" Color="{StaticResource AppForegroundStrongColor}" />
-    <SolidColorBrush x:Key="AppForegroundSubtleBrush" Color="{StaticResource AppForegroundSubtleColor}" />
 
     <!-- Backgrounds -->
 	<SolidColorBrush x:Key="AppNestedBackgroundBrush" Color="{StaticResource AppNestedBackgroundColor}" />
@@ -84,7 +87,7 @@
     <!-- Toggle switch -->
     <SolidColorBrush x:Key="AppToggleOffBrush" Color="{StaticResource AppToggleOffColor}" />
     <SolidColorBrush x:Key="AppToggleThumbBrush" Color="{StaticResource AppToggleThumbColor}" />
-    <SolidColorBrush x:Key="AppToggleOffBorderBrush" Color="{StaticResource AppToggleOffBorderColor}" />
+    <SolidColorBrush x:Key="AppToggleBorderBrush" Color="{StaticResource AppToggleBorderColor}" />
     <SolidColorBrush x:Key="AppToggleOnBrush" Color="{StaticResource AppToggleOnColor}" />
 
     <!-- Override system colors for ListViewItem selection/hover -->
