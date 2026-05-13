@@ -66,8 +66,8 @@
 		<TextBox Grid.Column="1" Grid.Row="5" Text="{Binding DecCoordinate}" Style="{StaticResource TextBoxSmall}" LostFocus="OnDecLostFocus"/>
 
 		<StackPanel Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="8,16,8,8">
-			<Button Content="Ok" Width="80" Style="{StaticResource AccentedDialogSquareButton}" Margin="16,0" Command="{Binding OkCommand}"/>
-			<Button Content="Cancel" Width="80" Style="{StaticResource AccentedDialogSquareButton}" Command="{Binding CancelCommand}"/>
+			<Button Content="Ok" Width="80" Style="{StaticResource MainButtonStyle}" Margin="16,0" Command="{Binding OkCommand}"/>
+			<Button Content="Cancel" Width="80" Style="{StaticResource MainButtonStyle}" Command="{Binding CancelCommand}"/>
 		</StackPanel>
 	</Grid>
 

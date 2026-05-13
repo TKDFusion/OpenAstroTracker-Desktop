@@ -75,25 +75,25 @@
 									BorderBrush="{TemplateBinding BorderBrush}"
 									BorderThickness="1"
 									CornerRadius="2">
-										<Grid>
-											<ToggleButton x:Name="ToggleButton"
+								<Grid>
+									<ToggleButton x:Name="ToggleButton"
 													  Focusable="False"
 													  ClickMode="Press"
 													  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
-												<ToggleButton.Template>
-													<ControlTemplate TargetType="ToggleButton">
-														<Border Background="Transparent" />
-													</ControlTemplate>
-												</ToggleButton.Template>
-											</ToggleButton>
-											<ContentPresenter x:Name="ContentSite"
+										<ToggleButton.Template>
+											<ControlTemplate TargetType="ToggleButton">
+												<Border Background="Transparent" />
+											</ControlTemplate>
+										</ToggleButton.Template>
+									</ToggleButton>
+									<ContentPresenter x:Name="ContentSite"
 														  Content="{TemplateBinding SelectionBoxItem}"
 														  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
 														  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
 														  Margin="6,2,20,2"
 														  HorizontalAlignment="Left"
 														  VerticalAlignment="Center" />
-											<Path x:Name="Arrow"
+									<Path x:Name="Arrow"
 												  Data="M0,0 L4,4 8,0"
 												  Stroke="{DynamicResource AppForegroundBrush}"
 												  StrokeThickness="1.5"
@@ -102,7 +102,7 @@
 												  VerticalAlignment="Center"
 												  Margin="0,0,6,0"
 												  Stretch="Uniform" />
-										</Grid>
+								</Grid>
 							</Border>
 							<Popup x:Name="PART_Popup"
 								   IsOpen="{TemplateBinding IsDropDownOpen}"
@@ -302,19 +302,19 @@
 	<DockPanel Margin="8">
 		<!-- Close Button -->
 		<StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,8,0,0">
-			<Button Content="Ok" Width="80" HorizontalAlignment="Right" Click="OnCloseClick" Style="{StaticResource AccentedDialogSquareButton}" Margin="0,0,8,0"/>
-			<Button Content="Cancel" Width="80" HorizontalAlignment="Right" Click="OnCloseCancelClick" Style="{StaticResource AccentedDialogSquareButton}"/>
+			<Button Content="Ok" Width="80" HorizontalAlignment="Right" Click="OnCloseClick" Style="{StaticResource MainButtonStyle}" Margin="0,0,8,0"/>
+			<Button Content="Cancel" Width="80" HorizontalAlignment="Right" Click="OnCloseCancelClick" Style="{StaticResource MainButtonStyle}"/>
 		</StackPanel>
 
 		<!-- Category Selector ListView -->
-			<Border Margin="4,2,12,1">
-				<ListView Name="CategorySelector" DockPanel.Dock="Left" Width="120" SelectionChanged="OnCategorySelected" Background="{DynamicResource AppNestedBackgroundBrush}">
-					<ListViewItem Content="General" Style="{StaticResource CategoryItem}"/>
-					<ListViewItem Content="Autohoming" Style="{StaticResource CategoryItem}"/>
-					<ListViewItem Content="Target List" Style="{StaticResource CategoryItem}"/>
-					<ListViewItem Content="Auto PA" Style="{StaticResource CategoryItem}"/>
-				</ListView>
-			</Border>
+		<Border Margin="4,2,12,1">
+			<ListView Name="CategorySelector" DockPanel.Dock="Left" Width="120" SelectionChanged="OnCategorySelected" Background="{DynamicResource AppNestedBackgroundBrush}">
+				<ListViewItem Content="General" Style="{StaticResource CategoryItem}"/>
+				<ListViewItem Content="Autohoming" Style="{StaticResource CategoryItem}"/>
+				<ListViewItem Content="Target List" Style="{StaticResource CategoryItem}"/>
+				<ListViewItem Content="Auto PA" Style="{StaticResource CategoryItem}"/>
+			</ListView>
+		</Border>
 		<!-- TabControl to host different views. Hide the headers so it just shows the content. -->
 		<TabControl Name="ContentTabs" TabStripPlacement="Top" IsTabStop="False"  Margin="0,0,0,1" >
 			<TabControl.ItemContainerStyle>
@@ -357,7 +357,7 @@
 						<TextBlock Text="Checklist" Style="{StaticResource TextBlockLabel}" VerticalAlignment="Top"/>
 						<TextBlock Text="When do you want the checklist to appear. " Style="{StaticResource TextBlockOptionHelp}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 					</StackPanel>
-					<StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,4,20,0" Orientation="Horizontal">
+					<StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,4,20,0" Orientation="Horizontal">
 						<ComboBox
           					  ItemsSource="{Binding Source={StaticResource ChecklistShowOnValues}}" 
 							  SelectedValue="{Binding ShowChecklist}"
@@ -381,17 +381,21 @@
 						  x:Name="ThemeComboBox"
 						  Width="120"
 						  Height="24"
-						  Margin="10,4,0,0"
+						  Margin="10,4,58,0"
+							  HorizontalAlignment="Right"
 						  SelectionChanged="ThemeComboBox_SelectionChanged"
 						  Style="{StaticResource ComboBoxStyle}" />
 
 					<StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="10,4,0,0">
-						<Button Content="Edit Theme" Click="OnEditTheme" Width="80" Margin="0,0,4,0"
-								Style="{StaticResource AccentedDialogSquareButton}" x:Name="EditThemeButton"/>
-						<Button Content="Create Theme" Click="OnCreateTheme" Width="90" Margin="0,0,4,0"
-								Style="{StaticResource AccentedDialogSquareButton}"/>
-						<Button Content="Import Theme" Click="OnImportTheme" Width="90"
-								Style="{StaticResource AccentedDialogSquareButton}"/>
+						<Button Content="Edit Theme" Click="OnEditTheme" Width="98" Margin="0,0,4,0"
+								Style="{StaticResource MainButtonStyle}" x:Name="EditThemeButton"/>
+						<Button Content="Create Theme" Click="OnCreateTheme" Width="98" Margin="0,0,4,0"
+								Style="{StaticResource MainButtonStyle}"/>
+					</StackPanel>
+
+					<StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="10,8,4,0" HorizontalAlignment="Right">
+						<Button Content="Import Theme" Click="OnImportTheme" Width="98"
+								Style="{StaticResource MainButtonStyle}"/>
 					</StackPanel>
 
 				</Grid>
@@ -502,43 +506,6 @@
 							  GridViewColumnHeader.Click="OnHeaderClick"
 							  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 							  ScrollViewer.ScrollChanged="OnTargetsListScrollChanged">
-						<ListView.ItemContainerStyle>
-							<Style TargetType="ListViewItem">
-								<Setter Property="Background" Value="Transparent" />
-								<Setter Property="BorderBrush" Value="Transparent" />
-								<Setter Property="BorderThickness" Value="1" />
-								<Setter Property="FocusVisualStyle" Value="{x:Null}" />
-								<Setter Property="Template">
-									<Setter.Value>
-										<ControlTemplate TargetType="ListViewItem">
-											<Border x:Name="Bd"
-													Background="{TemplateBinding Background}"
-													BorderBrush="{TemplateBinding BorderBrush}"
-													BorderThickness="{TemplateBinding BorderThickness}"
-													Padding="{TemplateBinding Padding}"
-													SnapsToDevicePixels="True">
-												<GridViewRowPresenter Content="{TemplateBinding Content}" />
-											</Border>
-											<ControlTemplate.Triggers>
-												<Trigger Property="IsMouseOver" Value="True">
-													<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
-												</Trigger>
-												<Trigger Property="IsSelected" Value="True">
-													<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
-												</Trigger>
-												<MultiTrigger>
-													<MultiTrigger.Conditions>
-														<Condition Property="IsSelected" Value="True" />
-														<Condition Property="Selector.IsSelectionActive" Value="False" />
-													</MultiTrigger.Conditions>
-													<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
-												</MultiTrigger>
-											</ControlTemplate.Triggers>
-										</ControlTemplate>
-									</Setter.Value>
-								</Setter>
-							</Style>
-						</ListView.ItemContainerStyle>
 						<ListView.View>
 							<GridView  ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}" >
 								<GridViewColumn Header="Show" Width="45" CellTemplate="{StaticResource EnabledCellTemplate}" />
@@ -550,8 +517,8 @@
 						</ListView.View>
 					</ListView>
 					<StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10" Orientation="Horizontal" >
-						<Button Content="Edit Target" Command="{Binding EditPointCommand}" Style="{StaticResource AccentedDialogSquareButton}" VerticalAlignment="Top" Width="90" Margin="10,0" IsEnabled="{Binding IsPointSelected}"/>
-						<Button Content="Add Target" Command="{Binding AddPointCommand}" Style="{StaticResource AccentedDialogSquareButton}" VerticalAlignment="Top" Width="90"/>
+						<Button Content="Edit Target" Command="{Binding EditPointCommand}" Style="{StaticResource MainButtonStyle}" VerticalAlignment="Top" Width="90" Margin="10,0" IsEnabled="{Binding IsPointSelected}"/>
+						<Button Content="Add Target" Command="{Binding AddPointCommand}" Style="{StaticResource MainButtonStyle}" VerticalAlignment="Top" Width="90"/>
 					</StackPanel>
 				</Grid>
 			</TabItem>
@@ -628,7 +595,7 @@
 						<TextBlock Text="SharpCap Log folder" Style="{StaticResource TextBlockLabel}" VerticalAlignment="Top" />
 						<TextBlock Text="The log folder of SharpCap to monitor for Polar Alignment. Only SharpCap 4.x and later is supported." Style="{StaticResource TextBlockOptionHelp}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Width="Auto" />
 					</StackPanel>
-					
+
 					<TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" 
 							Visibility="{Binding MonitorSharpCapForPA, Converter={StaticResource BoolToVisibilityConverter}}"
 							Style="{StaticResource TextBoxSmall}" 

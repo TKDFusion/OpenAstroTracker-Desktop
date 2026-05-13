@@ -5,19 +5,80 @@
 
     <!-- Default Font -->
     <FontFamily x:Key="AppFontFamily">Segoe UI</FontFamily>
-	<sys:Double x:Key="AppFontSizeXSmall">8</sys:Double>
 	<sys:Double x:Key="AppFontSizeSmall">10</sys:Double>
 	<sys:Double x:Key="AppFontSize">12</sys:Double>
-	<sys:Double x:Key="AppFontSizeLarge">15</sys:Double>
-	<sys:Double x:Key="AppFontSizeXLarge">18</sys:Double>
+	<sys:Double x:Key="AppFontSizeLarge">20</sys:Double>
 	
-	<!-- TextBlock styles -->
+	<!-- Legacy TextBlock base (used by dialogs until migrated) -->
     <Style x:Key="MetroTextBlock" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource AppFontSize}" />
     </Style>
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource MetroTextBlock}" />
+
+    <!-- Semantic TextBlock styles (flat, no BasedOn chains) -->
+    <Style x:Key="TextLabel" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}"/>
+        <Setter Property="FontSize" Value="{DynamicResource AppFontSize}"/>
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"/>
+        <Setter Property="Padding" Value="4,0"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="TextLabelLarge" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}"/>
+        <Setter Property="FontSize" Value="{DynamicResource AppFontSizeLarge}"/>
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"/>
+        <Setter Property="Padding" Value="4,0"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="TextLabelSmall" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}"/>
+        <Setter Property="FontSize" Value="{DynamicResource AppFontSizeSmall}"/>
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"/>
+        <Setter Property="Padding" Value="2,0"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="TextValue" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}"/>
+        <Setter Property="FontSize" Value="{DynamicResource AppFontSize}"/>
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}"/>
+        <Setter Property="Padding" Value="6,2"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="TextValueLarge" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}"/>
+        <Setter Property="FontSize" Value="{DynamicResource AppFontSizeLarge}"/>
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource AppInputBackgroundBrush}"/>
+        <Setter Property="Padding" Value="6,2"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="TextStatus" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}"/>
+        <Setter Property="FontSize" Value="{DynamicResource AppFontSize}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 
     <!-- TextBox styles -->
     <Style x:Key="MetroTextBox" TargetType="TextBox">
@@ -84,7 +145,7 @@
         <Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource AppButtonBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Padding" Value="10,5" />
+        <Setter Property="Padding" Value="8,4" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
@@ -115,8 +176,6 @@
     </Style>
 
     <Style TargetType="Button" BasedOn="{StaticResource MainButtonStyle}" />
-
-    <Style x:Key="AccentedDialogSquareButton" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}" />
 
     <!-- ToggleButton styles -->
     <Style x:Key="ToggleButtonState" TargetType="ToggleButton">
@@ -318,6 +377,59 @@
         <Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Padding" Value="4,2" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <GridViewRowPresenter x:Name="GridViewPresenter"
+                                                  Content="{TemplateBinding Content}" />
+                            <ContentPresenter x:Name="ContentPresenter"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Visibility="Collapsed" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="GridView.ColumnCollection" Value="{x:Null}">
+                            <Setter TargetName="GridViewPresenter" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType=ListView}}" Value="{x:Null}">
+                            <Setter TargetName="GridViewPresenter" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <!-- Hide ContentPresenter when GridView is active -->
+                        <Trigger Property="GridView.ColumnCollection" Value="{x:Null}">
+                            <Setter TargetName="ContentPresenter" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding View, RelativeSource={RelativeSource AncestorType=ListView}}" Value="{x:Null}">
+                            <Setter TargetName="ContentPresenter" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True" />
+                                <Condition Property="Selector.IsSelectionActive" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- ProgressBar -->
