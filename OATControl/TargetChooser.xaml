@@ -248,7 +248,6 @@
 			Grid.Row="0"
 			Margin="10,0"
 			HorizontalAlignment="Center"
-			ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}"
 			/>
 			<TextBlock Text="Showing Unreachable Targets" Style="{DynamicResource MetroTextBlock}" Margin="0,2"/>
 		</StackPanel>

@@ -41,6 +41,7 @@
     <!-- Toggle switch -->
     <Color x:Key="AppToggleOffColor">#FFCCCCCC</Color>
     <Color x:Key="AppToggleThumbColor">#FFFFFFFF</Color>
+    <Color x:Key="AppToggleOnColor">#FFb0b0b0</Color>
     <Color x:Key="AppToggleOffBorderColor">#FFCCCCCC</Color>
 
     <!-- ===== Brushes ===== -->
@@ -84,6 +85,7 @@
     <SolidColorBrush x:Key="AppToggleOffBrush" Color="{StaticResource AppToggleOffColor}" />
     <SolidColorBrush x:Key="AppToggleThumbBrush" Color="{StaticResource AppToggleThumbColor}" />
     <SolidColorBrush x:Key="AppToggleOffBorderBrush" Color="{StaticResource AppToggleOffBorderColor}" />
+    <SolidColorBrush x:Key="AppToggleOnBrush" Color="{StaticResource AppToggleOnColor}" />
 
     <!-- Override system colors for ListViewItem selection/hover -->
     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource AppForegroundColor}" />

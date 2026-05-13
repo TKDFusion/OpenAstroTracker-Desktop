@@ -150,7 +150,7 @@
 			<controls:ToggleSwitch Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" IsChecked="{Binding RunRAAutoHoming}" Visibility="{Binding ShowRAHoming, Converter={StaticResource CollapseOnFalse}}" />
 			<TextBlock Grid.Row="0" Grid.Column="2" Text="Run RA Auto-Home" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0" Foreground="{DynamicResource AppForegroundStrongBrush}" Visibility="{Binding ShowRAHoming, Converter={StaticResource CollapseOnFalse}}" />
 
-			<controls:ToggleSwitch Grid.Row="1" Grid.Column="1" Margin="0,8,0,0" IsChecked="{Binding RunDECOffsetHoming}" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" Visibility="{Binding ShowDECHoming, Converter={StaticResource CollapseOnFalse}}" />
+			<controls:ToggleSwitch Grid.Row="1" Grid.Column="1" Margin="0,8,0,0" IsChecked="{Binding RunDECOffsetHoming}" Visibility="{Binding ShowDECHoming, Converter={StaticResource CollapseOnFalse}}" />
 			<TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding DECHomingMethod}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0" Foreground="{DynamicResource AppForegroundStrongBrush}" Visibility="{Binding ShowDECHoming, Converter={StaticResource CollapseOnFalse}}" />
 		</Grid>
 		<Grid Grid.Row="11" HorizontalAlignment="Stretch" Grid.ColumnSpan="2">

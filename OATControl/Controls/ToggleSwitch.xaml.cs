@@ -14,10 +14,6 @@ namespace OATControl.Controls
             "IsChecked", typeof(bool), typeof(ToggleSwitch),
             new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIsCheckedChanged));
 
-        public static readonly DependencyProperty ThumbIndicatorBrushProperty = DependencyProperty.Register(
-            "ThumbIndicatorBrush", typeof(Brush), typeof(ToggleSwitch),
-            new PropertyMetadata(null));
-
         public ToggleSwitch()
         {
             InitializeComponent();
@@ -29,13 +25,6 @@ namespace OATControl.Controls
         {
             get => (bool)GetValue(IsCheckedProperty);
             set => SetValue(IsCheckedProperty, value);
-        }
-
-        [Category("Appearance")]
-        public Brush ThumbIndicatorBrush
-        {
-            get => (Brush)GetValue(ThumbIndicatorBrushProperty);
-            set => SetValue(ThumbIndicatorBrushProperty, value);
         }
 
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
@@ -58,7 +47,7 @@ namespace OATControl.Controls
             {
                 Thumb.HorizontalAlignment = HorizontalAlignment.Right;
                 Thumb.Margin = new Thickness(0, 0, 2, 0);
-                SwitchTrack.Background = ThumbIndicatorBrush ?? (Brush)TryFindResource("AppToggleOffBrush");
+                SwitchTrack.SetResourceReference(BackgroundProperty, "AppToggleOnBrush");
                 if (Checkmark != null)
                 {
                     var anim = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(150));
@@ -69,7 +58,7 @@ namespace OATControl.Controls
             {
                 Thumb.HorizontalAlignment = HorizontalAlignment.Left;
                 Thumb.Margin = new Thickness(2, 0, 0, 0);
-                SwitchTrack.Background = (Brush)TryFindResource("AppToggleOffBrush");
+                SwitchTrack.SetResourceReference(BackgroundProperty, "AppToggleOffBrush");
                 if (Checkmark != null)
                 {
                     var anim = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(100));

@@ -64,6 +64,7 @@ namespace OATControl.Theming
 
             // Toggle switch
             new ThemeColorDefinition("AppToggleOffColor", "Toggle Off", "Toggle", (Color)ColorConverter.ConvertFromString("#611")),
+            new ThemeColorDefinition("AppToggleOnColor", "Toggle On", "Toggle", (Color)ColorConverter.ConvertFromString("#610")),
             new ThemeColorDefinition("AppToggleThumbColor", "Toggle Thumb", "Toggle", (Color)ColorConverter.ConvertFromString("#C11")),
             new ThemeColorDefinition("AppToggleOffBorderColor", "Toggle Off Border", "Toggle", (Color)ColorConverter.ConvertFromString("#D11")),
         };

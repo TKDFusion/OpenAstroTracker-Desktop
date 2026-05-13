@@ -349,7 +349,7 @@
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 			<TextBlock Grid.Row ="0" Grid.Column="0" Margin="0,0" HorizontalAlignment="Left" Text="Use Custom Park Position" ToolTip="The Park position is different from the Home position" TextWrapping="Wrap" Style="{StaticResource TextLabel}" />
-     		<controls:ToggleSwitch Grid.Column="1" Grid.Row="0" Margin="0,0" VerticalAlignment="Center" IsEnabled="{Binding MountConnected}" IsChecked="{Binding UseCustomParkPosition}" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" />
+     		<controls:ToggleSwitch Grid.Column="1" Grid.Row="0" Margin="0,0" VerticalAlignment="Center" IsEnabled="{Binding MountConnected}" IsChecked="{Binding UseCustomParkPosition}" />
 		</Grid>
 		<Button Grid.Row="4" Grid.Column="4" Margin="8,4" Padding="20,0" Content="Save Park Position" HorizontalAlignment="Right" Style="{StaticResource CommandButtonStyle}" Command="{Binding SaveParkPositionCommand}" Visibility="{Binding UseCustomParkPosition, Converter={StaticResource TrueBoolToVisible}}"/>
 

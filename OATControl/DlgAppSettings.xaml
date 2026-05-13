@@ -349,7 +349,7 @@
 							  SelectedValue="{Binding SelectedBaudRate}"
 							  Width="120" 
 							  Height="24"
-							  Margin="10,4,0,0"
+							  Margin="10,10,0,0"
 							  Style="{StaticResource ComboBoxStyle}" 
 					/>
 
@@ -363,7 +363,7 @@
 							  SelectedValue="{Binding ShowChecklist}"
 							  Width="130" 
 							  Height="24"
-							  Margin="10,4,10,0"
+							  Margin="10,10,10,0"
 							  FontSize="14" 
 							  HorizontalAlignment="Left" 
 							  Style="{StaticResource ComboBoxStyle}"  />
@@ -381,19 +381,16 @@
 						  x:Name="ThemeComboBox"
 						  Width="120"
 						  Height="24"
-						  Margin="10,4,58,0"
-							  HorizontalAlignment="Right"
+						  Margin="10,12,58,0"
+							  HorizontalAlignment="Left"
 						  SelectionChanged="ThemeComboBox_SelectionChanged"
 						  Style="{StaticResource ComboBoxStyle}" />
 
-					<StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="10,4,0,0">
+					<StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="10,8,0,0" HorizontalAlignment="Center">
 						<Button Content="Edit Theme" Click="OnEditTheme" Width="98" Margin="0,0,4,0"
 								Style="{StaticResource MainButtonStyle}" x:Name="EditThemeButton"/>
 						<Button Content="Create Theme" Click="OnCreateTheme" Width="98" Margin="0,0,4,0"
 								Style="{StaticResource MainButtonStyle}"/>
-					</StackPanel>
-
-					<StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="10,8,4,0" HorizontalAlignment="Right">
 						<Button Content="Import Theme" Click="OnImportTheme" Width="98"
 								Style="{StaticResource MainButtonStyle}"/>
 					</StackPanel>
@@ -434,7 +431,7 @@
 									<ColumnDefinition Width="*" />
 									<ColumnDefinition Width="42" />
 								</Grid.ColumnDefinitions>
-								<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0" VerticalAlignment="Center" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" IsChecked="{Binding RaStartEast}"/>
+								<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0" VerticalAlignment="Center" IsChecked="{Binding RaStartEast}"/>
 								<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="West" FontSize="10" Margin="22,0,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 								<TextBlock Grid.Row="1"  Grid.Column="2" Text="East" FontSize="10" Margin="-5,0,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 							</Grid>
@@ -464,7 +461,7 @@
 									<ColumnDefinition Width="*" />
 									<ColumnDefinition Width="Auto" />
 								</Grid.ColumnDefinitions>
-								<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0" VerticalAlignment="Center" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" IsChecked="{Binding DecStartSouth}"/>
+								<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0" VerticalAlignment="Center" IsChecked="{Binding DecStartSouth}"/>
 								<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3" Text="North" FontSize="10" Margin="20,0,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}" HorizontalAlignment="Left"/>
 								<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3" Text="South" FontSize="10" Margin="0,0,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}" HorizontalAlignment="Right"/>
 							</Grid>
@@ -555,7 +552,7 @@
 							<ColumnDefinition Width="*" />
 							<ColumnDefinition Width="40" />
 						</Grid.ColumnDefinitions>
-						<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" IsChecked="{Binding MonitorNinaForPA}"/>
+						<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" IsChecked="{Binding MonitorNinaForPA}"/>
 						<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="No" FontSize="10" Margin="6,0,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 						<TextBlock Grid.Row="1"  Grid.Column="2" Text="Yes" FontSize="10" Margin="5,0,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 					</Grid>
@@ -586,7 +583,7 @@
 							<ColumnDefinition Width="*" />
 							<ColumnDefinition Width="40" />
 						</Grid.ColumnDefinitions>
-						<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" IsChecked="{Binding MonitorSharpCapForPA}"/>
+						<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" IsChecked="{Binding MonitorSharpCapForPA}"/>
 						<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="No" FontSize="10" Margin="6,0,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 						<TextBlock Grid.Row="1"  Grid.Column="2" Text="Yes" FontSize="10" Margin="5,0,14,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 					</Grid>
@@ -631,7 +628,7 @@
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="40" />
 							</Grid.ColumnDefinitions>
-							<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" IsChecked="{Binding InvertAZCorrections}"/>
+							<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" IsChecked="{Binding InvertAZCorrections}"/>
 							<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="No" FontSize="10" Margin="6,0,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 							<TextBlock Grid.Row="1"  Grid.Column="2" Text="Yes" FontSize="10" Margin="5,0,20,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 						</Grid>
@@ -645,7 +642,7 @@
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="40" />
 							</Grid.ColumnDefinitions>
-							<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" ThumbIndicatorBrush="{DynamicResource AppPrimaryBrush}" IsChecked="{Binding InvertALTCorrections}"/>
+							<controls:ToggleSwitch  Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,20,0" VerticalAlignment="Center" IsChecked="{Binding InvertALTCorrections}"/>
 							<TextBlock Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Text="No" FontSize="10" Margin="6,0,0,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 							<TextBlock Grid.Row="1"  Grid.Column="2" Text="Yes" FontSize="10" Margin="5,0,14,0" FontWeight="Normal" Style="{StaticResource TextBlockDescription}"/>
 						</Grid>

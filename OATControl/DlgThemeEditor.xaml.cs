@@ -32,7 +32,7 @@ namespace OATControl
                 if (_color != value)
                 {
                     _color = value;
-                    HexValue = value.ToString();
+                    HexValue = $"#{value.R:X2}{value.G:X2}{value.B:X2}";
                     OnPropertyChanged(nameof(Color));
                 }
             }
@@ -92,6 +92,11 @@ namespace OATControl
         private string _themeAuthor = "";
         private bool _isNewTheme;
         private ResourceDictionary _previewDict;
+        private Dictionary<string, Color> _originalColors = new Dictionary<string, Color>();
+        private double _averageHue;
+        private double _averageSaturation;
+        private double _averageLightness;
+        private bool _updatingFromSlider;
 
         public DlgThemeEditor(string themeName = null, bool isNew = false)
         {
@@ -161,6 +166,27 @@ namespace OATControl
 
             ColorEditorGrid.ItemsSource = _colorItems;
             ThemeNameLabel.Text = EditingThemeName ?? _editingTheme ?? "";
+
+            // Snapshot original colors for HSL adjustment sliders
+            _originalColors = _colorItems.ToDictionary(i => i.Key, i => i.Color);
+            var hslValues = _colorItems
+                .Select(i => i.Color)
+                .Where(c => !IsBlackOrWhite(c))
+                .Select(c => ColorToHsl(c))
+                .ToList();
+            _averageHue = hslValues.Count > 0 ? hslValues.Average(v => v.h) : 0;
+            _averageSaturation = hslValues.Count > 0 ? hslValues.Average(v => v.s) : 0;
+            _averageLightness = hslValues.Count > 0 ? hslValues.Average(v => v.l) : 0.5;
+
+            if (HueSlider != null)
+            {
+                _updatingFromSlider = true;
+                HueSlider.Value = _averageHue;
+                SaturationSlider.Value = _averageSaturation;
+                LightnessSlider.Value = _averageLightness;
+                _updatingFromSlider = false;
+            }
+
             UpdatePreview();
         }
 
@@ -390,6 +416,132 @@ namespace OATControl
         private void OnCancel(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void OnHueSliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (_updatingFromSlider || _originalColors.Count == 0)
+                return;
+
+            var delta = e.NewValue - _averageHue;
+            if (delta > 180) delta -= 360;
+            if (delta < -180) delta += 360;
+
+            foreach (var item in _colorItems)
+            {
+                if (!_originalColors.TryGetValue(item.Key, out var original) || IsBlackOrWhite(original))
+                    continue;
+                var (h, s, l) = ColorToHsl(original);
+                item.Color = HslToColor((h + delta + 360) % 360, s, l);
+            }
+            UpdatePreview();
+            ResnapshotColors();
+        }
+
+        private void OnSaturationSliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (_updatingFromSlider || _originalColors.Count == 0)
+                return;
+
+            var delta = e.NewValue - _averageSaturation;
+
+            foreach (var item in _colorItems)
+            {
+                if (!_originalColors.TryGetValue(item.Key, out var original) || IsBlackOrWhite(original))
+                    continue;
+                var (h, s, l) = ColorToHsl(original);
+                item.Color = HslToColor(h, Math.Max(0, Math.Min(1, s + delta)), l);
+            }
+            UpdatePreview();
+            ResnapshotColors();
+        }
+
+        private void OnLightnessSliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (_updatingFromSlider || _originalColors.Count == 0)
+                return;
+
+            var delta = e.NewValue - _averageLightness;
+
+            foreach (var item in _colorItems)
+            {
+                if (!_originalColors.TryGetValue(item.Key, out var original) || IsBlackOrWhite(original))
+                    continue;
+                var (h, s, l) = ColorToHsl(original);
+                item.Color = HslToColor(h, s, Math.Max(0, Math.Min(1, l + delta)));
+            }
+            UpdatePreview();
+            ResnapshotColors();
+        }
+
+        private void ResnapshotColors()
+        {
+            _originalColors = _colorItems.ToDictionary(i => i.Key, i => i.Color);
+            var hslValues = _colorItems
+                .Select(i => i.Color)
+                .Where(c => !IsBlackOrWhite(c))
+                .Select(c => ColorToHsl(c))
+                .ToList();
+            _averageHue = hslValues.Count > 0 ? hslValues.Average(v => v.h) : 0;
+            _averageSaturation = hslValues.Count > 0 ? hslValues.Average(v => v.s) : 0;
+            _averageLightness = hslValues.Count > 0 ? hslValues.Average(v => v.l) : 0.5;
+
+            _updatingFromSlider = true;
+            HueSlider.Value = _averageHue;
+            SaturationSlider.Value = _averageSaturation;
+            LightnessSlider.Value = _averageLightness;
+            _updatingFromSlider = false;
+        }
+
+        private static (double h, double s, double l) ColorToHsl(Color c)
+        {
+            double r = c.R / 255.0, g = c.G / 255.0, b = c.B / 255.0;
+            double max = Math.Max(r, Math.Max(g, b));
+            double min = Math.Min(r, Math.Min(g, b));
+            double l = (max + min) / 2.0;
+            double h = 0, s = 0;
+
+            if (max != min)
+            {
+                double d = max - min;
+                s = l > 0.5 ? d / (2.0 - max - min) : d / (max + min);
+                if (max == r) h = ((g - b) / d + (g < b ? 6 : 0)) * 60;
+                else if (max == g) h = ((b - r) / d + 2) * 60;
+                else h = ((r - g) / d + 4) * 60;
+            }
+
+            return (h, s, l);
+        }
+
+        private static Color HslToColor(double h, double s, double l)
+        {
+            if (s == 0)
+                return Color.FromRgb((byte)(l * 255), (byte)(l * 255), (byte)(l * 255));
+
+            double q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+            double p = 2 * l - q;
+            double hk = h / 360.0;
+
+            byte r = (byte)Math.Round(HueToRgb(p, q, hk + 1.0 / 3.0) * 255);
+            byte g = (byte)Math.Round(HueToRgb(p, q, hk) * 255);
+            byte b = (byte)Math.Round(HueToRgb(p, q, hk - 1.0 / 3.0) * 255);
+            return Color.FromRgb(r, g, b);
+        }
+
+        private static double HueToRgb(double p, double q, double t)
+        {
+            if (t < 0) t += 1;
+            if (t > 1) t -= 1;
+            if (t < 1.0 / 6.0) return p + (q - p) * 6 * t;
+            if (t < 1.0 / 2.0) return q;
+            if (t < 2.0 / 3.0) return p + (q - p) * (2.0 / 3.0 - t) * 6;
+            return p;
+        }
+
+        private static bool IsBlackOrWhite(Color c)
+        {
+            var (_, _, l) = ColorToHsl(c);
+            return l < 0.05 || l > 0.95;
         }
     }
 }
