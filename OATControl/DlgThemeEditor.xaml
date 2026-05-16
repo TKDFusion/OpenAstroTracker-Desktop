@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:OATControl.Controls"
 		xmlns:converters="clr-namespace:OATControl.Converters"
-        Title="Theme Editor" Width="1150" Height="620"
-        MinWidth="900" MinHeight="640"
+        Title="Theme Editor" Width="1135" Height="730"
+        MinWidth="1135" MinHeight="500	"
         WindowStartupLocation="CenterOwner"
         Loaded="Window_Loaded">
 
@@ -98,7 +98,7 @@
 						</TextBlock>
 						<Grid Margin="4,0,4,4">
 							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="160"/>
+								<ColumnDefinition Width="170"/>
 								<ColumnDefinition Width="*"/>
 							</Grid.ColumnDefinitions>
 
@@ -126,7 +126,7 @@
 
 							<!-- Picker area -->
 							<ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
-								<StackPanel>
+								<StackPanel x:Name="PickerPanel">
 									<!-- Hue/Saturation square + Lightness bar -->
 									<Grid HorizontalAlignment="Left" Margin="0,0,0,8">
 										<Grid.ColumnDefinitions>
@@ -421,7 +421,7 @@
 														Maximum="2"
 														Value="-1.4" 
 														MarkerValue="0.8" 
-														Padding="0" 
+														Padding="0"                                                                        
 														ShowLimits="False"
 														AxisLabel="Axis" 
 														TickMajorSpacing="1" 
@@ -488,7 +488,10 @@
 								           VerticalAlignment="Center" Margin="0,0,4,0"/>
 								<Slider x:Name="HueSlider" Grid.Column="1"
 								        Minimum="0" Maximum="360" IsSnapToTickEnabled="True" TickFrequency="1"
-								        ValueChanged="OnHueSliderChanged"/>
+										SmallChange="12" LargeChange="12"
+								        ValueChanged="OnHueSliderChanged"
+								        Thumb.DragStarted="OnGlobalSliderDragStarted"
+								        Thumb.DragCompleted="OnGlobalSliderDragCompleted"/>
 								<TextBlock Grid.Column="2" FontSize="10"
 								           Foreground="#FF333333" VerticalAlignment="Center" Margin="4,0,0,0"
 								           Text="{Binding Value, ElementName=HueSlider, StringFormat={}{0:0}}"/>
@@ -503,7 +506,10 @@
 								           VerticalAlignment="Center" Margin="0,0,4,0"/>
 								<Slider x:Name="SaturationSlider" Grid.Column="1"
 								        Minimum="0" Maximum="1" IsSnapToTickEnabled="True" TickFrequency="0.01"
-								        ValueChanged="OnSaturationSliderChanged"/>
+										SmallChange="0.05" LargeChange="0.1"
+								        ValueChanged="OnSaturationSliderChanged"
+								        Thumb.DragStarted="OnGlobalSliderDragStarted"
+								        Thumb.DragCompleted="OnGlobalSliderDragCompleted"/>
 								<TextBlock Grid.Column="2" FontSize="10"
 								           Foreground="#FF333333" VerticalAlignment="Center" Margin="4,0,0,0"
 								           Text="{Binding Value, ElementName=SaturationSlider, StringFormat={}{0:P0}}"/>
@@ -518,7 +524,10 @@
 								           VerticalAlignment="Center" Margin="0,0,4,0"/>
 								<Slider x:Name="LightnessSlider" Grid.Column="1"
 								        Minimum="0" Maximum="1" IsSnapToTickEnabled="True" TickFrequency="0.01"
-								        ValueChanged="OnLightnessSliderChanged"/>
+										SmallChange="0.05" LargeChange="0.1"
+								        ValueChanged="OnLightnessSliderChanged"
+								        Thumb.DragStarted="OnGlobalSliderDragStarted"
+								        Thumb.DragCompleted="OnGlobalSliderDragCompleted"/>
 								<TextBlock Grid.Column="2" FontSize="10"
 								           Foreground="#FF333333" VerticalAlignment="Center" Margin="4,0,0,0"
 								           Text="{Binding Value, ElementName=LightnessSlider, StringFormat={}{0:P0}}"/>
@@ -530,9 +539,9 @@
 
 			<!-- Bottom bar: actions -->
 			<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
-				<Button Content="Save" Click="OnSave" Width="70" Margin="0,0,8,0" Padding="0,4"/>
-				<Button Content="Save As..." Click="OnSaveAs" Width="80" Margin="0,0,8,0" Padding="0,4"/>
-				<Button Content="Export" Click="OnExport" Width="70" Margin="0,0,8,0" Padding="0,4"/>
+				<Button x:Name="SaveButton" Content="Save" Click="OnSave" Width="70" Margin="0,0,8,0" Padding="0,4"/>
+				<Button x:Name="SaveAsButton" Content="Save As..." Click="OnSaveAs" Width="80" Margin="0,0,8,0" Padding="0,4"/>
+				<Button x:Name="ExportButton" Content="Export" Click="OnExport" Width="70" Margin="0,0,8,0" Padding="0,4"/>
 				<Button Content="Cancel" Click="OnCancel" Width="70" Padding="0,4"/>
 			</StackPanel>
 		</Grid>

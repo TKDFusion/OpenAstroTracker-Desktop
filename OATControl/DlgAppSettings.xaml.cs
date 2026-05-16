@@ -94,7 +94,6 @@ namespace OATControl
 
 			ThemeComboBox.ItemsSource = ThemeManager.Instance.AvailableThemes;
 			ThemeComboBox.SelectedItem = ThemeManager.Instance.CurrentTheme;
-			EditThemeButton.IsEnabled = ThemeManager.Instance.IsUserTheme(ThemeManager.Instance.CurrentTheme);
 		}
 
 
@@ -525,15 +524,15 @@ namespace OATControl
 				ThemeManager.Instance.ApplyTheme(themeName);
 				AppSettings.Instance.ThemeName = themeName;
 				AppSettings.Instance.Save();
-				EditThemeButton.IsEnabled = ThemeManager.Instance.IsUserTheme(themeName);
 			}
 		}
 
 		private void OnEditTheme(object sender, RoutedEventArgs e)
 		{
-			if (ThemeComboBox.SelectedItem is string themeName && ThemeManager.Instance.IsUserTheme(themeName))
+			if (ThemeComboBox.SelectedItem is string themeName)
 			{
-				var dlg = new DlgThemeEditor(themeName) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
+				var isReadOnly = !ThemeManager.Instance.IsUserTheme(themeName);
+				var dlg = new DlgThemeEditor(themeName, readOnly: isReadOnly) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
 				dlg.ShowDialog();
 				ThemeComboBox.ItemsSource = ThemeManager.Instance.AvailableThemes;
 				ThemeComboBox.SelectedItem = ThemeManager.Instance.CurrentTheme;
@@ -542,7 +541,8 @@ namespace OATControl
 
 		private void OnCreateTheme(object sender, RoutedEventArgs e)
 		{
-			var dlg = new DlgThemeEditor(null, isNew: true) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
+			var sourceTheme = ThemeComboBox.SelectedItem as string ?? ThemeManager.Instance.CurrentTheme;
+			var dlg = new DlgThemeEditor(sourceTheme, cloneAsNew: true) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
 			dlg.ShowDialog();
 			ThemeComboBox.ItemsSource = ThemeManager.Instance.AvailableThemes;
 			ThemeComboBox.SelectedItem = ThemeManager.Instance.CurrentTheme;

@@ -99,6 +99,8 @@ namespace OATControl
         private double _averageSaturation;
         private double _averageLightness;
         private bool _updatingFromSlider;
+        private bool _updatingGlobalSlider;
+        private bool _globalSliderDragging;
 
         private ColorEditItem _selectedColorItem;
         private bool _updatingPicker;
@@ -109,14 +111,34 @@ namespace OATControl
         private const int PickerSize = 256;
         private const int BarWidth = 24;
 
-        public DlgThemeEditor(string themeName = null, bool isNew = false)
+        private bool _isReadOnly;
+        private bool _hasChanges;
+
+        public DlgThemeEditor(string themeName = null, bool isNew = false, bool readOnly = false, bool cloneAsNew = false)
         {
             _editingTheme = themeName;
-            _isNewTheme = isNew;
+            _isNewTheme = isNew || cloneAsNew;
+            _isReadOnly = readOnly;
             _previewDict = new ResourceDictionary();
 
             DataContext = this;
             InitializeComponent();
+
+            if (_isReadOnly)
+            {
+                PickerPanel.IsEnabled = false;
+                HueSlider.IsEnabled = false;
+                SaturationSlider.IsEnabled = false;
+                LightnessSlider.IsEnabled = false;
+                SaveButton.IsEnabled = false;
+                SaveAsButton.IsEnabled = false;
+                ExportButton.IsEnabled = false;
+            }
+
+            if (cloneAsNew && !string.IsNullOrEmpty(themeName))
+            {
+                EditingThemeName = themeName + " Copy";
+            }
         }
 
         public ObservableCollection<ColorEditItem> ColorItems => _colorItems;
@@ -131,6 +153,18 @@ namespace OATControl
         {
             get => _themeAuthor;
             set { _themeAuthor = value; OnPropertyChanged(); }
+        }
+
+        public bool IsReadOnly
+        {
+            get => _isReadOnly;
+            set { _isReadOnly = value; OnPropertyChanged(); }
+        }
+
+        public bool HasChanges
+        {
+            get => _hasChanges;
+            set { _hasChanges = value; OnPropertyChanged(); }
         }
 
         public ColorEditItem SelectedColorItem
@@ -195,7 +229,16 @@ namespace OATControl
             {
                 var current = themeColors.TryGetValue(def.Key, out var c) ? c : def.DefaultColor;
                 var item = new ColorEditItem(def.Key, def.DisplayName, def.Group, current, def.DefaultColor);
-                item.PropertyChanged += (s, e) => { if (e.PropertyName == "Color") UpdatePreview(); };
+                item.PropertyChanged += (s, e) =>
+                {
+                    if (e.PropertyName == "Color")
+                    {
+                        if (_updatingPicker)
+                            _originalColors[item.Key] = item.Color;
+                        if (!_updatingGlobalSlider)
+                            UpdatePreview();
+                    }
+                };
                 _colorItems.Add(item);
             }
 
@@ -235,25 +278,52 @@ namespace OATControl
             {
                 _editingTheme = themeName;
                 _isNewTheme = false;
+                UpdateReadOnlyState(themeName);
                 LoadThemeColors();
             }
         }
 
+        private void UpdateReadOnlyState(string themeName)
+        {
+            _isReadOnly = !string.IsNullOrEmpty(themeName) && !ThemeManager.Instance.IsUserTheme(themeName);
+            bool canEdit = !_isReadOnly;
+            PickerPanel.IsEnabled = canEdit;
+            HueSlider.IsEnabled = canEdit;
+            SaturationSlider.IsEnabled = canEdit;
+            LightnessSlider.IsEnabled = canEdit;
+            SaveButton.IsEnabled = canEdit;
+            SaveAsButton.IsEnabled = canEdit;
+            ExportButton.IsEnabled = canEdit;
+        }
+
+        private bool _updatingPreview;
+
         private void UpdatePreview()
         {
-            if (_previewDict != null)
-                PreviewPanel.Resources.MergedDictionaries.Remove(_previewDict);
-
-            _previewDict = new ResourceDictionary();
-            foreach (var item in _colorItems)
+            if (_updatingPreview) return;
+            _updatingPreview = true;
+            try
             {
-                _previewDict[ThemeColorDefinitions.BrushKeyFromColorKey(item.Key)] = new SolidColorBrush(item.Color);
+                if (!_isReadOnly) HasChanges = true;
+
+                if (_previewDict != null)
+                    PreviewPanel.Resources.MergedDictionaries.Remove(_previewDict);
+
+                _previewDict = new ResourceDictionary();
+                foreach (var item in _colorItems)
+                {
+                    _previewDict[ThemeColorDefinitions.BrushKeyFromColorKey(item.Key)] = new SolidColorBrush(item.Color);
+                }
+
+                PreviewPanel.Resources.MergedDictionaries.Add(_previewDict);
+
+                if (_selectedColorItem != null && !_updatingPicker)
+                    UpdatePickerDisplay();
             }
-
-            PreviewPanel.Resources.MergedDictionaries.Add(_previewDict);
-
-            if (_selectedColorItem != null && !_updatingPicker)
-                UpdatePickerDisplay();
+            finally
+            {
+                _updatingPreview = false;
+            }
         }
 
         private void OnNewTheme(object sender, RoutedEventArgs e)
@@ -305,7 +375,7 @@ namespace OATControl
             var dialog = new Window
             {
                 Width = 320,
-                Height = 180,
+                Height = 200,
                 Title = "Save Theme As",
                 WindowStartupLocation = WindowStartupLocation.CenterOwner,
                 Owner = this
@@ -405,6 +475,9 @@ namespace OATControl
 
                 _editingTheme = fileSafeName;
                 _isNewTheme = false;
+                _isReadOnly = false;
+                HasChanges = false;
+                UpdateReadOnlyState(fileSafeName);
                 ThemeListBox.ItemsSource = ThemeManager.Instance.AvailableThemes.ToList();
                 ThemeListBox.SelectedItem = fileSafeName;
 
@@ -446,6 +519,29 @@ namespace OATControl
             Close();
         }
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (_hasChanges)
+            {
+                var result = System.Windows.MessageBox.Show(
+                    "You have unsaved changes. Save before closing?",
+                    "Unsaved Changes",
+                    MessageBoxButton.YesNoCancel,
+                    MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    OnSave(this, null);
+                    if (_hasChanges) e.Cancel = true;
+                }
+                else if (result == MessageBoxResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
+            base.OnClosing(e);
+        }
+
         private void OnHueSliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (_updatingFromSlider || _originalColors.Count == 0)
@@ -455,6 +551,7 @@ namespace OATControl
             if (delta > 180) delta -= 360;
             if (delta < -180) delta += 360;
 
+            _updatingGlobalSlider = true;
             foreach (var item in _colorItems)
             {
                 if (!_originalColors.TryGetValue(item.Key, out var original) || IsBlackOrWhite(original))
@@ -462,8 +559,11 @@ namespace OATControl
                 var (h, s, l) = ColorToHsl(original);
                 item.Color = HslToColor((h + delta + 360) % 360, s, l);
             }
+            _updatingGlobalSlider = false;
             UpdatePreview();
-            ResnapshotColors();
+
+            if (!_globalSliderDragging)
+                ResnapshotColors();
         }
 
         private void OnSaturationSliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -473,6 +573,7 @@ namespace OATControl
 
             var delta = e.NewValue - _averageSaturation;
 
+            _updatingGlobalSlider = true;
             foreach (var item in _colorItems)
             {
                 if (!_originalColors.TryGetValue(item.Key, out var original) || IsBlackOrWhite(original))
@@ -480,8 +581,11 @@ namespace OATControl
                 var (h, s, l) = ColorToHsl(original);
                 item.Color = HslToColor(h, Math.Max(0, Math.Min(1, s + delta)), l);
             }
+            _updatingGlobalSlider = false;
             UpdatePreview();
-            ResnapshotColors();
+
+            if (!_globalSliderDragging)
+                ResnapshotColors();
         }
 
         private void OnLightnessSliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -491,6 +595,7 @@ namespace OATControl
 
             var delta = e.NewValue - _averageLightness;
 
+            _updatingGlobalSlider = true;
             foreach (var item in _colorItems)
             {
                 if (!_originalColors.TryGetValue(item.Key, out var original) || IsBlackOrWhite(original))
@@ -498,27 +603,32 @@ namespace OATControl
                 var (h, s, l) = ColorToHsl(original);
                 item.Color = HslToColor(h, s, Math.Max(0, Math.Min(1, l + delta)));
             }
+            _updatingGlobalSlider = false;
             UpdatePreview();
+
+            if (!_globalSliderDragging)
+                ResnapshotColors();
+        }
+
+        private void OnGlobalSliderDragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+        {
+            _globalSliderDragging = true;
+        }
+
+        private void OnGlobalSliderDragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            _globalSliderDragging = false;
             ResnapshotColors();
         }
 
         private void ResnapshotColors()
         {
             _originalColors = _colorItems.ToDictionary(i => i.Key, i => i.Color);
-            var hslValues = _colorItems
-                .Select(i => i.Color)
-                .Where(c => !IsBlackOrWhite(c))
-                .Select(c => ColorToHsl(c))
-                .ToList();
-            _averageHue = hslValues.Count > 0 ? hslValues.Average(v => v.h) : 0;
-            _averageSaturation = hslValues.Count > 0 ? hslValues.Average(v => v.s) : 0;
-            _averageLightness = hslValues.Count > 0 ? hslValues.Average(v => v.l) : 0.5;
 
-            _updatingFromSlider = true;
-            HueSlider.Value = _averageHue;
-            SaturationSlider.Value = _averageSaturation;
-            LightnessSlider.Value = _averageLightness;
-            _updatingFromSlider = false;
+            // Use slider positions as source of truth to avoid circular-averaging issues with hue
+            _averageHue = HueSlider.Value;
+            _averageSaturation = SaturationSlider.Value;
+            _averageLightness = LightnessSlider.Value;
         }
 
         private static (double h, double s, double l) ColorToHsl(Color c)
@@ -580,13 +690,13 @@ namespace OATControl
             if (item == null) return;
 
             var (h, s, l) = ColorToHsl(item.Color);
-            RenderHueSaturationSquare(h, l);
+            RenderHueSaturationSquare();
             RenderLightnessBar(h, s);
             UpdatePickerMarkers(h, s, l);
             UpdateSliderValues(item.Color, h, s, l);
         }
 
-        private void RenderHueSaturationSquare(double currentH, double currentL)
+        private void RenderHueSaturationSquare()
         {
             if (_hueSatBitmap == null)
             {
@@ -601,7 +711,7 @@ namespace OATControl
                 for (int x = 0; x < PickerSize; x++)
                 {
                     double hue = (double)x / (PickerSize - 1) * 360.0;
-                    var c = HslToColor(hue, sat, currentL);
+                    var c = HslToColor(hue, sat, 0.5);
                     int idx = (y * PickerSize + x) * 3;
                     pixels[idx] = c.B;
                     pixels[idx + 1] = c.G;
@@ -738,43 +848,44 @@ namespace OATControl
             _updatingPicker = true;
             _selectedColorItem.Color = HslToColor(h, s, newL);
             _updatingPicker = false;
-            RenderHueSaturationSquare(h, newL);
             UpdatePickerMarkers(h, s, newL);
             UpdateSliderValues(_selectedColorItem.Color, h, s, newL);
         }
 
         private void OnRgbSliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (_updatingFromSlider || _selectedColorItem == null) return;
+            if (_updatingFromSlider || _updatingPicker || _selectedColorItem == null) return;
             var c = Color.FromRgb((byte)SliderR.Value, (byte)SliderG.Value, (byte)SliderB.Value);
             _updatingPicker = true;
             _selectedColorItem.Color = c;
-            _updatingPicker = false;
             var (h, s, l) = ColorToHsl(c);
-            RenderHueSaturationSquare(h, l);
             RenderLightnessBar(h, s);
             UpdatePickerMarkers(h, s, l);
+            _updatingFromSlider = true;
             SliderH.Value = Math.Round(h);
             SliderS.Value = Math.Round(s * 100);
             SliderL.Value = Math.Round(l * 100);
+            _updatingFromSlider = false;
+            _updatingPicker = false;
         }
 
         private void OnHslSliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (_updatingFromSlider || _selectedColorItem == null) return;
+            if (_updatingFromSlider || _updatingPicker || _selectedColorItem == null) return;
             double h = SliderH.Value;
             double s = SliderS.Value / 100.0;
             double l = SliderL.Value / 100.0;
             var c = HslToColor(h, s, l);
             _updatingPicker = true;
             _selectedColorItem.Color = c;
-            _updatingPicker = false;
-            RenderHueSaturationSquare(h, l);
             RenderLightnessBar(h, s);
             UpdatePickerMarkers(h, s, l);
+            _updatingFromSlider = true;
             SliderR.Value = c.R;
             SliderG.Value = c.G;
             SliderB.Value = c.B;
+            _updatingFromSlider = false;
+            _updatingPicker = false;
         }
     }
 }
