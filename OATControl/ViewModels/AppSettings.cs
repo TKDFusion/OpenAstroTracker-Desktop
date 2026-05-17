@@ -10,561 +10,561 @@ using System.Xml.Serialization;
 
 namespace OATControl.ViewModels
 {
-	public enum ChecklistShowOn { OnStartup, OnConnect, OnDemand };
-	public static class ChecklistShowOnEnumHelper
-	{
-		public static Array ChecklistShowOnValues => Enum.GetValues(typeof(ChecklistShowOn));
-	}
-
-	public class UpgradeEventArgs : EventArgs
-	{
-		public UpgradeEventArgs(long loaded, long current)
-		{
-			LoadedVersion = loaded;
-			CurrentVersion = current;
-		}
-
-		public long LoadedVersion { get; }
-		public long CurrentVersion { get; }
-	}
-
-	public class AppSettings
-	{
-		class DefaultValueAttribute : Attribute
-		{
-			public DefaultValueAttribute(string val)
-			{
-				DefaultValue = val;
-			}
-			public string DefaultValue { get; private set; }
-		}
-
-		public EventHandler<UpgradeEventArgs> UpgradeVersion;
-		private static AppSettings _instance;
-		private Dictionary<string, string> _dict = new Dictionary<string, string>();
-		private string _settingsLocation;
-
-		private List<SlewPoint> _slewPoints;
-		AppSettings()
-		{
-			var entry = Assembly.GetExecutingAssembly().GetName().Version;
-			CurrentVersion = ((entry.Major * 100 + entry.Minor) * 100 + entry.Build) * 100 + entry.Revision;
-			_settingsLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OpenAstroTracker", "OATControl.Settings");
-		}
-
-		public static AppSettings Instance
-		{
-			get { return _instance == null ? (_instance = new AppSettings()) : _instance; }
-		}
-
-		public void Load()
-		{
-			if (File.Exists(_settingsLocation))
-			{
-				var doc = XDocument.Load(_settingsLocation, LoadOptions.PreserveWhitespace);
-				LoadedVersion = long.Parse(doc.Element("Settings").Attribute("Version").Value);
-				foreach (var setting in doc.Element("Settings").Elements("Setting"))
-				{
-					var key = setting.Attribute("Key").Value;
-					_dict[key] = setting.Attribute("Value").Value;
-				}
-
-				if (LoadedVersion != CurrentVersion)
-				{
-					// This will execute on every new release. Allows clients to upgrade settings if needed.
-					OnUpgradeSettings();
-					Save();
-				}
-			}
-		}
-
-		void OnUpgradeSettings()
-		{
-			var handler = UpgradeVersion;
-			if (handler != null)
-			{
-				handler(this, new UpgradeEventArgs(LoadedVersion, CurrentVersion));
-			}
-		}
-
-		public void Save()
-		{
-			var doc = new XDocument(new XElement("Settings", new XAttribute("Version", CurrentVersion), _dict.Select(kv => new XElement("Setting", new XAttribute("Key", kv.Key), new XAttribute("Value", kv.Value.ToString())))));
-			doc.Save(_settingsLocation);
-		}
-
-		public long CurrentVersion { get; private set; }
-		public long LoadedVersion { get; private set; }
-
-		/// <summary>
-		/// Ensures the given window is at least partially visible on the virtual screen,
-		/// with its title bar fully accessible.
-		/// </summary>
-		public static void EnsureWindowIsVisible(ref Rect windowRect, int titleBarHeight = 30, int edgeMargin = 10)
-		{
-			// Virtual screen dimensions (handles multi-monitor setups)
-			int screenLeft = (int)SystemParameters.VirtualScreenLeft;
-			int screenTop = (int)SystemParameters.VirtualScreenTop;
-			int screenWidth = (int)SystemParameters.VirtualScreenWidth;
-			int screenHeight = (int)SystemParameters.VirtualScreenHeight;
-			Rect virtualScreen = new Rect(screenLeft, screenTop, screenWidth, screenHeight);
-
-			// If completely offscreen, snap to nearest edge
-			if (!windowRect.IntersectsWith(virtualScreen))
-			{
-				double distLeft = Math.Abs(windowRect.Right - virtualScreen.Left);
-				double distRight = Math.Abs(windowRect.Left - virtualScreen.Right);
-				double distTop = Math.Abs(windowRect.Bottom - virtualScreen.Top);
-				double distBottom = Math.Abs(windowRect.Top - virtualScreen.Bottom);
-
-				double minDist = Math.Min(Math.Min(distLeft, distRight), Math.Min(distTop, distBottom));
-
-				if (minDist == distLeft)
-				{
-					windowRect.X = virtualScreen.Left - windowRect.Width + edgeMargin;
-					windowRect.Y = Clamp(windowRect.Y, virtualScreen.Top, virtualScreen.Bottom - titleBarHeight);
-				}
-				else if (minDist == distRight)
-				{
-					windowRect.X = virtualScreen.Right - edgeMargin;
-					windowRect.Y = Clamp(windowRect.Y, virtualScreen.Top, virtualScreen.Bottom - titleBarHeight);
-				}
-				else if (minDist == distTop)
-				{
-					windowRect.Y = virtualScreen.Top;
-					windowRect.X = Clamp(windowRect.X, virtualScreen.Left, virtualScreen.Right - 100); // keep a visible slice
-				}
-				else if (minDist == distBottom)
-				{
-					windowRect.Y = virtualScreen.Bottom - windowRect.Height;
-					windowRect.X = Clamp(windowRect.X, virtualScreen.Left, virtualScreen.Right - 100);
-				}
-			}
-			else
-			{
-				// Clamp within virtual screen bounds
-				if (windowRect.Right > virtualScreen.Right)
-					windowRect.X = virtualScreen.Right - windowRect.Width;
-
-				if (windowRect.Bottom > virtualScreen.Bottom)
-					windowRect.Y = virtualScreen.Bottom - windowRect.Height;
-
-				if (windowRect.Left < virtualScreen.Left)
-					windowRect.X = virtualScreen.Left;
-
-				if (windowRect.Top < virtualScreen.Top)
-					windowRect.Y = virtualScreen.Top;
-			}
-		}
-
-		private static double Clamp(double value, double min, double max)
-		{
-			return Math.Min(Math.Max(value, min), max);
-		}
-
-		public Rect EnsureRectIsOnScreen(string pointName, string sizeName)
-		{
-			try
-			{
-				Point point = this[pointName] != null ? ToPoint(this[pointName]) : new Point(0, 0);
-				Size size = this[sizeName] != null ? ToSize(this[sizeName]) : new Size(100, 100);
-				Rect rect = new Rect(point, size);
-				EnsureWindowIsVisible(ref rect);
-				return rect;
-			}
-			catch
-			{
-				return new Rect(0, 0, 100, 100);
-			}
-		}
-
-		private Point ToPoint(string val)
-		{
-			var parts = val.Split('|');
-			return new Point(int.Parse(parts[0]), int.Parse(parts[1]));
-		}
-
-		private string FromPoint(Point val)
-		{
-			return $"{val.X}|{val.Y}";
-
-		}
-
-		private Size ToSize(string val)
-		{
-			var parts = val?.Split('|');
-			if ((parts != null) && (parts.Length != 2))
-				throw new ArgumentException("Invalid size format. Expected format: 'width|height'. Received: [" + val + "]");
-			try
-			{
-				Size sz = new Size(int.Parse(parts[0]), int.Parse(parts[1]));
-				return sz;
-			}
-			catch
-			{
-				throw new ArgumentException("Invalid Size, expected: 'width|height'. Received: [" + val + "]");
-			}
-		}
-
-		private string FromSize(Size val)
-		{
-			return $"{val.Width}|{val.Height}";
-
-		}
-
-		private string this[string key]
-		{
-			get
-			{
-				if (key == null)
-				{
-					return null;
-				}
-
-				if (_dict.TryGetValue(key, out string val))
-				{
-					return val;
-				}
-				var prop = this.GetType().GetProperty(key);
-				var defaultProp = prop.GetCustomAttributes(false).FirstOrDefault() as DefaultValueAttribute;
-
-				return defaultProp.DefaultValue;
-			}
-			set
-			{
-				_dict[key] = value;
-				//_dirty=true;
-			}
-		}
-
-		private string FromSlewPoints(List<SlewPoint> points)
-		{
-			if (points == null || !points.Any())
-				return string.Empty;
-
-			XmlSerializer serializer = new XmlSerializer(typeof(List<SlewPoint>));
-			using (StringWriter writer = new StringWriter())
-			{
-				serializer.Serialize(writer, points);
-				return writer.ToString();
-			}
-		}
-
-		private List<SlewPoint> ToSlewPoints(string xml)
-		{
-			if (string.IsNullOrEmpty(xml))
-				return new List<SlewPoint>();
-
-			XmlSerializer serializer = new XmlSerializer(typeof(List<SlewPoint>));
-			try
-			{
-				using (StringReader reader = new StringReader(xml))
-				{
-					return (List<SlewPoint>)serializer.Deserialize(reader);
-				}
-			}
-			catch
-			{
-				return new List<SlewPoint>();
-			}
-		}
-
-		[DefaultValueAttribute("")]
-		public List<SlewPoint> SlewPoints
-		{
-			get
-			{
-				if (_slewPoints == null)
-				{
-					_slewPoints = ToSlewPoints(this["SlewPoints"]);
-				}
-				return _slewPoints;
-			}
-			set
-			{
-				_slewPoints = value;
-				this["SlewPoints"] = FromSlewPoints(value);
-			}
-		}
-
-		[DefaultValueAttribute("45")]
-		public float SiteLatitude
-		{
-			get { return float.Parse(this["SiteLatitude"]); }
-			set { this["SiteLatitude"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("45")]
-		public float SiteLongitude
-		{
-			get { return float.Parse(this["SiteLongitude"]); }
-			set { this["SiteLongitude"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("0|0")]
-		public Point MiniControllerPos
-		{
-			get { return ToPoint(this["MiniControllerPos"]); }
-			set { this["MiniControllerPos"] = FromPoint(value); }
-		}
-
-		[DefaultValueAttribute("0|0")]
-		public Point SlewPointsWindowPos
-		{
-			get { return ToPoint(this["SlewPointsWindowPos"]); }
-			set { this["SlewPointsWindowPos"] = FromPoint(value); }
-		}
-
-		[DefaultValueAttribute("400|300")]
-		public Size SlewPointsWindowSize
-		{
-			get { return ToSize(this["SlewPointsWindowSize"]); }
-			set { this["SlewPointsWindowSize"] = FromSize(value); }
-		}
-
-		[DefaultValueAttribute("0|50")]
-		public Point ChecklistPos
-		{
-			get { return ToPoint(this["ChecklistPos"]); }
-			set { this["ChecklistPos"] = FromPoint(value); }
-		}
-
-		[DefaultValueAttribute("0|50")]
-		public Size ChecklistSize
-		{
-			get { return ToSize(this["ChecklistSize"]); }
-			set { this["ChecklistSize"] = FromSize(value); }
-		}
-
-		[DefaultValueAttribute("100|100")]
-		public Point WindowPos
-		{
-			get { return ToPoint(this["WindowPos"]); }
-			set { this["WindowPos"] = FromPoint(value); }
-		}
-
-		[DefaultValueAttribute("100")]
-		public float SiteAltitude
-		{
-			get { return float.Parse(this["SiteAltitude"]); }
-			set { this["SiteAltitude"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("0|0")]
-		public Point TargetChooserPos
-		{
-			get { return ToPoint(this["TargetChooserPos"]); }
-			set { this["TargetChooserPos"] = FromPoint(value); ; }
-		}
-
-		[DefaultValueAttribute("670|910")]
-		public Size TargetChooserSize
-		{
-			get { return ToSize(this["TargetChooserSize"]); }
-			set { this["TargetChooserSize"] = FromSize(value); }
-		}
-
-		[DefaultValueAttribute("False")]
-		public bool ShowDecLimits
-		{
-			get { return Convert.ToBoolean(this["ShowDecLimits"]); }
-			set { this["ShowDecLimits"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("-90")]
-		public float LowerDecLimit
-		{
-			get { return float.Parse(this["LowerDecLimit"]); }
-			set { this["LowerDecLimit"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("180")]
-		public float UpperDecLimit
-		{
-			get { return float.Parse(this["UpperDecLimit"]); }
-			set { this["UpperDecLimit"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("19200")]
-		public string BaudRate
-		{
-			get { return this["BaudRate"]; }
-			set { this["BaudRate"] = value; }
-		}
-
-		[DefaultValueAttribute("Sidereal")]
-		public string TrackingRate
-		{
-			get { return this["TrackingRate"]; }
-			set { this["TrackingRate"] = value; }
-		}
-
-		[DefaultValueAttribute("False")]
-		public bool KeepMiniControlOnTop
-		{
-			get { return Convert.ToBoolean(this["KeepMiniControlOnTop"]); }
-			set { this["KeepMiniControlOnTop"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("0")]
-		public Single DECHomeOffset
-		{
-			get { return Convert.ToSingle(this["DECHomeOffset"]); }
-			set { this["DECHomeOffset"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("0")]
-		public Single RAHomeOffset
-		{
-			get { return Convert.ToSingle(this["RAHomeOffset"]); }
-			set { this["RAHomeOffset"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("<CustomCommands />")]
-		public string CustomCommands
-		{
-			get { return this["CustomCommands"]; }
-			set { this["CustomCommands"] = value; }
-		}
-
-		[DefaultValueAttribute("False")]
-		public bool RunAutoHomeRAOnConnect
-		{
-			get { return Convert.ToBoolean(this["RunAutoHomeRAOnConnect"]); }
-			set { this["RunAutoHomeRAOnConnect"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("False")]
-		public bool RunAutoHomeDECOnConnect
-		{
-			get { return Convert.ToBoolean(this["RunAutoHomeDECOnConnect"]); }
-			set { this["RunAutoHomeDECOnConnect"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("False")]
-		public bool RunDECOffsetHomingOnConnect
-		{
-			get { return Convert.ToBoolean(this["RunDECOffsetHomingOnConnect"]); }
-			set { this["RunDECOffsetHomingOnConnect"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("East")]
-		public string AutoHomeRaDirection
-		{
-			get { return this["AutoHomeRaDirection"]; }
-			set { this["AutoHomeRaDirection"] = value; }
-		}
-
-		[DefaultValueAttribute("15")]
-		public float AutoHomeRaDistance
-		{
-			get { return Convert.ToSingle(this["AutoHomeRaDistance"]); }
-			set { this["AutoHomeRaDistance"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("North")]
-		public string AutoHomeDecDirection
-		{
-			get { return this["AutoHomeDecDirection"]; }
-			set { this["AutoHomeDecDirection"] = value; }
-		}
-
-		[DefaultValueAttribute("15")]
-		public float AutoHomeDecDistance
-		{
-			get { return Convert.ToSingle(this["AutoHomeDecDistance"]); }
-			set { this["AutoHomeDecDistance"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("false")]
-		public bool ShowChecklistOnConnect
-		{
-			get { return Convert.ToBoolean(this["ShowChecklistOnConnect"]); }
-			set { this["ShowChecklistOnConnect"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("OnDemand")]
-		public ChecklistShowOn ShowChecklist
-		{
-			get { return (ChecklistShowOn)Enum.Parse(typeof(ChecklistShowOn), this["ShowChecklist"]); }
-			set { this["ShowChecklist"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("Checklist")]
-		public string ChecklistTitle
-		{
-			get { return this["ChecklistTitle"]; }
-			set { this["ChecklistTitle"] = value; }
-		}
-
-		[DefaultValueAttribute("False")]
-		public bool MonitorNinaPA
-		{
-			get { return Convert.ToBoolean(this["MonitorNinaPA"]); }
-			set { this["MonitorNinaPA"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("False")]
-		public bool MonitorSharpCapPA
-		{
-			get { return Convert.ToBoolean(this["MonitorSharpCapPA"]); }
-			set { this["MonitorSharpCapPA"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("False")]
-		public bool InvertAZCorrections
-		{
-			get { return Convert.ToBoolean(this["InvertAZCorrections"]); }
-			set { this["InvertAZCorrections"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("False")]
-		public bool InvertALTCorrections
-		{
-			get { return Convert.ToBoolean(this["InvertALTCorrections"]); }
-			set { this["InvertALTCorrections"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("")]
-		public string NinaLogFolder
-		{
-			get { return this["NinaLogFolder"]; }
-			set { this["NinaLogFolder"] = value; }
-		}
-
-		[DefaultValueAttribute("")]
-		public string SharpCapLogFolder
-		{
-			get { return this["SharpCapLogFolder"]; }
-			set { this["SharpCapLogFolder"] = value; }
-		}
-
-		[DefaultValueAttribute("3")]
-		public float AZLimit
-		{
-			get { return Convert.ToSingle(this["AZLimit"] ?? "3"); }
-			set { this["AZLimit"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("3")]
-		public float ALTLimit
-		{
-			get { return Convert.ToSingle(this["ALTLimit"] ?? "3"); }
-			set { this["ALTLimit"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("20")]
-		public float PolarAlignmentMinimumTotalError
-		{
-			get { return Convert.ToSingle(this["PolarAlignmentMinimumTotalError"] ?? "20"); }
-			set { this["PolarAlignmentMinimumTotalError"] = value.ToString(); }
-		}
-
-		[DefaultValueAttribute("DarkAstronomy")]
-		public string ThemeName
-		{
-			get { return this["ThemeName"]; }
-			set { this["ThemeName"] = value; }
-		}
-	}
+    public enum ChecklistShowOn { OnStartup, OnConnect, OnDemand };
+    public static class ChecklistShowOnEnumHelper
+    {
+        public static Array ChecklistShowOnValues => Enum.GetValues(typeof(ChecklistShowOn));
+    }
+
+    public class UpgradeEventArgs : EventArgs
+    {
+        public UpgradeEventArgs(long loaded, long current)
+        {
+            LoadedVersion = loaded;
+            CurrentVersion = current;
+        }
+
+        public long LoadedVersion { get; }
+        public long CurrentVersion { get; }
+    }
+
+    public class AppSettings
+    {
+        class DefaultValueAttribute : Attribute
+        {
+            public DefaultValueAttribute(string val)
+            {
+                DefaultValue = val;
+            }
+            public string DefaultValue { get; private set; }
+        }
+
+        public EventHandler<UpgradeEventArgs> UpgradeVersion;
+        private static AppSettings _instance;
+        private Dictionary<string, string> _dict = new Dictionary<string, string>();
+        private string _settingsLocation;
+
+        private List<SlewPoint> _slewPoints;
+        AppSettings()
+        {
+            var entry = Assembly.GetExecutingAssembly().GetName().Version;
+            CurrentVersion = ((entry.Major * 100 + entry.Minor) * 100 + entry.Build) * 100 + entry.Revision;
+            _settingsLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OpenAstroTracker", "OATControl.Settings");
+        }
+
+        public static AppSettings Instance
+        {
+            get { return _instance == null ? (_instance = new AppSettings()) : _instance; }
+        }
+
+        public void Load()
+        {
+            if (File.Exists(_settingsLocation))
+            {
+                var doc = XDocument.Load(_settingsLocation, LoadOptions.PreserveWhitespace);
+                LoadedVersion = long.Parse(doc.Element("Settings").Attribute("Version").Value);
+                foreach (var setting in doc.Element("Settings").Elements("Setting"))
+                {
+                    var key = setting.Attribute("Key").Value;
+                    _dict[key] = setting.Attribute("Value").Value;
+                }
+
+                if (LoadedVersion != CurrentVersion)
+                {
+                    // This will execute on every new release. Allows clients to upgrade settings if needed.
+                    OnUpgradeSettings();
+                    Save();
+                }
+            }
+        }
+
+        void OnUpgradeSettings()
+        {
+            var handler = UpgradeVersion;
+            if (handler != null)
+            {
+                handler(this, new UpgradeEventArgs(LoadedVersion, CurrentVersion));
+            }
+        }
+
+        public void Save()
+        {
+            var doc = new XDocument(new XElement("Settings", new XAttribute("Version", CurrentVersion), _dict.Select(kv => new XElement("Setting", new XAttribute("Key", kv.Key), new XAttribute("Value", kv.Value.ToString())))));
+            doc.Save(_settingsLocation);
+        }
+
+        public long CurrentVersion { get; private set; }
+        public long LoadedVersion { get; private set; }
+
+        /// <summary>
+        /// Ensures the given window is at least partially visible on the virtual screen,
+        /// with its title bar fully accessible.
+        /// </summary>
+        public static void EnsureWindowIsVisible(ref Rect windowRect, int titleBarHeight = 30, int edgeMargin = 10)
+        {
+            // Virtual screen dimensions (handles multi-monitor setups)
+            int screenLeft = (int)SystemParameters.VirtualScreenLeft;
+            int screenTop = (int)SystemParameters.VirtualScreenTop;
+            int screenWidth = (int)SystemParameters.VirtualScreenWidth;
+            int screenHeight = (int)SystemParameters.VirtualScreenHeight;
+            Rect virtualScreen = new Rect(screenLeft, screenTop, screenWidth, screenHeight);
+
+            // If completely offscreen, snap to nearest edge
+            if (!windowRect.IntersectsWith(virtualScreen))
+            {
+                double distLeft = Math.Abs(windowRect.Right - virtualScreen.Left);
+                double distRight = Math.Abs(windowRect.Left - virtualScreen.Right);
+                double distTop = Math.Abs(windowRect.Bottom - virtualScreen.Top);
+                double distBottom = Math.Abs(windowRect.Top - virtualScreen.Bottom);
+
+                double minDist = Math.Min(Math.Min(distLeft, distRight), Math.Min(distTop, distBottom));
+
+                if (minDist == distLeft)
+                {
+                    windowRect.X = virtualScreen.Left - windowRect.Width + edgeMargin;
+                    windowRect.Y = Clamp(windowRect.Y, virtualScreen.Top, virtualScreen.Bottom - titleBarHeight);
+                }
+                else if (minDist == distRight)
+                {
+                    windowRect.X = virtualScreen.Right - edgeMargin;
+                    windowRect.Y = Clamp(windowRect.Y, virtualScreen.Top, virtualScreen.Bottom - titleBarHeight);
+                }
+                else if (minDist == distTop)
+                {
+                    windowRect.Y = virtualScreen.Top;
+                    windowRect.X = Clamp(windowRect.X, virtualScreen.Left, virtualScreen.Right - 100); // keep a visible slice
+                }
+                else if (minDist == distBottom)
+                {
+                    windowRect.Y = virtualScreen.Bottom - windowRect.Height;
+                    windowRect.X = Clamp(windowRect.X, virtualScreen.Left, virtualScreen.Right - 100);
+                }
+            }
+            else
+            {
+                // Clamp within virtual screen bounds
+                if (windowRect.Right > virtualScreen.Right)
+                    windowRect.X = virtualScreen.Right - windowRect.Width;
+
+                if (windowRect.Bottom > virtualScreen.Bottom)
+                    windowRect.Y = virtualScreen.Bottom - windowRect.Height;
+
+                if (windowRect.Left < virtualScreen.Left)
+                    windowRect.X = virtualScreen.Left;
+
+                if (windowRect.Top < virtualScreen.Top)
+                    windowRect.Y = virtualScreen.Top;
+            }
+        }
+
+        private static double Clamp(double value, double min, double max)
+        {
+            return Math.Min(Math.Max(value, min), max);
+        }
+
+        public Rect EnsureRectIsOnScreen(string pointName, string sizeName)
+        {
+            try
+            {
+                Point point = this[pointName] != null ? ToPoint(this[pointName]) : new Point(0, 0);
+                Size size = this[sizeName] != null ? ToSize(this[sizeName]) : new Size(100, 100);
+                Rect rect = new Rect(point, size);
+                EnsureWindowIsVisible(ref rect);
+                return rect;
+            }
+            catch
+            {
+                return new Rect(0, 0, 100, 100);
+            }
+        }
+
+        private Point ToPoint(string val)
+        {
+            var parts = val.Split('|');
+            return new Point(int.Parse(parts[0]), int.Parse(parts[1]));
+        }
+
+        private string FromPoint(Point val)
+        {
+            return $"{val.X}|{val.Y}";
+
+        }
+
+        private Size ToSize(string val)
+        {
+            var parts = val?.Split('|');
+            if ((parts != null) && (parts.Length != 2))
+                throw new ArgumentException("Invalid size format. Expected format: 'width|height'. Received: [" + val + "]");
+            try
+            {
+                Size sz = new Size(int.Parse(parts[0]), int.Parse(parts[1]));
+                return sz;
+            }
+            catch
+            {
+                throw new ArgumentException("Invalid Size, expected: 'width|height'. Received: [" + val + "]");
+            }
+        }
+
+        private string FromSize(Size val)
+        {
+            return $"{val.Width}|{val.Height}";
+
+        }
+
+        private string this[string key]
+        {
+            get
+            {
+                if (key == null)
+                {
+                    return null;
+                }
+
+                if (_dict.TryGetValue(key, out string val))
+                {
+                    return val;
+                }
+                var prop = this.GetType().GetProperty(key);
+                var defaultProp = prop.GetCustomAttributes(false).FirstOrDefault() as DefaultValueAttribute;
+
+                return defaultProp.DefaultValue;
+            }
+            set
+            {
+                _dict[key] = value;
+                //_dirty=true;
+            }
+        }
+
+        private string FromSlewPoints(List<SlewPoint> points)
+        {
+            if (points == null || !points.Any())
+                return string.Empty;
+
+            XmlSerializer serializer = new XmlSerializer(typeof(List<SlewPoint>));
+            using (StringWriter writer = new StringWriter())
+            {
+                serializer.Serialize(writer, points);
+                return writer.ToString();
+            }
+        }
+
+        private List<SlewPoint> ToSlewPoints(string xml)
+        {
+            if (string.IsNullOrEmpty(xml))
+                return new List<SlewPoint>();
+
+            XmlSerializer serializer = new XmlSerializer(typeof(List<SlewPoint>));
+            try
+            {
+                using (StringReader reader = new StringReader(xml))
+                {
+                    return (List<SlewPoint>)serializer.Deserialize(reader);
+                }
+            }
+            catch
+            {
+                return new List<SlewPoint>();
+            }
+        }
+
+        [DefaultValueAttribute("")]
+        public List<SlewPoint> SlewPoints
+        {
+            get
+            {
+                if (_slewPoints == null)
+                {
+                    _slewPoints = ToSlewPoints(this["SlewPoints"]);
+                }
+                return _slewPoints;
+            }
+            set
+            {
+                _slewPoints = value;
+                this["SlewPoints"] = FromSlewPoints(value);
+            }
+        }
+
+        [DefaultValueAttribute("45")]
+        public float SiteLatitude
+        {
+            get { return float.Parse(this["SiteLatitude"]); }
+            set { this["SiteLatitude"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("45")]
+        public float SiteLongitude
+        {
+            get { return float.Parse(this["SiteLongitude"]); }
+            set { this["SiteLongitude"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("0|0")]
+        public Point MiniControllerPos
+        {
+            get { return ToPoint(this["MiniControllerPos"]); }
+            set { this["MiniControllerPos"] = FromPoint(value); }
+        }
+
+        [DefaultValueAttribute("0|0")]
+        public Point SlewPointsWindowPos
+        {
+            get { return ToPoint(this["SlewPointsWindowPos"]); }
+            set { this["SlewPointsWindowPos"] = FromPoint(value); }
+        }
+
+        [DefaultValueAttribute("400|300")]
+        public Size SlewPointsWindowSize
+        {
+            get { return ToSize(this["SlewPointsWindowSize"]); }
+            set { this["SlewPointsWindowSize"] = FromSize(value); }
+        }
+
+        [DefaultValueAttribute("0|50")]
+        public Point ChecklistPos
+        {
+            get { return ToPoint(this["ChecklistPos"]); }
+            set { this["ChecklistPos"] = FromPoint(value); }
+        }
+
+        [DefaultValueAttribute("0|50")]
+        public Size ChecklistSize
+        {
+            get { return ToSize(this["ChecklistSize"]); }
+            set { this["ChecklistSize"] = FromSize(value); }
+        }
+
+        [DefaultValueAttribute("100|100")]
+        public Point WindowPos
+        {
+            get { return ToPoint(this["WindowPos"]); }
+            set { this["WindowPos"] = FromPoint(value); }
+        }
+
+        [DefaultValueAttribute("100")]
+        public float SiteAltitude
+        {
+            get { return float.Parse(this["SiteAltitude"]); }
+            set { this["SiteAltitude"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("0|0")]
+        public Point TargetChooserPos
+        {
+            get { return ToPoint(this["TargetChooserPos"]); }
+            set { this["TargetChooserPos"] = FromPoint(value); ; }
+        }
+
+        [DefaultValueAttribute("670|910")]
+        public Size TargetChooserSize
+        {
+            get { return ToSize(this["TargetChooserSize"]); }
+            set { this["TargetChooserSize"] = FromSize(value); }
+        }
+
+        [DefaultValueAttribute("False")]
+        public bool ShowDecLimits
+        {
+            get { return Convert.ToBoolean(this["ShowDecLimits"]); }
+            set { this["ShowDecLimits"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("-90")]
+        public float LowerDecLimit
+        {
+            get { return float.Parse(this["LowerDecLimit"]); }
+            set { this["LowerDecLimit"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("180")]
+        public float UpperDecLimit
+        {
+            get { return float.Parse(this["UpperDecLimit"]); }
+            set { this["UpperDecLimit"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("19200")]
+        public string BaudRate
+        {
+            get { return this["BaudRate"]; }
+            set { this["BaudRate"] = value; }
+        }
+
+        [DefaultValueAttribute("Sidereal")]
+        public string TrackingRate
+        {
+            get { return this["TrackingRate"]; }
+            set { this["TrackingRate"] = value; }
+        }
+
+        [DefaultValueAttribute("False")]
+        public bool KeepMiniControlOnTop
+        {
+            get { return Convert.ToBoolean(this["KeepMiniControlOnTop"]); }
+            set { this["KeepMiniControlOnTop"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("0")]
+        public Single DECHomeOffset
+        {
+            get { return Convert.ToSingle(this["DECHomeOffset"]); }
+            set { this["DECHomeOffset"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("0")]
+        public Single RAHomeOffset
+        {
+            get { return Convert.ToSingle(this["RAHomeOffset"]); }
+            set { this["RAHomeOffset"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("<CustomCommands />")]
+        public string CustomCommands
+        {
+            get { return this["CustomCommands"]; }
+            set { this["CustomCommands"] = value; }
+        }
+
+        [DefaultValueAttribute("False")]
+        public bool RunAutoHomeRAOnConnect
+        {
+            get { return Convert.ToBoolean(this["RunAutoHomeRAOnConnect"]); }
+            set { this["RunAutoHomeRAOnConnect"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("False")]
+        public bool RunAutoHomeDECOnConnect
+        {
+            get { return Convert.ToBoolean(this["RunAutoHomeDECOnConnect"]); }
+            set { this["RunAutoHomeDECOnConnect"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("False")]
+        public bool RunDECOffsetHomingOnConnect
+        {
+            get { return Convert.ToBoolean(this["RunDECOffsetHomingOnConnect"]); }
+            set { this["RunDECOffsetHomingOnConnect"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("East")]
+        public string AutoHomeRaDirection
+        {
+            get { return this["AutoHomeRaDirection"]; }
+            set { this["AutoHomeRaDirection"] = value; }
+        }
+
+        [DefaultValueAttribute("15")]
+        public float AutoHomeRaDistance
+        {
+            get { return Convert.ToSingle(this["AutoHomeRaDistance"]); }
+            set { this["AutoHomeRaDistance"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("North")]
+        public string AutoHomeDecDirection
+        {
+            get { return this["AutoHomeDecDirection"]; }
+            set { this["AutoHomeDecDirection"] = value; }
+        }
+
+        [DefaultValueAttribute("15")]
+        public float AutoHomeDecDistance
+        {
+            get { return Convert.ToSingle(this["AutoHomeDecDistance"]); }
+            set { this["AutoHomeDecDistance"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("false")]
+        public bool ShowChecklistOnConnect
+        {
+            get { return Convert.ToBoolean(this["ShowChecklistOnConnect"]); }
+            set { this["ShowChecklistOnConnect"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("OnDemand")]
+        public ChecklistShowOn ShowChecklist
+        {
+            get { return (ChecklistShowOn)Enum.Parse(typeof(ChecklistShowOn), this["ShowChecklist"]); }
+            set { this["ShowChecklist"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("Checklist")]
+        public string ChecklistTitle
+        {
+            get { return this["ChecklistTitle"]; }
+            set { this["ChecklistTitle"] = value; }
+        }
+
+        [DefaultValueAttribute("False")]
+        public bool MonitorNinaPA
+        {
+            get { return Convert.ToBoolean(this["MonitorNinaPA"]); }
+            set { this["MonitorNinaPA"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("False")]
+        public bool MonitorSharpCapPA
+        {
+            get { return Convert.ToBoolean(this["MonitorSharpCapPA"]); }
+            set { this["MonitorSharpCapPA"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("False")]
+        public bool InvertAZCorrections
+        {
+            get { return Convert.ToBoolean(this["InvertAZCorrections"]); }
+            set { this["InvertAZCorrections"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("False")]
+        public bool InvertALTCorrections
+        {
+            get { return Convert.ToBoolean(this["InvertALTCorrections"]); }
+            set { this["InvertALTCorrections"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("")]
+        public string NinaLogFolder
+        {
+            get { return this["NinaLogFolder"]; }
+            set { this["NinaLogFolder"] = value; }
+        }
+
+        [DefaultValueAttribute("")]
+        public string SharpCapLogFolder
+        {
+            get { return this["SharpCapLogFolder"]; }
+            set { this["SharpCapLogFolder"] = value; }
+        }
+
+        [DefaultValueAttribute("3")]
+        public float AZLimit
+        {
+            get { return Convert.ToSingle(this["AZLimit"] ?? "3"); }
+            set { this["AZLimit"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("3")]
+        public float ALTLimit
+        {
+            get { return Convert.ToSingle(this["ALTLimit"] ?? "3"); }
+            set { this["ALTLimit"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("20")]
+        public float PolarAlignmentMinimumTotalError
+        {
+            get { return Convert.ToSingle(this["PolarAlignmentMinimumTotalError"] ?? "20"); }
+            set { this["PolarAlignmentMinimumTotalError"] = value.ToString(); }
+        }
+
+        [DefaultValueAttribute("Red Astronomy")]
+        public string ThemeName
+        {
+            get { return this["ThemeName"]; }
+            set { this["ThemeName"] = value; }
+        }
+    }
 }

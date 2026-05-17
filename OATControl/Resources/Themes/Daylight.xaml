@@ -9,6 +9,7 @@
     <!-- Foreground / text -->
     <Color x:Key="AppForegroundColor">#FF1A1A1A</Color>
     <Color x:Key="AppForegroundStrongColor">#FF000000</Color>
+	<Color x:Key="AppForegroundAccentColor">#FF3A3A3A</Color>
 
     <!-- Backgrounds -->
     <Color x:Key="AppWindowBackgroundColor">#FFF0F0F0</Color>
@@ -41,58 +42,11 @@
 	<Color x:Key="AppTooltipBackgroundColor">#FFD0D0D0</Color>
 	<Color x:Key="AppTooltipHeaderColor">#FFE0E0E0</Color>
 	<Color x:Key="AppTooltipForegroundColor">#FF555555</Color>
-	
+
 	<!-- Toggle switch -->
     <Color x:Key="AppToggleOffColor">#FFCCCCCC</Color>
     <Color x:Key="AppToggleThumbColor">#FFFFFFFF</Color>
     <Color x:Key="AppToggleOnColor">#FFb0b0b0</Color>
     <Color x:Key="AppToggleBorderColor">#FFCCCCCC</Color>
-
-    <!-- ===== Brushes ===== -->
-
-    <!-- Primary accent -->
-    <SolidColorBrush x:Key="AppPrimaryBrush" Color="{StaticResource AppPrimaryColor}" />
-
-    <!-- Foreground / text -->
-    <SolidColorBrush x:Key="AppForegroundBrush" Color="{StaticResource AppForegroundColor}" />
-    <SolidColorBrush x:Key="AppForegroundStrongBrush" Color="{StaticResource AppForegroundStrongColor}" />
-
-    <!-- Backgrounds -->
-    <SolidColorBrush x:Key="AppNestedBackgroundBrush" Color="{StaticResource AppNestedBackgroundColor}" />
-    <SolidColorBrush x:Key="AppInputBackgroundBrush" Color="{StaticResource AppInputBackgroundColor}" />
-    <SolidColorBrush x:Key="AppWindowBackgroundBrush" Color="{StaticResource AppWindowBackgroundColor}" />
-
-    <!-- Borders -->
-    <SolidColorBrush x:Key="AppBorderBrush" Color="{StaticResource AppBorderColor}" />
-    <SolidColorBrush x:Key="AppNestedBorderBrush" Color="{StaticResource AppNestedBorderColor}" />
-    <SolidColorBrush x:Key="AppBorderSubtleBrush" Color="{StaticResource AppBorderSubtleColor}" />
-
-    <!-- Button interactive states -->
-    <SolidColorBrush x:Key="AppButtonBackgroundBrush" Color="{StaticResource AppButtonBackgroundColor}" />
-    <SolidColorBrush x:Key="AppButtonHoverBrush" Color="{StaticResource AppButtonHoverColor}" />
-    <SolidColorBrush x:Key="AppButtonPressedBrush" Color="{StaticResource AppButtonPressedColor}" />
-    <SolidColorBrush x:Key="AppButtonBorderBrush" Color="{StaticResource AppButtonBorderColor}" />
-
-    <!-- Disabled -->
-    <SolidColorBrush x:Key="AppDisabledBackgroundBrush" Color="{StaticResource AppDisabledBackgroundColor}" />
-    <SolidColorBrush x:Key="AppDisabledBorderBrush" Color="{StaticResource AppDisabledBorderColor}" />
-    <SolidColorBrush x:Key="AppDisabledForegroundBrush" Color="{StaticResource AppDisabledForegroundColor}" />
-
-    <!-- Title bar -->
-    <SolidColorBrush x:Key="AppTitleBarBackgroundBrush" Color="{StaticResource AppTitleBarBackgroundColor}" />
-    <SolidColorBrush x:Key="AppTitleBarForegroundBrush" Color="{StaticResource AppTitleBarForegroundColor}" />
-    <SolidColorBrush x:Key="AppTitleBarButtonHoverBrush" Color="{StaticResource AppTitleBarButtonHoverColor}" />
-    <SolidColorBrush x:Key="AppTitleBarButtonPressedBrush" Color="{StaticResource AppTitleBarButtonPressedColor}" />
-
-    <!-- Toggle switch -->
-    <SolidColorBrush x:Key="AppToggleOffBrush" Color="{StaticResource AppToggleOffColor}" />
-    <SolidColorBrush x:Key="AppToggleThumbBrush" Color="{StaticResource AppToggleThumbColor}" />
-    <SolidColorBrush x:Key="AppToggleBorderBrush" Color="{StaticResource AppToggleBorderColor}" />
-    <SolidColorBrush x:Key="AppToggleOnBrush" Color="{StaticResource AppToggleOnColor}" />
-
-    <!-- Override system colors for ListViewItem selection/hover -->
-    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource AppForegroundColor}" />
-    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{StaticResource AppButtonHoverColor}" />
-    <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{StaticResource AppForegroundColor}" />
 
 </ResourceDictionary>

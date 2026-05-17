@@ -42,7 +42,7 @@ No unit test projects. Validation uses:
 
 ```
 Client Applications
-├── OATControl (WPF)        — Main mount control UI, MahApps.Metro
+├── OATControl (WPF)        — Main mount control UI, custom theming
 ├── OATTest (WPF)           — Protocol test harness
 ├── OATSimulation (WPF)     — 3D mount visualization (SharpDX)
 └── ASCOM.Driver (WinForms) — ASCOM telescope/focuser driver
@@ -86,6 +86,35 @@ Response types: `NoResponse`, `DigitResponse` (single char), `FullResponse` (`#`
 - `ASCOM.Driver/TelescopeDriver/FocuserDriver.cs` — ASCOM IFocuserV3 implementation
 - `ASCOM.Driver/OpenAstroTracker/SharedResources.cs` — Profile management, logging, connection init
 - `OATControl/ViewModels/MountVM.cs` — Main OATControl application logic
+
+## Theming System
+
+Custom theme engine replacing MahApps.Metro. Supports runtime switching, user themes, hot-reload, and a built-in theme editor.
+
+### Theme file structure
+- Theme XAML files contain **only `Color` resources** (no brushes)
+- `SolidColorBrush` resources are generated at runtime by `ThemeManager.GenerateBrushes`
+- `ThemeColorDefinitions.cs` defines all color keys, display names, groups, and defaults
+- Brush key naming: `AppXxxColor` → `AppXxxBrush` (via `BrushKeyFromColorKey`)
+
+### Key files
+- `OATControl/Theming/ThemeManager.cs` — Runtime theme loading, brush generation, user theme CRUD
+- `OATControl/Theming/ThemeColorDefinitions.cs` — Color key registry (used by editor, validation, import/export)
+- `OATControl/Resources/Themes/Base.xaml` — Implicit control styles (templates, triggers using DynamicResource)
+- `OATControl/Resources/Themes/DarkAstronomy.xaml` — Dark theme (colors only)
+- `OATControl/Resources/Themes/Daylight.xaml` — Light theme (colors only)
+- `OATControl/DlgThemeEditor.xaml/.cs` — Theme editor dialog (color picker, live preview, save/export)
+
+### User themes
+- Stored as XAML in `%AppData%\OpenAstroTracker\Themes\`
+- Filename is file-safe (non-alphanumeric → `_`), metadata `ThemeName` stores display name
+- ThemeManager scans user folder on startup; validates files contain at least one known color key
+
+### DlgThemeEditor notes
+- Editor chrome pinned to Daylight via local ResourceDictionary + GenerateBrushes in Window_Loaded
+- `_editingTheme` = file-safe identifier for ThemeManager; `EditingThemeName` = display name only
+- `_suppressSelectionChanged` prevents SelectionChanged handler during programmatic selection (e.g., "New Theme")
+- ListBox uses `ThemeListEntry` objects with `DisplayMemberPath="DisplayName"` / `SelectedValuePath="Id"`
 
 ## CI/CD
 

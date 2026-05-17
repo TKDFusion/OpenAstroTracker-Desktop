@@ -52,7 +52,7 @@
 			<Setter Property="Height" Value="28" />
 			<Style.Triggers>
 				<DataTrigger Binding="{Binding}" Value="True">
-					<Setter Property="Background" Value="{DynamicResource AppButtonBorderBrush}" />
+					<Setter Property="Background" Value="{DynamicResource AppToggleOnBrush}" />
 				</DataTrigger>
 			</Style.Triggers>
 		</Style>

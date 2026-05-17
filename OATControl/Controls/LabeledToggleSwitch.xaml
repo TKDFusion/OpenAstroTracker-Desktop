@@ -1,0 +1,42 @@
+<UserControl x:Class="OATControl.Controls.LabeledToggleSwitch"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             x:Name="ThisToggle"
+             d:DesignWidth="80" d:DesignHeight="30">
+    <Border x:Name="SwitchTrack"
+            Height="22"
+            MinWidth="44"
+            CornerRadius="11"
+            Padding="2,0"
+            Background="{DynamicResource AppToggleOffBrush}"
+            BorderBrush="{DynamicResource AppToggleBorderBrush}"
+            BorderThickness="1">
+        <Grid>
+            <TextBlock x:Name="OnLabelElement"
+                       Text="{Binding OnLabel, ElementName=ThisToggle}"
+                       FontSize="10" FontWeight="SemiBold"
+                       Foreground="{DynamicResource AppForegroundAccentBrush}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="6,0,0,0"
+                       Opacity="0" />
+            <TextBlock x:Name="OffLabelElement"
+                       Text="{Binding OffLabel, ElementName=ThisToggle}"
+                       FontSize="10" FontWeight="SemiBold"
+                       Foreground="{DynamicResource AppToggleThumbBrush}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Margin="0,0,6,0"
+                       Opacity="0" />
+            <Ellipse x:Name="Thumb"
+                     Width="16" Height="16"
+                     Fill="{DynamicResource AppToggleThumbBrush}"
+                     HorizontalAlignment="Left"
+                     Margin="2,0,0,0"
+                     VerticalAlignment="Center" />
+        </Grid>
+    </Border>
+</UserControl>

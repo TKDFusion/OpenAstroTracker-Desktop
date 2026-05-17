@@ -16,7 +16,7 @@
             <Grid>
                 <Path x:Name="Checkmark"
                       Data="M3,8 L6.5,11.5 L13,4"
-                      Stroke="{DynamicResource AppToggleThumbBrush}"
+                      Stroke="{DynamicResource AppForegroundAccentBrush}"
                       StrokeThickness="1.8"
                       StrokeStartLineCap="Round"
                       StrokeEndLineCap="Round"

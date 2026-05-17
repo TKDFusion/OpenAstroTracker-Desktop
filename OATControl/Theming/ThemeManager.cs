@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace OATControl.Theming
 {
@@ -22,7 +23,7 @@ namespace OATControl.Theming
 
         private static readonly List<string> BuiltinThemes = new List<string>
         {
-            "DarkAstronomy",
+            "Red Astronomy",
             "Daylight"
         };
 
@@ -32,7 +33,7 @@ namespace OATControl.Theming
 
         public List<string> AvailableThemes { get; } = new List<string>
         {
-            "DarkAstronomy",
+            "Red Astronomy",
             "Daylight"
         };
 
@@ -61,15 +62,20 @@ namespace OATControl.Theming
             {
                 var path = Path.Combine(UserThemesFolder, $"{themeName}.xaml");
                 themeDict = new ResourceDictionary { Source = new Uri(path, UriKind.Absolute) };
-                GenerateBrushes(themeDict);
             }
             else
             {
+                if (themeName=="Red Astronomy")
+                {
+                    themeName = "DarkAstronomy";
+                }
                 themeDict = new ResourceDictionary
                 {
                     Source = new Uri($"{ThemeDictionaryPrefix}{themeName}.xaml")
                 };
             }
+
+            GenerateBrushes(themeDict);
 
             mergedDicts.Insert(0, themeDict);
 
@@ -135,6 +141,17 @@ namespace OATControl.Theming
                     dict[brushKey] = new SolidColorBrush(color);
                 }
             }
+
+            // SystemColors overrides for ListView selection/hover
+            if (dict["AppForegroundColor"] is Color fgColor)
+            {
+                dict[SystemColors.HighlightTextBrushKey] = new SolidColorBrush(fgColor);
+                dict[SystemColors.ControlTextBrushKey] = new SolidColorBrush(fgColor);
+            }
+            if (dict["AppButtonHoverColor"] is Color hoverColor)
+            {
+                dict[SystemColors.InactiveSelectionHighlightBrushKey] = new SolidColorBrush(hoverColor);
+            }
         }
 
         public (string Name, string Author) GetThemeMetadata(string themeName)
@@ -152,12 +169,15 @@ namespace OATControl.Theming
                 }
                 else
                 {
+                    if (themeName == "Red Astronomy")
+                    {
+                        themeName = "DarkAstronomy";
+                    }
                     dict = new ResourceDictionary
                     {
                         Source = new Uri($"{ThemeDictionaryPrefix}{themeName}.xaml")
                     };
                 }
-
                 if (dict["ThemeName"] is string themeNameValue)
                     name = themeNameValue;
                 if (dict["ThemeAuthor"] is string themeAuthorValue)
@@ -271,7 +291,7 @@ namespace OATControl.Theming
             AvailableThemes.Remove(themeName);
 
             if (CurrentTheme == themeName)
-                ApplyTheme("DarkAstronomy");
+                ApplyTheme("Red Astronomy");
         }
 
         public void SaveUserTheme(string themeName, string author, Dictionary<string, Color> colors)
@@ -385,6 +405,8 @@ namespace OATControl.Theming
             {
                 Source = new Uri(_watchedThemePath, UriKind.Absolute)
             };
+
+            GenerateBrushes(newDict);
 
             if (_currentThemeDictionary != null)
             {

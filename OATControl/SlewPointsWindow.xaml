@@ -13,7 +13,7 @@
 		<converters:BoolToVisibilityConverter x:Key="BoolToHide" IsReversed="true" />
 		<Style x:Key="CustomListBoxItemStyle" TargetType="ListBoxItem">
 			<Setter Property="Background" Value="Transparent"/>
-			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}"/>
 			<Setter Property="BorderThickness" Value="0"/>
 			<Setter Property="Padding" Value="0"/>
 			<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -21,7 +21,9 @@
 			<Setter Property="SnapsToDevicePixels" Value="True"/>
 			<Style.Triggers>
 				<Trigger Property="IsSelected" Value="True">
-					<Setter Property="Background" Value="{DynamicResource AppInputBackgroundBrush}" />
+					<Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
+					<Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
+					<Setter Property="Foreground" Value="{DynamicResource AppForegroundAccentBrush}" />
 				</Trigger>
 				<Trigger Property="IsMouseOver" Value="True">
 					<Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}"/>
@@ -130,7 +132,6 @@
 								<TextBlock x:Name="NameTextBlock"
 									Text="{Binding Name}"
 									VerticalAlignment="Center"
-									Foreground="{DynamicResource AppForegroundBrush}"
 									Padding="6,0,6,2"
 									MinWidth="120"
 									Visibility="{Binding IsEditing, Converter={StaticResource BoolToHide}}"/>
@@ -138,14 +139,13 @@
 									Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 									Style="{StaticResource TextBorder}"
 									Background="{DynamicResource AppButtonHoverBrush}" 
-									Foreground="{DynamicResource AppForegroundStrongBrush}"
 									Visibility="{Binding IsEditing, Converter={StaticResource BoolToShow}}"
 									KeyDown="NameTextBox_KeyDown"
 									LostFocus="NameTextBox_LostFocus"
 									IsVisibleChanged="NameTextBox_IsVisibleChanged"/>
 							</Grid>
-							<TextBlock Text="{Binding RaStepperPosition}" Foreground="{DynamicResource AppForegroundBrush}" VerticalAlignment="Center" Grid.Column="1" TextAlignment="Center"/>
-							<TextBlock Text="{Binding DecStepperPosition}" Foreground="{DynamicResource AppForegroundBrush}" VerticalAlignment="Center" Grid.Column="2" TextAlignment="Center"/>
+							<TextBlock Text="{Binding RaStepperPosition}" VerticalAlignment="Center" Grid.Column="1" TextAlignment="Center"/>
+							<TextBlock Text="{Binding DecStepperPosition}" VerticalAlignment="Center" Grid.Column="2" TextAlignment="Center"/>
 							<StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
 								<!-- Rename -->
 								<controls:IconButton Margin="2,0" Width="22" Height="22" IconData="M1,25.07703L31,25.07703C31.552979,25.07703 32,25.525028 32,26.07703 32,26.629032 31.552979,27.07703 31,27.07703L1,27.07703C0.44702148,27.07703 0,26.629032 0,26.07703 0,25.525028 0.44702148,25.07703 1,25.07703z M9.8064213,17.357931L9.6760168,17.487015 8.8610172,21.393018 12.748013,20.558017 12.865452,20.441767z M20.509636,6.7630577L11.227604,15.951134 14.286634,19.034972 23.568132,9.8474321z M24.492002,2.821003L21.93083,5.3562489 24.989326,8.4406242 27.563,5.8930054z M24.500002,0L30.398996,5.9010048 13.740012,22.391018 6.2750196,23.99302 7.8420181,16.489014z" ToolTip="Rename position" Command="{Binding DataContext.RenameCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" />

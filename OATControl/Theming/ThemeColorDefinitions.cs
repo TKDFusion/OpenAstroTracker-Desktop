@@ -29,6 +29,7 @@ namespace OATControl.Theming
             // Foreground / text
             new ThemeColorDefinition("AppForegroundColor", "Foreground", "Text", (Color)ColorConverter.ConvertFromString("#D11")),
             new ThemeColorDefinition("AppForegroundStrongColor", "Foreground (Strong)", "Text", (Color)ColorConverter.ConvertFromString("#F22")),
+            new ThemeColorDefinition("AppForegroundAccentColor", "Foreground (Accent)", "Text", (Color)ColorConverter.ConvertFromString("#B11")),
 
             // Backgrounds
             new ThemeColorDefinition("AppWindowBackgroundColor", "Window Background", "Backgrounds", (Color)ColorConverter.ConvertFromString("#500")),
@@ -54,7 +55,7 @@ namespace OATControl.Theming
 
             // Tooltip
             new ThemeColorDefinition("AppTooltipBackgroundColor", "Tooltip Background", "Tooltip", (Color)ColorConverter.ConvertFromString("#600")),
-            new ThemeColorDefinition("AppTooltipHeaderColor", "Tooltip Background", "Tooltip", (Color)ColorConverter.ConvertFromString("#700")),
+            new ThemeColorDefinition("AppTooltipHeaderColor", "Tooltip Header", "Tooltip", (Color)ColorConverter.ConvertFromString("#700")),
             new ThemeColorDefinition("AppTooltipForegroundColor", "Tooltip Foreground", "Tooltip", (Color)ColorConverter.ConvertFromString("#A11")),
 
             // Disabled
@@ -66,7 +67,7 @@ namespace OATControl.Theming
             new ThemeColorDefinition("AppToggleOffColor", "Toggle Off", "Toggle", (Color)ColorConverter.ConvertFromString("#611")),
             new ThemeColorDefinition("AppToggleOnColor", "Toggle On", "Toggle", (Color)ColorConverter.ConvertFromString("#610")),
             new ThemeColorDefinition("AppToggleThumbColor", "Toggle Thumb", "Toggle", (Color)ColorConverter.ConvertFromString("#C11")),
-            new ThemeColorDefinition("AppToggleBorderColor", "Toggle Off Border", "Toggle", (Color)ColorConverter.ConvertFromString("#D11")),
+            new ThemeColorDefinition("AppToggleBorderColor", "Toggle Border", "Toggle", (Color)ColorConverter.ConvertFromString("#D11")),
         };
 
         public static string BrushKeyFromColorKey(string colorKey)

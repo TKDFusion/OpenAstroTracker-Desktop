@@ -47,7 +47,7 @@
 			<Setter Property="Focusable" Value="False"/>
 			<Setter Property="IsHitTestVisible" Value="False"/>
 			<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}" />
-			<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
+			<Setter Property="Foreground" Value="{DynamicResource AppForegroundAccentBrush}" />
 			
 			<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
 			<Setter Property="VerticalContentAlignment" Value="Center" />
@@ -108,7 +108,7 @@
 							<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
 							<Setter Property="VerticalContentAlignment" Value="Center"/>
 							<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}"/>
-							<Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}"/>
+							<Setter Property="Foreground" Value="{DynamicResource AppForegroundAccentBrush}"/>
 							<Setter Property="Padding" Value="0"/>
 							<Setter Property="BorderThickness" Value="0"/>
 						</Style>

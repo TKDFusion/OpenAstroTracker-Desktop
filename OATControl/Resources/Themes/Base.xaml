@@ -129,8 +129,8 @@
     <!-- ToolTip styles -->
     <Style x:Key="MetroToolTip" TargetType="ToolTip">
 		<Setter Property="BorderBrush" Value="{DynamicResource AppBorderBrush}" />
-		<Setter Property="Background" Value="{DynamicResource AppNestedBackgroundBrush}" />
-		<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
+		<Setter Property="Background" Value="{DynamicResource AppTooltipBackgroundBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource AppTooltipForegroundBrush}" />
         <Setter Property="Padding" Value="5,2,5,7" />
         <Setter Property="FontFamily" Value="{DynamicResource AppFontFamily}" />
     </Style>
@@ -204,8 +204,8 @@
                             <Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource AppButtonBorderBrush}" />
-                            <Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource AppToggleOnBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource AppForegroundAccentBrush}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AppDisabledBorderBrush}" />
@@ -417,15 +417,15 @@
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
-                            <Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource AppForegroundAccentBrush}" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsSelected" Value="True" />
                                 <Condition Property="Selector.IsSelectionActive" Value="False" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
-                        </MultiTrigger>
+							<Setter TargetName="Bd" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
+						</MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

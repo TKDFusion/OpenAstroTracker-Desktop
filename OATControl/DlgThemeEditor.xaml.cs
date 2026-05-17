@@ -87,10 +87,17 @@ namespace OATControl
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
     }
 
+    public class ThemeListEntry
+    {
+        public string Id { get; set; }
+        public string DisplayName { get; set; }
+    }
+
     public partial class DlgThemeEditor : ThemedWindow, INotifyPropertyChanged
     {
         private ObservableCollection<ColorEditItem> _colorItems = new ObservableCollection<ColorEditItem>();
         private string _editingTheme;
+        private string _editingThemeDisplayName;
         private string _themeAuthor = "";
         private bool _isNewTheme;
         private ResourceDictionary _previewDict;
@@ -98,6 +105,7 @@ namespace OATControl
         private double _averageHue;
         private double _averageSaturation;
         private double _averageLightness;
+        private bool _suppressSelectionChanged;
         private bool _updatingFromSlider;
         private bool _updatingGlobalSlider;
         private bool _globalSliderDragging;
@@ -107,12 +115,13 @@ namespace OATControl
         private bool _isDraggingSquare;
         private bool _isDraggingBar;
         private WriteableBitmap _hueSatBitmap;
-        private WriteableBitmap _lightnessBitmap;
+        private WriteableBitmap _hueBarBitmap;
         private const int PickerSize = 256;
         private const int BarWidth = 24;
 
         private bool _isReadOnly;
         private bool _hasChanges;
+        private string _cloneSourceTheme;
 
         public DlgThemeEditor(string themeName = null, bool isNew = false, bool readOnly = false, bool cloneAsNew = false)
         {
@@ -145,8 +154,8 @@ namespace OATControl
 
         public string EditingThemeName
         {
-            get => _editingTheme;
-            set { _editingTheme = value; OnPropertyChanged(); }
+            get => _editingThemeDisplayName;
+            set { _editingThemeDisplayName = value; OnPropertyChanged(); }
         }
 
         public string ThemeAuthor
@@ -197,9 +206,20 @@ namespace OATControl
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ThemeListBox.ItemsSource = ThemeManager.Instance.AvailableThemes.ToList();
-            if (!_isNewTheme && !string.IsNullOrEmpty(_editingTheme))
-                ThemeListBox.SelectedItem = _editingTheme;
+            // Pin the editor chrome to Daylight by generating brushes from the
+            // locally-merged Daylight colors into this window's Resources.
+            // This prevents DynamicResource lookups from falling through to
+            // Application.Resources when themes change during editing.
+            foreach (var def in ThemeColorDefinitions.Colors)
+            {
+                if (Resources[def.Key] is Color color)
+                {
+                    var brushKey = ThemeColorDefinitions.BrushKeyFromColorKey(def.Key);
+                    Resources[brushKey] = new SolidColorBrush(color);
+                }
+            }
+
+            SetThemeList(!_isNewTheme && !string.IsNullOrEmpty(_editingTheme) ? _editingTheme : null);
 
             LoadThemeColors();
         }
@@ -221,8 +241,9 @@ namespace OATControl
             else if (!string.IsNullOrEmpty(_editingTheme) && _isNewTheme)
             {
                 themeColors = ThemeManager.Instance.GetThemeColors(
-                    ThemeManager.Instance.CurrentTheme);
-                EditingThemeName = "New Theme";
+                    _cloneSourceTheme ?? ThemeManager.Instance.CurrentTheme);
+                if (string.IsNullOrEmpty(EditingThemeName))
+                    EditingThemeName = "New Theme";
             }
 
             foreach (var def in defaults)
@@ -270,11 +291,14 @@ namespace OATControl
             }
 
             UpdatePreview();
+            HasChanges = false;
         }
 
         private void ThemeListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ThemeListBox.SelectedItem is string themeName)
+            if (_suppressSelectionChanged) return;
+
+            if (ThemeListBox.SelectedValue is string themeName)
             {
                 _editingTheme = themeName;
                 _isNewTheme = false;
@@ -294,6 +318,27 @@ namespace OATControl
             SaveButton.IsEnabled = canEdit;
             SaveAsButton.IsEnabled = canEdit;
             ExportButton.IsEnabled = canEdit;
+        }
+
+        private List<ThemeListEntry> BuildThemeList(params (string id, string displayName)[] extras)
+        {
+            var list = ThemeManager.Instance.AvailableThemes.Select(id =>
+            {
+                var (name, _) = ThemeManager.Instance.GetThemeMetadata(id);
+                return new ThemeListEntry { Id = id, DisplayName = string.IsNullOrEmpty(name) ? id : name };
+            }).ToList();
+            foreach (var (id, displayName) in extras)
+                list.Add(new ThemeListEntry { Id = id, DisplayName = displayName });
+            return list;
+        }
+
+        private void SetThemeList(string selectId, bool suppressSelection = false)
+        {
+            var list = BuildThemeList();
+            if (suppressSelection) _suppressSelectionChanged = true;
+            ThemeListBox.ItemsSource = list;
+            ThemeListBox.SelectedValue = selectId;
+            if (suppressSelection) _suppressSelectionChanged = false;
         }
 
         private bool _updatingPreview;
@@ -328,9 +373,38 @@ namespace OATControl
 
         private void OnNewTheme(object sender, RoutedEventArgs e)
         {
-            _editingTheme = ThemeManager.Instance.CurrentTheme;
+            var cloneSource = ThemeListBox.SelectedValue as string
+                ?? ThemeManager.Instance.CurrentTheme;
+
+            var themes = ThemeManager.Instance.AvailableThemes.ToList();
+            var name = "Unnamed";
+            int counter = 1;
+            while (themes.Contains(name))
+                name = $"Unnamed {++counter}";
+
+            var list = BuildThemeList((name, name));
+            _suppressSelectionChanged = true;
+            ThemeListBox.ItemsSource = list;
+            ThemeListBox.SelectedValue = name;
+            _suppressSelectionChanged = false;
+
+            // SelectionChanged fires and resets _isNewTheme; override it
             _isNewTheme = true;
+            _editingTheme = name;
+            _cloneSourceTheme = cloneSource;
             LoadThemeColors();
+            EditingThemeName = name;
+            ThemeNameLabel.Text = name;
+
+            // New themes are always editable
+            _isReadOnly = false;
+            PickerPanel.IsEnabled = true;
+            HueSlider.IsEnabled = true;
+            SaturationSlider.IsEnabled = true;
+            LightnessSlider.IsEnabled = true;
+            SaveButton.IsEnabled = true;
+            SaveAsButton.IsEnabled = true;
+            ExportButton.IsEnabled = true;
         }
 
         private void OnImportTheme(object sender, RoutedEventArgs e)
@@ -346,10 +420,9 @@ namespace OATControl
                 {
                     ThemeManager.Instance.ImportTheme(dlg.FileName);
                     var name = Path.GetFileNameWithoutExtension(dlg.FileName);
-                    ThemeListBox.ItemsSource = ThemeManager.Instance.AvailableThemes.ToList();
                     _editingTheme = name;
                     _isNewTheme = false;
-                    ThemeListBox.SelectedItem = name;
+                    SetThemeList(name);
                     LoadThemeColors();
                 }
                 catch (Exception ex)
@@ -378,20 +451,51 @@ namespace OATControl
                 Height = 200,
                 Title = "Save Theme As",
                 WindowStartupLocation = WindowStartupLocation.CenterOwner,
-                Owner = this
+                Owner = this,
+                Background = new SolidColorBrush(Color.FromRgb(0xF0, 0xF0, 0xF0))
             };
 
+            var labelBrush = new SolidColorBrush(Color.FromRgb(0x33, 0x33, 0x33));
+            var inputBg = new SolidColorBrush(Color.FromRgb(0xF0, 0xF0, 0xF0));
+            var inputBorder = new SolidColorBrush(Color.FromRgb(0xCC, 0xCC, 0xCC));
+
             var stack = new StackPanel { Margin = new Thickness(12) };
-            stack.Children.Add(new TextBlock { Text = "Theme Name:", Margin = new Thickness(0, 0, 0, 4) });
-            var nameBox = new TextBox { Text = EditingThemeName ?? "MyTheme", Margin = new Thickness(0, 0, 0, 8) };
+            stack.Children.Add(new TextBlock { Text = "Theme Name:", Foreground = labelBrush, Margin = new Thickness(0, 0, 0, 4) });
+            var nameBox = new TextBox
+            {
+                Text = _isNewTheme ? "" : (EditingThemeName ?? "MyTheme"),
+                Margin = new Thickness(0, 0, 0, 8),
+                Background = inputBg,
+                Foreground = labelBrush,
+                BorderBrush = inputBorder
+            };
             stack.Children.Add(nameBox);
-            stack.Children.Add(new TextBlock { Text = "Author:", Margin = new Thickness(0, 0, 0, 4) });
-            var authorBox = new TextBox { Text = ThemeAuthor, Margin = new Thickness(0, 0, 0, 8) };
+            stack.Children.Add(new TextBlock { Text = "Author:", Foreground = labelBrush, Margin = new Thickness(0, 0, 0, 4) });
+            var authorBox = new TextBox
+            {
+                Text = ThemeAuthor,
+                Margin = new Thickness(0, 0, 0, 8),
+                Background = inputBg,
+                Foreground = labelBrush,
+                BorderBrush = inputBorder
+            };
             stack.Children.Add(authorBox);
 
             var btnPanel = new StackPanel { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Right };
-            var saveBtn = new Button { Content = "Save", Width = 60, Margin = new Thickness(0, 0, 8, 0) };
-            var cancelBtn = new Button { Content = "Cancel", Width = 60 };
+            var saveBtn = new Button
+            {
+                Content = "Save", Width = 60, Margin = new Thickness(0, 0, 8, 0),
+                Background = new SolidColorBrush(Color.FromRgb(0xD0, 0xD0, 0xD0)),
+                Foreground = labelBrush,
+                BorderBrush = inputBorder
+            };
+            var cancelBtn = new Button
+            {
+                Content = "Cancel", Width = 60,
+                Background = new SolidColorBrush(Color.FromRgb(0xD0, 0xD0, 0xD0)),
+                Foreground = labelBrush,
+                BorderBrush = inputBorder
+            };
             btnPanel.Children.Add(saveBtn);
             btnPanel.Children.Add(cancelBtn);
             stack.Children.Add(btnPanel);
@@ -478,8 +582,7 @@ namespace OATControl
                 _isReadOnly = false;
                 HasChanges = false;
                 UpdateReadOnlyState(fileSafeName);
-                ThemeListBox.ItemsSource = ThemeManager.Instance.AvailableThemes.ToList();
-                ThemeListBox.SelectedItem = fileSafeName;
+                SetThemeList(fileSafeName);
 
                 System.Windows.MessageBox.Show($"Theme '{EditingThemeName}' saved.", "Theme Saved",
                     MessageBoxButton.OK, MessageBoxImage.Information);
@@ -690,13 +793,21 @@ namespace OATControl
             if (item == null) return;
 
             var (h, s, l) = ColorToHsl(item.Color);
-            RenderHueSaturationSquare();
-            RenderLightnessBar(h, s);
+            RenderSatLightnessSquare(h);
+            RenderSatLightnessSquare(h);
+            RenderHueBar();
             UpdatePickerMarkers(h, s, l);
             UpdateSliderValues(item.Color, h, s, l);
+
+            if (HexColorBox != null)
+            {
+                _updatingPicker = true;
+                HexColorBox.Text = $"{item.Color.R:X2}{item.Color.G:X2}{item.Color.B:X2}";
+                _updatingPicker = false;
+            }
         }
 
-        private void RenderHueSaturationSquare()
+        private void RenderSatLightnessSquare(double currentH)
         {
             if (_hueSatBitmap == null)
             {
@@ -710,8 +821,8 @@ namespace OATControl
                 double sat = 1.0 - (double)y / (PickerSize - 1);
                 for (int x = 0; x < PickerSize; x++)
                 {
-                    double hue = (double)x / (PickerSize - 1) * 360.0;
-                    var c = HslToColor(hue, sat, 0.5);
+                    double l = (double)x / (PickerSize - 1);
+                    var c = HslToColor(currentH, sat, l);
                     int idx = (y * PickerSize + x) * 3;
                     pixels[idx] = c.B;
                     pixels[idx + 1] = c.G;
@@ -724,19 +835,19 @@ namespace OATControl
                 pixels, PickerSize * 3, 0);
         }
 
-        private void RenderLightnessBar(double currentH, double currentS)
+        private void RenderHueBar()
         {
-            if (_lightnessBitmap == null)
+            if (_hueBarBitmap == null)
             {
-                _lightnessBitmap = new WriteableBitmap(BarWidth, PickerSize, 96, 96, PixelFormats.Bgr24, null);
-                LightnessImage.Source = _lightnessBitmap;
+                _hueBarBitmap = new WriteableBitmap(BarWidth, PickerSize, 96, 96, PixelFormats.Bgr24, null);
+                HueBarImage.Source = _hueBarBitmap;
             }
 
             byte[] pixels = new byte[BarWidth * PickerSize * 3];
             for (int y = 0; y < PickerSize; y++)
             {
-                double l = 1.0 - (double)y / (PickerSize - 1);
-                var c = HslToColor(currentH, currentS, l);
+                double h = (1.0 - (double)y / (PickerSize - 1)) * 360.0;
+                var c = HslToColor(h, 1.0, 0.5);
                 for (int x = 0; x < BarWidth; x++)
                 {
                     int idx = (y * BarWidth + x) * 3;
@@ -746,23 +857,23 @@ namespace OATControl
                 }
             }
 
-            _lightnessBitmap.WritePixels(
+            _hueBarBitmap.WritePixels(
                 new Int32Rect(0, 0, BarWidth, PickerSize),
                 pixels, BarWidth * 3, 0);
         }
 
         private void UpdatePickerMarkers(double h, double s, double l)
         {
-            if (Crosshair == null || LightnessMarker == null) return;
+            if (Crosshair == null || HueBarMarker == null) return;
 
-            double x = h / 360.0 * (PickerSize - 1);
+            double x = l * (PickerSize - 1);
             double y = (1.0 - s) * (PickerSize - 1);
             Canvas.SetLeft(Crosshair, x - Crosshair.Width / 2);
             Canvas.SetTop(Crosshair, y - Crosshair.Height / 2);
 
-            double barY = (1.0 - l) * (PickerSize - 1);
-            Canvas.SetLeft(LightnessMarker, 0);
-            Canvas.SetTop(LightnessMarker, barY - LightnessMarker.Height / 2);
+            double barY = (1.0 - h / 360.0) * (PickerSize - 1);
+            Canvas.SetLeft(HueBarMarker, 0);
+            Canvas.SetTop(HueBarMarker, barY - HueBarMarker.Height / 2);
         }
 
         private void UpdateSliderValues(Color c, double h, double s, double l)
@@ -808,48 +919,49 @@ namespace OATControl
         private void UpdateFromSquareMouse(Point pos)
         {
             var (h, s, l) = ColorToHsl(_selectedColorItem.Color);
-            double newH = Math.Max(0, Math.Min(PickerSize - 1, pos.X)) / (PickerSize - 1) * 360.0;
+            double newL = Math.Max(0, Math.Min(PickerSize - 1, pos.X)) / (PickerSize - 1);
             double newS = 1.0 - Math.Max(0, Math.Min(PickerSize - 1, pos.Y)) / (PickerSize - 1);
             _updatingPicker = true;
-            _selectedColorItem.Color = HslToColor(newH, newS, l);
+            _selectedColorItem.Color = HslToColor(h, newS, newL);
             _updatingPicker = false;
-            RenderLightnessBar(newH, newS);
-            UpdatePickerMarkers(newH, newS, l);
-            UpdateSliderValues(_selectedColorItem.Color, newH, newS, l);
+            RenderHueBar();
+            UpdatePickerMarkers(h, newS, newL);
+            UpdateSliderValues(_selectedColorItem.Color, h, newS, newL);
         }
 
-        private void OnLightnessBarMouseDown(object sender, MouseButtonEventArgs e)
+        private void OnHueBarMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (_selectedColorItem == null) return;
             _isDraggingBar = true;
-            LightnessCanvas.CaptureMouse();
-            UpdateFromBarMouse(e.GetPosition(LightnessImage));
+            HueBarCanvas.CaptureMouse();
+            UpdateFromBarMouse(e.GetPosition(HueBarImage));
         }
 
-        private void OnLightnessBarMouseMove(object sender, MouseEventArgs e)
+        private void OnHueBarMouseMove(object sender, MouseEventArgs e)
         {
             if (!_isDraggingBar) return;
-            UpdateFromBarMouse(e.GetPosition(LightnessImage));
+            UpdateFromBarMouse(e.GetPosition(HueBarImage));
         }
 
-        private void OnLightnessBarMouseUp(object sender, MouseButtonEventArgs e)
+        private void OnHueBarMouseUp(object sender, MouseButtonEventArgs e)
         {
             if (_isDraggingBar)
             {
                 _isDraggingBar = false;
-                LightnessCanvas.ReleaseMouseCapture();
+                HueBarCanvas.ReleaseMouseCapture();
             }
         }
 
         private void UpdateFromBarMouse(Point pos)
         {
             var (h, s, l) = ColorToHsl(_selectedColorItem.Color);
-            double newL = 1.0 - Math.Max(0, Math.Min(PickerSize - 1, pos.Y)) / (PickerSize - 1);
+            double newH = (1.0 - Math.Max(0, Math.Min(PickerSize - 1, pos.Y)) / (PickerSize - 1)) * 360.0;
             _updatingPicker = true;
-            _selectedColorItem.Color = HslToColor(h, s, newL);
+            _selectedColorItem.Color = HslToColor(newH, s, l);
             _updatingPicker = false;
-            UpdatePickerMarkers(h, s, newL);
-            UpdateSliderValues(_selectedColorItem.Color, h, s, newL);
+            RenderSatLightnessSquare(newH);
+            UpdatePickerMarkers(newH, s, l);
+            UpdateSliderValues(_selectedColorItem.Color, newH, s, l);
         }
 
         private void OnRgbSliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -859,7 +971,8 @@ namespace OATControl
             _updatingPicker = true;
             _selectedColorItem.Color = c;
             var (h, s, l) = ColorToHsl(c);
-            RenderLightnessBar(h, s);
+            RenderSatLightnessSquare(h);
+            RenderHueBar();
             UpdatePickerMarkers(h, s, l);
             _updatingFromSlider = true;
             SliderH.Value = Math.Round(h);
@@ -878,7 +991,8 @@ namespace OATControl
             var c = HslToColor(h, s, l);
             _updatingPicker = true;
             _selectedColorItem.Color = c;
-            RenderLightnessBar(h, s);
+            RenderSatLightnessSquare(h);
+            RenderHueBar();
             UpdatePickerMarkers(h, s, l);
             _updatingFromSlider = true;
             SliderR.Value = c.R;
@@ -886,6 +1000,42 @@ namespace OATControl
             SliderB.Value = c.B;
             _updatingFromSlider = false;
             _updatingPicker = false;
+        }
+
+        private void OnHexColorChanged(object sender, TextChangedEventArgs e)
+        {
+            if (_updatingPicker || _selectedColorItem == null) return;
+            var text = HexColorBox.Text?.Trim() ?? "";
+            if (text.Length == 0 || text.Length > 6) return;
+
+            // Allow pasting with leading #
+            if (text.StartsWith("#")) text = text.Substring(1);
+            if (text.Length != 6) return;
+
+            try
+            {
+                byte r = (byte)int.Parse(text.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+                byte g = (byte)int.Parse(text.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+                byte b = (byte)int.Parse(text.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+                var c = Color.FromRgb(r, g, b);
+
+                _updatingPicker = true;
+                _selectedColorItem.Color = c;
+                var (h, s, l) = ColorToHsl(c);
+                RenderSatLightnessSquare(h);
+                RenderHueBar();
+                UpdatePickerMarkers(h, s, l);
+                _updatingFromSlider = true;
+                SliderR.Value = r;
+                SliderG.Value = g;
+                SliderB.Value = b;
+                SliderH.Value = Math.Round(h);
+                SliderS.Value = Math.Round(s * 100);
+                SliderL.Value = Math.Round(l * 100);
+                _updatingFromSlider = false;
+                _updatingPicker = false;
+            }
+            catch { }
         }
     }
 }
