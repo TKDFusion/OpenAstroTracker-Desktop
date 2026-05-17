@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <sys:String x:Key="ThemeName">Deep Space</sys:String>
+  <sys:String x:Key="ThemeAuthor">Lutz Kretzschmar, OpenAstroTech</sys:String>
+  <Color x:Key="AppPrimaryColor">#FF123D8C</Color>
+  <Color x:Key="AppForegroundColor">#FFE3EBF7</Color>
+  <Color x:Key="AppForegroundStrongColor">#FFFFFFFF</Color>
+  <Color x:Key="AppForegroundAccentColor">#FF8BF9B5</Color>
+  <Color x:Key="AppWindowBackgroundColor">#FF24304C</Color>
+  <Color x:Key="AppNestedBackgroundColor">#FF2D3B5D</Color>
+  <Color x:Key="AppInputBackgroundColor">#FF1D2944</Color>
+  <Color x:Key="AppTitleBarBackgroundColor">#FF1D4DA5</Color>
+  <Color x:Key="AppTitleBarForegroundColor">#FFFFEDED</Color>
+  <Color x:Key="AppTitleBarButtonHoverColor">#FF000299</Color>
+  <Color x:Key="AppTitleBarButtonPressedColor">#FF0D0F54</Color>
+  <Color x:Key="AppBorderColor">#FF0341E0</Color>
+  <Color x:Key="AppNestedBorderColor">#FF1915E8</Color>
+  <Color x:Key="AppBorderSubtleColor">#FF166831</Color>
+  <Color x:Key="AppButtonBackgroundColor">#FF00945E</Color>
+  <Color x:Key="AppButtonBorderColor">#FF10AD76</Color>
+  <Color x:Key="AppButtonPressedColor">#FF00704F</Color>
+  <Color x:Key="AppButtonHoverColor">#FF00C27E</Color>
+  <Color x:Key="AppTooltipBackgroundColor">#FF105640</Color>
+  <Color x:Key="AppTooltipHeaderColor">#FF157456</Color>
+  <Color x:Key="AppTooltipForegroundColor">#FF3FE47E</Color>
+  <Color x:Key="AppDisabledBackgroundColor">#FF121B2B</Color>
+  <Color x:Key="AppDisabledBorderColor">#FF122D87</Color>
+  <Color x:Key="AppDisabledForegroundColor">#FF5874A7</Color>
+  <Color x:Key="AppToggleOffColor">#FF115F46</Color>
+  <Color x:Key="AppToggleOnColor">#FF148F68</Color>
+  <Color x:Key="AppToggleThumbColor">#FFD6E4FF</Color>
+  <Color x:Key="AppToggleBorderColor">#FF278262</Color>
+</ResourceDictionary>

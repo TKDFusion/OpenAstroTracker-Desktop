@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <sys:String x:Key="ThemeName">NINA</sys:String>
+  <sys:String x:Key="ThemeAuthor">Lutz Kretzschmar, OpenAstroTech</sys:String>
+  <Color x:Key="AppPrimaryColor">#FF3F3F3F</Color>
+  <Color x:Key="AppForegroundColor">#FFB2B2B2</Color>
+  <Color x:Key="AppForegroundStrongColor">#FFFFFFFF</Color>
+  <Color x:Key="AppForegroundAccentColor">#FFA5A8F8</Color>
+  <Color x:Key="AppWindowBackgroundColor">#FF2E2E2E</Color>
+  <Color x:Key="AppNestedBackgroundColor">#FF383838</Color>
+  <Color x:Key="AppInputBackgroundColor">#FF393939</Color>
+  <Color x:Key="AppTitleBarBackgroundColor">#FF6A6868</Color>
+  <Color x:Key="AppTitleBarForegroundColor">#FF9D9EE7</Color>
+  <Color x:Key="AppTitleBarButtonHoverColor">#FF7F7D7D</Color>
+  <Color x:Key="AppTitleBarButtonPressedColor">#FF969696</Color>
+  <Color x:Key="AppBorderColor">#FF444266</Color>
+  <Color x:Key="AppNestedBorderColor">#FF959595</Color>
+  <Color x:Key="AppBorderSubtleColor">#FF585858</Color>
+  <Color x:Key="AppButtonBackgroundColor">#FF585656</Color>
+  <Color x:Key="AppButtonBorderColor">#FF737373</Color>
+  <Color x:Key="AppButtonPressedColor">#FF494949</Color>
+  <Color x:Key="AppButtonHoverColor">#FF777777</Color>
+  <Color x:Key="AppTooltipBackgroundColor">#FF4C4C4C</Color>
+  <Color x:Key="AppTooltipHeaderColor">#FF303030</Color>
+  <Color x:Key="AppTooltipForegroundColor">#FF9898DD</Color>
+  <Color x:Key="AppDisabledBackgroundColor">#FF353535</Color>
+  <Color x:Key="AppDisabledBorderColor">#FF303030</Color>
+  <Color x:Key="AppDisabledForegroundColor">#FF757575</Color>
+  <Color x:Key="AppToggleOffColor">#FF3A3A3A</Color>
+  <Color x:Key="AppToggleOnColor">#FF6D6D6D</Color>
+  <Color x:Key="AppToggleThumbColor">#FF595959</Color>
+  <Color x:Key="AppToggleBorderColor">#FF6D6D6D</Color>
+</ResourceDictionary>

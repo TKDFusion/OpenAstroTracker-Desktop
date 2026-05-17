@@ -58,6 +58,12 @@ Source: ".\bin\Release\PointsOfInterest.xml"; DestDir: "{app}"; Flags: ignorever
 Source: ".\bin\Release\System.Windows.Interactivity.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
+; User themes installed to %AppData%\OpenAstroTracker\Themes\
+Source: ".\Theming\Blue_Planet.xaml"; DestDir: "{userappdata}\OpenAstroTracker\Themes"; Flags: ignoreversion onlyifdoesntexist
+Source: ".\Theming\Dark_Observatory.xaml"; DestDir: "{userappdata}\OpenAstroTracker\Themes"; Flags: ignoreversion onlyifdoesntexist
+Source: ".\Theming\Deep_Space.xaml"; DestDir: "{userappdata}\OpenAstroTracker\Themes"; Flags: ignoreversion onlyifdoesntexist
+Source: ".\Theming\NINA.xaml"; DestDir: "{userappdata}\OpenAstroTracker\Themes"; Flags: ignoreversion onlyifdoesntexist
+
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
