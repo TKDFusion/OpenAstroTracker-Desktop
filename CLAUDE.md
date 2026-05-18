@@ -22,7 +22,7 @@ Requires .NET Framework 4.0 targeting pack and ASCOM Platform 6.5+. Output: `ASC
 nuget restore OATControl/OATControl.sln
 msbuild OATControl/OATControl.sln /p:Configuration=Debug /p:Platform="Any CPU"
 ```
-Requires .NET Framework 4.7.2. Includes OATCommunications, OATCommunications.WPF, OATCommunications.ASCOM, and OATTest projects.
+Requires .NET Framework 4.7.2. Includes OATCommunications, OATCommunications.WPF, OATCommunications.ASCOM, and OATTest projects. Current version is 1.2.0.0. Must be built in Visual Studio on Windows (not available in WSL).
 
 ### OATSimulation (`OATSimulation/OATSimulation.sln`)
 ```bash
@@ -89,7 +89,7 @@ Response types: `NoResponse`, `DigitResponse` (single char), `FullResponse` (`#`
 
 ## Theming System
 
-Custom theme engine replacing MahApps.Metro. Supports runtime switching, user themes, hot-reload, and a built-in theme editor.
+Custom theme engine (MahApps.Metro fully removed). Supports runtime switching, user themes, hot-reload, and a built-in theme editor. The `AppPrimaryColor`/`AppPrimaryBrush` keys have been removed — all references migrated to semantic keys (`AppForegroundBrush`, `AppButtonBorderBrush`, `AppButtonHoverBrush`, etc.).
 
 ### Theme file structure
 - Theme XAML files contain **only `Color` resources** (no brushes)
@@ -115,6 +115,7 @@ Custom theme engine replacing MahApps.Metro. Supports runtime switching, user th
 - `_editingTheme` = file-safe identifier for ThemeManager; `EditingThemeName` = display name only
 - `_suppressSelectionChanged` prevents SelectionChanged handler during programmatic selection (e.g., "New Theme")
 - ListBox uses `ThemeListEntry` objects with `DisplayMemberPath="DisplayName"` / `SelectedValuePath="Id"`
+- `_updatingPicker` guards against re-entrant picker updates when color changes originate from the picker itself. `OnSelectedColorChanged` must still update `HexColorBox.Text` even when `_updatingPicker` is true, since the hex display is not bound to the model
 
 ## CI/CD
 
