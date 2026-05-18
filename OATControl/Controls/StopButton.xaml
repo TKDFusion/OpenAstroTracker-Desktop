@@ -11,27 +11,28 @@
 	<Grid x:Name="MainGrid" Background="Transparent"  IsHitTestVisible="True" MouseDown="MainGrid_OnMouseButtonDown" MouseUp="MainGrid_OnMouseButtonUp" >
 		<Grid.Resources>
 			<Style x:Key="arrowStyle" TargetType="{x:Type local:StopSign}" x:Name="arrowStyle">
-				<Setter Property="Foreground" Value="{Binding Foreground}" />
-				<Setter Property="Background" Value="{StaticResource AccentColorBrush3}" />
-				<Setter Property="TextColor" Value="#FFCC4400" />
+				<Setter Property="Foreground" Value="{DynamicResource AppForegroundBrush}" />
+				<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
+				<Setter Property="TextColor" Value="{DynamicResource AppForegroundBrush}" />
 				<Style.Triggers>
 					<DataTrigger Binding="{Binding IsMouseOver, ElementName=MainGrid}" Value="True">
-						<Setter Property="Foreground" Value="{StaticResource HighlightBrush}" />
-						<Setter Property="Background" Value="{StaticResource AccentBaseColorBrush}" />
-						<Setter Property="TextColor" Value="#FFFF4400" />
+						<Setter Property="Foreground" Value="{DynamicResource AppButtonForegroundBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
+						<Setter Property="TextColor" Value="{DynamicResource AppForegroundStrongBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsPressed, ElementName=ThisStopButton}" Value="True">
-						<Setter Property="Foreground" Value="{StaticResource HighlightBrush}" />
-						<Setter Property="Background" Value="{StaticResource AccentBaseColorBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppButtonPressedBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppButtonPressedBrush}" />
+						<Setter Property="TextColor" Value="{DynamicResource AppForegroundAccentBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsEnabled, ElementName=ThisStopButton}" Value="False">
-						<Setter Property="Foreground" Value="{StaticResource AccentBaseColorBrush}" />
-						<Setter Property="Background" Value="{StaticResource AccentColorBrush2}" />
-						<Setter Property="TextColor" Value="{StaticResource AccentBaseColorBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppDisabledForegroundBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppDisabledBackgroundBrush}" />
+						<Setter Property="TextColor" Value="{DynamicResource AppDisabledForegroundBrush}" />
 					</DataTrigger>
 				</Style.Triggers>
 			</Style>
 		</Grid.Resources>
-		<local:StopSign Style="{StaticResource arrowStyle}" IsHitTestVisible="False" FrameWidth="{Binding FrameWidth, ElementName=ThisStopButton}" Margin="0,3"/>
+		<local:StopSign Style="{DynamicResource arrowStyle}" IsHitTestVisible="False" FrameWidth="{Binding FrameWidth, ElementName=ThisStopButton}" Margin="0,8"/>
 	</Grid>
 </UserControl>

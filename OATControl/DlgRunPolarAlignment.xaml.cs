@@ -1,4 +1,4 @@
-﻿using MahApps.Metro.Controls;
+﻿using OATControl.Controls;
 using OATCommunications.CommunicationHandlers;
 using OATCommunications.Model;
 using OATCommunications.WPF;
@@ -26,7 +26,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for DlgChooseOat.xaml
 	/// </summary>
-	public partial class DlgRunPolarAlignment : MetroWindow, INotifyPropertyChanged
+	public partial class DlgRunPolarAlignment : ThemedWindow, INotifyPropertyChanged
 	{
 		private DelegateCommand _okCommand;
 		private DelegateCommand _closeCommand;

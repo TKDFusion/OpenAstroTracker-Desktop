@@ -1,4 +1,4 @@
-﻿using MahApps.Metro;
+﻿using OATControl.Theming;
 using System;
 using System.Windows;
 using System.Threading;
@@ -47,18 +47,13 @@ namespace OATControl
 				Log.EnableLogging();
 			}
 
-			ThemeManager.AddAccent("RedAccent", new Uri("pack://application:,,,/OATControl;component/Resources/RedAccent.xaml"));
-			ThemeManager.AddAppTheme("RedTheme", new Uri("pack://application:,,,/OATControl;component/Resources/RedTheme.xaml"));
-			ThemeManager.AddAccent("RedControls", new Uri("pack://application:,,,/OATControl;component/Resources/RedControls.xaml"));
-
-			// get the current app style (theme and accent) from the application
-			// you can then use the current theme and custom accent instead set a new theme
-			Tuple<AppTheme, Accent> appStyle = ThemeManager.DetectAppStyle(Application.Current);
-
-			// now set the Green accent and dark theme
-			ThemeManager.ChangeAppStyle(Application.Current,
-										ThemeManager.GetAccent("RedAccent"),
-											ThemeManager.GetAppTheme("RedTheme"));
+			AppSettings.Instance.Load();
+				var savedTheme = AppSettings.Instance.ThemeName;
+				#if DEBUG
+				ThemeManager.Instance.HotReloadEnabled = true;
+				#endif
+				ThemeManager.Instance.ScanUserThemes();
+				ThemeManager.Instance.ApplyTheme(savedTheme);
 
 			base.OnStartup(e);
 

@@ -12,7 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using MahApps.Metro.Controls;
 using OATCommunications.WPF;
 using OATControl.ViewModels;
 
@@ -21,7 +20,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for DlgCustomActionSetup.xaml
 	/// </summary>
-	public partial class DlgCustomActionSetup : Window, INotifyPropertyChanged
+	public partial class DlgCustomActionSetup : Controls.ThemedWindow, INotifyPropertyChanged
 	{
 		private DelegateCommand _okCommand;
 		private DelegateCommand _closeCommand;

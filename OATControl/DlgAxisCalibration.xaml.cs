@@ -1,4 +1,4 @@
-﻿using MahApps.Metro.Controls;
+﻿using OATControl.Controls;
 using OATCommunications.Model;
 using OATCommunications.Utilities;
 using OATCommunications.WPF;
@@ -24,9 +24,9 @@ using System.Windows.Threading;
 namespace OATControl
 {
 	/// <summary>
-	/// Interaction logic for DlgStepCalibration.xaml
+	/// Interaction logic for DlgAxisCalibration.xaml
 	/// </summary>
-	public partial class DlgAxisCalibration : MetroWindow, INotifyPropertyChanged
+	public partial class DlgAxisCalibration : ThemedWindow, INotifyPropertyChanged
 	{
 		enum CalibrationState
 		{

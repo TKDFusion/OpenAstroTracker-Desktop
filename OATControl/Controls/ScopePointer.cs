@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,17 +12,23 @@ namespace OATControl.Controls
 	{
 		private Pen _pen;
 		private Brush _brush;
-		private double _x;
-		private double _y;
+
+		public static readonly DependencyProperty ForegroundProperty =
+			DependencyProperty.Register("Foreground", typeof(Brush), typeof(ScopePointer),
+				new PropertyMetadata(null, OnForegroundChanged));
 
 		public Brush Foreground
 		{
-			get { return _brush; }
-			set
-			{
-				_brush = value;
-				_pen = new Pen(_brush, 1.5);
-			}
+			get { return (Brush)GetValue(ForegroundProperty); }
+			set { SetValue(ForegroundProperty, value); }
+		}
+
+		private static void OnForegroundChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			var pointer = (ScopePointer)d;
+			pointer._brush = (Brush)e.NewValue;
+			pointer._pen = new Pen(pointer._brush, 1.5);
+			pointer.InvalidateVisual();
 		}
 
 		public static readonly DependencyProperty XProperty = DependencyProperty.Register(

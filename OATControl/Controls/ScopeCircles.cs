@@ -10,14 +10,22 @@ namespace OATControl.Controls
 		private Pen _pen;
 		private Brush _brush;
 
+		public static readonly DependencyProperty ForegroundProperty =
+			DependencyProperty.Register("Foreground", typeof(Brush), typeof(ScopeCircles),
+				new PropertyMetadata(null, OnForegroundChanged));
+
 		public Brush Foreground
 		{
-			get { return _brush; }
-			set
-			{
-				_brush = value;
-				_pen = new Pen(_brush, 1);
-			}
+			get { return (Brush)GetValue(ForegroundProperty); }
+			set { SetValue(ForegroundProperty, value); }
+		}
+
+		private static void OnForegroundChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			var scope = (ScopeCircles)d;
+			scope._brush = (Brush)e.NewValue;
+			scope._pen = new Pen(scope._brush, 1);
+			scope.InvalidateVisual();
 		}
 
 		public bool DrawLabels { get; set; }
@@ -40,7 +48,7 @@ namespace OATControl.Controls
 				double angle = i * DeltaAngle;
 				Point p1 = GetPoint(angle, null, maxRadius);
 
-				// Lines 
+				// Lines
 				dc.DrawLine(_pen, center, p1);
 				double radius = RenderSize.Width * 0.5 * i / steps;
 

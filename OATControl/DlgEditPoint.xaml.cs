@@ -1,4 +1,4 @@
-﻿using MahApps.Metro.Controls;
+﻿using OATControl.Controls;
 using OATCommunications.WPF;
 using OATControl.ViewModels;
 using System;
@@ -24,7 +24,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for DlgAppSettings.xaml
 	/// </summary>
-	public partial class DlgEditPoint : MetroWindow, INotifyPropertyChanged
+	public partial class DlgEditPoint : ThemedWindow, INotifyPropertyChanged
 	{
 		private MountVM _mount;
 		private PointOfInterest _selectedPoint;

@@ -1,6 +1,7 @@
-﻿using MahApps.Metro.Controls;
+﻿using OATControl.Controls;
 using OATCommunications.WPF;
 using OATControl.ViewModels;
+using OATControl.Theming;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for DlgAppSettings.xaml
 	/// </summary>
-	public partial class DlgAppSettings : MetroWindow, INotifyPropertyChanged
+	public partial class DlgAppSettings : ThemedWindow, INotifyPropertyChanged
 	{
 		private List<String> _baudRates = new List<string>() {
 					"230400",
@@ -90,6 +91,18 @@ namespace OATControl
 
 			ContentTabs.SelectedIndex = 0;
 			CategorySelector.SelectedIndex = 0;
+
+			ThemeComboBox.ItemsSource = BuildThemeList();
+			ThemeComboBox.SelectedValue = ThemeManager.Instance.CurrentTheme;
+		}
+
+		private List<ThemeListEntry> BuildThemeList()
+		{
+			return ThemeManager.Instance.AvailableThemes.Select(id =>
+			{
+				var (name, _) = ThemeManager.Instance.GetThemeMetadata(id);
+				return new ThemeListEntry { Id = id, DisplayName = string.IsNullOrEmpty(name) ? id : name };
+			}).ToList();
 		}
 
 
@@ -488,6 +501,85 @@ namespace OATControl
 		private void OnWindowLoaded(object sender, RoutedEventArgs e)
 		{
 			SetInitialSortIndicator(this.sortField);
+			Dispatcher.BeginInvoke(new Action(ResizeNameColumn), DispatcherPriority.Loaded);
+		}
+
+		private void OnTargetsListScrollChanged(object sender, ScrollChangedEventArgs e)
+		{
+			ResizeNameColumn();
+		}
+
+		private void ResizeNameColumn()
+		{
+			if (TargetsListView.View is GridView gv && gv.Columns.Count >= 3)
+			{
+				double fixedWidth = 0;
+				for (int i = 0; i < gv.Columns.Count; i++)
+				{
+					if (i != 2)
+						fixedWidth += gv.Columns[i].ActualWidth;
+				}
+				var scrollViewer = FindVisualChildren<System.Windows.Controls.ScrollViewer>(TargetsListView).FirstOrDefault();
+				double available = (scrollViewer?.ViewportWidth ?? TargetsListView.ActualWidth) - fixedWidth;
+				if (available > 40)
+					gv.Columns[2].Width = available;
+			}
+		}
+
+		private void ThemeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			var themeId = ThemeComboBox.SelectedValue as string;
+			if (themeId != null)
+			{
+				ThemeManager.Instance.ApplyTheme(themeId);
+				AppSettings.Instance.ThemeName = themeId;
+				AppSettings.Instance.Save();
+			}
+		}
+
+		private void OnEditTheme(object sender, RoutedEventArgs e)
+		{
+			var themeId = ThemeComboBox.SelectedValue as string;
+			if (themeId != null)
+			{
+				var isReadOnly = !ThemeManager.Instance.IsUserTheme(themeId);
+				var dlg = new DlgThemeEditor(themeId, readOnly: isReadOnly) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
+				dlg.ShowDialog();
+				ThemeComboBox.ItemsSource = BuildThemeList();
+				ThemeComboBox.SelectedValue = ThemeManager.Instance.CurrentTheme;
+			}
+		}
+
+		private void OnCreateTheme(object sender, RoutedEventArgs e)
+		{
+			var sourceTheme = ThemeComboBox.SelectedValue as string ?? ThemeManager.Instance.CurrentTheme;
+			var dlg = new DlgThemeEditor(sourceTheme, cloneAsNew: true) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
+			dlg.ShowDialog();
+			ThemeComboBox.ItemsSource = BuildThemeList();
+			ThemeComboBox.SelectedValue = ThemeManager.Instance.CurrentTheme;
+		}
+
+		private void OnImportTheme(object sender, RoutedEventArgs e)
+		{
+			var dlg = new Microsoft.Win32.OpenFileDialog
+			{
+				Filter = "Theme files (*.xaml)|*.xaml|All files (*.*)|*.*",
+				Title = "Import Theme"
+			};
+			if (dlg.ShowDialog() == true)
+			{
+				try
+				{
+					ThemeManager.Instance.ImportTheme(dlg.FileName);
+					ThemeComboBox.ItemsSource = BuildThemeList();
+					ThemeComboBox.SelectedValue = ThemeManager.Instance.CurrentTheme;
+				}
+				catch (Exception ex)
+				{
+					System.Windows.MessageBox.Show($"Failed to import theme: {ex.Message}", "Import Error",
+						MessageBoxButton.OK, MessageBoxImage.Warning);
+				}
+			}
 		}
 	}
 

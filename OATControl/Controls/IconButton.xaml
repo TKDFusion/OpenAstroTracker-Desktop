@@ -1,0 +1,59 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:OATControl.Controls">
+
+    <Style TargetType="controls:IconButton">
+        <Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource AppButtonBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:IconButton">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            x:Name="ImageBorder">
+                        <Viewbox>
+                            <Grid>
+                                <Grid Width="128" Height="128">
+                                    <Rectangle Fill="{DynamicResource AppButtonBackgroundBrush}"
+                                               x:Name="backgroundRect" />
+                                </Grid>
+                                <Path Data="{Binding IconData, RelativeSource={RelativeSource TemplatedParent}}"
+                                      x:Name="iconPath"
+                                      Stretch="Uniform"
+                                      Fill="{DynamicResource AppForegroundBrush}"
+                                      Width="116"
+                                      Height="116"
+                                      RenderTransformOrigin="0.5,0.5">
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <RotateTransform Angle="0" />
+                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Grid>
+                        </Viewbox>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ImageBorder" Property="BorderBrush" Value="{DynamicResource AppButtonBorderBrush}" />
+                            <Setter TargetName="backgroundRect" Property="Fill" Value="{DynamicResource AppButtonHoverBrush}" />
+							<Setter TargetName="iconPath" Property="Fill" Value="{DynamicResource AppForegroundStrongBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="ImageBorder" Property="BorderBrush" Value="{DynamicResource AppDisabledBorderBrush}" />
+                            <Setter TargetName="backgroundRect" Property="Fill" Value="{DynamicResource AppDisabledBackgroundBrush}" />
+                            <Setter TargetName="iconPath" Property="Fill" Value="{DynamicResource AppDisabledForegroundBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

@@ -1,4 +1,3 @@
-using MahApps.Metro.Controls;
 using OATCommunications.Utilities;
 using System;
 using System.Collections.Generic;

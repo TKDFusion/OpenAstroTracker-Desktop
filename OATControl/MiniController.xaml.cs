@@ -21,7 +21,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for MiniController.xaml
 	/// </summary>
-	public partial class MiniController : Window
+	public partial class MiniController : Controls.ThemedWindow
 	{
 		MountVM _mount;
 		private string _lastCommand = string.Empty;

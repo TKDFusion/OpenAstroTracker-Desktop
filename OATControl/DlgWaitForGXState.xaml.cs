@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using MahApps.Metro.Controls;
+using OATControl.Controls;
 using OATCommunications.WPF;
 using OATCommunications.CommunicationHandlers;
 using OATCommunications.Model;
@@ -26,7 +26,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for DlgWaitForGXState.xaml
 	/// </summary>
-	public partial class DlgWaitForGXState : MetroWindow, INotifyPropertyChanged
+	public partial class DlgWaitForGXState : ThemedWindow, INotifyPropertyChanged
 	{
 		MountVM _mountVM;
 		Action<string, Action<CommandResponse>> _sendCommand;

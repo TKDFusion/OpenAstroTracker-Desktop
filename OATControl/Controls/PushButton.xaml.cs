@@ -1,5 +1,4 @@
-﻿using MahApps.Metro.Converters;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -175,7 +174,10 @@ namespace OATControl.Controls
 			{
 				IsPressed = true;
 				this.MainGrid.CaptureMouse();
-				this.Command.Execute("+" + CommandParameter.ToString());
+				if (this.Command != null)
+				{
+					this.Command.Execute("+" + CommandParameter.ToString());
+				}
 			}
 		}
 
@@ -188,7 +190,10 @@ namespace OATControl.Controls
 		{
 			this.MainGrid.ReleaseMouseCapture();
 			IsPressed = false;
-			this.Command.Execute("-" + CommandParameter.ToString());
+			if (this.Command != null)
+			{
+				this.Command.Execute("-" + CommandParameter.ToString());
+			}
 		}
 	}
 }

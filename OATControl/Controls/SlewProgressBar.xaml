@@ -1,0 +1,18 @@
+<UserControl x:Class="OATControl.Controls.SlewProgressBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             x:Name="ThisBar"
+             mc:Ignorable="d">
+    <Border x:Name="ProgressBar" BorderThickness="0">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Offset="0" Color="{DynamicResource AppForegroundAccentColor}" />
+                <GradientStop Offset="{Binding Progress, ElementName=ThisBar}" Color="{DynamicResource AppForegroundAccentColor}" />
+                <GradientStop Offset="{Binding Progress, ElementName=ThisBar}" Color="{DynamicResource AppDisabledBackgroundColor}" />
+                <GradientStop Offset="1.0" Color="{DynamicResource AppDisabledBackgroundColor}" />
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+    </Border>
+</UserControl>

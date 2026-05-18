@@ -1,4 +1,4 @@
-﻿using MahApps.Metro.Controls;
+﻿using OATControl.Controls;
 using OATCommunications.CommunicationHandlers;
 using OATCommunications.Model;
 using OATCommunications.WPF;
@@ -30,7 +30,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for DlgSharpCapPolarAlignment.xaml
 	/// </summary>
-	public partial class DlgSharpCapPolarAlignment : MetroWindow, INotifyPropertyChanged, IPolarAlignDialog
+	public partial class DlgSharpCapPolarAlignment : ThemedWindow, INotifyPropertyChanged, IPolarAlignDialog
 	{
 		public class ChecklistItem : INotifyPropertyChanged
 		{

@@ -1,0 +1,49 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ===== Colors ===== -->
+
+    <!-- Foreground / text -->
+    <Color x:Key="AppForegroundColor">#D11</Color>
+    <Color x:Key="AppForegroundStrongColor">#F22</Color>
+	<Color x:Key="AppForegroundAccentColor">#B22</Color>
+
+    <!-- Backgrounds -->
+	<Color x:Key="AppWindowBackgroundColor">#500</Color>
+	<Color x:Key="AppNestedBackgroundColor">#600</Color>
+	<Color x:Key="AppInputBackgroundColor">#700</Color>
+
+	<!-- Title bar -->
+	<Color x:Key="AppTitleBarBackgroundColor">#400</Color>
+	<Color x:Key="AppTitleBarForegroundColor">#D11</Color>
+	<Color x:Key="AppTitleBarButtonHoverColor">#FF600000</Color>
+	<Color x:Key="AppTitleBarButtonPressedColor">#FF701010</Color>
+
+	<!-- Borders -->
+	<Color x:Key="AppBorderColor">#910</Color>
+	<Color x:Key="AppNestedBorderColor">#910</Color>
+	<Color x:Key="AppBorderSubtleColor">#311</Color>
+
+    <!-- Button interactive states -->
+    <Color x:Key="AppButtonBackgroundColor">#700</Color>
+    <Color x:Key="AppButtonBorderColor">#B11</Color>
+    <Color x:Key="AppButtonPressedColor">#600</Color>
+    <Color x:Key="AppButtonHoverColor">#800</Color>
+
+    <!-- Disabled -->
+    <Color x:Key="AppDisabledBackgroundColor">#600000</Color>
+	<Color x:Key="AppDisabledBorderColor">#822</Color>
+	<Color x:Key="AppDisabledForegroundColor">#822</Color>
+
+	<!-- Tooltip -->
+	<Color x:Key="AppTooltipBackgroundColor">#600</Color>
+	<Color x:Key="AppTooltipHeaderColor">#700</Color>
+	<Color x:Key="AppTooltipForegroundColor">#B00</Color>
+
+	<!-- Toggle switch -->
+    <Color x:Key="AppToggleOffColor">#611</Color>
+    <Color x:Key="AppToggleThumbColor">#C11</Color>
+    <Color x:Key="AppToggleOnColor">#910</Color>
+    <Color x:Key="AppToggleBorderColor">#D11</Color>
+
+</ResourceDictionary>

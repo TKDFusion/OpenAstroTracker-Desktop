@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <sys:String x:Key="ThemeName">Dark Observatory</sys:String>
+  <sys:String x:Key="ThemeAuthor">Lutz Kretzschmar, OpenAstroTech</sys:String>
+  <Color x:Key="AppForegroundColor">#FF760A0A</Color>
+  <Color x:Key="AppForegroundStrongColor">#FF750000</Color>
+  <Color x:Key="AppForegroundAccentColor">#FF9B1C1C</Color>
+  <Color x:Key="AppWindowBackgroundColor">#FF240000</Color>
+  <Color x:Key="AppNestedBackgroundColor">#FF290000</Color>
+  <Color x:Key="AppInputBackgroundColor">#FF3A0000</Color>
+  <Color x:Key="AppTitleBarBackgroundColor">#FF4C0000</Color>
+  <Color x:Key="AppTitleBarForegroundColor">#FFA40D0D</Color>
+  <Color x:Key="AppTitleBarButtonHoverColor">#FF230000</Color>
+  <Color x:Key="AppTitleBarButtonPressedColor">#FF3A0808</Color>
+  <Color x:Key="AppBorderColor">#FF5C0A00</Color>
+  <Color x:Key="AppNestedBorderColor">#FF5C0A00</Color>
+  <Color x:Key="AppBorderSubtleColor">#FF050202</Color>
+  <Color x:Key="AppButtonBackgroundColor">#FF3A0000</Color>
+  <Color x:Key="AppButtonBorderColor">#FF830C0C</Color>
+  <Color x:Key="AppButtonPressedColor">#FF290000</Color>
+  <Color x:Key="AppButtonHoverColor">#FF4B0000</Color>
+  <Color x:Key="AppTooltipBackgroundColor">#FF290000</Color>
+  <Color x:Key="AppTooltipHeaderColor">#FF3A0000</Color>
+  <Color x:Key="AppTooltipForegroundColor">#FF7E0000</Color>
+  <Color x:Key="AppDisabledBackgroundColor">#FF1F0000</Color>
+  <Color x:Key="AppDisabledBorderColor">#FF451111</Color>
+  <Color x:Key="AppDisabledForegroundColor">#FF571616</Color>
+  <Color x:Key="AppToggleOffColor">#FF310808</Color>
+  <Color x:Key="AppToggleOnColor">#FF520E00</Color>
+  <Color x:Key="AppToggleThumbColor">#FF760A0A</Color>
+  <Color x:Key="AppToggleBorderColor">#FF630808</Color>
+</ResourceDictionary>

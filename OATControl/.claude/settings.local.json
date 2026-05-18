@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git diff *)",
+      "Bash(grep -v \"Designer\\\\.cs$\")"
+    ]
+  }
+}

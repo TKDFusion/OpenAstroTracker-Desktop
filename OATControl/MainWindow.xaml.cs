@@ -1,4 +1,4 @@
-﻿using MahApps.Metro.Controls;
+﻿using OATControl.Controls;
 using OATControl.ViewModels;
 using System;
 using System.ComponentModel;
@@ -11,7 +11,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : MetroWindow
+	public partial class MainWindow : ThemedWindow
 	{
 		MountVM mountVm;
 		public MainWindow()

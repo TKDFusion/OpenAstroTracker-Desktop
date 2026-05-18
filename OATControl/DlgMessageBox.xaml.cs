@@ -15,7 +15,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for DlgWaitForGXState.xaml
 	/// </summary>
-	public partial class DlgMessageBox: Window, INotifyPropertyChanged
+	public partial class DlgMessageBox : Controls.ThemedWindow, INotifyPropertyChanged
 	{
 		private DelegateCommand _closeCommand;
 		private string _message;

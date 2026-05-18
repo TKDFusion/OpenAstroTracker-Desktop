@@ -20,7 +20,7 @@ namespace OATControl
 	/// <summary>
 	/// Interaction logic for SettingsDialog.xaml
 	/// </summary>
-	public partial class SettingsDialog : Window
+	public partial class SettingsDialog : Controls.ThemedWindow
 	{
 		DispatcherTimer dispatchTimer;
 		MountVM _mount;

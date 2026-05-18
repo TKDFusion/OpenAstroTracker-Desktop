@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Interop;
-using MahApps.Metro.Controls;
 using OATControl.ViewModels;
 
 namespace OATControl.ViewModels
