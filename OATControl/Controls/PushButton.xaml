@@ -19,12 +19,12 @@
 						<Setter Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsPressed, ElementName=ThisPushButton}" Value="True">
-						<Setter Property="Foreground" Value="{DynamicResource AppButtonBorderBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppButtonHoverBrush}" />
 						<Setter Property="Background" Value="{DynamicResource AppButtonPressedBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsEnabled, ElementName=ThisPushButton}" Value="False">
-						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
-						<Setter Property="Background" Value="{DynamicResource AppPrimaryBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppDisabledBorderBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppDisabledBackgroundBrush}" />
 					</DataTrigger>
 				</Style.Triggers>
 			</Style>

@@ -21,9 +21,9 @@
 						<Setter Property="TextColor" Value="{DynamicResource AppForegroundStrongBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsPressed, ElementName=ThisStopButton}" Value="True">
-						<Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
-						<Setter Property="Background" Value="{DynamicResource AppPrimaryBrush}" />
-						<Setter Property="TextColor" Value="{DynamicResource AppForegroundBrush}" />
+						<Setter Property="Foreground" Value="{DynamicResource AppButtonPressedBrush}" />
+						<Setter Property="Background" Value="{DynamicResource AppButtonPressedBrush}" />
+						<Setter Property="TextColor" Value="{DynamicResource AppForegroundAccentBrush}" />
 					</DataTrigger>
 					<DataTrigger Binding="{Binding IsEnabled, ElementName=ThisStopButton}" Value="False">
 						<Setter Property="Foreground" Value="{DynamicResource AppDisabledForegroundBrush}" />

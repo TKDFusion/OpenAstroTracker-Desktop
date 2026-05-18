@@ -16,7 +16,7 @@
 			<Setter Property="Margin" Value="10,3,5,1" />
 			<Setter Property="Padding" Value="6,3" />
 			<Setter Property="BorderThickness" Value="1" />
-			<Setter Property="BorderBrush" Value="{DynamicResource AppPrimaryBrush}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource AppButtonBorderBrush}" />
 			<Setter Property="Background" Value="{DynamicResource AppButtonBackgroundBrush}" />
 			<Setter Property="HorizontalContentAlignment" Value="Stretch" />
 			<Setter Property="FocusVisualStyle" Value="{x:Null}" />

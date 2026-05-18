@@ -23,9 +23,6 @@ namespace OATControl.Theming
     {
         public static readonly IReadOnlyList<ThemeColorDefinition> Colors = new List<ThemeColorDefinition>
         {
-            // Primary accent
-            new ThemeColorDefinition("AppPrimaryColor", "Primary Accent", "Accent", (Color)ColorConverter.ConvertFromString("#610")),
-
             // Foreground / text
             new ThemeColorDefinition("AppForegroundColor", "Foreground", "Text", (Color)ColorConverter.ConvertFromString("#D11")),
             new ThemeColorDefinition("AppForegroundStrongColor", "Foreground (Strong)", "Text", (Color)ColorConverter.ConvertFromString("#F22")),

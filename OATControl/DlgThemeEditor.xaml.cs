@@ -196,8 +196,15 @@ namespace OATControl
 
         private void OnSelectedColorChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Color" && !_updatingPicker)
+            if (e.PropertyName != "Color") return;
+            if (!_updatingPicker)
+            {
                 UpdatePickerDisplay();
+            }
+            else if (HexColorBox != null && _selectedColorItem != null)
+            {
+                HexColorBox.Text = $"{_selectedColorItem.Color.R:X2}{_selectedColorItem.Color.G:X2}{_selectedColorItem.Color.B:X2}";
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

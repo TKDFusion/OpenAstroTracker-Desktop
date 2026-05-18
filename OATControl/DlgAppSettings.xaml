@@ -242,7 +242,7 @@
 									  Width="6" 
 									  Height="6" 
 									  Stretch="Fill" 
-									  Fill="{DynamicResource AppPrimaryBrush}" 
+									  Fill="{DynamicResource AppForegroundBrush}" 
 									  Margin="0,6,0,0"
 									  Data="M -3,2 L 3,2 L 0,6 Z" 
 									  Visibility="Hidden" 

@@ -78,6 +78,9 @@
     <Compile Include="Controls\RangeSlider.xaml.cs">
       <DependentUpon>RangeSlider.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SlewProgressBar.xaml.cs">
+      <DependentUpon>SlewProgressBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ScopeCircles.cs" />
     <Compile Include="Controls\Arrow.cs" />
     <Compile Include="Controls\ScopePointer.cs" />
@@ -193,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\RangeSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SlewProgressBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

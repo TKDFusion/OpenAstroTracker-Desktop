@@ -498,7 +498,7 @@
 												<DockPanel Grid.Row="4">
 													<TextBlock DockPanel.Dock="Top" Text="List View" FontWeight="Bold" FontSize="11"
 		                                                           Foreground="{DynamicResource AppForegroundBrush}" Margin="0,0,0,4"/>
-													<Border BorderBrush="{DynamicResource AppButtonBorderBrush}" BorderThickness="1" MaxHeight="80">
+													<Border BorderBrush="{DynamicResource AppNestedBorderBrush}" BorderThickness="1" MaxHeight="80">
 														<ListView FontSize="10" BorderThickness="0" Background="{DynamicResource AppNestedBackgroundBrush}">
 															<ListViewItem Content="M31 - Andromeda Galaxy" IsSelected="True"/>
 															<ListViewItem Content="M42 - Orion Nebula"/>

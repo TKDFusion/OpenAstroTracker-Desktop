@@ -204,7 +204,7 @@
                             <Setter Property="Foreground" Value="{DynamicResource AppForegroundStrongBrush}" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource AppToggleOnBrush}" />
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource AppButtonHoverBrush}" />
                             <Setter Property="Foreground" Value="{DynamicResource AppForegroundAccentBrush}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
@@ -434,7 +434,6 @@
 
     <!-- ProgressBar -->
     <Style TargetType="ProgressBar">
-        <Setter Property="Foreground" Value="{DynamicResource AppPrimaryBrush}" />
 		<Setter Property="Background" Value="{DynamicResource AppInputBackgroundBrush}" />
     </Style>
 

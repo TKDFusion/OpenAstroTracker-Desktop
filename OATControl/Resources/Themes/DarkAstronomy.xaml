@@ -3,9 +3,6 @@
 
     <!-- ===== Colors ===== -->
 
-    <!-- Primary accent -->
-    <Color x:Key="AppPrimaryColor">#610</Color>
-
     <!-- Foreground / text -->
     <Color x:Key="AppForegroundColor">#D11</Color>
     <Color x:Key="AppForegroundStrongColor">#F22</Color>

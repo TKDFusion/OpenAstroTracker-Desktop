@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
   <sys:String x:Key="ThemeName">Blue Planet</sys:String>
   <sys:String x:Key="ThemeAuthor">Lutz Kretzschmar, OpenAstroTech</sys:String>
-  <Color x:Key="AppPrimaryColor">#FF0F0066</Color>
   <Color x:Key="AppForegroundColor">#FFAAAAAA</Color>
   <Color x:Key="AppForegroundStrongColor">#FFCCCCCC</Color>
   <Color x:Key="AppForegroundAccentColor">#FFD3D3D3</Color>
