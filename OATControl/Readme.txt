@@ -2,7 +2,14 @@ Revision History
 ----------------
 
 OATControl V1.2.0.0                                             17 May 2026
-- Check CHANGELOG.md for changes.
+- Custom theme engine replaces MahApps.Metro dependency.
+- Built-in themes: Dark Astronomy, Daylight. Additional extgra Themes:
+  Blue Planet, Dark Observatory, Deep Space, and NINA. 
+  Switch from Settings > General > Theme.
+- Visual theme editor with live preview, HSL color picker, hex input, and
+  import/export. Open from Settings > General > Edit Themes.
+- All windows and dialogs use unified custom chrome.
+- Smaller installer (MahApps.Metro and ControlzEx DLLs removed).
 
 OATControl V1.1.24.0                                             5 Jan 2026
 - Added ability to terminate AutoPA when the total error is below a 
