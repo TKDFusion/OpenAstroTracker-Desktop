@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
+using System.Windows.Media;
 using MdXaml;
 using OATCommunications.WPF;
 
@@ -38,6 +39,16 @@ namespace OATControl
             var themedStyle = new Style(typeof(FlowDocument), MarkdownStyle.Standard);
             themedStyle.Setters.Add(new Setter(FlowDocument.ForegroundProperty, FindResource("AppForegroundBrush")));
             themedStyle.Setters.Add(new Setter(FlowDocument.BackgroundProperty, Brushes.Transparent));
+
+            themedStyle.Resources = new ResourceDictionary();
+            var foreground = FindResource("AppForegroundBrush");
+            foreach (var key in new[] { "H1", "H2", "H3", "H4", "H5", "H6" })
+            {
+                var hs = new Style(typeof(Paragraph));
+                hs.Setters.Add(new Setter(Paragraph.ForegroundProperty, foreground));
+                themedStyle.Resources[key] = hs;
+            }
+
             MarkdownViewer.MarkdownStyle = themedStyle;
 
             _skipCommand = new DelegateCommand(s => Close());
