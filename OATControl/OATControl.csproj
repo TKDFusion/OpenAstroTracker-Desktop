@@ -143,6 +143,9 @@
     <Compile Include="DlgMessageBox.xaml.cs">
       <DependentUpon>DlgMessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DlgUpdateAvailable.xaml.cs">
+      <DependentUpon>DlgUpdateAvailable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateChecker.cs" />
     <Compile Include="DlgAxisCalibration.xaml.cs">
       <DependentUpon>DlgAxisCalibration.xaml</DependentUpon>
@@ -241,6 +244,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DlgMessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DlgUpdateAvailable.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
