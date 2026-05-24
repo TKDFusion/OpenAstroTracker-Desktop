@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Threading;
+using System.Windows.Dispatcher;
 
 namespace OATControl
 {
@@ -58,6 +59,14 @@ namespace OATControl
 			dispatchTimer.Stop();
 			this.DataContext = null;
 			base.OnClosing(e);
+		}
+
+		private void OnFirmwareUpdateClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+			if (_mount?.LatestFirmwareReleaseUrl is string url)
+			{
+				Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+			}
 		}
 	}
 }

@@ -184,7 +184,14 @@
 
 
 		<TextBlock Grid.Row="0" Grid.Column="0" Text="Firmware:" HorizontalAlignment="Right" Style="{StaticResource TextLabel}" />
-		<TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ScopeVersion}" Margin="0,12,0,2"  Style="{StaticResource TextValueWide}"/>
+		<StackPanel Grid.Row="0" Grid.Column="1" Margin="0,12,0,2">
+    <TextBlock Text="{Binding ScopeVersion}" Style="{StaticResource TextValueWide}"/>
+    <TextBlock Visibility="{Binding FirmwareUpdateAvailable, Converter={StaticResource TrueBoolToVisible}}"
+               Foreground="#FF4A90D9" Cursor="Hand" HorizontalAlignment="Center"
+               MouseDown="OnFirmwareUpdateClick">
+        <Run Text="new "/><Run Text="{Binding LatestFirmwareVersion, Mode=OneWay}"/><Run Text=" available"/>
+    </TextBlock>
+</StackPanel>
 
 		<TextBlock Grid.Row="1" Grid.Column="0" Text="Controller Board:" HorizontalAlignment="Right" Style="{StaticResource TextLabel}" />
 		<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ScopeBoard}"  Style="{StaticResource TextValueWide}" />
