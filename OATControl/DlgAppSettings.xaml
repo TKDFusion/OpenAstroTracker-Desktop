@@ -393,6 +393,14 @@
 								Style="{StaticResource MainButtonStyle}" x:Name="EditThemeButton"/>
 					</StackPanel>
 
+					<StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Top" Margin="8,12,0,0">
+						<TextBlock Text="Software Updates" Style="{StaticResource TextBlockLabel}" VerticalAlignment="Top"/>
+						<TextBlock Text="Check GitHub for a newer version of OATControl." Style="{StaticResource TextBlockOptionHelp}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+					</StackPanel>
+					<Button Grid.Row="4" Grid.Column="1" Content="Check For Updates" Width="130" Height="24"
+							Margin="10,22,58,0" HorizontalAlignment="Left" VerticalAlignment="Top"
+							Style="{StaticResource MainButtonStyle}" Click="OnCheckForUpdates" x:Name="CheckForUpdatesButton"/>
+
 				</Grid>
 			</TabItem>
 			<TabItem Header="Autohoming">

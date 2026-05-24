@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -535,6 +536,32 @@ namespace OATControl
 				AppSettings.Instance.ThemeName = themeId;
 				AppSettings.Instance.Save();
 			}
+		}
+
+		private void OnCheckForUpdates(object sender, RoutedEventArgs e)
+		{
+			CheckForUpdatesButton.IsEnabled = false;
+			CheckForUpdatesButton.Content = "Checking...";
+
+			_ = Task.Run(() => UpdateChecker.CheckForDesktopUpdateAsync())
+				.ContinueWith(t =>
+				{
+					Dispatcher.Invoke(() =>
+					{
+						CheckForUpdatesButton.IsEnabled = true;
+						CheckForUpdatesButton.Content = "Check For Updates";
+
+						if (!t.IsFaulted && !t.IsCanceled && t.Result?.UpdateAvailable == true)
+						{
+							var dlg = new DlgUpdateAvailable(t.Result) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
+							dlg.ShowDialog();
+						}
+						else
+						{
+							MessageBox.Show(this, "You are running the latest version of OATControl.", "No Updates Available", MessageBoxButton.OK, MessageBoxImage.Information);
+						}
+					});
+				});
 		}
 
 		private void OnEditTheme(object sender, RoutedEventArgs e)
