@@ -18,6 +18,7 @@ using OATCommunications.Utilities;
 using CommandResponse = OATCommunications.CommunicationHandlers.CommandResponse;
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
+using OATControl.Utilities;
 
 namespace OATControl.ViewModels
 {
@@ -197,6 +198,9 @@ namespace OATControl.ViewModels
         private PointsOfInterest _pointsOfInterest;
         PointOfInterest _selectedPointOfInterest;
         private long _firmwareVersion = 0;
+        private bool _firmwareUpdateAvailable;
+        private string _latestFirmwareVersion;
+        private string _latestFirmwareReleaseUrl;
         private float _slewYSpeed;
         private float _slewXSpeed;
         private int _slewRate = 5;
@@ -2855,6 +2859,17 @@ namespace OATControl.ViewModels
 
             _oatMount.SetFirmwareVersion(FirmwareVersion);
 
+            _ = Task.Run(() => UpdateChecker.CheckForFirmwareUpdateAsync(ScopeVersion))
+                .ContinueWith(t =>
+                {
+                    if (!t.IsFaulted && !t.IsCanceled && t.Result?.UpdateAvailable == true)
+                    {
+                        FirmwareUpdateAvailable = true;
+                        LatestFirmwareVersion = t.Result.LatestVersion;
+                        LatestFirmwareReleaseUrl = t.Result.ReleasePageUrl;
+                    }
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+
             var doneEvent2 = new AsyncAutoResetEvent();
             string hwData = string.Empty;
 
@@ -4739,6 +4754,24 @@ namespace OATControl.ViewModels
         {
             get { return _firmwareVersion; }
             set { SetPropertyValue(ref _firmwareVersion, value); }
+        }
+
+        public bool FirmwareUpdateAvailable
+        {
+            get => _firmwareUpdateAvailable;
+            set => SetPropertyValue(ref _firmwareUpdateAvailable, value);
+        }
+
+        public string LatestFirmwareVersion
+        {
+            get => _latestFirmwareVersion;
+            set => SetPropertyValue(ref _latestFirmwareVersion, value);
+        }
+
+        public string LatestFirmwareReleaseUrl
+        {
+            get => _latestFirmwareReleaseUrl;
+            set => SetPropertyValue(ref _latestFirmwareReleaseUrl, value);
         }
 
         public PointOfInterest SelectedPointOfInterest
