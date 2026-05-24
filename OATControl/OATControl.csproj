@@ -143,6 +143,7 @@
     <Compile Include="DlgMessageBox.xaml.cs">
       <DependentUpon>DlgMessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateChecker.cs" />
     <Compile Include="DlgAxisCalibration.xaml.cs">
       <DependentUpon>DlgAxisCalibration.xaml</DependentUpon>
     </Compile>
