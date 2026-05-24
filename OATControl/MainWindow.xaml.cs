@@ -2,6 +2,7 @@
 using OATControl.ViewModels;
 using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -34,11 +35,23 @@ namespace OATControl
 		protected override void OnContentRendered(EventArgs e)
 		{
 			base.OnContentRendered(e);
-			// Window is visible and ready
 			if (this.DataContext is MountVM vm)
 			{
 				vm.OnAppBooted();
 			}
+
+			_ = Task.Run(() => UpdateChecker.CheckForDesktopUpdateAsync())
+				.ContinueWith(t =>
+				{
+					if (!t.IsFaulted && !t.IsCanceled && t.Result?.UpdateAvailable == true)
+					{
+						Dispatcher.Invoke(() =>
+						{
+							var dlg = new DlgUpdateAvailable(t.Result);
+							dlg.ShowDialog();
+						});
+					}
+				});
 		}
 
 		protected override void OnClosing(CancelEventArgs e)
