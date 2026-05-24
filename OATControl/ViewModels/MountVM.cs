@@ -18,7 +18,7 @@ using OATCommunications.Utilities;
 using CommandResponse = OATCommunications.CommunicationHandlers.CommandResponse;
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
-using OATControl.Utilities;
+
 
 namespace OATControl.ViewModels
 {
