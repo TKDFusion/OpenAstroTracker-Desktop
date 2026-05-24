@@ -61,8 +61,9 @@ namespace OATControl
 
                 return UpdateCheckResult.NoUpdate;
             }
-            catch
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"UpdateChecker desktop check failed: {ex.Message}");
                 return UpdateCheckResult.NoUpdate;
             }
         }
@@ -97,8 +98,9 @@ namespace OATControl
 
                 return UpdateCheckResult.NoUpdate;
             }
-            catch
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"UpdateChecker firmware check failed: {ex.Message}");
                 return UpdateCheckResult.NoUpdate;
             }
         }
