@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
+using MdXaml;
 using OATCommunications.WPF;
 
 namespace OATControl
@@ -32,6 +34,11 @@ namespace OATControl
             this.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             InitializeComponent();
             this.DataContext = this;
+
+            var themedStyle = new Style(typeof(FlowDocument), MarkdownStyle.Standard);
+            themedStyle.Setters.Add(new Setter(FlowDocument.ForegroundProperty, FindResource("AppForegroundBrush")));
+            themedStyle.Setters.Add(new Setter(FlowDocument.BackgroundProperty, Brushes.Transparent));
+            MarkdownViewer.MarkdownStyle = themedStyle;
 
             _skipCommand = new DelegateCommand(s => Close());
             _upgradeCommand = new DelegateCommand(s => StartDownload());
