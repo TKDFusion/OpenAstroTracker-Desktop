@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:controls="clr-namespace:OATControl.Controls"
         xmlns:converters="clr-namespace:OATControl.Converters"
+        xmlns:mdxaml="clr-namespace:MdXaml;assembly=MdXaml"
         mc:Ignorable="d"
         Title="Update Available" Height="420" Width="500"
         ResizeMode="NoResize"
@@ -24,9 +25,8 @@
         <TextBlock Grid.Row="0" Text="{Binding VersionInfo}" FontWeight="Bold" FontSize="14"
                    Foreground="{DynamicResource AppForegroundBrush}" Margin="0,0,0,12" TextWrapping="Wrap"/>
 
-        <TextBox Grid.Row="1" Text="{Binding Changelog, Mode=OneWay}" IsReadOnly="True" TextWrapping="Wrap"
-                 VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
-                 Padding="8" Margin="0,0,0,12"
+        <mdxaml:MarkdownScrollViewer Grid.Row="1" Markdown="{Binding Changelog, Mode=OneWay}"
+                 Margin="0,0,0,12"
                  Visibility="{Binding IsDownloading, Converter={StaticResource InvertBoolToCollapsed}}"/>
 
         <StackPanel Grid.Row="1" Visibility="{Binding IsDownloading, Converter={StaticResource BoolToVisible}}"
