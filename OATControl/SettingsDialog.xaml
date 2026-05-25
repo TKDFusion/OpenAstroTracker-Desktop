@@ -187,9 +187,9 @@
 		<StackPanel Grid.Row="0" Grid.Column="1" Margin="0,12,0,2">
     <TextBlock Text="{Binding ScopeVersion}" Style="{StaticResource TextValueWide}"/>
     <TextBlock Visibility="{Binding FirmwareUpdateAvailable, Converter={StaticResource TrueBoolToVisible}}"
-               Foreground="#FF4A90D9" Cursor="Hand" HorizontalAlignment="Center"
+               Foreground="{DynamicResource AppForegroundAccentBrush}" Cursor="Hand" HorizontalAlignment="Center"
                MouseDown="OnFirmwareUpdateClick">
-        <Run Text="new "/><Run Text="{Binding LatestFirmwareVersion, Mode=OneWay}"/><Run Text=" available"/>
+        <Run Text="New "/><Run Text="{Binding LatestFirmwareVersion, Mode=OneWay}"/><Run Text=" available!"/>
     </TextBlock>
 </StackPanel>
 
