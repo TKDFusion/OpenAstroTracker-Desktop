@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -535,6 +536,40 @@ namespace OATControl
 				AppSettings.Instance.ThemeName = themeId;
 				AppSettings.Instance.Save();
 			}
+		}
+
+		private void OnCheckForUpdates(object sender, RoutedEventArgs e)
+		{
+			CheckForUpdatesButton.IsEnabled = false;
+			CheckForUpdatesButton.Content = "Checking...";
+			UpdateCheckResultText.Visibility = Visibility.Collapsed;
+			UpdateChecker.ResetDesktopCheckTimer();
+
+			_ = Task.Run(() => UpdateChecker.CheckForDesktopUpdateAsync())
+				.ContinueWith(t =>
+				{
+					Dispatcher.Invoke(() =>
+					{
+						CheckForUpdatesButton.IsEnabled = true;
+						CheckForUpdatesButton.Content = "Check For Updates";
+
+						if (!t.IsFaulted && !t.IsCanceled && t.Result?.UpdateAvailable == true)
+						{
+							var dlg = new DlgUpdateAvailable(t.Result) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
+							dlg.ShowDialog();
+						}
+						else if (t.IsFaulted || t.IsCanceled)
+						{
+							UpdateCheckResultText.Text = "Could not check for updates.";
+							UpdateCheckResultText.Visibility = Visibility.Visible;
+						}
+						else
+						{
+							UpdateCheckResultText.Text = "You are running the latest version.";
+							UpdateCheckResultText.Visibility = Visibility.Visible;
+						}
+					});
+				});
 		}
 
 		private void OnEditTheme(object sender, RoutedEventArgs e)

@@ -566,5 +566,12 @@ namespace OATControl.ViewModels
             get { return this["ThemeName"]; }
             set { this["ThemeName"] = value; }
         }
+
+        [DefaultValueAttribute("")]
+        public string SkippedDesktopVersion
+        {
+            get { return this["SkippedDesktopVersion"]; }
+            set { this["SkippedDesktopVersion"] = value; }
+        }
     }
 }

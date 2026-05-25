@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "OATControl"
-#define MyAppVersion "1.2.0.0"
+#define MyAppVersion "1.2.1.0"
 #define MyAppPublisher "OpenAstroTech"
 #define MyAppURL "https://wiki.openastrotech.com/"
 #define MyAppExeName "OATControl.exe"
@@ -51,6 +51,8 @@ Source: ".\bin\Release\ASCOM.DriverAccess.dll"; DestDir: "{app}"; Flags: ignorev
 Source: ".\bin\Release\ASCOM.Exceptions.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\bin\Release\ASCOM.Utilities.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\bin\Release\OATControl.exe.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: ".\bin\Release\MdXaml.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: ".\bin\Release\MdXaml.Plugins.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\bin\Release\PointsOfInterest.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\bin\Release\System.Windows.Interactivity.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files

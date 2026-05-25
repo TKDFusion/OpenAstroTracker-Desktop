@@ -1,5 +1,17 @@
 # Changelog
 
+## V1.2.1.0
+
+### Update Checker
+
+- Automatic update checking for both desktop app and firmware.
+- Update notification dialog with themed markdown changelog and download with progress.
+- Firmware update badge on Mount Settings button and update link in Settings dialog.
+- "Skip This Version" option to suppress notifications for a specific release.
+- "Check For Updates" button in App Settings with inline result display.
+- Update checks throttled to once per 24 hours; manual check bypasses throttle.
+- Fault-tolerant — all network calls are fire-and-forget with 5-second timeouts.
+
 ## V1.2.0.0
 
 ### MahApps.Metro Removal
