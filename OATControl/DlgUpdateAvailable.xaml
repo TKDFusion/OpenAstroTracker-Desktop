@@ -33,7 +33,7 @@
                     VerticalAlignment="Center" Margin="0,0,0,12">
             <TextBlock Text="Downloading update..." Margin="0,0,0,8"
                        Foreground="{DynamicResource AppForegroundBrush}"/>
-            <ProgressBar Value="{Binding DownloadProgress}" Height="20" Minimum="0" Maximum="100"/>
+            <ProgressBar Value="{Binding DownloadProgress}" Height="20" Minimum="0" Maximum="100" Foreground="{DynamicResource AppForegroundStrongBrush}" BorderBrush="{DynamicResource AppButtonHoverBrush}" BorderThickness="1"/>
             <TextBlock Text="{Binding DownloadStatus}" Margin="0,4,0,0" HorizontalAlignment="Center"
                        Foreground="{DynamicResource AppForegroundBrush}"/>
         </StackPanel>
@@ -43,6 +43,10 @@
                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Skip This Version" Height="28" Margin="0,0,8,0"
+                    Style="{StaticResource MainButtonStyle}"
+                    Command="{Binding SkipVersionCommand}"
+                    Visibility="{Binding IsDownloading, Converter={StaticResource InvertBoolToCollapsed}}"/>
             <Button Content="Skip" Width="80" Height="28" Margin="0,0,8,0"
                     Style="{StaticResource MainButtonStyle}"
                     Command="{Binding SkipCommand}"

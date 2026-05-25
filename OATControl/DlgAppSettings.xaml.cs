@@ -542,6 +542,8 @@ namespace OATControl
 		{
 			CheckForUpdatesButton.IsEnabled = false;
 			CheckForUpdatesButton.Content = "Checking...";
+			UpdateCheckResultText.Visibility = Visibility.Collapsed;
+			UpdateChecker.ResetDesktopCheckTimer();
 
 			_ = Task.Run(() => UpdateChecker.CheckForDesktopUpdateAsync())
 				.ContinueWith(t =>
@@ -556,9 +558,15 @@ namespace OATControl
 							var dlg = new DlgUpdateAvailable(t.Result) { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
 							dlg.ShowDialog();
 						}
+						else if (t.IsFaulted || t.IsCanceled)
+						{
+							UpdateCheckResultText.Text = "Could not check for updates.";
+							UpdateCheckResultText.Visibility = Visibility.Visible;
+						}
 						else
 						{
-							MessageBox.Show(this, "You are running the latest version of OATControl.", "No Updates Available", MessageBoxButton.OK, MessageBoxImage.Information);
+							UpdateCheckResultText.Text = "You are running the latest version.";
+							UpdateCheckResultText.Visibility = Visibility.Visible;
 						}
 					});
 				});

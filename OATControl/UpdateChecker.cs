@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using OATControl.ViewModels;
 
 namespace OATControl
 {
@@ -23,6 +24,10 @@ namespace OATControl
         private const string DesktopRepoUrl = "https://api.github.com/repos/OpenAstroTech/OpenAstroTracker-Desktop/releases/latest";
         private const string FirmwareRepoUrl = "https://api.github.com/repos/OpenAstroTech/OpenAstroTracker-Firmware/releases/latest";
 
+        private static DateTime _lastDesktopCheck = DateTime.MinValue;
+        private static DateTime _lastFirmwareCheck = DateTime.MinValue;
+        private static readonly TimeSpan CheckInterval = TimeSpan.FromHours(24);
+
         private static readonly HttpClient _httpClient = new HttpClient(new HttpClientHandler())
         {
             Timeout = TimeSpan.FromSeconds(5)
@@ -35,6 +40,9 @@ namespace OATControl
 
         public static async Task<UpdateCheckResult> CheckForDesktopUpdateAsync()
         {
+            if (DateTime.UtcNow - _lastDesktopCheck < CheckInterval)
+                return UpdateCheckResult.NoUpdate;
+
             try
             {
                 var currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
@@ -42,16 +50,21 @@ namespace OATControl
                 if (release == null)
                     return UpdateCheckResult.NoUpdate;
 
+                var tagName = UppercaseVersion(release["tag_name"]?.ToString());
                 var tagVersion = ParseVersionTag(release["tag_name"]?.ToString());
                 if (tagVersion == null || currentVersion == null)
                     return UpdateCheckResult.NoUpdate;
 
                 if (tagVersion > currentVersion)
                 {
+                    if (AppSettings.Instance.SkippedDesktopVersion == tagName)
+                        return UpdateCheckResult.NoUpdate;
+
+                    _lastDesktopCheck = DateTime.UtcNow;
                     return new UpdateCheckResult
                     {
                         UpdateAvailable = true,
-                        LatestVersion = release["tag_name"].ToString(),
+                        LatestVersion = tagName,
                         CurrentVersion = $"V{currentVersion}",
                         Changelog = release["body"]?.ToString() ?? "",
                         DownloadUrl = release["assets"]?[0]?["browser_download_url"]?.ToString(),
@@ -68,8 +81,25 @@ namespace OATControl
             }
         }
 
+        public static void ResetDesktopCheckTimer()
+        {
+            _lastDesktopCheck = DateTime.MinValue;
+        }
+
+        static string UppercaseVersion(string tag)
+        {
+            if (!string.IsNullOrEmpty(tag) && tag.StartsWith("v"))
+            {
+                tag= 'V' + tag.Substring(1);
+            }
+            return tag;
+        }
+
         public static async Task<UpdateCheckResult> CheckForFirmwareUpdateAsync(string currentFirmwareVersion)
         {
+            if (DateTime.UtcNow - _lastFirmwareCheck < CheckInterval)
+                return UpdateCheckResult.NoUpdate;
+
             try
             {
                 var currentVersion = ParseVersionTag(currentFirmwareVersion);
@@ -80,17 +110,20 @@ namespace OATControl
                 if (release == null)
                     return UpdateCheckResult.NoUpdate;
 
-                var tagVersion = ParseVersionTag(release["tag_name"]?.ToString());
+                var tagName = UppercaseVersion(release["tag_name"].ToString());
+                var tagVersion = ParseVersionTag(tagName);
                 if (tagVersion == null)
                     return UpdateCheckResult.NoUpdate;
 
+                
                 if (tagVersion > currentVersion)
                 {
+                    _lastFirmwareCheck = DateTime.UtcNow;
                     return new UpdateCheckResult
                     {
                         UpdateAvailable = true,
-                        LatestVersion = release["tag_name"].ToString(),
-                        CurrentVersion = currentFirmwareVersion,
+                        LatestVersion = tagName,
+                        CurrentVersion = UppercaseVersion(currentFirmwareVersion),
                         Changelog = release["body"]?.ToString() ?? "",
                         ReleasePageUrl = release["html_url"]?.ToString()
                     };

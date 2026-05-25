@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using MdXaml;
 using OATCommunications.WPF;
+using OATControl.ViewModels;
 
 namespace OATControl
 {
@@ -23,6 +24,7 @@ namespace OATControl
         private bool _hasError;
         private string _errorMessage;
         private DelegateCommand _skipCommand;
+        private DelegateCommand _skipVersionCommand;
         private DelegateCommand _upgradeCommand;
         private DelegateCommand _cancelCommand;
 
@@ -39,19 +41,22 @@ namespace OATControl
             var themedStyle = new Style(typeof(FlowDocument), MarkdownStyle.Standard);
             themedStyle.Setters.Add(new Setter(FlowDocument.ForegroundProperty, FindResource("AppForegroundBrush")));
             themedStyle.Setters.Add(new Setter(FlowDocument.BackgroundProperty, Brushes.Transparent));
+            themedStyle.Setters.Add(new Setter(FlowDocument.FontSizeProperty, 13.0));
 
             themedStyle.Resources = new ResourceDictionary();
             var foreground = FindResource("AppForegroundBrush");
-            foreach (var key in new[] { "H1", "H2", "H3", "H4", "H5", "H6" })
-            {
-                var hs = new Style(typeof(Paragraph));
-                hs.Setters.Add(new Setter(Paragraph.ForegroundProperty, foreground));
-                themedStyle.Resources[key] = hs;
-            }
+
+            var paragraphStyle = new Style(typeof(Paragraph));
+            paragraphStyle.Triggers.Add(CreateHeadingTrigger("Heading1", foreground, 20, FontWeights.Bold));
+            paragraphStyle.Triggers.Add(CreateHeadingTrigger("Heading2", foreground, 18, FontWeights.SemiBold));
+            paragraphStyle.Triggers.Add(CreateHeadingTrigger("Heading3", foreground, 16, FontWeights.Normal));
+            paragraphStyle.Triggers.Add(CreateHeadingTrigger("Heading4", foreground, 14, FontWeights.Normal));
+            themedStyle.Resources[typeof(Paragraph)] = paragraphStyle;
 
             MarkdownViewer.MarkdownStyle = themedStyle;
 
             _skipCommand = new DelegateCommand(s => Close());
+            _skipVersionCommand = new DelegateCommand(s => { AppSettings.Instance.SkippedDesktopVersion = _result.LatestVersion; AppSettings.Instance.Save(); Close(); });
             _upgradeCommand = new DelegateCommand(s => StartDownload());
             _cancelCommand = new DelegateCommand(s => CancelDownload());
         }
@@ -90,6 +95,7 @@ namespace OATControl
         }
 
         public System.Windows.Input.ICommand SkipCommand => _skipCommand;
+        public System.Windows.Input.ICommand SkipVersionCommand => _skipVersionCommand;
         public System.Windows.Input.ICommand UpgradeCommand => _upgradeCommand;
         public System.Windows.Input.ICommand CancelCommand => _cancelCommand;
 
@@ -161,6 +167,15 @@ namespace OATControl
         private void CancelDownload()
         {
             _cts.Cancel();
+        }
+
+        private static Trigger CreateHeadingTrigger(string tag, object foreground, double fontSize, FontWeight fontWeight)
+        {
+            var trigger = new Trigger { Property = Paragraph.TagProperty, Value = tag };
+            trigger.Setters.Add(new Setter(Paragraph.ForegroundProperty, foreground));
+            trigger.Setters.Add(new Setter(Paragraph.FontSizeProperty, fontSize));
+            trigger.Setters.Add(new Setter(Paragraph.FontWeightProperty, fontWeight));
+            return trigger;
         }
 
         private void OnPropertyChanged(string propertyName)
