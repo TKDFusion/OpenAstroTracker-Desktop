@@ -1,6 +1,15 @@
 Revision History
 ----------------
 
+OATControl V1.2.1.0                                             24 May 2026
+- Automatic update checking for desktop app and firmware (GitHub releases).
+- Update dialog with themed markdown changelog and download with progress bar.
+- Firmware update badge on Mount Settings button and update link in Settings.
+- "Skip This Version" to suppress notifications for a specific release.
+- "Check For Updates" button in App Settings with inline result.
+- Update checks throttled to once per 24 hours. Manual check bypasses throttle.
+- Fault-tolerant — all network calls fire-and-forget with 5-second timeouts.
+
 OATControl V1.2.0.0                                             17 May 2026
 - Custom theme engine replaces MahApps.Metro dependency.
 - Built-in themes: Dark Astronomy, Daylight. Additional extgra Themes:
