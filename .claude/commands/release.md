@@ -10,8 +10,26 @@ Create a new OATControl release. Follow these steps in order. Stop and ask the u
 ## Pre-flight
 
 1. Verify `gh` CLI is available and authenticated (`gh auth status`)
-2. Verify git working tree is clean (`git status`)
-3. If either fails, stop and tell the user what to fix
+2. Verify `curl` is available (`which curl`)
+3. Verify git working tree is clean (`git status`)
+4. If either fails, stop and tell the user what to fix
+
+## Step 0: Verify Master Branch
+
+Releases must always be cut from `master`. Check and handle the current branch:
+
+1. Check current branch: `git branch --show-current`
+2. If already on `master`, proceed to Step 1
+3. If on a feature branch:
+   - Check if an open PR exists: `gh pr list --head <branch> --state open`
+   - If no PR exists, offer to create one: `gh pr create --base master --head <branch> --title "<title>" --body "<body>"`
+   - If PR is open, tell the user to merge it first and stop
+   - If PR exists but is not merged, tell the user to merge it first and stop
+4. After confirming the PR is merged, switch to master and pull:
+   ```
+   git checkout master && git pull
+   ```
+5. Proceed to Step 1
 
 ## Step 1: Version
 
@@ -84,10 +102,35 @@ Wait for the user to confirm, then verify the installer exists at `OATControl/bi
 2. Create a temporary file with the changelog bullet points (just the bullets, no header) for release notes
 3. Create draft release:
    ```
-   gh release create $TAG --draft --title "$TAG" --notes-file <temp-file> "OATControl/bin/SetupOutput/OATControlSetup.exe"
+   gh release create $TAG --draft --title "OATControl $TAG Release" --notes-file <temp-file> "OATControl/bin/SetupOutput/OATControlSetup.exe"
    ```
 4. Report the draft release URL to the user
 5. Clean up the temporary notes file
+
+## Step 7: Discord Announcement
+
+1. Read the webhook URL from `.claude/settings.local.json` key `discordReleaseWebhook`
+2. If the key is missing, ask the user for the webhook URL and save it to `.claude/settings.local.json`
+3. Build the announcement message:
+   ```
+   @everyone A new OATControl version ($TAG) has been released. These are the main changes:
+
+   - Bullet one.
+   - Bullet two.
+
+   Let us know if there are any issues.
+
+   OpenAstroTech Team
+   $RELEASE_URL
+   ```
+   Use the same user-facing bullet points from Step 3. The `$RELEASE_URL` is the GitHub release URL from Step 6.
+4. POST to the webhook:
+   ```bash
+   curl -X POST "$WEBHOOK_URL" \
+     -H "Content-Type: application/json" \
+     -d '{"content": "<message with \\n for line breaks>"}'
+   ```
+5. Report success to the user
 
 ## Error Handling
 
