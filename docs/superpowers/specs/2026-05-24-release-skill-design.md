@@ -8,7 +8,7 @@ A Claude Code skill (`/release`) that creates an OATControl release end-to-end. 
 
 - **Skill name:** `release`
 - **Location:** `.claude/skills/release.md` (project-level skill)
-- **Trigger:** User types `/release`
+- **Trigger:** User types `/release`, or uses phrases like "make a release", "let's ship", "let's release", "create a release", "ship it", "cut a release"
 
 ## Flow
 
