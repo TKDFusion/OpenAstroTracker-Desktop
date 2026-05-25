@@ -14,23 +14,6 @@ Create a new OATControl release. Follow these steps in order. Stop and ask the u
 3. Verify git working tree is clean (`git status`)
 4. If either fails, stop and tell the user what to fix
 
-## Step 0: Verify Master Branch
-
-Releases must always be cut from `master`. Check and handle the current branch:
-
-1. Check current branch: `git branch --show-current`
-2. If already on `master`, proceed to Step 1
-3. If on a feature branch:
-   - Check if an open PR exists: `gh pr list --head <branch> --state open`
-   - If no PR exists, offer to create one: `gh pr create --base master --head <branch> --title "<title>" --body "<body>"`
-   - If PR is open, tell the user to merge it first and stop
-   - If PR exists but is not merged, tell the user to merge it first and stop
-4. After confirming the PR is merged, switch to master and pull:
-   ```
-   git checkout master && git pull
-   ```
-5. Proceed to Step 1
-
 ## Step 1: Version
 
 1. Read current version from `OATControl/Properties/AssemblyInfo.cs` line 54: `[assembly: AssemblyVersion("X.Y.Z.W")]`
@@ -55,7 +38,7 @@ Update these two files:
 #define MyAppVersion "$VERSION"
 ```
 
-## Step 3: Changelog + README
+## Step 3: Changelog + Readme
 
 1. Get the last release tag: `git tag --sort=-v:refname | grep -E '^V1\.' | head -1`
 2. Get commits since that tag: `git log $LAST_TAG..HEAD --oneline`
@@ -79,13 +62,34 @@ OATControl V$VERSION                                         $DATE
 ```
 The date format is `%d %b %Y` (e.g. `24 May 2026`). The header line is 65 characters wide — pad with spaces so the date aligns to the right edge.
 
-## Step 4: Commit & Tag
+## Step 4: Commit
 
 1. Stage only the changed files: `AssemblyInfo.cs`, `OATControl Setup.iss`, `CHANGELOG.md`, `Readme.txt`
 2. Commit: `git commit -m "Release $TAG"`
-3. Tag: `git tag -a $TAG -m "Release $TAG"`
+3. Push the commit to the remote branch
 
-## Step 5: Build Pause
+## Step 5: Create or Update PR
+
+1. Check if an open PR exists: `gh pr list --head <branch> --state open`
+2. If no PR exists, create one with the release changes included in the description
+3. If PR already exists, it's now updated with the release files
+4. Tell the user to **merge the PR** and wait for confirmation
+
+## Step 6: Switch to Master
+
+After the PR is merged:
+
+1. Switch to master and pull the merge:
+   ```
+   git checkout master && git pull
+   ```
+2. Tag the merge commit:
+   ```
+   git tag -a $TAG -m "Release $TAG"
+   ```
+3. Push the tag: `git push --tags`
+
+## Step 7: Build Pause
 
 Tell the user:
 
@@ -96,18 +100,17 @@ Tell the user:
 
 Wait for the user to confirm, then verify the installer exists at `OATControl/bin/SetupOutput/OATControlSetup.exe`. If not found, ask the user to check.
 
-## Step 6: Push & GitHub Draft Release
+## Step 8: GitHub Draft Release
 
-1. Push: `git push && git push --tags`
-2. Create a temporary file with the changelog bullet points (just the bullets, no header) for release notes
-3. Create draft release:
+1. Create a temporary file with the changelog bullet points (just the bullets, no header) for release notes
+2. Create draft release:
    ```
    gh release create $TAG --draft --title "OATControl $TAG Release" --notes-file <temp-file> "OATControl/bin/SetupOutput/OATControlSetup.exe"
    ```
-4. Report the draft release URL to the user
-5. Clean up the temporary notes file
+3. Report the draft release URL to the user
+4. Clean up the temporary notes file
 
-## Step 7: Discord Announcement
+## Step 9: Discord Announcement
 
 1. Read the webhook URL from `.claude/settings.local.json` key `discordReleaseWebhook`
 2. If the key is missing, ask the user for the webhook URL and save it to `.claude/settings.local.json`
@@ -123,7 +126,7 @@ Wait for the user to confirm, then verify the installer exists at `OATControl/bi
    OpenAstroTech Team
    $RELEASE_URL
    ```
-   Use the same user-facing bullet points from Step 3. The `$RELEASE_URL` is the GitHub release URL from Step 6.
+   Use the same user-facing bullet points from Step 3. The `$RELEASE_URL` is the GitHub release URL from Step 8.
 4. POST to the webhook:
    ```bash
    curl -X POST "$WEBHOOK_URL" \
