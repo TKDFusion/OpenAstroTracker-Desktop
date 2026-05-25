@@ -71,7 +71,7 @@ Update these two files:
 - Change two.
 ```
 
-**`OATControl/README.txt`** — Plain text format matching existing entries. Use the exact column alignment pattern:
+**`OATControl/Readme.txt`** — Plain text format matching existing entries. Use the exact column alignment pattern:
 ```
 OATControl V$VERSION                                         $DATE
 - One-line change.
@@ -81,7 +81,7 @@ The date format is `%d %b %Y` (e.g. `24 May 2026`). The header line is 65 charac
 
 ## Step 4: Commit & Tag
 
-1. Stage only the changed files: `AssemblyInfo.cs`, `OATControl Setup.iss`, `CHANGELOG.md`, `README.txt`
+1. Stage only the changed files: `AssemblyInfo.cs`, `OATControl Setup.iss`, `CHANGELOG.md`, `Readme.txt`
 2. Commit: `git commit -m "Release $TAG"`
 3. Tag: `git tag -a $TAG -m "Release $TAG"`
 
